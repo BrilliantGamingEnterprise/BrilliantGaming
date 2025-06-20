@@ -42,17 +42,18 @@
     }
     @media (max-width: 768px) {
   .game-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
+    display: flex;
+    flex-wrap: wrap;
     gap: 0px;
-    padding: 0 8px; /* 左右各留一点点间距，可根据需要调 */
-    justify-content: start;
+    padding: 0 0;
   }
 
   .game-card {
-    margin: 0;
+    width: 48%;      /* 两个卡片并排，稍微留点空 */
+    margin: 1%;       /* 让中间的间距更自然 */
   }
 }
+
 
     .search-bar {
       position: absolute;
