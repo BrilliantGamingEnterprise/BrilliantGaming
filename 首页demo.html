@@ -159,15 +159,15 @@
       color: #FFD700 ;
     }
 
- .game-list (max-width: 768px)  {
-  display: grid;
-  grid-template-columns: repeat(2);
-  gap: 12px;
-  padding: 0 12px;
-  margin:auto;
+ @media (max-width: 768px) {
+  .game-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 别忘了 1fr 表示平分宽度 */
+    gap: 12px;
+    padding: 0 12px;
+    margin: auto;
+  }
 }
-
-
 
 @media (min-width: 768px) {
   .game-list {
