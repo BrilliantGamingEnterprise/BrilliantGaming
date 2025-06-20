@@ -41,11 +41,18 @@
       max-width: none;
     }
     @media (max-width: 768px) {
-  .logo-search img {
-    padding-left: 0px;
-    height: 60px; /* 手机上更合适的尺寸 */
+  .game-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
+    gap: 0px;
+    padding: 0 8px; /* 左右各留一点点间距，可根据需要调 */
+    justify-content: start;
   }
+
+  .game-card {
+    margin: 0;
   }
+}
 
     .search-bar {
       position: absolute;
@@ -164,8 +171,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 每行两个 */
     gap: 0px;               /* 卡片之间的间距 */
-    padding-left: 0px;      /* 左边留一点空 */
-    padding-right: 160px;        /* 右边不要空隙 */
+    padding-left: 0px;
+    padding-right: 160px;
     justify-content: start
   }
 
@@ -179,7 +186,7 @@
 
 
 
-@media (min-width: 768px) {
+@media (min-width: 780px) {
   .game-list {
   display: grid;
   grid-template-columns: repeat(5, 200px);
