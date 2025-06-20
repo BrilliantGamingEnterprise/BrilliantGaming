@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> HOK UID充值 - Brilliant Gaming</title>
+  <title> Garena CODM</title>
   <style>
     body {
       margin: 0;
@@ -192,17 +192,22 @@
   <div class="currency-toggle" onclick="toggleCurrency()"><span id="currency-label">MYR</span></div>
 
   <div class="banner-container">
-    <img src="图片/HOK/HOKBG.png" alt="HOKBG Banner">
+    <img src="CODM/CODMBG.PNG" alt="HOKBG Banner">
   </div>
 <div class="logo-section">
-  <img src="logo.png" alt="Brilliant Gaming Logo" class="logo-img">
+  <img src="../logo.png" alt="Brilliant Gaming Logo" class="logo-img">
   <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
+</p>
+  
+<p style="font-size: 20px; color: #00ffff; line-height: 1.6; margin-top: 10px;">
+  📌 只需要 <strong style="color:#FFD700;">Player ID & 游戏名字</strong> 即可完成充值～<br>
+  📩 如需其他面额，欢迎 <strong style="color:#ff0000;">随时私聊客服</strong> 询问报价！
 </p>
   </div>
   </section>
   <div class="section-title"></div>
   <div class="price-grid" id="price-grid"></div>
-  <a href="index.html" class="back-button">← 返回首页</a>
+  <a href="../../index.html" class="back-button">← 返回首页</a>
   <div id="cart-toggle" onclick="toggleCart()">🛒 购物车 (<span id="cart-count">0</span>)</div>
 
   <div id="cart-panel">
@@ -262,17 +267,16 @@ const cart = [];
 let cartOpen = false;
 
 const productList = [
-  { name: ' 80 点券', rm: 4, sgd: 1.3, img: '图片/HOK/hok1.png' },
-  { name: ' 240 点券', rm: 12, sgd: 4, img: '图片/HOK/hok2.png' },
-  { name: ' 400 点券', rm: 20, sgd: 7, img: '图片/HOK/hok3.png' },
-  { name: ' 560 点券', rm: 28, sgd: 9.5, img: '图片/HOK/hok4.png' },
-  { name: ' 800 点券', rm: 40, sgd: 13.5, img: '图片/HOK/hok5.png' },
-  { name: ' 1200 点券', rm: 60, sgd: 20, img: '图片/HOK/hok6.png' },
-  { name: ' 2400 点券', rm: 120, sgd: 40, img: '图片/HOK/hok7.png' },
-  { name: ' 4000 点券', rm: 188, sgd: 62, img: '图片/HOK/hok8.png' },
-  { name: ' 8000 点券', rm: 360, sgd: 116, img: '图片/HOK/hok9.png' },
-  { name: ' 周卡', rm: 4.5, sgd: 1.5, img: '图片/HOK/周卡.png' },
-  { name: ' 周卡Plus', rm: 13.5, sgd: 4.5, img: '图片/HOK/周卡plus.png' },
+  { name: '230 + 23 CP', rm: 10.8, sgd: 3.6, img: 'CODM/cp0.png' },
+  { name: '460 + 69 CP', rm: 21, sgd: 7, img: 'CODM/cp1.png' },
+  { name: '690 + 104 CP', rm: 31, sgd: 10.5, img: 'CODM/cp2.png' },
+  { name: '1150 + 173 CP', rm: 50, sgd: 17, img: 'CODM/cp3.png' },
+  { name: '2300 + 460 CP', rm: 95, sgd: 32.5, img: 'CODM/cp4.png' },
+  { name: '4600 + 1840 CP', rm: 185, sgd: 62, img: 'CODM/cp4.png' },
+  { name: '6900 + 3680 CP', rm: 280, sgd: 93, img: 'CODM/cp5.png' },
+  { name: '9200 + 3680 CP', rm: 360, sgd: 120, img: 'CODM/cp5.png' },
+  { name: '13800 + 5520 CP', rm: 540, sgd: 174, img: 'CODM/cp6.png' },
+  { name: '18400 + 7360 CP', rm: 720, sgd: 232, img: 'CODM/cp6.png' }
 ];// 用原始产品列表替换这里
 
 function renderProducts() {
