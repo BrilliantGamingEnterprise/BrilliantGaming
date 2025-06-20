@@ -23,7 +23,6 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background-image: url('bg-watermark.jpg');
   background-repeat: repeat;
   background-size: 400px auto; /* 可调小一点让数量多些 */
   background-position: top left;

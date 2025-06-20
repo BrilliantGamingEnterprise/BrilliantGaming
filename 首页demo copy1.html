@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brilliant Gaming</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      background-image: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 16px;
+      background-color: rgba(10, 10, 10, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo-search img {
+      height: 90px;
+      width: auto;
+      max-width: none;
+    }
+
+    .search-bar {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+    }
+
+    .search-icon {
+      background: none;
+      border: none;
+      color: #00ffff;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    #searchInput {
+      display: none;
+      position: absolute;
+      top: -8px;
+      right: 36px;
+      width: 220px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #0e0e0e;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      box-shadow: 0 0 0 1px #00ffff, 0 2px 6px rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    #searchInput.active {
+      display: block;
+    }
+
+    nav {
+      display: none;
+    }
+
+    .carousel-wrapper {
+      width: 100%;
+      max-width: 1280px;
+      margin: 40px auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      display: none;
+      object-fit: contain;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.left {
+      left: 10px;
+    }
+
+    .carousel-button.right {
+      right: 10px;
+    }
+
+    .section-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto 0;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      max-width: 1000px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      color: #ffffff ;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-size: 16px;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      color: #FFD700 ;
+    }
+
+    .game-list {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center; /* 关键！让网格居中 */
+  gap: 0px; /* 或你原来的 */
+  padding: 0px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.04); /* 比 translateY 更像“专业缩放感” */
+}
+
+.game-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain; /* 不裁图 */
+  background-color: transparent;
+  padding: 4px;
+}
+
+.game-title {
+  margin-top: auto;
+  padding: 6px 4px 2px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #eee;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-search">
+      <a href="index.html">
+        <img src="空.png" alt="Brilliant Gaming Logo" />
+      </a>
+    </div>
+
+  </header>
+
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
+      <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
+      <img src="近期活动 动画/动画1.png" alt="轮播图1" class="active">
+      <img src="近期活动 动画/动画2.png" alt="轮播图2">
+      <img src="近期活动 动画/动画3.png" alt="轮播图3">
+    </div>
+  </div>
+
+  <div class="section-tabs">
+    <button class="tab-button active" onclick="filterCategory(event, 'intl')">国际服游戏</button>
+    <button class="tab-button" onclick="filterCategory(event, 'cn')">中国服游戏</button>
+    <button class="tab-button" onclick="filterCategory(event, 'stream')">直播</button>
+    <button class="tab-button" onclick="filterCategory(event, 'card')">点卡</button>
+    <button class="tab-button" onclick="filterCategory(event, 'other')">其他服务</button>
+  </div>
+
+
+     <!-- 国际服热门卡片放这里 -->
+  <section class="game-list">
+    <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves<br></p>
+      </a>
+    </div>
+    
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="鸣潮.html">
+        <img src="test1.png" alt="鸣潮" />
+        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      </a>
+    </div>
+
+<a href="腾讯.html" class="game-card more-button-card">
+  <div class="game-title">查看更多游戏</div>
+</a>
+
+
+    <!-- 更多卡片放这里 继续放中国等等-->
+
+  </section>
+
+  <script>
+    function toggleSearch(event) {
+      event.stopPropagation();
+      const input = document.getElementById("searchInput");
+      input.classList.toggle("active");
+      if (input.classList.contains("active")) input.focus();
+    }
+
+    document.addEventListener("click", function (e) {
+      const input = document.getElementById("searchInput");
+      const searchBar = document.querySelector(".search-bar");
+      if (!searchBar.contains(e.target)) input.classList.remove("active");
+    });
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel img');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 6000);
+
+    function filterCategory(event, category) {
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.game-card');
+      let count = 0;
+      cards.forEach(card => {
+        if (card.dataset.category === category) {
+          card.style.display = count < 10 ? 'block' : 'none';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const showMoreBtn = document.querySelector('.show-more-button');
+      showMoreBtn.style.display = count >= 12 ? 'block' : 'none';
+    }
+
+    function showMoreGames() {
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => card.style.display = 'block');
+      document.querySelector('.show-more-button').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
