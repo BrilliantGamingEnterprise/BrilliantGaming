@@ -40,18 +40,19 @@
       width: auto;
       max-width: none;
     }
+    @media (max-width: 768px) {
+  .logo-search img {
+    padding-left: 8px;
+    height: 60px; /* 手机上更合适的尺寸 */
+  }
+  }
 
     .search-bar {
       position: absolute;
       top: 16px;
       right: 24px;
     }
-@media (max-width: 768px) {
-  .logo-search img {
-    padding-left: 8px;
-    height: 60px; /* 手机上更合适的尺寸 */
-  }
-}
+
     .search-icon {
       background: none;
       border: none;
@@ -158,16 +159,14 @@
       color: #FFD700 ;
     }
 
-    .game-list {
+ .game-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 默认是手机：2列 */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 手机每列平均分配 */
   gap: 12px;
   padding: 0 12px;
-  max-width: 100%;
-  box-sizing: border-box;
   margin: auto;
-  justify-content: center;
 }
+
 
 @media (min-width: 768px) {
   .game-list {
