@@ -48,6 +48,7 @@
     }
 @media (max-width: 768px) {
   .logo-search img {
+    padding-left: 8px;
     height: 60px; /* 手机上更合适的尺寸 */
   }
 }
@@ -160,9 +161,10 @@
     .game-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 默认是手机：2列 */
-  gap: 16px;
-  padding: 20px;
-  max-width: 1200px;
+  gap: 12px;
+  padding: 0 12px;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: auto;
   justify-content: center;
 }
