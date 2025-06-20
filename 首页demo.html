@@ -162,15 +162,14 @@
  @media (max-width: 768px) {
   .game-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* 两列 */
-    gap: 8px;
-    padding: 0 12px;
-    box-sizing: border-box;
-    margin: auto;
+    grid-template-columns: repeat(2, 1fr); /* 两列，每列平均宽度 */
+    gap: 12px;               /* 中间间距，别太小也别太大 */
+    padding: 0 16px;         /* 左右留白感！就是靠这个 */
+    box-sizing: border-box;  /* 很关键！让 padding 被算进去 */
   }
 
   .game-card {
-    width: 100%;
+    width: 100%;             /* 每个卡片占满一栏 */
     max-width: 100%;
   }
 
