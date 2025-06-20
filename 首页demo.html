@@ -2,7 +2,8 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-    <title>Brilliant Gaming</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
     body {
@@ -161,12 +162,22 @@
  @media (max-width: 768px) {
   .game-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 别忘了 1fr 表示平分宽度 */
-    gap: 0px;
-    padding: 0 12px;
-    margin: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;               /* 卡片之间留一点点空 */
+    padding: 0 16px;        /* 左右白边 */
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .game-card img {
+    height: 130px;          /* 卡片图稍微缩小点，看起来不压迫 */
+  }
+
+  .game-title {
+    font-size: 13px;        /* 适配小屏字体 */
   }
 }
+
 
 @media (min-width: 768px) {
   .game-list {
@@ -222,6 +233,10 @@
   font-weight: 500;
   line-height: 1.3;
   color: #eee;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
   </style>
