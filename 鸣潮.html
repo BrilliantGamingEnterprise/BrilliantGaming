@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> 鸣潮·国际服 - Brilliant Gaming</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
+    }
+.product-img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+    padding: 6px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+/* 加入这段 CSS 到你的 <style> 中（比如 .product-img 下方） */
+.logo-section {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+.logo-img {
+  max-width: 300px;
+  height: auto;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.logo-subtitle {
+  color: #ccc;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+    .banner-container img {
+      width: 100%;
+      display: block;
+      border-bottom: 2px solid #000000;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+      text-align: center;
+      color: #00ffff;
+    }
+
+    .currency-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #111;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 0 12px #00ffff70;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #00ffff70;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 16px #00ffff88;
+    }
+
+    .card-top {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .card-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #FFD700 ;
+    }
+
+    .info-section {
+      padding: 30px;
+      background: #111;
+      border-top: 0px solid #00ffff33;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+
+    .info-section h2 {
+      color: #00ffff;
+      border-left: 0px solid #00ffff;
+      padding-left: 12px;
+      font-size: 20px;
+    }
+
+    .info-section p {
+      margin: 10px 0;
+    }
+
+.back-button {
+  position: fixed;              /* 固定位置 */
+  bottom: 20px;                 /* 距离底部20px */
+  left: 20px;                   /* 距离左侧20px */
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #0a2788, rgb(29, 117, 168));
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(26, 8, 105, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 999;                /* 确保在最上层 */
+}
+
+
+    #cart-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00ffff;
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00ffff;
+      z-index: 999;
+    }
+
+    #cart-panel {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 280px;
+      background: #111;
+      border-radius: 12px;
+      padding: 15px;
+      display: none;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+      z-index: 998;
+      color: white;
+    }
+
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .qty-btn {
+      background: #00ffff;
+      border: none;
+      margin: 0 5px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <div class="currency-toggle" onclick="toggleCurrency()"><span id="currency-label">MYR</span></div>
+
+  <div class="banner-container">
+    <img src="图片/鸣潮/鸣潮BG.png" alt="HOKBG Banner">
+  </div>
+<div class="logo-section">
+  <img src="logo.png" alt="Brilliant Gaming Logo" class="logo-img">
+  <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
+</p>
+  </div>
+  </section>
+  <div class="section-title"></div>
+  <div class="price-grid" id="price-grid"></div>
+  <a href="index.html" class="back-button">← 返回首页</a>
+  <div id="cart-toggle" onclick="toggleCart()">🛒 购物车 (<span id="cart-count">0</span>)</div>
+
+  <div id="cart-panel">
+    <h3>🧾 我的购物车</h3>
+<p 
+style="font-size: 12px; color: #ffcc00; text-align: left; margin-top: 8px; line-height: 1.4;">
+📅价格每日更新，节假日可能会有小浮动<br>
+📌以上价格仅供参考，实际请以客服报价为准哦~<br>
+🎁有时候还会偷偷给你优惠，记得撩客服问一问 😏
+    <ul id="cart-items"></ul>
+    <p id="total-display"></p>
+
+    <button onclick="copyCart()" style="background: #00ffff; color: #000; width: 100%; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">📋 复制发客服</button>
+    <a href="https://wa.me/60123456789" target="_blank" style="display: block; text-align: center; background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 8px; font-weight: bold;">💬 联系客服</a>
+  </div>
+  <section class="info-section">
+    <h2>📌 常见问题 · 充值指南</h2>
+    <p>
+      1️⃣ 怎么样充值 / 充值方式？<br>
+      1. 在网站里面先查看价格<br>
+      2. 点击商品将自动加入购物车<br>
+      3. 打开购物车点击复制账单信息<br>
+      4. 联系微信 或 WhatsApp 客服<br>
+      5. 确认付款后马上帮老板安排‼️🚨<br><br>
+
+      2️⃣ 付款方式有哪些？<br>
+      支持马来西亚转账（Bank QR Pay、TnG eWallet 等）新加坡则是 PayNow<br>
+      也支持微信/支付宝等等,请联系对应客服获取汇款信息哦<br><br>
+
+      3️⃣ 大概多久可以充值好？<br>
+      一般 5~10 分钟完成，特殊情况除外。<br>
+      部分特殊游戏/节假日会稍有延迟，需要排队，客服会第一时间告知。<br><br>
+
+      4️⃣ 充值安全吗？<br>
+     我们使用安全的官方渠道代充，绝不会出现退款，账号不会封，100%放心使用！<br><br>
+
+      5️⃣ 买错了可以退款吗？<br>
+      若尚未付款可随时取消订单。付款后商品一经充值概不退款，请确认好信息后付款。<br><br>
+
+      6️⃣ 怎么看我的游戏 ID？<br>
+      如不清楚请联系客服协助。<br><br>
+
+      7️⃣ 怎么知道客服有没有收到？<br>
+      一般秒回，若无回应请多30分钟再发一次信息。<br><br>
+
+      8️⃣ 这个网站可靠吗？<br>
+      正规注册商家，服务超万位客户，信任源自口碑。<br><br>
+
+      9️⃣ 还有什么特别福利？<br>
+      不定期优惠与新客活动，欢迎关注IG哦~<br>
+    </p>
+  </section>
+  <script>
+
+let selectedCurrency = 'MYR';
+const cart = [];
+let cartOpen = false;
+
+const productList = [
+  { name: '60 月相', rm: 4, sgd: 1.3, img: '图片/鸣潮/鸣潮60.png' },
+  { name: '300 月相', rm: 18, sgd: 6, img: '图片/鸣潮/鸣潮300.png' },
+  { name: '980 月相', rm: 54, sgd: 18, img: '图片/鸣潮/鸣潮980.png' },
+  { name: '1980 月相', rm: 114, sgd: 39, img: '图片/鸣潮/鸣潮1980.png' },
+  { name: '3280 月相', rm: 175, sgd: 57, img: '图片/鸣潮/鸣潮3280.png' },
+  { name: '6480 月相', rm: 350, sgd: 113, img: '图片/鸣潮/鸣潮6480.png' },
+  { name: '60-6480月相', rm: 700, sgd: 225, img: '图片/鸣潮/鸣潮allin.png' },
+  { name: '月相观测卡', rm: 18, sgd: 6, img: '图片/鸣潮/鸣潮card.png' },
+  { name: '寰宇频道', rm: 36, sgd: 12, img: '图片/鸣潮/鸣潮channel.png' },
+  { name: '寰宇特约', rm: 72, sgd: 24, img: '图片/鸣潮/鸣潮vip.png' }
+];// 用原始产品列表替换这里
+
+function renderProducts() {
+  const grid = document.getElementById("price-grid");
+  grid.innerHTML = '';
+  productList.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "price-card";
+    card.onclick = () => {
+      addToCart(product.name, selectedCurrency);
+    };
+    card.innerHTML = `
+      <div class="card-top">${product.name}</div>
+      <img src="${product.img}" alt="${product.name}" class="product-img" />
+      <div class="card-price">${selectedCurrency} ${selectedCurrency === 'MYR' ? product.rm : product.sgd}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleCurrency() {
+  selectedCurrency = selectedCurrency === 'MYR' ? 'SGD' : 'MYR';
+  document.getElementById("currency-label").innerText = selectedCurrency;
+  renderProducts();
+  updateCartDisplay();
+}
+
+function addToCart(name, currency) {
+  const existing = cart.find(item => item.name === name && item.currency === currency);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, currency, qty: 1 });
+  }
+  updateCartDisplay();
+}
+
+function updateCartDisplay() {
+  const cartItems = document.getElementById('cart-items');
+  const totalDisplay = document.getElementById('total-display');
+  const toggleBtn = document.getElementById('cart-toggle');
+
+  cartItems.innerHTML = '';
+  let total = 0;
+  let count = 0;
+
+  const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+  filteredCart.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.innerHTML = `${item.name} - ${item.currency} x${item.qty} <button class='qty-btn' onclick='changeQty(${index}, -1)'>–</button><button class='qty-btn' onclick='changeQty(${index}, 1)'>+</button>`;
+    cartItems.appendChild(li);
+
+    const product = productList.find(p => p.name === item.name);
+    if (product) {
+      total += (item.currency === 'MYR' ? product.rm : product.sgd) * item.qty;
+    }
+    count += item.qty;
+  });
+
+  toggleBtn.innerHTML = cartOpen ? '❌ 关闭购物车' : `🛒 购物车 (${count})`;
+  totalDisplay.innerText = `${selectedCurrency} 总价：${selectedCurrency} ${total.toFixed(2)}`;
+  document.getElementById('cart-count').innerText = count;
+}
+
+function changeQty(index, delta) {
+  const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+  const item = filteredCart[index];
+  const globalIndex = cart.indexOf(item);
+  cart[globalIndex].qty += delta;
+  if (cart[globalIndex].qty <= 0) cart.splice(globalIndex, 1);
+  updateCartDisplay();
+}
+
+function toggleCart() {
+  cartOpen = !cartOpen;
+  document.getElementById('cart-panel').style.display = cartOpen ? 'block' : 'none';
+  updateCartDisplay();
+}
+
+renderProducts();
+</script>
+<script>
+function copyCart() {
+  const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+  if (filteredCart.length === 0) {
+    alert("购物车是空的！");
+    return;
+  }
+const gameTitle = document.title.split(" - ")[0];
+  // ✅ 正式订单格式
+let message = `🎮 游戏名称：${gameTitle}\n`;
+  message += '🧾 订单内容：\n';
+
+  filteredCart.forEach(item => {
+    message += `• ${item.name} ×${item.qty}\n`;
+  });
+
+  let total = 0;
+  filteredCart.forEach(item => {
+    const product = productList.find(p => p.name === item.name);
+    if (product) {
+      total += selectedCurrency === 'MYR' ? product.rm * item.qty : product.sgd * item.qty;
+    }
+  });
+
+  message += `\n💰 合计金额：${selectedCurrency} ${total.toFixed(2)}\n`;
+
+  navigator.clipboard.writeText(message)
+    .then(() => alert("🎀 订单信息已复制，请发送给客服确认哦！"))
+    .catch(() => alert("❌ 复制失败，请手动复制"));
+}
+
+</script>
+
+<footer style="
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 -2px 6px rgba(0, 255, 255, 0);
+  font-family: 'Segoe UI', sans-serif;
+">
+© 2025 Brilliant Gaming Enterprise. All rights reserved.<BR><BR><BR><BR><BR><BR>
+</footer>
+
+</body>
+</html>

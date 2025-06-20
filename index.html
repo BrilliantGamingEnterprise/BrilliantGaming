@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brilliant Gaming</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- 搜索功能脚本 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("searchInput");
+      const cards = document.querySelectorAll(".game-card");
+
+      searchInput.addEventListener("input", () => {
+        const keyword = searchInput.value.toLowerCase();
+        cards.forEach(card => {
+          const name = card.getAttribute("data-name").toLowerCase();
+          card.style.display = name.includes(keyword) ? "block" : "none";
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="no-watermark">
+
+  <!-- 搜索栏 -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 搜索游戏…" />
+  </div>
+
+  <!-- 顶部区域 -->
+  <header>
+    <div class="logo">
+      <img src="logo-bottom (2).jpg" alt="Brilliant Gaming Logo" />
+      <h1>Brilliant Gaming</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#games">游戏列表</a></li>
+        <li><a href="#contact">联系我们</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 横幅 -->
+  <section class="banner">
+    <h2>💸 全网超低价·比自己充值更省钱！</h2>
+    <h2>⚡ 充值速度超快 · 上号5分钟搞定！</h2>
+    <h2>⚡全球热门手游代充｜专业·高效·安全</h2>
+    ✅不碰黑卡 ✅全正规渠道 ✅可提供充值Receipt截图
+  </section>
+
+  <!-- 游戏展示 -->
+  <section id="games" class="game-list">
+    <h2>热门游戏</h2>
+
+
+    <!-- 显示的卡片：中国腾讯游戏 -->
+    <div class="game-card" data-name="中国腾讯游戏 tencent">
+      <a href="腾讯.html">
+        <img src="tencent.jpg" alt="中国腾讯游戏">
+        <p class="game-title">中国 · 腾讯游戏<BR>TENCENT GAMES</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
+      <a href="HOK入口.html">
+        <img src="图片/HOK/HOKLOGO.png" alt="HOKLOGO" />
+        <p class="game-title">国际服王者<BR>HONOR OF KINGS</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-name="原神 genshin impact">
+      <a href="原神.html">
+        <img src="图片/原神/原神LOGO.png" alt="原神" />
+        <p class="game-title">原神<BR>Genshin Impact</p>
+      </a>
+    </div>
+
+
+    <div class="game-card" data-name="崩坏 星铁 星穹铁道 honkai star rail">
+      <a href="崩坏.html">
+        <img src="图片/崩坏/崩坏LOGO.png" alt="崩坏" />
+        <p class="game-title">崩坏：星穹铁道<BR>Honkai: Star Rail</p>
+      </a>
+    </div>
+
+
+    <div class="game-card" data-name="绝区零 ZenlessZone Zero ZZZ">
+      <a href="绝区.html">
+        <img src="图片/绝区零/绝区logo.jpg" alt="原神" />
+        <p class="game-title">绝区零<BR>Zoneless Zen Zero</p>
+      </a>
+    </div>
+
+ 
+    <div class="game-card" data-name="鸣潮 Wuthering Waves">
+      <a href="鸣潮.html">
+        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="原神" />
+        <p class="game-title">鸣潮<BR>Wuthering Waves</p>
+      </a>
+    </div>
+ 
+    <div class="game-card" data-name="MobileLegend Bangbang MLBB">
+      <a href="MLBB.html">
+        <img src="图片/MLBB/mlbblogo.jpg" alt="MLBB img" />
+        <p class="game-title">Mobile Legend BangBang</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
+      <a href="garena入口.html">
+        <img src="garena/garena.png" alt="HOKLOGO" />
+        <p class="game-title">Garena<BR>MY/SG</p>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- 联系我们 -->
+  <section id="contact" class="contact">
+    <h2>联系我们</h2>
+    <p>微信ID ：Briiliant_Gaming</p>
+    <img src="placeholder-wechat.png" alt="微信二维码" class="qr" />
+    <p>WhatsApp 二维码：</p>
+    <img src="placeholder-whatsapp.png" alt="WhatsApp 二维码" class="qr" />
+  </section>
+
+  <!-- 页脚 -->
+<footer style="
+  text-align: center;
+  padding: 16px;
+  font-size: 20px;
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 -2px 6px rgba(0, 255, 255, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+">
+© 2025 Brilliant Gaming Enterprise. All rights reserved.
+
+</footer>
+
+</body>
+</html>
