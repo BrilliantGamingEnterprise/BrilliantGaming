@@ -46,7 +46,11 @@
       top: 16px;
       right: 24px;
     }
-
+@media (max-width: 768px) {
+  .logo-search img {
+    height: 60px; /* 手机上更合适的尺寸 */
+  }
+}
     .search-icon {
       background: none;
       border: none;
@@ -155,12 +159,24 @@
 
     .game-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  justify-content: center;
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr); /* 默认是手机：2列 */
+  gap: 16px;
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .game-list {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center; /* 关键！让网格居中 */
+  gap: 0px; /* 或你原来的 */
+  padding: 0px;
+  max-width: 1200px;
+  margin: auto;
+}
 }
 
 
