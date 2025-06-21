@@ -283,50 +283,66 @@
     }
 
     .carousel-wrapper {
-      width: 100%;
-      max-width: 1280px;
-      margin: 40px auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-    }
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 16 / 6;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
 
-    .carousel {
-      position: relative;
-      width: 100%;
-    }
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-    .carousel img {
-      width: 100%;
-      height: auto;
-      display: none;
-      object-fit: contain;
-    }
+.carousel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
+  z-index: 0;
+}
 
-    .carousel img.active {
-      display: block;
-    }
+.carousel img.active {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
 
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      border: none;
-      color: white;
-      font-size: 24px;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 10;
-    }
+.carousel img.exit-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  z-index: 1;
+}
 
-    .carousel-button.left {
-      left: 10px;
-    }
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
 
-    .carousel-button.right {
-      right: 10px;
-    }
+.carousel-button.left {
+  left: 10px;
+}
+.carousel-button.right {
+  right: 10px;
+}
+
 
     .section-tabs {
       display: flex;
@@ -415,6 +431,7 @@
 }
 
 .game-card img {
+  border-radius: 100px 100px 0 0;
   width: 100%;
   height: 160px;
   object-fit: contain; /* 不裁图 */
@@ -429,7 +446,7 @@
   font-size: 13.5px;
   font-weight: 500;
   line-height: 1.3;
-  color: #eee;
+  color: #ffdb3b;
 }
 html, body {
   max-width: 100%;
@@ -470,30 +487,30 @@ html, body {
      <!-- 国际服热门卡片放这里 -->
   <section class="game-list">
     <div class="game-card" data-category="intl">
-      <a href="鸣潮.html">
-        <img src="poin.png" alt="鸣潮" />
-        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      <a href="HOK入口.html">
+        <img src="图片/HOK/HOKLOGO.png" alt="鸣潮" />
+        <p class="game-title">国际服王者<br>HONOR OF KINGS</p>
       </a>
     </div>
 
         <div class="game-card" data-category="intl">
-      <a href="鸣潮.html">
-        <img src="poin.png" alt="鸣潮" />
-        <p class="game-title">鸣潮<br>Wuthering Waves<br></p>
+      <a href="原神.html">
+        <img src="图片/原神/原神LOGO.png" alt="鸣潮" />
+        <p class="game-title">原神<br>GENSHIN IMPACT<br></p>
       </a>
     </div>
     
         <div class="game-card" data-category="intl">
-      <a href="鸣潮.html">
-        <img src="poin.png" alt="鸣潮" />
-        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      <a href="崩坏.html">
+        <img src="图片/崩坏/崩坏LOGO.png" alt="鸣潮" />
+        <p class="game-title">崩坏：星穹铁道<br>HONKAI：STAR RAIL</p>
       </a>
     </div>
 
         <div class="game-card" data-category="intl">
-      <a href="鸣潮.html">
-        <img src="poin.png" alt="鸣潮" />
-        <p class="game-title">鸣潮<br>Wuthering Waves</p>
+      <a href="绝区.html">
+        <img src="图片/绝区零/绝区logo.jpg" alt="鸣潮" />
+        <p class="game-title">绝区零<br>ZENLESS ZONE ZERO</p>
       </a>
     </div>
 
@@ -555,26 +572,41 @@ html, body {
       if (!searchBar.contains(e.target)) input.classList.remove("active");
     });
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel img');
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === index);
-      });
-    }
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel img');
 
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
+  function showSlide(nextIndex) {
+    if (nextIndex === currentSlide) return;
 
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
+    const currentImg = slides[currentSlide];
+    const nextImg = slides[nextIndex];
 
-    setInterval(nextSlide, 6000);
+    // 重置状态
+    slides.forEach(slide => slide.classList.remove('active', 'exit-left'));
+
+    // 当前图滑出左侧
+    currentImg.classList.add('exit-left');
+
+    // 新图滑入
+    nextImg.classList.add('active');
+
+    currentSlide = nextIndex;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function prevSlide() {
+    const nextIndex = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  setInterval(nextSlide, 6000); // 每6秒轮播
+  
+
 
     function filterCategory(event, category) {
       const buttons = document.querySelectorAll('.tab-button');
@@ -601,6 +633,7 @@ html, body {
       cards.forEach(card => card.style.display = 'block');
       document.querySelector('.show-more-button').style.display = 'none';
     }
+  
   </script>
 </body>
 <footer class="footer">
