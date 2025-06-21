@@ -51,12 +51,13 @@
 
 
     @media (max-width: 768px) {
-  .game-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
-    gap: 0px;
-    padding: 0 8px; /* 左右各留一点点间距，可根据需要调 */
-    justify-content: start;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0px;
+  justify-content: center; /* 🔥 让卡片居中排列 */
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: auto;
   }
 
   .game-card {
@@ -349,7 +350,7 @@ html, body {
 
         <div class="game-card" data-category="intl">
       <a href="鸣潮.html">
-        <img src="test1.png" alt="鸣潮" />
+        <img src="poin.png" alt="鸣潮" />
         <p class="game-title">鸣潮<br>Wuthering Waves</p>
       </a>
     </div>
