@@ -6,6 +6,30 @@
   <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+.payment-scroll-wrapper {
+  overflow: hidden;
+  background-color: #111; /* 或你的网页底色 */
+  height: 100px;
+}
+
+.payment-scroll {
+  display: flex;
+  animation: scroll-left 10s linear infinite;
+}
+
+.payment-scroll img {
+  height: 60px;
+  margin-right: 60px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
     .footer {
   background-color: #111;
@@ -497,7 +521,13 @@ html, body {
     </div>
     <div class="footer-section">
       <h3>支付方式</h3>
-      <img src="yourpath/payments.png" alt="支付方式" class="payment-img" />
+     <div class="payment-scroll-wrapper">
+  <div class="payment-scroll">
+    <img src="payment.png" alt="支付方式">
+    <img src="payment.png" alt="支付方式"> <!-- 重复一张，实现循环滚动 -->
+  </div>
+</div>
+
     </div>
     <div class="footer-section">
       <h3>关注我们</h3>
