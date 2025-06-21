@@ -15,11 +15,17 @@
   align-items: center;
   max-width: 480px;
   margin: 20px auto;
-  background-color: rgba(20, 20, 20, 0.9);
-  border: 1px solid #00ffff55;
-  border-radius: 8px;
   padding: 6px 12px;
-  box-shadow: 0 0 6px rgba(0,255,255,0.1);
+
+  background-color: rgba(30, 30, 30, 0.45); /* 半透明磨砂背景 */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* 细青色描边 */
+  border-radius: 0px;                        /* ❌ 无圆角 */
+
+  backdrop-filter: blur(10px);              /* 🔥 磨砂模糊核心 */
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 2px 8px rgba(0,255,255,0.04), 
+              inset 0 0 0.5px rgba(255,255,255,0.06);
 }
 
 .search-bar-pro input {
@@ -27,15 +33,17 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 8px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 8px 6px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .search-btn {
   background: none;
   border: none;
-  color: #00ffff;
+  color: #00ffff54;
   font-size: 20px;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -44,6 +52,8 @@
 .search-btn:hover {
   color: #ffffff;
 }
+
+
 
 .social-link {
   
@@ -509,14 +519,46 @@ html, body {
       </a>
     </div>
 
-<a href="更多国际游戏.html" class="game-card more-button-card">
-  <div class="game-title">查看更多游戏</div>
-</a>
+        <div class="game-card" data-category="intl">
+      <a href="国际服游戏/Valorant/Valorant.html">
+        <img src="国际服游戏/Valorant/3217.webp" alt="鸣潮" />
+        <p class="game-title">Valorant<br></p>
+      </a>
+    </div>
 
 
     <!-- 更多卡片放这里 继续放中国等等-->
 
   </section>
+
+  <script>
+  document.querySelector('.search-btn').addEventListener('click', function () {
+    const query = document.getElementById('searchInputPro').value.toLowerCase();
+    const cards = document.querySelectorAll('.game-card');
+
+    cards.forEach(card => {
+      const title = card.innerText.toLowerCase();
+      if (title.includes(query)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // 空内容时显示全部（可选）
+    if (query.trim() === '') {
+      cards.forEach(card => card.style.display = 'block');
+    }
+  });
+</script>
+
+<script>
+  document.getElementById('searchInputPro').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      document.querySelector('.search-btn').click();
+    }
+  });
+</script>
 
   <script>
     function toggleSearch(event) {
