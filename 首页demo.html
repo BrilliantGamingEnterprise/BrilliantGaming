@@ -6,30 +6,56 @@
   <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-.payment-scroll-wrapper {
+
+/* 通用滚动区域样式 */
+.scroll-wrapper {
+  width: 100%;
   overflow: hidden;
-  background-color: #111; /* 或你的网页底色 */
+  background-color: #111;
   height: 100px;
+  position: relative;
 }
-
-.payment-scroll {
+.scroll-track {
   display: flex;
-  animation: scroll-left 10s linear infinite;
+  animation: scrollLoop 30s linear infinite;
+  width: max-content;
+  will-change: transform;
 }
-
-.payment-scroll img {
-  height: 60px;
+.scroll-track img {
+  height: 100px;
   margin-right: 60px;
+  flex-shrink: 0;
 }
 
-@keyframes scroll-left {
+/* 滚动动画 */
+@keyframes scrollLoop {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
   }
 }
+
+/* 响应式切换：默认显示 desktop */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+/* 小屏设备切换显示 */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}
+
+
 
     .footer {
   background-color: #111;
@@ -519,14 +545,32 @@ html, body {
       <p>WeChat：<span class="link">Brilliant_Gaming</span></p>
       <p>WhatsApp：<span class="link">+60 123-456-789</span></p>
     </div>
+
     <div class="footer-section">
       <h3>支付方式</h3>
-     <div class="payment-scroll-wrapper">
-  <div class="payment-scroll">
-    <img src="payment.png" alt="支付方式">
-    <img src="payment.png" alt="支付方式"> <!-- 重复一张，实现循环滚动 -->
+
+     <div class="scroll-wrapper desktop-only">
+  <div class="scroll-track">
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
   </div>
 </div>
+
+<div class="scroll-wrapper mobile-only">
+  <div class="scroll-track">
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+  </div>
+</div>
+
 
     </div>
     <div class="footer-section">
