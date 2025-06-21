@@ -6,6 +6,60 @@
   <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+
+    .footer {
+  background-color: #111;
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  padding: 40px 20px;
+}
+.footer h2, .footer h3 {
+  text-align: left;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+.footer-section p {
+  text-align: left;
+  margin: 6px 0;
+}
+.link {
+  color: #00bfff;
+}
+.payment-img {
+  max-width: 160px;
+  margin-top: 10px;
+}
+.footer hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 30px 0;
+}
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+.footer-links {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: #777;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -428,4 +482,37 @@ html, body {
     }
   </script>
 </body>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h2>Brilliant Gaming</h2>
+      <p>您的最佳手游充值伙伴</p>
+      <p>100% 最低价格 ｜ 100% 快速交付 ｜ 100% 安全保障</p>
+    </div>
+    <div class="footer-section">
+      <h3>联系我们</h3>
+      <p>营业时间：每日 9:00 - 01:00 (GMT+8)</p>
+      <p>WeChat：<span class="link">Brilliant_Gaming</span></p>
+      <p>WhatsApp：<span class="link">+60 123-456-789</span></p>
+    </div>
+    <div class="footer-section">
+      <h3>支付方式</h3>
+      <img src="yourpath/payments.png" alt="支付方式" class="payment-img" />
+    </div>
+    <div class="footer-section">
+      <h3>关注我们</h3>
+      <p>Instagram：<span class="link">@Brilliant.Gaming.Enterprise</span></p>
+    </div>
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    <div class="footer-links">
+      <a href="#">免责声明</a>
+      <a href="#">使用条款</a>
+      <a href="#">隐私政策</a>
+    </div>
+    <p>© 2025 Brilliant Gaming. All rights reserved.</p>
+  </div>
+</footer>
+
 </html>
