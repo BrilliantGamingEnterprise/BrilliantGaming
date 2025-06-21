@@ -419,9 +419,7 @@
   justify-content: flex-start;
   padding: 0;
   background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
+  border-radius: 20px 20px 0 0;
   overflow: hidden;
   transition: transform 0.2s ease;
 }
@@ -431,7 +429,6 @@
 }
 
 .game-card img {
-  border-radius: 100px 100px 0 0;
   width: 100%;
   height: 160px;
   object-fit: contain; /* 不裁图 */
@@ -488,7 +485,7 @@ html, body {
   <section class="game-list">
     <div class="game-card" data-category="intl">
       <a href="HOK入口.html">
-        <img src="图片/HOK/HOKLOGO.png" alt="鸣潮" />
+        <img src="图片/游戏logo (3).png" alt="鸣潮" />
         <p class="game-title">国际服王者<br>HONOR OF KINGS</p>
       </a>
     </div>
@@ -555,8 +552,49 @@ html, body {
 
 
     <!-- 更多卡片放这里 继续放中国等等-->
+<div class="game-card" data-category="cn">
+      <a href="王者荣耀.html">
+        <img src="tencent/王者荣耀logo.png" alt="鸣潮" />
+        <p class="game-title">王者荣耀</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="和平精英.html">
+        <img src="tencent/和平logo.png" alt="鸣潮" />
+        <p class="game-title">和平精英</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="金铲铲之战.html">
+        <img src="tencent/金铲铲logo.png" alt="鸣潮" />
+        <p class="game-title">金铲铲之战</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="HOK入口.html">
+        <img src="图片/HOK/HOKLOGO.png" alt="鸣潮" />
+        <p class="game-title">国际服王者<br>HONOR OF KINGS</p>
+      </a>
+    </div>
 
   </section>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const allCards = document.querySelectorAll('.game-card');
+    allCards.forEach((card, index) => {
+      if (index < 10) {
+        card.style.display = 'inline-block'; // 或 'grid' 取决你用什么布局
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+
 
   <script>
     function toggleSearch(event) {
