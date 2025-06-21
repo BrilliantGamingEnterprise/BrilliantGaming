@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+
+.social-link {
+  
+  color: #00f7ff;
+  font-size: 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.link-text {
+  font-size: 18px;
+  text-underline-offset: 4px;
+  text-decoration: underline;
+  color: #00f7ff;
+}
+.social-link i {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.social-link:hover {
+  color: #ffffff;
+}
 
 /* 通用滚动区域样式 */
 .scroll-wrapper {
@@ -72,6 +99,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #ffffff;
+  text-shadow: 0 0 10px rgb(255, 255, 255);
   margin-bottom: 6px;
 }
 
@@ -574,9 +602,9 @@ html, body {
     </div>
     <div class="footer-section">
       <h3>联系我们</h3>
-      <p>营业时间：每日 9:00 - 01:00 (GMT+8)</p>
+      <p class="footer-subtitle">营业时间：每日 9:00 - 01:00 (GMT+8)</p>
       <p>WeChat：<span class="link">Brilliant_Gaming</span></p>
-      <p>WhatsApp：<span class="link">+60 123-456-789</span></p>
+      <p>WhatsApp：<span class="link">+6012 445-8242</span></p>
     </div>
 
     <div class="footer-section">
@@ -607,16 +635,30 @@ html, body {
 
     </div>
     <div class="footer-section">
-      <h3>关注我们</h3>
-      <p>Instagram：<span class="link">@Brilliant.Gaming.Enterprise</span></p>
+      <h3 class="footer-title">Follow Us</h3>
+<p>关注我们 Instagram 频道<BR>获取独家游戏活动、充值优惠<BR>新游上线第一时间掌握！</p>
+
+<a href="https://www.instagram.com/Brilliant.Gaming.Enterprise" target="_blank" class="social-link">
+  <i class="fab fa-instagram"></i>
+  <span class="link-text">@Brilliant.Gaming.Enterprise</span>
+</a>
+<a href="https://www.instagram.com/Brilliant.Gaming.Enterprise" target="_blank" class="social-link">
+  <i class="fab fa-facebook"></i>
+  <span class="link-text">卓越电竞 「Brilliant Gaming」</span>
+  
+</a>
+
+
     </div>
   </div>
   <hr />
   <div class="footer-bottom">
     <div class="footer-links">
-      <a href="#">免责声明</a>
-      <a href="#">使用条款</a>
-      <a href="#">隐私政策</a>
+
+      <a href="Foot免责声明.html">免责声明</a>
+      <a href="Foot使用条款.html">使用条款</a>
+      <a href="Foot隐私政策.html">隐私政策</a>
+
     </div>
     <p>© 2025 Brilliant Gaming. All rights reserved.</p>
   </div>
