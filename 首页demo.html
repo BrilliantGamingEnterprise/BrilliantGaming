@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <meta charset="UTF-8" />
@@ -344,11 +345,14 @@
 
 @media (max-width: 768px) {
   .carousel-button {
-    font-size: 18px;       /* 缩小字体箭头 */
-    padding: 6px 8px;       /* 缩小按钮区域 */
-    border-radius: 6px;
+    font-size: 18px;
+    padding: 6px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
   }
 }
+
 
 .carousel-button:hover {
   background: rgba(0, 255, 255, 0.2);
@@ -356,12 +360,6 @@
   box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
   color: #00ffff;
 }
-
-<button class="carousel-button left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-
-<button class="carousel-button right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 .carousel-button.left {
   left: 10px;
@@ -480,6 +478,16 @@ html, body {
   </style>
 </head>
 <body>
+  <!-- 左按钮 -->
+<button class="carousel-button left" onclick="prevSlide()">
+  <i class="fas fa-chevron-left"></i>
+</button>
+
+<!-- 右按钮 -->
+<button class="carousel-button right" onclick="nextSlide()">
+  <i class="fas fa-chevron-right"></i>
+</button>
+
   <header>
     <div class="logo-search">
       <a href="首页demo.html">
@@ -633,10 +641,15 @@ html, body {
     }
 
     document.addEventListener("click", function (e) {
-      const input = document.getElementById("searchInput");
-      const searchBar = document.querySelector(".search-bar");
-      if (!searchBar.contains(e.target)) input.classList.remove("active");
-    });
+  const input = document.getElementById("searchInput");
+  const searchBar = document.querySelector(".search-bar");
+
+  // 解决 null 报错
+  if (searchBar && !searchBar.contains(e.target)) {
+    input.classList.remove("active");
+  }
+});
+
 
 
   let currentSlide = 0;
