@@ -243,6 +243,11 @@
   }
 }
 
+@media (max-width: 768px) {
+  .carousel-button {
+    display: none;
+  }
+}
 
     .search-bar {
       position: absolute;
@@ -284,7 +289,7 @@
     }
 
     .carousel-wrapper {
-  width: 100%;
+  width: 90%;
   max-width: 1280px;
   aspect-ratio: 16 / 7;
   margin: 40px auto;
@@ -342,17 +347,6 @@
   box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
-
-@media (max-width: 768px) {
-  .carousel-button {
-    font-size: 18px;
-    padding: 6px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-  }
-}
-
 
 .carousel-button:hover {
   background: rgba(0, 255, 255, 0.2);
@@ -478,16 +472,7 @@ html, body {
   </style>
 </head>
 <body>
-  <!-- 左按钮 -->
-<button class="carousel-button left" onclick="prevSlide()">
-  <i class="fas fa-chevron-left"></i>
-</button>
-
-<!-- 右按钮 -->
-<button class="carousel-button right" onclick="nextSlide()">
-  <i class="fas fa-chevron-right"></i>
-</button>
-
+  
   <header>
     <div class="logo-search">
       <a href="首页demo.html">
@@ -501,9 +486,9 @@ html, body {
     <div class="carousel">
       <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
       <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
-      
-      <img src="近期活动 动画/动画1.png" alt="轮播图4" class="active">
-
+      <img src="近期活动 动画/动画1.png" alt="轮播图1" class="active">
+      <img src="近期活动 动画/动画2.png" alt="轮播图2">
+      <img src="近期活动 动画/动画3.png" alt="轮播图3">
     </div>
   </div>
 
@@ -631,25 +616,6 @@ html, body {
   });
 </script>
 
-// ⬇️ 触摸滑动逻辑
-let startX = 0;
-
-const carouselWrapper = document.querySelector('.carousel-wrapper');
-carouselWrapper.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-});
-
-carouselWrapper.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  const diffX = endX - startX;
-
-  if (diffX > 50) {
-    prevSlide(); // 右滑，上一张
-  } else if (diffX < -50) {
-    nextSlide(); // 左滑，下一张
-  }
-});
-
 
   <script>
     function toggleSearch(event) {
@@ -660,15 +626,10 @@ carouselWrapper.addEventListener('touchend', e => {
     }
 
     document.addEventListener("click", function (e) {
-  const input = document.getElementById("searchInput");
-  const searchBar = document.querySelector(".search-bar");
-
-  // 解决 null 报错
-  if (searchBar && !searchBar.contains(e.target)) {
-    input.classList.remove("active");
-  }
-});
-
+      const input = document.getElementById("searchInput");
+      const searchBar = document.querySelector(".search-bar");
+      if (!searchBar.contains(e.target)) input.classList.remove("active");
+    });
 
 
   let currentSlide = 0;
@@ -704,6 +665,25 @@ carouselWrapper.addEventListener('touchend', e => {
 
   setInterval(nextSlide, 6000); // 每6秒轮播
   
+// 👇 手机滑动功能
+let startX = 0;
+let endX = 0;
+
+const carousel = document.querySelector('.carousel');
+
+carousel.addEventListener('touchstart', function (e) {
+  startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', function (e) {
+  endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    nextSlide(); // 左滑
+  } else if (endX - startX > 50) {
+    prevSlide(); // 右滑
+  }
+});
 
 
     function filterCategory(event, category) {
