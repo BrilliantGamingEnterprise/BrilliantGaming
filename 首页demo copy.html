@@ -347,6 +347,7 @@
     font-size: 18px;       /* 缩小字体箭头 */
     padding: 6px 8px;       /* 缩小按钮区域 */
     border-radius: 6px;
+   display: none;    
   }
 }
 
@@ -356,13 +357,6 @@
   box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
   color: #00ffff;
 }
-
-<button class="carousel-button left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-
-<button class="carousel-button right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 .carousel-button.left {
   left: 10px;
 }
@@ -495,6 +489,8 @@ html, body {
       <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
       
       <img src="近期活动 动画/动画1.png" alt="轮播图4" class="active">
+      <img src="近期活动 动画/动画2.png" alt="轮播图2">
+      <img src="近期活动 动画/动画3.png" alt="轮播图3">
 
     </div>
   </div>
@@ -572,8 +568,8 @@ html, body {
         <p class="game-title">POKEMON<br>TCG POCKET</p>
       </a>
     </div>
-
-<a href="更多国际游戏.html" class="game-card more-button-card">
+      <div class="game-card" data-category="intl">
+<a href="更多国际游戏.html">
   <img src="游戏LOGO/查看更多.png" alt="鸣潮" />
   <div class="game-title">查看更多游戏</div>
 </a>
@@ -641,6 +637,7 @@ html, body {
 
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel img');
+  let slideTimer = null;
 
   function showSlide(nextIndex) {
     if (nextIndex === currentSlide) return;
@@ -648,16 +645,12 @@ html, body {
     const currentImg = slides[currentSlide];
     const nextImg = slides[nextIndex];
 
-    // 重置状态
     slides.forEach(slide => slide.classList.remove('active', 'exit-left'));
-
-    // 当前图滑出左侧
     currentImg.classList.add('exit-left');
-
-    // 新图滑入
     nextImg.classList.add('active');
-
     currentSlide = nextIndex;
+
+    resetAutoSlide(); // 每次手动切换后重置计时器
   }
 
   function nextSlide() {
@@ -670,8 +663,30 @@ html, body {
     showSlide(nextIndex);
   }
 
-  setInterval(nextSlide, 6000); // 每6秒轮播
-  
+  function resetAutoSlide() {
+    if (slideTimer) clearInterval(slideTimer);
+    slideTimer = setInterval(nextSlide, 6000);
+  }
+
+  resetAutoSlide(); // 初始化轮播
+
+  // 👇 手机滑动功能
+  const carousel = document.querySelector('.carousel');
+  let startX = 0;
+  let endX = 0;
+
+  carousel.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener('touchend', function (e) {
+    endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      nextSlide(); // 左滑
+    } else if (endX - startX > 50) {
+      prevSlide(); // 右滑
+    }
+  });
 
 
     function filterCategory(event, category) {
