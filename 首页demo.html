@@ -631,6 +631,25 @@ html, body {
   });
 </script>
 
+// ⬇️ 触摸滑动逻辑
+let startX = 0;
+
+const carouselWrapper = document.querySelector('.carousel-wrapper');
+carouselWrapper.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+carouselWrapper.addEventListener('touchend', e => {
+  const endX = e.changedTouches[0].clientX;
+  const diffX = endX - startX;
+
+  if (diffX > 50) {
+    prevSlide(); // 右滑，上一张
+  } else if (diffX < -50) {
+    nextSlide(); // 左滑，下一张
+  }
+});
+
 
   <script>
     function toggleSearch(event) {
