@@ -327,14 +327,33 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  font-size: 24px;
-  padding: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08); /* 半透明白色 */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+  backdrop-filter: blur(8px); /* 模糊背景 */
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 20px;
   cursor: pointer;
   z-index: 10;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
 }
+
+.carousel-button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
+  color: #00ffff;
+}
+
+<button class="carousel-button left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+
+<button class="carousel-button right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 .carousel-button.left {
   left: 10px;
