@@ -306,21 +306,13 @@
   left: 0;
   object-fit: cover;
   opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.6s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   z-index: 0;
 }
 
 .carousel img.active {
   opacity: 1;
-  transform: translateX(0);
   z-index: 2;
-}
-
-.carousel img.exit-left {
-  opacity: 0;
-  transform: translateX(-100%);
-  z-index: 1;
 }
 
 .carousel-button {
@@ -572,19 +564,12 @@ html, body {
       </a>
     </div>
 
-    <div class="game-card" data-category="">
-      <a href="国际服游戏/Valorant/Valorant.html">
-        <img src="国际服游戏/Valorant/3217.webp" alt="鸣潮" />
-        <p class="game-title">Valorant<br></p>
-      </a>
-    </div>
-
-      <div class="game-card" data-category="intl">
+    <div class="game-card" data-category="intl">
 <a href="更多国际游戏.html">
   <img src="游戏LOGO/查看更多.png" alt="鸣潮" />
   <div class="game-title">查看更多游戏</div>
 </a>
-
+</div>
 
     <!-- 更多卡片放这里 继续放中国等等-->
 <div class="game-card" data-category="cn">
@@ -639,30 +624,19 @@ html, body {
       if (input.classList.contains("active")) input.focus();
     }
 
-    document.addEventListener("click", function (e) {
-      const input = document.getElementById("searchInput");
-      const searchBar = document.querySelector(".search-bar");
-      if (!searchBar.contains(e.target)) input.classList.remove("active");
-    });
-
-
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel img');
   let slideTimer = null;
 
   function showSlide(nextIndex) {
-    if (nextIndex === currentSlide) return;
+  if (nextIndex === currentSlide) return;
 
-    const currentImg = slides[currentSlide];
-    const nextImg = slides[nextIndex];
+  slides[currentSlide].classList.remove('active');
+  slides[nextIndex].classList.add('active');
+  currentSlide = nextIndex;
 
-    slides.forEach(slide => slide.classList.remove('active', 'exit-left'));
-    currentImg.classList.add('exit-left');
-    nextImg.classList.add('active');
-    currentSlide = nextIndex;
-
-    resetAutoSlide(); // 每次手动切换后重置计时器
-  }
+  resetAutoSlide();
+}
 
   function nextSlide() {
     const nextIndex = (currentSlide + 1) % slides.length;
@@ -715,15 +689,6 @@ html, body {
           card.style.display = 'none';
         }
       });
-
-      const showMoreBtn = document.querySelector('.show-more-button');
-      showMoreBtn.style.display = count >= 12 ? 'block' : 'none';
-    }
-
-    function showMoreGames() {
-      const cards = document.querySelectorAll('.game-card');
-      cards.forEach(card => card.style.display = 'block');
-      document.querySelector('.show-more-button').style.display = 'none';
     }
   
   </script>

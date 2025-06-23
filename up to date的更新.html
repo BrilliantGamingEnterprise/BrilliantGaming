@@ -306,16 +306,15 @@
   left: 0;
   object-fit: cover;
   opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.6s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
   z-index: 0;
 }
 
 .carousel img.active {
   opacity: 1;
-  transform: translateX(0);
   z-index: 2;
 }
+
 
 .carousel img.exit-left {
   opacity: 0;
@@ -488,10 +487,13 @@ html, body {
       <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
       <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
       
-      <img src="近期活动 动画/动画1.png" alt="轮播图4" class="active">
+      <img src="近期活动 动画/动画1.png" alt="轮播图1" class="active">
       <img src="近期活动 动画/动画2.png" alt="轮播图2">
       <img src="近期活动 动画/动画3.png" alt="轮播图3">
-
+      <img src="近期活动 动画/动画4.png" alt="轮播图4">
+      <img src="近期活动 动画/动画5.png" alt="轮播图5">
+      <img src="近期活动 动画/动画6.png" alt="轮播图6">
+      <img src="近期活动 动画/动画7.png" alt="轮播图7">
     </div>
   </div>
 
@@ -568,12 +570,13 @@ html, body {
         <p class="game-title">POKEMON<br>TCG POCKET</p>
       </a>
     </div>
-      <div class="game-card" data-category="intl">
+
+    <div class="game-card" data-category="intl">
 <a href="更多国际游戏.html">
   <img src="游戏LOGO/查看更多.png" alt="鸣潮" />
   <div class="game-title">查看更多游戏</div>
 </a>
-
+</div>
 
     <!-- 更多卡片放这里 继续放中国等等-->
 <div class="game-card" data-category="cn">
@@ -627,13 +630,6 @@ html, body {
       input.classList.toggle("active");
       if (input.classList.contains("active")) input.focus();
     }
-
-    document.addEventListener("click", function (e) {
-      const input = document.getElementById("searchInput");
-      const searchBar = document.querySelector(".search-bar");
-      if (!searchBar.contains(e.target)) input.classList.remove("active");
-    });
-
 
   let currentSlide = 0;
   const slides = document.querySelectorAll('.carousel img');
@@ -704,15 +700,6 @@ html, body {
           card.style.display = 'none';
         }
       });
-
-      const showMoreBtn = document.querySelector('.show-more-button');
-      showMoreBtn.style.display = count >= 12 ? 'block' : 'none';
-    }
-
-    function showMoreGames() {
-      const cards = document.querySelectorAll('.game-card');
-      cards.forEach(card => card.style.display = 'block');
-      document.querySelector('.show-more-button').style.display = 'none';
     }
   
   </script>
