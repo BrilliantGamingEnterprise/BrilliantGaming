@@ -315,13 +315,6 @@
   z-index: 2;
 }
 
-
-.carousel img.exit-left {
-  opacity: 0;
-  transform: translateX(-100%);
-  z-index: 1;
-}
-
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -636,18 +629,14 @@ html, body {
   let slideTimer = null;
 
   function showSlide(nextIndex) {
-    if (nextIndex === currentSlide) return;
+  if (nextIndex === currentSlide) return;
 
-    const currentImg = slides[currentSlide];
-    const nextImg = slides[nextIndex];
+  slides[currentSlide].classList.remove('active');
+  slides[nextIndex].classList.add('active');
+  currentSlide = nextIndex;
 
-    slides.forEach(slide => slide.classList.remove('active', 'exit-left'));
-    currentImg.classList.add('exit-left');
-    nextImg.classList.add('active');
-    currentSlide = nextIndex;
-
-    resetAutoSlide(); // 每次手动切换后重置计时器
-  }
+  resetAutoSlide();
+}
 
   function nextSlide() {
     const nextIndex = (currentSlide + 1) % slides.length;
