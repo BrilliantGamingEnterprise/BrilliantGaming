@@ -1,154 +1,769 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brilliant Gaming</title>
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- 搜索功能脚本 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.getElementById("searchInput");
-      const cards = document.querySelectorAll(".game-card");
-
-      searchInput.addEventListener("input", () => {
-        const keyword = searchInput.value.toLowerCase();
-        cards.forEach(card => {
-          const name = card.getAttribute("data-name").toLowerCase();
-          card.style.display = name.includes(keyword) ? "block" : "none";
-        });
-      });
-    });
-  </script>
-
   <style>
-    .hidden {
+
+.social-link {
+  
+  color: #00f7ff;
+  font-size: 15px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.link-text {
+  font-size: 18px;
+  text-underline-offset: 4px;
+  text-decoration: underline;
+  color: #00f7ff;
+}
+.social-link i {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.social-link:hover {
+  color: #ffffff;
+}
+
+.link-number {
+  color: #FFD700;       /* 金黄色 */
+  text-decoration: none;
+}
+
+.link-number:hover {
+  color: #ffff99;
+}
+
+/* 通用滚动区域样式 */
+.scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #111;
+  height: 100px;
+  position: relative;
+}
+.scroll-track {
+  display: flex;
+  animation: scrollLoop 30s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+.scroll-track img {
+  height: 100px;
+  margin-right: 60px;
+  flex-shrink: 0;
+}
+
+/* 滚动动画 */
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* 响应式切换：默认显示 desktop */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+/* 小屏设备切换显示 */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}
+
+
+.footer-section {
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.footer-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgb(255, 255, 255);
+  margin-bottom: 6px;
+}
+
+.footer-subtext {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.footer-tags p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #cccccc;
+  line-height: 1.8;
+}
+
+    .footer {
+  background-color: #111;
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  padding: 40px 20px;
+}
+.footer h2, .footer h3 {
+  text-align: left;
+  color: #FFD700;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+.footer-section p {
+  text-align: left;
+  margin: 6px 0;
+}
+
+.link {
+  font-size: 15px;
+  color: #FFD700;
+}
+.payment-img {
+  max-width: 160px;
+  margin-top: 10px;
+}
+.footer hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 30px 0;
+}
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+.footer-links {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: #777;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      background-image: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 16px;
+      background-color: rgba(10, 10, 10, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 0 0 12px 12px;
+    }
+
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+.logo-search img {
+  height: 80px;
+  width: auto;
+  max-width: none;
+}
+
+@media (max-width: 768px) {
+  .logo-search img {
+    height: 50px;
+    width: auto;
+    max-width: none;
+  }
+}
+
+
+    @media (max-width: 768px) {
+  .game-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+    justify-content: center; /* 🔥 让卡片居中排列 */
+    padding-left: 0px;
+    padding-right: 8px;
+    margin: auto;
+  }
+
+  .game-card {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+    .search-bar {
+      position: absolute;
+      top: 16px;
+      right: 24px;
+    }
+
+    .search-icon {
+      background: none;
+      border: none;
+      color: #00ffff;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    #searchInput {
+      display: none;
+      position: absolute;
+      top: -8px;
+      right: 36px;
+      width: 220px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #0e0e0e;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      box-shadow: 0 0 0 1px #00ffff, 0 2px 6px rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    #searchInput.active {
+      display: block;
+    }
+
+    nav {
       display: none;
     }
+
+    .carousel-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 16 / 7;
+  margin: 40px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 0;
+}
+
+.carousel img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08); /* 半透明白色 */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 轻微边框 */
+  backdrop-filter: blur(8px); /* 模糊背景 */
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .carousel-button {
+    font-size: 18px;       /* 缩小字体箭头 */
+    padding: 6px 8px;       /* 缩小按钮区域 */
+    border-radius: 6px;
+   display: none;    
+  }
+}
+
+.carousel-button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.4);
+  color: #00ffff;
+}
+.carousel-button.left {
+  left: 10px;
+}
+.carousel-button.right {
+  right: 10px;
+}
+
+
+    .section-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto 0;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      max-width: 1000px;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      color: #ffffff ;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-size: 16px;
+    }
+
+    .tab-button:hover,
+    .tab-button.active {
+      color: #FFD700 ;
+    }
+
+  @media (max-width: 768px) {
+  .game-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
+    gap: 0px;               /* 卡片之间的间距 */
+    padding-left: 0px;
+    padding-right: 36px;
+    justify-content: start
+  }
+
+  .game-card img {
+    max-width: 140px;
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+  }
+}
+
+
+
+@media (min-width: 780px) {
+  .game-list {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  justify-content: center; /* 关键！让网格居中 */
+  gap: 0px; /* 或你原来的 */
+  padding-left: 0px;
+  padding-right: 4px;
+  max-width: 1200px;
+  margin: auto;
+}
+}
+
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  background: transparent;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+  transform: scale(1.04); /* 比 translateY 更像“专业缩放感” */
+}
+
+.game-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain; /* 不裁图 */
+  background-color: transparent;
+  padding: 4px;
+}
+
+.game-title {
+  margin-top: auto;
+  padding: 6px 4px 2px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #ffdb3b;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
   </style>
 </head>
-
-<body class="no-watermark">
-
-  <!-- 搜索栏 -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="🔍 搜索游戏…" />
-  </div>
-
-  <!-- 顶部区域 -->
+<body>
   <header>
-    <div class="logo">
-      <img src="logo-bottom (2).jpg" alt="Brilliant Gaming Logo" />
-      <h1>Brilliant Gaming</h1>
+    <div class="logo-search">
+      <a href="首页demo.html">
+        <img src="空.png" alt="Brilliant Gaming Logo" />
+      </a>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#games">游戏列表</a></li>
-        <li><a href="#contact">联系我们</a></li>
-      </ul>
-    </nav>
+
   </header>
 
-  <!-- 横幅 -->
-  <section class="banner">
-    <h2>💸 全网超低价·比自己充值更省钱！</h2>
-    <h2>⚡ 充值速度超快 · 上号5分钟搞定！</h2>
-    <h2>⚡全球热门手游代充｜专业·高效·安全</h2>
-    ✅不碰黑卡 ✅全正规渠道 ✅可提供充值Receipt截图
-  </section>
-
-  <!-- 游戏展示 -->
-  <section id="games" class="game-list">
-    <h2>热门游戏</h2>
-
-
-    <!-- 显示的卡片：中国腾讯游戏 -->
-    <div class="game-card" data-name="中国腾讯游戏 tencent">
-      <a href="腾讯.html">
-        <img src="tencent.jpg" alt="中国腾讯游戏">
-        <p class="game-title">中国 · 腾讯游戏<BR>TENCENT GAMES</p>
-      </a>
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
+      <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
+      
+      <img src="近期活动 动画/动画1.png" alt="轮播图1" class="active">
+      <img src="近期活动 动画/动画2.png" alt="轮播图2">
+      <img src="近期活动 动画/动画3.png" alt="轮播图3">
+      <img src="近期活动 动画/动画4.png" alt="轮播图4">
+      <img src="近期活动 动画/动画5.png" alt="轮播图5">
+      <img src="近期活动 动画/动画6.png" alt="轮播图6">
+      <img src="近期活动 动画/动画7.png" alt="轮播图7">
     </div>
+  </div>
 
-    <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
+  <div class="section-tabs">
+    <button class="tab-button active" onclick="filterCategory(event, 'intl')">国际服游戏</button>
+    <button class="tab-button" onclick="filterCategory(event, 'cn')">中国服游戏</button>
+    <button class="tab-button" onclick="filterCategory(event, 'stream')">直播</button>
+    <button class="tab-button" onclick="filterCategory(event, 'card')">点卡</button>
+    <button class="tab-button" onclick="filterCategory(event, 'other')">其他服务</button>
+  </div>
+
+
+     <!-- 国际服热门卡片放这里 -->
+  <section class="game-list">
+    <div class="game-card" data-category="intl">
       <a href="HOK入口.html">
-        <img src="图片/HOK/HOKLOGO.png" alt="HOKLOGO" />
-        <p class="game-title">国际服王者<BR>HONOR OF KINGS</p>
+        <img src="图片/游戏logo (3).png" alt="" />
+        <p class="game-title">国际服王者<br>HONOR OF KINGS</p>
       </a>
     </div>
 
-    <div class="game-card" data-name="原神 genshin impact">
+        <div class="game-card" data-category="intl">
       <a href="原神.html">
-        <img src="图片/原神/原神LOGO.png" alt="原神" />
-        <p class="game-title">原神<BR>Genshin Impact</p>
+        <img src="游戏LOGO/原神.png" alt="" />
+        <p class="game-title">原神<br>GENSHIN IMPACT<br></p>
       </a>
     </div>
-
-
-    <div class="game-card" data-name="崩坏 星铁 星穹铁道 honkai star rail">
+    
+        <div class="game-card" data-category="intl">
       <a href="崩坏.html">
-        <img src="图片/崩坏/崩坏LOGO.png" alt="崩坏" />
-        <p class="game-title">崩坏：星穹铁道<BR>Honkai: Star Rail</p>
+        <img src="游戏LOGO/崩坏.png" alt="" />
+        <p class="game-title">崩坏：星穹铁道<br>HONKAI：STAR RAIL</p>
       </a>
     </div>
 
-
-    <div class="game-card" data-name="绝区零 ZenlessZone Zero ZZZ">
+        <div class="game-card" data-category="intl">
       <a href="绝区.html">
-        <img src="图片/绝区零/绝区logo.jpg" alt="原神" />
-        <p class="game-title">绝区零<BR>Zoneless Zen Zero</p>
+        <img src="游戏LOGO/绝区零.png" alt="" />
+        <p class="game-title">绝区零<br>ZENLESS ZONE ZERO</p>
       </a>
     </div>
 
- 
-    <div class="game-card" data-name="鸣潮 Wuthering Waves">
+        <div class="game-card" data-category="intl">
       <a href="鸣潮.html">
-        <img src="图片/鸣潮/鸣潮LOGO.jpg" alt="原神" />
-        <p class="game-title">鸣潮<BR>Wuthering Waves</p>
-      </a>
-    </div>
- 
-    <div class="game-card" data-name="MobileLegend Bangbang MLBB">
-      <a href="MLBB.html">
-        <img src="图片/MLBB/mlbblogo.jpg" alt="MLBB img" />
-        <p class="game-title">Mobile Legend BangBang</p>
+        <img src="游戏LOGO/鸣潮.png" alt="" />
+        <p class="game-title">鸣潮<br>WUTHERING WAVES</p>
       </a>
     </div>
 
-        <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
-      <a href="garena入口.html">
-        <img src="garena/garena.png" alt="HOKLOGO" />
-        <p class="game-title">Garena<BR>MY/SG</p>
+    <div class="game-card" data-category="intl">
+      <a href="mlbb.html">
+        <img src="游戏LOGO/mlbb.png" alt="" />
+        <p class="game-title">MOBILE LEGEND<br>BANG BANG</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="garena/CODM/CODM.html">
+        <img src="游戏LOGO/cod.png" alt="" />
+        <p class="game-title">GARENA<br>CALL OF DUTY M</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="国际服游戏/PUBG/PUBG.html">
+        <img src="游戏LOGO/PUBG.png" alt="" />
+        <p class="game-title">PUBG<br>MOBILE</p>
+      </a>
+    </div>
+
+        <div class="game-card" data-category="intl">
+      <a href="国际服游戏/Pokemon Tcgp/Pokemon Tcg.html">
+        <img src="游戏LOGO/tcg.png" alt="鸣潮" />
+        <p class="game-title">POKEMON<br>TCG POCKET</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="intl">
+<a href="更多国际游戏.html">
+  <img src="查看.png" alt="鸣潮" />
+  <div class="game-title">查看更多游戏</div>
+</a>
+</div>
+
+    <!-- 更多卡片放这里 继续放中国等等-->
+<div class="game-card" data-category="cn">
+      <a href="王者荣耀.html">
+        <img src="游戏LOGO/王者.png" alt="鸣潮" />
+        <p class="game-title">王者荣耀</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="和平精英.html">
+        <img src="游戏LOGO/和平.png" alt="鸣潮" />
+        <p class="game-title">和平精英</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="金铲铲之战.html">
+        <img src="游戏LOGO/金铲铲.png" alt="鸣潮" />
+        <p class="game-title">金铲铲之战</p>
+      </a>
+    </div>
+
+    <div class="game-card" data-category="cn">
+      <a href="HOK入口.html">
+        <img src="图片/HOK/HOKLOGO.png" alt="鸣潮" />
+        <p class="game-title">国际服王者<br>HONOR OF KINGS</p>
       </a>
     </div>
 
   </section>
 
-  <!-- 联系我们 -->
-  <section id="contact" class="contact">
-    <h2>联系我们</h2>
-    <p>微信ID ：Briiliant_Gaming</p>
-    <img src="placeholder-wechat.png" alt="微信二维码" class="qr" />
-    <p>WhatsApp 二维码：</p>
-    <img src="placeholder-whatsapp.png" alt="WhatsApp 二维码" class="qr" />
-  </section>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const allCards = document.querySelectorAll('.game-card');
+    allCards.forEach((card, index) => {
+      if (index < 10) {
+        card.style.display = 'inline-block'; // 或 'grid' 取决你用什么布局
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
 
-  <!-- 页脚 -->
-<footer style="
-  text-align: center;
-  padding: 16px;
-  font-size: 20px;
-  color: #ccc;
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 -2px 6px rgba(0, 255, 255, 0.05);
-  font-family: 'Segoe UI', sans-serif;
-">
-© 2025 Brilliant Gaming Enterprise. All rights reserved.
 
+  <script>
+    function toggleSearch(event) {
+      event.stopPropagation();
+      const input = document.getElementById("searchInput");
+      input.classList.toggle("active");
+      if (input.classList.contains("active")) input.focus();
+    }
+
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel img');
+  let slideTimer = null;
+
+  function showSlide(nextIndex) {
+  if (nextIndex === currentSlide) return;
+
+  slides[currentSlide].classList.remove('active');
+  slides[nextIndex].classList.add('active');
+  currentSlide = nextIndex;
+
+  resetAutoSlide();
+}
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function prevSlide() {
+    const nextIndex = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function resetAutoSlide() {
+    if (slideTimer) clearInterval(slideTimer);
+    slideTimer = setInterval(nextSlide, 6000);
+  }
+
+  resetAutoSlide(); // 初始化轮播
+
+  // 👇 手机滑动功能
+  const carousel = document.querySelector('.carousel');
+  let startX = 0;
+  let endX = 0;
+
+  carousel.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener('touchend', function (e) {
+    endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+      nextSlide(); // 左滑
+    } else if (endX - startX > 50) {
+      prevSlide(); // 右滑
+    }
+  });
+
+
+    function filterCategory(event, category) {
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.game-card');
+      let count = 0;
+      cards.forEach(card => {
+        if (card.dataset.category === category) {
+          card.style.display = count < 10 ? 'block' : 'none';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  
+  </script>
+</body>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h2 class="footer-title">Brilliant Gaming</h2>
+      <p class="footer-subtitle">官方授权 · 安全高效 · 值得信赖<BR>马来西亚 SSM 注册正规手游代充平台</p>
+        <div class="footer-tags"></div>
+      <p>正规渠道低价承诺｜高效稳定到账系统<BR>客服系统常驻在线｜支持多种支付方式<BR>付款立即到账处理｜用户满意持续口碑<BR>售后服务保障无忧｜正规公司安全认证</p>
+    </div>
+    <div class="footer-section">
+      <h3>联系我们</h3>
+      <p class="footer-subtitle">营业时间：每日 9:00 - 01:00 (GMT+8)</p>
+      <p>WeChat：<span class="link">Brilliant_Gaming</span></p>
+      <p>WhatsApp：<a href="https://wa.me/60123456789" class="link-number">+6012 445-8242</a></span></p>
+    </div>
+
+    <div class="footer-section">
+      <h3>支付方式</h3>
+
+     <div class="scroll-wrapper desktop-only">
+  <div class="scroll-track">
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.png" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
+    <img src="payment.PNG" alt="支付方式" />
+  </div>
+</div>
+
+<div class="scroll-wrapper mobile-only">
+  <div class="scroll-track">
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.png" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+    <img src="phone.PNG" alt="支付方式" />
+  </div>
+</div>
+
+
+    </div>
+    <div class="footer-section">
+      <h3 class="footer-title">Follow Us</h3>
+<p class="footer-subtitle">
+  关注我们 Instagram 频道<BR>获取独家游戏活动、充值优惠<BR>新游上线第一时间掌握！</p>
+
+<a href="https://www.instagram.com/Brilliant.Gaming.Enterprise" target="_blank" class="social-link">
+  <i class="fab fa-instagram"></i>
+  <span class="link-text">Brilliant.Gaming.Enterprise</span>
+</a>
+<a href="https://www.instagram.com/Brilliant.Gaming.Enterprise" target="_blank" class="social-link">
+  <i class="fab fa-facebook"></i>
+  <span class="link-text">卓越电竞 「Brilliant Gaming」</span>
+  
+</a>
+
+
+    </div>
+  </div>
+  <hr />
+  <div class="footer-bottom">
+    <div class="footer-links">
+
+      <a href="Foot免责声明.html">免责声明</a>
+      <a href="Foot使用条款.html">使用条款</a>
+      <a href="Foot隐私政策.html">隐私政策</a>
+
+    </div>
+    <p>© 2025 Brilliant Gaming. All rights reserved.</p>
+  </div>
 </footer>
 
-</body>
 </html>
