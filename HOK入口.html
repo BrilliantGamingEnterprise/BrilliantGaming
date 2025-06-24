@@ -209,6 +209,7 @@
     <button onclick="filterProductCategory(event, 'UID')">UID 免登入充值</button>
     <button onclick="filterProductCategory(event, 'LOG')">登入游戏充值</button>
     <button onclick="filterProductCategory(event, 'song')">代送</button>
+    <button onclick="filterProductCategory(event, 'song')">代抽/其他</button>
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -275,30 +276,27 @@
     if (category === 'UID') {
       hint.innerHTML = `
         📌 实际到账点券可能比页面显示更多~<br>
-        🎁 因为 <strong style="color:#FFD700;">官方</strong> 有额外赠送机制，<span style="color:#ff0000;">首充的客户会得到更多哦</span> 😏<br>
-        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！
+        🎁 <strong style="color:#FFD700;">官方</strong> 有额外赠送机制，<span style="color:#ff0000;">首充的客户会得到更多</span><br>
+        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！<br>
+        🔔 打开购物车即可联系客服
       `;
     } else if (category === 'LOG') {
       hint.innerHTML = `
-        📌 安卓快充用户到账与页面点券一致，无额外赠送<br>
-        ✅ 充值速度快，适合急需点券的玩家！
+        📌 QQ/微信用户，<strong style="color:#FFD700;">扫码登入</strong><br>
+        🎁 Email用户【提供 Email和验证码】
+        ✅ 价格实惠，适合大额充值！
       `;
     } else if (category === 'SONG') {
       hint.innerHTML = `
-        📌 使用 <strong style="color:#FFD700;">慢充</strong> 的用户到账点券会比页面显示更多~<br>
-        🎁 因为 <strong style="color:#FFD700;">游戏官方</strong> 有额外赠送机制，但是<span style="color:#ff0000;">赠送数额不是固定的</span><br>
-        ⚠️ <strong style="color:#FFD700;">到账速度</strong>可能快也可能慢，视官方服务器及排单情况而定<br>
-        ⏳ 有时几分钟完成，有时可能需等 <span style="color:#ff0000;">数小时</span>，请耐心等待<br>
-        🚫 本服务 <strong style="color:#ff0000;">不接急单</strong>，请确认能等待再下单，避免误会 🙏
+1️⃣ 王者荣耀皮肤代送服务说明：<br>
+2️⃣ 本服务用于通过游戏内直接赠送<strong style="color:#FFD700;">战令、皮肤、按键等</strong><br>
+3️⃣ 首次使用此服务的用户，需要和我们的游戏号成为 <strong style="color:#FFD700;">好友</strong><br>
+4️⃣<strong style="color:#FFD700;">100亲密度</strong> <strong style="color:#00ffff;">亲密度只需建立一次</strong>，后续再次代送无需重复操作<br>
+5️⃣ 请勿临时改名或删除好友，以免影响皮肤赠送流程
       `;
-    } else if (category === 'song') {
+    } else if (category === 'CHOU') {
       hint.innerHTML = `
-1️⃣ 和平精英皮肤代送说明：<br>
-2️⃣ 本服务用于赠送<strong style="color:#FFD700;">皮肤、时装、枪械皮肤、载具皮肤</strong>等游戏道具<br>
-3️⃣ 玩家需先添加我们的游戏账号为好友<br>
-4️⃣ 且满足 <strong style="color:#ff0000;">成为好友 3天 </strong>  <strong style="color:#ff0000;">【 72小时 】</strong> 才能赠送<br>
-5️⃣ 如不确定是否满足条件，可截图发送客服协助确认
-6️⃣ 请勿临时改名或删除好友，以免影响赠送流程
+具体详情请联系客服
 
       `;
     } else {

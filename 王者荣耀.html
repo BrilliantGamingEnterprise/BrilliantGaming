@@ -209,6 +209,8 @@
     <button onclick="filterProductCategory(event, 'fast')">双系统快充</button>
     <button onclick="filterProductCategory(event, 'slow')">双系统慢充</button>
     <button onclick="filterProductCategory(event, 'song')">代送</button>
+    <button onclick="filterProductCategory(event, 'song')">代抽</button>
+    <button onclick="filterProductCategory(event, 'song')">其他</button>        
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -276,13 +278,10 @@
       hint.innerHTML = `
         📌 使用 <strong style="color:#FFD700;">iOS</strong> 系统的用户到账点券可能比页面显示更多~<br>
         🎁 因为 <strong style="color:#FFD700;">苹果官方</strong> 有额外赠送机制，<span style="color:#ff0000;">安卓</span> 则没有这个福利哦😏<br>
-        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！
+        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！<br>
+        🔔 打开购物车即可联系客服
       `;
-    } else if (category === 'android') {
-      hint.innerHTML = `
-        📌 安卓快充用户到账与页面点券一致，无额外赠送<br>
-        ✅ 充值速度快，适合急需点券的玩家！
-      `;
+
     } else if (category === 'slow') {
       hint.innerHTML = `
         📌 使用 <strong style="color:#FFD700;">慢充</strong> 的用户到账点券会比页面显示更多~<br>
@@ -298,6 +297,11 @@
 3️⃣ 首次使用此服务的用户，需要和我们的游戏号成为 <strong style="color:#FFD700;">好友</strong><br>
 4️⃣<strong style="color:#FFD700;">100亲密度</strong> <strong style="color:#00ffff;">亲密度只需建立一次</strong>，后续再次代送无需重复操作<br>
 5️⃣ 请勿临时改名或删除好友，以免影响皮肤赠送流程
+
+      `;
+    } else if (category === 'CHOU') {
+      hint.innerHTML = `
+具体详情请联系客服
 
       `;
     } else {

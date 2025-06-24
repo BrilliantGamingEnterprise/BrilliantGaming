@@ -209,6 +209,7 @@
     <button onclick="filterProductCategory(event, 'fast')">双系统快充</button>
     <button onclick="filterProductCategory(event, 'slow')">双系统慢充</button>
     <button onclick="filterProductCategory(event, 'song')">代送</button>
+    <button onclick="filterProductCategory(event, 'song')">代抽/其他</button>    
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -276,7 +277,8 @@
       hint.innerHTML = `
         📌 使用 <strong style="color:#FFD700;">iOS</strong> 系统的用户到账点券可能比页面显示更多~<br>
         🎁 因为 <strong style="color:#FFD700;">苹果官方</strong> 有额外赠送机制，<span style="color:#ff0000;">安卓</span> 则没有这个福利哦😏<br>
-        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！
+        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！<br>
+        🔔 打开购物车即可联系客服
       `;
 
     } else if (category === 'slow') {
