@@ -201,7 +201,7 @@
 .flag {
   font-size: 16px;
   vertical-align: middle;
-  margin-right: 6px;
+  margin-right: 1px;
 }
 
   </style>
@@ -217,11 +217,15 @@
   </div>
 
   <div class="category-tabs">
-    <button onclick="filterProductCategory(event, 'UID')"><p><span class="flag">🇲🇾</span>马来西亚</p></button>
-    <button onclick="filterProductCategory(event, 'LOG')"><p><span class="flag">🇸🇬</span>新加坡</p></button>
-    <button onclick="filterProductCategory(event, 'SONG')">代送</button>
-    <button onclick="filterProductCategory(event, 'CHOU')">代抽</button>
-      <button onclick="filterProductCategory(event, 'QITA')">其他</button>
+    <button onclick="filterProductCategory(event, 'MY')"><p><span class="flag">🇲🇾</span>马来西亚</p></button>
+    <button onclick="filterProductCategory(event, 'SG')"><p><span class="flag">🇸🇬</span>新加坡</p></button>
+    <button onclick="filterProductCategory(event, 'US')"><p><span class="flag">🇺🇸</span> 美国</p></button>
+    <button onclick="filterProductCategory(event, 'CHOU')"><p><span class="flag">🇹🇭</span> 泰国</p></button>
+    <button onclick="filterProductCategory(event, 'QITA')"><p><span class="flag">🇵🇭</span> 菲律宾</p></button>
+    <button onclick="filterProductCategory(event, 'MY')"><p><span class="flag">🇯🇵</span> 日本</p></button>
+    <button onclick="filterProductCategory(event, 'SG')"><p><span class="flag">🇭🇰</span> 香港</p></button>
+    <button onclick="filterProductCategory(event, 'US')"><p><span class="flag">🇹🇼</span> 台湾</p></button>
+ 
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -344,7 +348,7 @@
     const cart = [];
     let cartOpen = false;
     const productList = [
-  { name: ' 80 点券', rm: 4, sgd: 1.3, img: '图片/HOK/hok1.png' , category: 'UID'},
+  { name: ' 80 点券', rm: 4, sgd: 1.3, img: '图片/HOK/hok1.png' , category: 'MY'},
   { name: ' 240 点券', rm: 12, sgd: 4, img: '图片/HOK/hok2.png' , category: 'UID'},
   { name: ' 400 点券', rm: 20, sgd: 7, img: '图片/HOK/hok3.png' , category: 'UID'},
   { name: ' 560 点券', rm: 28, sgd: 9.5, img: '图片/HOK/hok4.png' , category: 'UID'},
