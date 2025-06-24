@@ -185,6 +185,20 @@
       cursor: pointer;
     }
     
+        .responsive-note {
+  font-size: 20px;
+  color: #00ffff;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* 手机字体稍小 */
+@media (max-width: 768px) {
+  .responsive-note {
+    font-size: 16px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -215,8 +229,7 @@
 
   <div id="cart-panel">
     <h3>🧾 我的购物车</h3>
-<p 
-style="font-size: 12px; color: #ffcc00; text-align: left; margin-top: 8px; line-height: 1.4;">
+<p  class="responsive-note">
 📅价格每日更新，节假日可能会有小浮动<br>
 📌以上价格仅供参考，实际请以客服报价为准哦~<br>
 🎁有时候还会偷偷给你优惠，记得撩客服问一问 😏
