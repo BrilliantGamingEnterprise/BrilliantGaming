@@ -3,76 +3,466 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>王者·国际服 Honor Of Kings - Brilliant Gaming</title>
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- 搜索功能脚本 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput = document.getElementById("searchInput");
-      const cards = document.querySelectorAll(".game-card");
-
-      searchInput.addEventListener("input", () => {
-        const keyword = searchInput.value.toLowerCase();
-        cards.forEach(card => {
-          const name = card.getAttribute("data-name").toLowerCase();
-          card.style.display = name.includes(keyword) ? "block" : "none";
-        });
-      });
-    });
-  </script>
-
+  <title>国际服王者 - Brilliant Gaming</title>
   <style>
-    .hidden {
-      display: none;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
     }
+    .product-img {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      padding: 6px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .logo-section {
+      text-align: center;
+      margin: 20px 0 10px;
+    }
+    .logo-img {
+      max-width: 300px;
+      height: auto;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+    .logo-subtitle {
+      color: #ccc;
+      font-size: 14px;
+      margin: 0;
+    }
+    .banner-container img {
+      width: 100%;
+      display: block;
+      border-bottom: 2px solid #000000;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px 0;
+      text-align: center;
+      color: #00ffff;
+    }
+    .currency-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #111;
+      border: 1px solid #00ffff;
+      color: #00ffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      font-weight: bold;
+      box-shadow: 0 0 12px #00ffff70;
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .price-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #00ffff70;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 16px #00ffff88;
+    }
+    .card-top {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .card-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .info-section {
+      padding: 30px;
+      background: #111;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+    .info-section h2 {
+      color: #00ffff;
+      font-size: 20px;
+    }
+    .info-section p {
+      margin: 10px 0;
+    }
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #0a2788, rgb(29, 117, 168));
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(26, 8, 105, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 999;
+    }
+    #cart-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00ffff;
+      color: #000;
+      padding: 10px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00ffff;
+      z-index: 999;
+    }
+    #cart-panel {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 280px;
+      background: #111;
+      border-radius: 12px;
+      padding: 15px;
+      display: none;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+      z-index: 998;
+      color: white;
+    }
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+    .qty-btn {
+      background: #00ffff;
+      border: none;
+      margin: 0 5px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto 0;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      max-width: 1000px;
+    }
+    .category-tabs button {
+      background:none;
+      border: none;
+      color: #ffffff ;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.2s;
+      font-size: 24px;
+    }
+    .category-tabs button.active,
+    .category-tabs button:hover {
+      color: #FFD700 ;
+    }
+    .category-hint {
+    max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #00ffff;
+  padding: 20px;
+}
+
   </style>
 </head>
-
-<body class="no-watermark">
-
-  <!-- 搜索栏 -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="🔍 搜索游戏…" />
+<body>
+  <div class="currency-toggle" onclick="toggleCurrency()"><span id="currency-label">MYR</span></div>
+  <div class="banner-container">
+    <img src="图片/HOK/HOKBG.png" alt="和平荣耀bg Banner">
+  </div>
+  <div class="logo-section">
+    <img src="logo.png" alt="Brilliant Gaming Logo" class="logo-img">
+    <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
   </div>
 
-  <!-- 游戏展示 -->
-  <section id="games" class="game-list">
-    
+  <div class="category-tabs">
+    <button onclick="filterProductCategory(event, 'UID')">UID 免登入充值</button>
+    <button onclick="filterProductCategory(event, 'LOG')">登入游戏充值</button>
+    <button onclick="filterProductCategory(event, 'song')">代送</button>
+  </div>
+  <div id="category-hint" class="category-hint"></div>
+  <div class="section-title"></div>
+  <div class="price-grid" id="price-grid"></div>
 
-    <!-- 显示的卡片：原神 -->
-    <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
-      <a href="HOK1.html">
-        <img src="图片/HOK/HOKLOGO.png" alt="HOKLOGO" />
-        <p class="game-title">国际服王者<BR>HONOR OF KINGS<BR>UID 充值 免登入</p>
-      </a>
-    </div>
+  <a href="index.html" class="back-button">← 返回首页</a>
+  <div id="cart-toggle" onclick="toggleCart()">🛒 购物车 (<span id="cart-count">0</span>)</div>
+  <div id="cart-panel">
+    <h3>🧾 我的购物车</h3>
+    <ul id="cart-items"></ul>
+    <p id="total-display"></p>
+    <button onclick="copyCart()" style="background: #00ffff; color: #000; width: 100%; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">📋 复制发客服</button>
+    <a href="https://wa.me/60123456789" target="_blank" style="display: block; text-align: center; background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 8px; font-weight: bold;">💬 联系客服</a>
+  </div>
 
-    <div class="game-card" data-name="王者 国际服 HOK Honor Of Kings">
-      <a href="HOK2.html">
-        <img src="图片/HOK/HOKLOGO.png" alt="HOKLOGO" />
-        <p class="game-title">国际服王者<BR>HONOR OF KINGS<BR>上号 充值 扫码登入</p>
-      </a>
-    </div>
+  <section class="info-section">
+    <h2>📌 常见问题 · 充值指南</h2>
+<p>
+      1️⃣ 怎么样充值 / 充值方式？<br>
+      1. 在网站里面先查看价格<br>
+      2. 点击商品将自动加入购物车<br>
+      3. 打开购物车点击复制账单信息<br>
+      4. 联系微信 或 WhatsApp 客服<br>
+      5. 确认付款后马上帮老板安排‼️🚨<br><br>
 
+      2️⃣ 付款方式有哪些？<br>
+      支持马来西亚转账（Bank QR Pay、TnG eWallet 等）新加坡则是 PayNow<br>
+      也支持微信/支付宝等等,请联系对应客服获取汇款信息哦<br><br>
+
+      3️⃣ 大概多久可以充值好？<br>
+      一般 5~10 分钟完成，特殊情况除外。<br>
+      部分特殊游戏/节假日会稍有延迟，需要排队，客服会第一时间告知。<br><br>
+
+      4️⃣ 充值安全吗？<br>
+     我们使用安全的官方渠道代充，绝不会出现退款，账号不会封，100%放心使用！<br><br>
+
+      5️⃣ 买错了可以退款吗？<br>
+      若尚未付款可随时取消订单。付款后商品一经充值概不退款，请确认好信息后付款。<br><br>
+
+      6️⃣ 怎么看我的游戏 ID？<br>
+      如不清楚请联系客服协助。<br><br>
+
+      7️⃣ 怎么知道客服有没有收到？<br>
+      一般秒回，若无回应请多30分钟再发一次信息。<br><br>
+
+      8️⃣ 这个网站可靠吗？<br>
+      正规注册商家，服务超万位客户，信任源自口碑。<br><br>
+
+      9️⃣ 还有什么特别福利？<br>
+      不定期优惠与新客活动，欢迎关注IG哦~<br>
+    </p>
 
   </section>
 
-  <!-- 页脚 -->
-<footer style="
-  text-align: center;
-  padding: 16px;
-  font-size: 20px;
-  color: #ccc;
-  background: rgba(255, 255, 255, 0.02);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 -2px 6px rgba(0, 255, 255, 0.05);
-  font-family: 'Segoe UI', sans-serif;
-">
-© 2025 Brilliant Gaming Enterprise. All rights reserved.
+  <script>
+  function filterProductCategory(event, category) {
+    // 激活按钮
+    const buttons = document.querySelectorAll(".category-tabs button");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
 
-</footer>
-  <a href="index.html" class="back-button">← 返回首页</a>
+    // 切换提示文字
+    const hint = document.getElementById("category-hint");
+    if (category === 'UID') {
+      hint.innerHTML = `
+        📌 实际到账点券可能比页面显示更多~<br>
+        🎁 因为 <strong style="color:#FFD700;">官方</strong> 有额外赠送机制，<span style="color:#ff0000;">首充的客户会得到更多哦</span> 😏<br>
+        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！
+      `;
+    } else if (category === 'LOG') {
+      hint.innerHTML = `
+        📌 安卓快充用户到账与页面点券一致，无额外赠送<br>
+        ✅ 充值速度快，适合急需点券的玩家！
+      `;
+    } else if (category === 'SONG') {
+      hint.innerHTML = `
+        📌 使用 <strong style="color:#FFD700;">慢充</strong> 的用户到账点券会比页面显示更多~<br>
+        🎁 因为 <strong style="color:#FFD700;">游戏官方</strong> 有额外赠送机制，但是<span style="color:#ff0000;">赠送数额不是固定的</span><br>
+        ⚠️ <strong style="color:#FFD700;">到账速度</strong>可能快也可能慢，视官方服务器及排单情况而定<br>
+        ⏳ 有时几分钟完成，有时可能需等 <span style="color:#ff0000;">数小时</span>，请耐心等待<br>
+        🚫 本服务 <strong style="color:#ff0000;">不接急单</strong>，请确认能等待再下单，避免误会 🙏
+      `;
+    } else if (category === 'song') {
+      hint.innerHTML = `
+1️⃣ 和平精英皮肤代送说明：<br>
+2️⃣ 本服务用于赠送<strong style="color:#FFD700;">皮肤、时装、枪械皮肤、载具皮肤</strong>等游戏道具<br>
+3️⃣ 玩家需先添加我们的游戏账号为好友<br>
+4️⃣ 且满足 <strong style="color:#ff0000;">成为好友 3天 </strong>  <strong style="color:#ff0000;">【 72小时 】</strong> 才能赠送<br>
+5️⃣ 如不确定是否满足条件，可截图发送客服协助确认
+6️⃣ 请勿临时改名或删除好友，以免影响赠送流程
+
+      `;
+    } else {
+      hint.innerHTML = '';
+    }
+
+    // 商品分类显示控制
+    const allCards = document.querySelectorAll('.price-card');
+    allCards.forEach(card => {
+      if (card.classList.contains(category)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // 页面加载后自动点击第一个按钮
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.category-tabs button')?.click();
+  });
+
+
+
+    let selectedCurrency = 'MYR';
+    const cart = [];
+    let cartOpen = false;
+    const productList = [
+  { name: ' 80 点券', rm: 4, sgd: 1.3, img: '图片/HOK/hok1.png' , category: 'UID'},
+  { name: ' 240 点券', rm: 12, sgd: 4, img: '图片/HOK/hok2.png' , category: 'UID'},
+  { name: ' 400 点券', rm: 20, sgd: 7, img: '图片/HOK/hok3.png' , category: 'UID'},
+  { name: ' 560 点券', rm: 28, sgd: 9.5, img: '图片/HOK/hok4.png' , category: 'UID'},
+  { name: ' 800 点券', rm: 40, sgd: 13.5, img: '图片/HOK/hok5.png' , category: 'UID'},
+  { name: ' 1200 点券', rm: 60, sgd: 20, img: '图片/HOK/hok6.png' , category: 'UID'},
+  { name: ' 2400 点券', rm: 120, sgd: 40, img: '图片/HOK/hok7.png' , category: 'UID'},
+  { name: ' 4000 点券', rm: 188, sgd: 62, img: '图片/HOK/hok8.png' , category: 'UID'},
+  { name: ' 8000 点券', rm: 360, sgd: 116, img: '图片/HOK/hok9.png' , category: 'UID'},
+  { name: ' 周卡', rm: 4.5, sgd: 1.5, img: '图片/HOK/周卡.png' , category: 'UID'},
+  { name: ' 周卡Plus', rm: 13.5, sgd: 4.5, img: '图片/HOK/周卡plus.png' , category: 'UID'},
+
+  { name: ' 830 点券', rm: 40, sgd: 13.5, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 1245 点券', rm: 60, sgd: 20, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 2490 点券', rm: 114, sgd: 38, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 4180 点券', rm: 170, sgd: 55, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 8360 点券', rm: 320, sgd: 103, img: '图片/HOK/hok10.png' , category: 'LOG'},      
+  { name: ' 12540 点券', rm: 490, sgd: 158, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 16720 点券', rm: 640, sgd: 206, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 20900 点券', rm: 945, sgd: 300, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: ' 34400 点券', rm: 1240, sgd: 393, img: '图片/HOK/hok10.png' , category: 'LOG'},
+  { name: '41800 点券', rm: 1500, sgd: 469, img: '图片/HOK/hok10.png' , category: 'LOG'},
+
+];
+
+    function renderProducts() {
+      const grid = document.getElementById("price-grid");
+      grid.innerHTML = '';
+      productList.forEach(product => {
+        const categoryClass = product.category || 'slow';
+        const card = document.createElement("div");
+        card.className = `price-card ${categoryClass}`;
+        card.onclick = () => {
+          addToCart(product.name, selectedCurrency);
+        };
+        card.innerHTML = `
+          <div class="card-top">${product.name}</div>
+          <img src="${product.img}" alt="${product.name}" class="product-img" />
+          <div class="card-price">${selectedCurrency} ${selectedCurrency === 'MYR' ? product.rm : product.sgd}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleCurrency() {
+      selectedCurrency = selectedCurrency === 'MYR' ? 'SGD' : 'MYR';
+      document.getElementById("currency-label").innerText = selectedCurrency;
+      renderProducts();
+      updateCartDisplay();
+    }
+
+    function addToCart(name, currency) {
+      const existing = cart.find(item => item.name === name && item.currency === currency);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, currency, qty: 1 });
+      }
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cartItems = document.getElementById('cart-items');
+      const totalDisplay = document.getElementById('total-display');
+      const toggleBtn = document.getElementById('cart-toggle');
+      cartItems.innerHTML = '';
+      let total = 0;
+      let count = 0;
+      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+      filteredCart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} - ${item.currency} x${item.qty} <button class='qty-btn' onclick='changeQty(${index}, -1)'>–</button><button class='qty-btn' onclick='changeQty(${index}, 1)'>+</button>`;
+        cartItems.appendChild(li);
+        const product = productList.find(p => p.name === item.name);
+        if (product) {
+          total += (item.currency === 'MYR' ? product.rm : product.sgd) * item.qty;
+        }
+        count += item.qty;
+      });
+      toggleBtn.innerHTML = cartOpen ? '❌ 关闭购物车' : `🛒 购物车 (${count})`;
+      totalDisplay.innerText = `${selectedCurrency} 总价：${selectedCurrency} ${total.toFixed(2)}`;
+      document.getElementById('cart-count').innerText = count;
+    }
+
+    function changeQty(index, delta) {
+      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+      const item = filteredCart[index];
+      const globalIndex = cart.indexOf(item);
+      cart[globalIndex].qty += delta;
+      if (cart[globalIndex].qty <= 0) cart.splice(globalIndex, 1);
+      updateCartDisplay();
+    }
+
+    function toggleCart() {
+      cartOpen = !cartOpen;
+      document.getElementById('cart-panel').style.display = cartOpen ? 'block' : 'none';
+      updateCartDisplay();
+    }
+
+    function copyCart() {
+      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
+      if (filteredCart.length === 0) {
+        alert("购物车是空的！");
+        return;
+      }
+      const gameTitle = document.title.split(" - ")[0];
+      let message = `🎮 游戏名称：${gameTitle}\n`;
+      message += '🧾 订单内容：\n';
+      filteredCart.forEach(item => {
+        message += `• ${item.name} ×${item.qty}\n`;
+      });
+      let total = 0;
+      filteredCart.forEach(item => {
+        const product = productList.find(p => p.name === item.name);
+        if (product) {
+          total += selectedCurrency === 'MYR' ? product.rm * item.qty : product.sgd * item.qty;
+        }
+      });
+      message += `\n💰 合计金额：${selectedCurrency} ${total.toFixed(2)}\n`;
+      navigator.clipboard.writeText(message)
+        .then(() => alert("🎀 订单信息已复制，请发送给客服确认哦！"))
+        .catch(() => alert("❌ 复制失败，请手动复制"));
+    }
+
+    renderProducts();
+
+window.onload = function () {
+  // 自动点击第一个分类按钮，显示商品和说明
+  const firstButton = document.querySelector(".category-tabs button");
+  if (firstButton) firstButton.click();
+};
+
+  </script>
+
+  <footer style="text-align: center; padding: 16px; font-size: 12px; color: #ccc; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0); backdrop-filter: blur(4px); box-shadow: 0 -2px 6px rgba(0, 255, 255, 0); font-family: 'Segoe UI', sans-serif;">
+    © 2025 Brilliant Gaming Enterprise. All rights reserved.
+  </footer>
 </body>
 </html>
