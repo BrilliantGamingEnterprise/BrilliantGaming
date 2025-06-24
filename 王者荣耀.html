@@ -212,9 +212,9 @@
   <div class="category-tabs">
     <button onclick="filterProductCategory(event, 'fast')">双系统快充</button>
     <button onclick="filterProductCategory(event, 'slow')">双系统慢充</button>
-    <button onclick="filterProductCategory(event, 'song')">代送</button>
-    <button onclick="filterProductCategory(event, 'song')">代抽</button>
-    <button onclick="filterProductCategory(event, 'song')">其他</button>        
+    <button onclick="filterProductCategory(event, 'SONG')">代送</button>
+    <button onclick="filterProductCategory(event, 'CHOU')">代抽</button>
+    <button onclick="filterProductCategory(event, 'QITA')">其他</button>        
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -295,7 +295,7 @@
         ⏳ 有时几分钟完成，有时可能需等 <span style="color:#ff0000;">数小时</span>，请耐心等待<br>
         🚫 本服务 <strong style="color:#ff0000;">不接急单</strong>，请确认能等待再下单，避免误会 🙏
       `;
-    } else if (category === 'song') {
+    } else if (category === 'SONG') {
       hint.innerHTML = `
 1️⃣ 王者荣耀皮肤代送服务说明：<br>
 2️⃣ 本服务用于通过游戏内直接赠送<strong style="color:#FFD700;">战令、皮肤、按键等</strong><br>
@@ -306,8 +306,12 @@
       `;
     } else if (category === 'CHOU') {
       hint.innerHTML = `
-具体详情请联系客服
+    ❗ 具体详情请联系客服
+      `;
 
+      } else if (category === 'QITA') {
+      hint.innerHTML = `
+      ❗ 具体详情请联系客服
       `;
     } else {
       hint.innerHTML = '';

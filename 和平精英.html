@@ -215,7 +215,8 @@
     <button onclick="filterProductCategory(event, 'fast')">双系统快充</button>
     <button onclick="filterProductCategory(event, 'slow')">双系统慢充</button>
     <button onclick="filterProductCategory(event, 'song')">代送</button>
-    <button onclick="filterProductCategory(event, 'song')">代抽/其他</button>    
+    <button onclick="filterProductCategory(event, 'CHOU')">代抽</button>
+    <button onclick="filterProductCategory(event, 'QITA')">其他</button>
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -303,8 +304,17 @@
 4️⃣ 且满足 <strong style="color:#ff0000;">成为好友 3天 </strong>  <strong style="color:#ff0000;">【 72小时 】</strong> 才能赠送<br>
 5️⃣ 如不确定是否满足条件，可截图发送客服协助确认
 6️⃣ 请勿临时改名或删除好友，以免影响赠送流程
-
       `;
+
+      } else if (category === 'CHOU') {
+      hint.innerHTML = `
+      ❗ 具体详情请联系客服
+      `;
+      } else if (category === 'QITA') {
+      hint.innerHTML = `
+      ❗ 具体详情请联系客服
+      `;
+
     } else {
       hint.innerHTML = '';
     }
