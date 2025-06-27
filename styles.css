@@ -361,3 +361,9 @@ a {
   width: 100%;
   display: block;
 }
+br {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
