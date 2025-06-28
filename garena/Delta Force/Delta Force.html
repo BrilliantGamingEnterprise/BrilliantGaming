@@ -388,7 +388,10 @@ let message = `🎮 游戏名称：${gameTitle}\n`;
   message += '🧾 订单内容：\n';
 
   filteredCart.forEach(item => {
-    message += `• ${item.name} ×${item.qty}\n`;
+ // 移除 HTML 标签，如 <br>
+const cleanName = item.name.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+message += `• ${cleanName} ×${item.qty}\n`;
+
   });
 
   let total = 0;

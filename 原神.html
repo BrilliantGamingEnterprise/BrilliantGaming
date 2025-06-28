@@ -240,7 +240,7 @@ style="font-size: 12px; color: #ffcc00; text-align: left; margin-top: 8px; line-
     <p id="total-display"></p>
 
     <button onclick="copyCart()" style="background: #00ffff; color: #000; width: 100%; border: none; padding: 10px; border-radius: 8px; font-weight: bold;">📋 复制发客服</button>
-    <a href="https://wa.me/60123456789" target="_blank" style="display: block; text-align: center; background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 8px; font-weight: bold;">💬 联系客服</a>
+    <a href="https://wa.me/60124458242" target="_blank" style="display: block; text-align: center; background: #25D366; color: white; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 8px; font-weight: bold;">💬 联系客服</a>
   </div>
   <section class="info-section">
     <h2>📌 常见问题 · 充值指南</h2>
@@ -390,7 +390,10 @@ let message = `🎮 游戏名称：${gameTitle}\n`;
   message += '🧾 订单内容：\n';
 
   filteredCart.forEach(item => {
-    message += `• ${item.name} ×${item.qty}\n`;
+// 移除 HTML 标签，如 <br>
+const cleanName = item.name.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+message += `• ${cleanName} ×${item.qty}\n`;
+
   });
 
   let total = 0;
