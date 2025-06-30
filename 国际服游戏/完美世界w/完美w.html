@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>神魔之塔 - Brilliant Gaming</title>
+  <title>完美世界 W - Brilliant Gaming</title>
   <style>
     body {
       margin: 0;
@@ -197,7 +197,6 @@
     font-size: 14px;
   }
 }
-
         .responsive-note {
   max-width: 600px;
   margin: 0 auto;
@@ -215,7 +214,6 @@
   }
 }
 
-
   </style>
 </head>
 <body>
@@ -227,18 +225,18 @@
     <img src="../../logo.png" alt="Brilliant Gaming Logo" class="logo-img">
     <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
   </div>
-
-  </p>
 <p class="responsive-note">
-  📌 此游戏充值需要提供 <strong style="color:#FFD700;"> 继承码与密码 </strong> 登入游戏完成充值<br>
-  🔐 继承码与密码只能使用一次，请放心使用<br>
+  📌 此游戏充值需要提供 <strong style="color:#FFD700;"> 账号密码 </strong> 登入游戏完成充值<br>
+  🔐 如不放心,充值后立即修改密码,先咨询客服说明流程<br>
   📩 如需其他面额，欢迎 <strong style="color:#ff0000;">随时私聊客服</strong> 询问报价！<br>
   🔔 打开购物车即可联系客服
 </p>
-
+ 
+  </div>
   <div class="category-tabs">
-    <button onclick="filterProductCategory(event, 'MFS')">魔法石</button>
-    <button onclick="filterProductCategory(event, 'LB')">礼包商店</button>
+    <button onclick="filterProductCategory(event, 'YB')">元宝</button>
+    <button onclick="filterProductCategory(event, 'LB')">礼包</button>
+    <button onclick="filterProductCategory(event, 'ZSB')">诸神币</button>
   </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
@@ -301,6 +299,7 @@
     event.target.classList.add("active");
 
 
+
     // 商品分类显示控制
     const allCards = document.querySelectorAll('.price-card');
     allCards.forEach(card => {
@@ -323,22 +322,26 @@
     const cart = [];
     let cartOpen = false;
     const productList = [
-  { name: '1粒<br>魔法石', rm: 4.5, sgd: 1.5, img: '3.png' , category: 'MFS'},
-  { name: '6粒<br>魔法石', rm: 21, sgd: 7, img: '3.png', category: 'MFS'},
-  { name: '15粒<br>魔法石', rm: 48, sgd: 16, img: '3.png', category: 'MFS'},
-  { name: '30粒<br>魔法石', rm: 82, sgd: 27, img: '3.png', category: 'MFS'},
-  { name: '60粒<br>魔法石', rm: 152, sgd: 50, img: '3.png', category: 'MFS'},
-  { name: '90粒<br>魔法石', rm: 209, sgd: 69, img: '3.png', category: 'MFS'},
-  { name: '150粒<br>魔法石', rm: 305, sgd: 101, img: '3.png', category: 'MFS'},
+  { name: ' 60 元宝', rm: 4.5, sgd: 1.5, img: '1.png' , category: 'YB'},
+  { name: ' 300 元宝', rm: 18, sgd: 6, img: '2.png' , category: 'YB'},
+  { name: ' 500 元宝', rm: 28.8, sgd: 9.6, img: '3.png' , category: 'YB'},
+  { name: ' 980 元宝', rm: 54, sgd: 18, img: '4.png' , category: 'YB'},
+  { name: ' 1980 元宝', rm: 108, sgd: 36, img: '5.png' , category: 'YB'},
+  { name: ' 3280 元宝', rm: 180, sgd: 60, img: '6.png' , category: 'YB'},
+  { name: ' 6480 元宝', rm: 360, sgd: 116, img: '7.png' , category: 'YB'},
 
-  { name: '1 美金 礼包', rm: 4.5, sgd: 1.5, img: '3.png' , category: 'LB'},
-  { name: '5 美金 礼包', rm: 21, sgd: 7, img: '3.png' , category: 'LB'},
-  { name: '9 美金 礼包', rm: 36 , sgd: 12, img: '3.png' , category: 'LB'},
-  { name: '12 美金 礼包', rm: 48, sgd: 16, img: '3.png' , category: 'LB'},
-  { name: '21 美金 礼包', rm: 82, sgd: 27, img: '3.png', category: 'LB'},
-  { name: '55 美金 礼包', rm: 209 , sgd: 69, img: '3.png' , category: 'LB'},
-  { name: '65 美金 礼包', rm: 247, sgd: 82, img: '3.png' , category: 'LB'},
-  { name: '85 美金 礼包', rm: 305, sgd: 100, img: '3.png' , category: 'LB'},
+  { name: '每日礼包', rm: 12, sgd: 4, img: 'LB.png' , category: 'LB'},
+  { name: '万流令', rm: 18, sgd: 6, img: 'LB.png' , category: 'LB'},
+  { name: '通天令', rm: 28.8, sgd: 9.6, img: 'LB.png' , category: 'LB'},
+  { name: '周礼 · 副本补给包', rm: 18, sgd: 6, img: 'LB.png' , category: 'LB'},
+  { name: '周礼 · 兑', rm: 28.8, sgd: 9.6, img: 'LB.png' , category: 'LB'},
+  { name: '周礼 · 艮', rm: 54, sgd: 18, img: 'LB.png' , category: 'LB'},
+  { name: '月礼 · 兑', rm: 180, sgd: 60, img: 'LB.png' , category: 'LB'},      
+  { name: '月禮 · 艮', rm: 360, sgd: 116, img: 'LB.png' , category: 'LB'},
+  { name: '月礼 · 坤', rm: 360, sgd: 116, img: 'LB.png' , category: 'LB'},
+
+  { name: '9999 诸神币', rm: 380, sgd: 123, img: '诸神币.png' , category: 'ZSB'},
+  { name: '29999 诸神币', rm: 1125, sgd: 363, img: '诸神币.png' , category: 'ZSB'},
 
 
 ];
