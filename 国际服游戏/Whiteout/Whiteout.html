@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>王者荣耀 - Brilliant Gaming</title>
+  <title>Whiteout Survival - Brilliant Gaming</title>
   <style>
     body {
       margin: 0;
@@ -169,7 +169,7 @@
       max-width: 1000px;
     }
     .category-tabs button {
-      background: none;
+      background:none;
       border: none;
       color: #ffffff ;
       font-weight: 500;
@@ -197,30 +197,47 @@
     font-size: 14px;
   }
 }
+        .responsive-note {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.8;
+  color: #00ffff;
+  padding: 20px;
+}
+
+/* 手机字体稍小 */
+@media (max-width: 768px) {
+  .responsive-note {
+    font-size: 14px;
+  }
+}
+
   </style>
 </head>
 <body>
   <div class="currency-toggle" onclick="toggleCurrency()"><span id="currency-label">MYR</span></div>
   <div class="banner-container">
-    <img src="tencent/王者荣耀bg.png" alt="和平荣耀bg Banner">
+    <img src="banner.png" alt="和平荣耀bg Banner">
   </div>
   <div class="logo-section">
-    <img src="logo.png" alt="Brilliant Gaming Logo" class="logo-img">
+    <img src="../../logo.png" alt="Brilliant Gaming Logo" class="logo-img">
     <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
   </div>
+<p class="responsive-note">
+  📌 此游戏充值需要提供 <strong style="color:#FFD700;"> 账号密码 </strong> 登入游戏完成充值<br>
+  🔐 如不放心,充值后立即修改密码,先咨询客服说明流程<br>
+  📩 如需其他面额，欢迎 <strong style="color:#ff0000;">随时私聊客服</strong> 询问报价！<br>
+  🔔 打开购物车即可联系客服
+</p>
+ 
 
-  <div class="category-tabs">
-    <button onclick="filterProductCategory(event, 'fast')">双系统 · 快充</button>
-    <button onclick="filterProductCategory(event, 'slow')">双系统 · 慢充</button>
-    <button onclick="filterProductCategory(event, 'SONG')">代送</button>
-    <button onclick="filterProductCategory(event, 'CHOU')">荣耀水晶代抽</button>
-    <button onclick="filterProductCategory(event, 'QITA')">其他</button>        
-  </div>
   <div id="category-hint" class="category-hint"></div>
   <div class="section-title"></div>
   <div class="price-grid" id="price-grid"></div>
 
-  <a href="index.html" class="back-button">← 返回首页</a>
+  <a href="../../index.html" class="back-button">← 返回首页</a>
   <div id="cart-toggle" onclick="toggleCart()">🛒 购物车 (<span id="cart-count">0</span>)</div>
   <div id="cart-panel">
     <h3>🧾 我的购物车</h3>
@@ -276,47 +293,7 @@
     buttons.forEach(btn => btn.classList.remove("active"));
     event.target.classList.add("active");
 
-    // 切换提示文字
-    const hint = document.getElementById("category-hint");
-    if (category === 'fast') {
-      hint.innerHTML = `
-        📌 使用 <strong style="color:#FFD700;">iOS</strong> 系统的用户到账点券可能比页面显示更多~<br>
-        🎁 因为 <strong style="color:#FFD700;">苹果官方</strong> 有额外赠送机制，<span style="color:#ff0000;">安卓</span> 则没有这个福利哦😏<br>
-        📩 如需其他面额，欢迎 <u style="text-decoration-color:#00ffff;">随时私聊客服</u> 询问报价！<br>
-        🔔 打开购物车即可联系客服
-        
-      `;
 
-    } else if (category === 'slow') {
-      hint.innerHTML = `
-        📌 使用 <strong style="color:#FFD700;">慢充</strong> 的用户到账点券会比页面显示更多~<br>
-        🎁 因为 <strong style="color:#FFD700;">游戏官方</strong> 有额外赠送机制，但是<span style="color:#ff0000;">赠送数额不是固定的</span><br>
-        ⚠️ <strong style="color:#FFD700;">到账速度</strong>可能快也可能慢，视官方服务器及排单情况而定<br>
-        ⏳ 有时几分钟完成，有时可能需等 <span style="color:#ff0000;">数小时</span>，请耐心等待<br>
-        🚫 本服务 <strong style="color:#ff0000;">不接急单</strong>，请确认能等待再下单，避免误会 🙏
-      `;
-    } else if (category === 'SONG') {
-      hint.innerHTML = `
-1️⃣ 王者荣耀皮肤代送服务说明：<br>
-2️⃣ 本服务用于通过游戏内直接赠送<strong style="color:#FFD700;">战令、皮肤、按键等</strong><br>
-3️⃣ 首次使用此服务的用户，需要和我们的游戏号成为 <strong style="color:#FFD700;">好友</strong><br>
-4️⃣<strong style="color:#FFD700;">100亲密度</strong> <strong style="color:#00ffff;">亲密度只需建立一次</strong>，后续再次代送无需重复操作<br>
-5️⃣ 请勿临时改名或删除好友，以免影响皮肤赠送流程
-
-      `;
-    } else if (category === 'CHOU') {
-      hint.innerHTML = `
-   ❗ ❗ 下单前先告知当前幸运值<BR>
-  📌 有幸运值的情况下是有折扣的哦~
-      `;
-
-      } else if (category === 'QITA') {
-      hint.innerHTML = `
-      ❗ 具体详情请联系客服
-      `;
-    } else {
-      hint.innerHTML = '';
-    }
 
     // 商品分类显示控制
     const allCards = document.querySelectorAll('.price-card');
@@ -340,54 +317,17 @@
     const cart = [];
     let cartOpen = false;
     const productList = [
-  { name: '快充 60 点券', rm: 6, sgd: 2, img: '图片/王者/王者60.png' , category: 'fast'},
-  { name: '快充 180 点券', rm: 15, sgd: 5, img: '图片/王者/王者180.png' , category: 'fast'},
-  { name: '快充 300 点券', rm: 25, sgd: 8.5, img: '图片/王者/王者180.png' , category: 'fast'},
-  { name: '快充 680 点券', rm: 50, sgd: 17, img: '图片/王者/王者680.png' , category: 'fast'},
-  { name: '快充 1180 点券', rm: 82, sgd: 27, img: '图片/王者/王者1180.png' , category: 'fast'},
-  { name: '快充 1980 点券', rm: 132, sgd: 43, img: '图片/王者/王者1180.png' , category: 'fast'},
-  { name: '快充 3480 点券', rm: 224, sgd: 74, img: '图片/王者/王者3480.png' , category: 'fast'},
-  { name: '快充 6480 点券', rm: 410, sgd: 136, img: '图片/王者/王者6480.png' , category: 'fast'},
-  { name: '快充 8980 点券', rm: 570, sgd: 184, img: '图片/王者/王者8980.png' , category: 'fast'},
-  { name: '快充 12980 点券', rm: 810, sgd: 262, img: '图片/王者/王者12980.png' , category: 'fast'},
+  { name: '1 USD 礼包', rm: 4.5, sgd: 1.5, img: '../USD/1.png' , category: 'D'},
+  { name: '2 USD 礼包', rm: 8, sgd: 3, img: '../USD/2.png' , category: 'D'},
+  { name: '3 USD 礼包', rm: 12, sgd: 4, img: '../USD/3.png' , category: 'D'},
+  { name: '5 USD 礼包', rm: 19.5, sgd: 6.5, img: '../USD/5.png' , category: 'D'},
+  { name: '10 USD 礼包', rm: 39, sgd: 13, img: '../USD/10.png' , category: 'D'},
+  { name: '20 USD 礼包', rm: 78, sgd: 26, img: '../USD/20.png' , category: 'D'},
+  { name: '25 USD 礼包', rm: 97.5, sgd: 32.5, img: '../USD/25.png' , category: 'D'},
+  { name: '50 USD 礼包', rm: 190, sgd: 63, img: '../USD/50.png' , category: 'D'},
+  { name: '100 USD 礼包', rm: 380, sgd: 123, img: '../USD/100.png' , category: 'B'},
 
-  { name: '慢充 1000 点券', rm: 65, sgd: 22, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 2000 点券', rm: 130, sgd: 44, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 3000 点券', rm: 192, sgd: 64, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 4000 点券', rm: 256, sgd: 85, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 5000 点券', rm: 315, sgd: 105, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 6000 点券', rm: 378, sgd: 126, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 7000 点券', rm: 434, sgd: 144, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 8000 点券', rm: 496, sgd: 165, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 9000 点券', rm: 550, sgd: 178, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 10000 点券', rm: 600, sgd: 194, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-
-  { name: '代送 388 战令', rm: 24, sgd: 8, img: 'tencent/王者/战令.png', category: 'SONG' },
-  { name: '代送 988 战令', rm: 60, sgd: 20, img: 'tencent/王者/战令2.png', category: 'SONG' },
-  { name: '代送 118 签名', rm: 9, sgd: 3, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 188 按键', rm: 12, sgd: 4, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 288 皮肤 ', rm: 18, sgd: 6, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 388 皮肤 ', rm: 24, sgd: 8, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 488 皮肤 ', rm: 30, sgd: 10, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 588 皮肤 ', rm: 36, sgd: 12, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 710 皮肤 ', rm: 44, sgd: 14, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 788 皮肤 ', rm: 49, sgd: 16, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 888 皮肤 ', rm: 55, sgd: 18, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 988 皮肤 ', rm: 60, sgd: 20, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1035 皮肤 ', rm: 64, sgd: 21, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1188 皮肤 ', rm: 69, sgd: 23, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1350 皮肤 ', rm: 79, sgd: 26, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1430 皮肤 ', rm: 84, sgd: 28, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1688 皮肤 ', rm: 99, sgd: 33, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1788 皮肤 ', rm: 105, sgd: 35, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 2888 皮肤 ', rm: 160, sgd: 53, img: 'tencent/王者/代送.png', category: 'SONG' },
-
-  { name: '荣耀水晶代抽', rm: 588, sgd: 190, img: 'tencent/王者/水晶.png', category: 'CHOU' },
-
-
-  { name: '安卓转IOS<br>IOS转安卓', rm: 75, sgd: 25, img: '空.png', category: 'QITA' },
-
-    ];
+];
 
     function renderProducts() {
       const grid = document.getElementById("price-grid");
@@ -506,3 +446,4 @@ window.onload = function () {
   </footer>
 </body>
 </html>
+ 
