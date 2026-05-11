@@ -4,205 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title> 弹弹堂 ORIGIN</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a0a;
-      color: white;
-    }
-.product-img {
-  width: 100%;
-  height: 120px;
-  object-fit: contain;
-    padding: 6px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-/* 加入这段 CSS 到你的 <style> 中（比如 .product-img 下方） */
-.logo-section {
-  text-align: center;
-  margin: 20px 0 10px;
-}
 
-.logo-img {
-  max-width: 300px;
-  height: auto;
-  display: inline-block;
-  margin-bottom: 6px;
-}
+  <link rel="stylesheet" href="../../game-page.css" />
 
-.logo-subtitle {
-  color: #ccc;
-  font-size: 14px;
-  margin: 0;
-}
-
-
-    .banner-container img {
-      width: 100%;
-      display: block;
-      border-bottom: 2px solid #000000;
-    }
-
-    .section-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 20px 0;
-      text-align: center;
-      color: #00ffff;
-    }
-
-    .currency-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #111;
-      border: 1px solid #00ffff;
-      color: #00ffff;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 1000;
-      font-weight: bold;
-      box-shadow: 0 0 12px #00ffff70;
-    }
-
-    .price-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .price-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid #00ffff70;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-
-    .price-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 16px #00ffff88;
-    }
-
-    .card-top {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .card-price {
-      font-size: 18px;
-      font-weight: bold;
-      color: #FFD700 ;
-    }
-
-    .info-section {
-      padding: 30px;
-      background: #111;
-      border-top: 0px solid #00ffff33;
-      max-width: 900px;
-      margin: 20px auto;
-    }
-
-    .info-section h2 {
-      color: #00ffff;
-      border-left: 0px solid #00ffff;
-      padding-left: 12px;
-      font-size: 20px;
-    }
-
-    .info-section p {
-      margin: 10px 0;
-    }
-
-.back-button {
-  position: fixed;              /* 固定位置 */
-  bottom: 20px;                 /* 距离底部20px */
-  left: 20px;                   /* 距离左侧20px */
-  display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #0a2788, rgb(29, 117, 168));
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(26, 8, 105, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-  z-index: 999;                /* 确保在最上层 */
-}
-
-
-    #cart-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #00ffff;
-      color: #000;
-      padding: 10px 14px;
-      border-radius: 50px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 12px #00ffff;
-      z-index: 999;
-    }
-
-    #cart-panel {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 280px;
-      background: #111;
-      border-radius: 12px;
-      padding: 15px;
-      display: none;
-      box-shadow: 0 0 20px rgba(0,255,255,0.3);
-      z-index: 998;
-      color: white;
-    }
-
-    #cart-items {
-      list-style: none;
-      padding: 0;
-      max-height: 150px;
-      overflow-y: auto;
-    }
-
-    .qty-btn {
-      background: #00ffff;
-      border: none;
-      margin: 0 5px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-        .responsive-note {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left;
-  font-size: 20px;
-  line-height: 1.8;
-  color: #00ffff;
-  padding: 20px;
-}
-
-/* 手机字体稍小 */
-@media (max-width: 768px) {
-  .responsive-note {
-    font-size: 14px;
-  }
-}
-
-  </style>
 </head>
 <body>
 
@@ -215,7 +19,7 @@
   <img src="../../logo.png" alt="Brilliant Gaming Logo" class="logo-img">
   <p class="logo-subtitle">让充值更简单 · 更划算 · 更安全</p>
 </p>
-  
+
 <p class="responsive-note">
   📌 只需要 <strong style="color:#FFD700;">Player ID & 游戏名字</strong> 即可完成充值～<br>
   📩 如需其他面额，欢迎 <strong style="color:#ff0000;">随时私聊客服</strong> 询问报价！
@@ -229,7 +33,7 @@
 
   <div id="cart-panel">
     <h3>🧾 我的购物车</h3>
-<p 
+<p
 style="font-size: 12px; color: #ffcc00; text-align: left; margin-top: 8px; line-height: 1.4;">
 📅价格每日更新，节假日可能会有小浮动<br>
 📌以上价格仅供参考，实际请以客服报价为准哦~<br>
