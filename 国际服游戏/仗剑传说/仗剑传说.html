@@ -310,13 +310,7 @@
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.category-tabs button')?.click();
   });
-
-
-
-    let selectedCurrency = 'MYR';
-    const cart = [];
-    let cartOpen = false;
-    const productList = [    
+window.productList = [    
   { name: '999 代金券 <br> + 40 代金券', rm: 42, sgd: 14, img: '1.png' , category: 'D'},
   { name: '1499 代金券 <br> + 60 代金券  ', rm: 60, sgd: 20, img: '2.png' , category: 'D'},
   { name: '4999 代金券 <br> + 250 代金券  ', rm: 195, sgd: 65, img: '3.png' , category: 'D'},
@@ -325,118 +319,8 @@
   { name: '9999*5 代金券 <br> + 2500 代金券  ', rm: 1888, sgd: 609, img: '6.png' , category: 'D'},
   { name: '9999*10 代金券 <br> + 5000 代金券  ', rm: 3750, sgd: 1209, img: '7.png' , category: 'D'},
 ];
-
-    function renderProducts() {
-      const grid = document.getElementById("price-grid");
-      grid.innerHTML = '';
-      productList.forEach(product => {
-        const categoryClass = product.category || 'slow';
-        const card = document.createElement("div");
-        card.className = `price-card ${categoryClass}`;
-        card.onclick = () => {
-          addToCart(product.name, selectedCurrency);
-        };
-        card.innerHTML = `
-          <div class="card-top">${product.name}</div>
-          <img src="${product.img}" alt="${product.name}" class="product-img" />
-          <div class="card-price">${selectedCurrency} ${selectedCurrency === 'MYR' ? product.rm : product.sgd}</div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function toggleCurrency() {
-      selectedCurrency = selectedCurrency === 'MYR' ? 'SGD' : 'MYR';
-      document.getElementById("currency-label").innerText = selectedCurrency;
-      renderProducts();
-      updateCartDisplay();
-    }
-
-    function addToCart(name, currency) {
-      const existing = cart.find(item => item.name === name && item.currency === currency);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ name, currency, qty: 1 });
-      }
-      updateCartDisplay();
-    }
-
-    function updateCartDisplay() {
-      const cartItems = document.getElementById('cart-items');
-      const totalDisplay = document.getElementById('total-display');
-      const toggleBtn = document.getElementById('cart-toggle');
-      cartItems.innerHTML = '';
-      let total = 0;
-      let count = 0;
-      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
-      filteredCart.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `${item.name} - ${item.currency} x${item.qty} <button class='qty-btn' onclick='changeQty(${index}, -1)'>–</button><button class='qty-btn' onclick='changeQty(${index}, 1)'>+</button>`;
-        cartItems.appendChild(li);
-        const product = productList.find(p => p.name === item.name);
-        if (product) {
-          total += (item.currency === 'MYR' ? product.rm : product.sgd) * item.qty;
-        }
-        count += item.qty;
-      });
-      toggleBtn.innerHTML = cartOpen ? '❌ 关闭购物车' : `🛒 购物车 (${count})`;
-      totalDisplay.innerText = `${selectedCurrency} 总价：${selectedCurrency} ${total.toFixed(2)}`;
-      document.getElementById('cart-count').innerText = count;
-    }
-
-    function changeQty(index, delta) {
-      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
-      const item = filteredCart[index];
-      const globalIndex = cart.indexOf(item);
-      cart[globalIndex].qty += delta;
-      if (cart[globalIndex].qty <= 0) cart.splice(globalIndex, 1);
-      updateCartDisplay();
-    }
-
-    function toggleCart() {
-      cartOpen = !cartOpen;
-      document.getElementById('cart-panel').style.display = cartOpen ? 'block' : 'none';
-      updateCartDisplay();
-    }
-
-    function copyCart() {
-      const filteredCart = cart.filter(item => item.currency === selectedCurrency);
-      if (filteredCart.length === 0) {
-        alert("购物车是空的！");
-        return;
-      }
-      const gameTitle = document.title.split(" - ")[0];
-      let message = `🎮 游戏名称：${gameTitle}\n`;
-      message += '🧾 订单内容：\n';
-      filteredCart.forEach(item => {
-// 移除 HTML 标签，如 <br>
-const cleanName = item.name.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-message += `• ${cleanName} ×${item.qty}\n`;
-
-      });
-      let total = 0;
-      filteredCart.forEach(item => {
-        const product = productList.find(p => p.name === item.name);
-        if (product) {
-          total += selectedCurrency === 'MYR' ? product.rm * item.qty : product.sgd * item.qty;
-        }
-      });
-      message += `\n💰 合计金额：${selectedCurrency} ${total.toFixed(2)}\n`;
-      navigator.clipboard.writeText(message)
-        .then(() => alert("🎀 订单信息已复制，请发送给客服确认哦！"))
-        .catch(() => alert("❌ 复制失败，请手动复制"));
-    }
-
-    renderProducts();
-
-window.onload = function () {
-  // 自动点击第一个分类按钮，显示商品和说明
-  const firstButton = document.querySelector(".category-tabs button");
-  if (firstButton) firstButton.click();
-};
-
-  </script>
+</script>
+<script src="../../cart.js"></script>
 
   <footer style="text-align: center; padding: 16px; font-size: 12px; color: #ccc; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0); backdrop-filter: blur(4px); box-shadow: 0 -2px 6px rgba(0, 255, 255, 0); font-family: 'Segoe UI', sans-serif;">
     © 2025 Brilliant Gaming Enterprise. All rights reserved.<BR><BR><BR><BR><BR><BR>
