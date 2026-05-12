@@ -142,56 +142,9 @@
   window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.category-tabs button')?.click();
   });
-window.productList = [
-  { name: '快充 60 点券', rm: 6, sgd: 2, img: '图片/王者/王者60.png' , category: 'fast'},
-  { name: '快充 180 点券', rm: 15, sgd: 5, img: '图片/王者/王者180.png' , category: 'fast'},
-  { name: '快充 300 点券', rm: 25, sgd: 8.5, img: '图片/王者/王者180.png' , category: 'fast'},
-  { name: '快充 680 点券', rm: 50, sgd: 17, img: '图片/王者/王者680.png' , category: 'fast'},
-  { name: '快充 1180 点券', rm: 82, sgd: 27, img: '图片/王者/王者1180.png' , category: 'fast'},
-  { name: '快充 1980 点券', rm: 132, sgd: 43, img: '图片/王者/王者1180.png' , category: 'fast'},
-  { name: '快充 3480 点券', rm: 224, sgd: 74, img: '图片/王者/王者3480.png' , category: 'fast'},
-  { name: '快充 6480 点券', rm: 410, sgd: 136, img: '图片/王者/王者6480.png' , category: 'fast'},
-  { name: '快充 8980 点券', rm: 570, sgd: 184, img: '图片/王者/王者8980.png' , category: 'fast'},
-  { name: '快充 12980 点券', rm: 810, sgd: 262, img: '图片/王者/王者12980.png' , category: 'fast'},
 
-  { name: '慢充 1000 点券', rm: 65, sgd: 22, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 2000 点券', rm: 130, sgd: 44, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 3000 点券', rm: 192, sgd: 64, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 4000 点券', rm: 256, sgd: 85, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 5000 点券', rm: 315, sgd: 105, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 6000 点券', rm: 378, sgd: 126, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 7000 点券', rm: 434, sgd: 144, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 8000 点券', rm: 496, sgd: 165, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 9000 点券', rm: 550, sgd: 178, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-  { name: '慢充 10000 点券', rm: 600, sgd: 194, img: '图片/王者/王者荣耀点券.png' , category: 'slow'},
-
-  { name: '代送 388 战令', rm: 24, sgd: 8, img: 'tencent/王者/战令.png', category: 'SONG' },
-  { name: '代送 988 战令', rm: 60, sgd: 20, img: 'tencent/王者/战令2.png', category: 'SONG' },
-  { name: '代送 118 签名', rm: 9, sgd: 3, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 188 按键', rm: 12, sgd: 4, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 288 皮肤 ', rm: 18, sgd: 6, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 388 皮肤 ', rm: 24, sgd: 8, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 488 皮肤 ', rm: 30, sgd: 10, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 588 皮肤 ', rm: 36, sgd: 12, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 710 皮肤 ', rm: 44, sgd: 14, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 788 皮肤 ', rm: 49, sgd: 16, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 888 皮肤 ', rm: 55, sgd: 18, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 988 皮肤 ', rm: 60, sgd: 20, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1035 皮肤 ', rm: 64, sgd: 21, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1188 皮肤 ', rm: 69, sgd: 23, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1350 皮肤 ', rm: 79, sgd: 26, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1430 皮肤 ', rm: 84, sgd: 28, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1688 皮肤 ', rm: 99, sgd: 33, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 1788 皮肤 ', rm: 105, sgd: 35, img: 'tencent/王者/代送.png', category: 'SONG' },
-  { name: '代送 2888 皮肤 ', rm: 160, sgd: 53, img: 'tencent/王者/代送.png', category: 'SONG' },
-
-  { name: '荣耀水晶代抽', rm: 588, sgd: 190, img: 'tencent/王者/水晶.png', category: 'CHOU' },
-
-
-  { name: '安卓转IOS<br>IOS转安卓', rm: 75, sgd: 25, img: '空.png', category: 'QITA' },
-
-    ];
 </script>
+<script src="data/王者荣耀.js"></script>
 <script src="cart.js"></script>
 
   <footer style="text-align: center; padding: 16px; font-size: 12px; color: #ccc; background: rgba(255, 255, 255, 0.02); border-top: 1px solid rgba(255, 255, 255, 0); backdrop-filter: blur(4px); box-shadow: 0 -2px 6px rgba(0, 255, 255, 0); font-family: 'Segoe UI', sans-serif;">
