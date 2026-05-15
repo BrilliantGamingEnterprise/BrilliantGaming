@@ -1164,7 +1164,7 @@ ${lines.join('\n')}
     .writeText(text)
     .then(() => {
       recordCopiedOrderStats(total);
-      showCartToast('购物单已复制');
+      showCartToast('购物单已复制，请联系客服完成充值');
     })
     .catch(() => alert('复制失败，请手动选择并复制。'));
 }
