@@ -3538,3 +3538,100 @@ body.contact-modal-open {
   color: #111;
   box-shadow: 0 0 18px rgba(245, 214, 123, 0.28);
 }
+
+/* ==================== MOBILE CONTACT MODAL FIX ==================== */
+
+@media (max-width: 768px) {
+  .contact-modal {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 12px !important;
+    padding-top: max(12px, env(safe-area-inset-top)) !important;
+    overflow-y: auto !important;
+  }
+
+  .contact-dialog-premium {
+    width: 100% !important;
+    max-height: calc(100dvh - 24px) !important;
+    overflow-y: auto !important;
+    padding: 22px 16px 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .contact-dialog-premium .section-kicker {
+    font-size: 0.62rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .contact-dialog h3 {
+    font-size: 1.45rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .contact-intro {
+    font-size: 0.86rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 16px !important;
+  }
+
+  .contact-methods-premium {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .contact-method-card {
+    min-height: auto !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 13px !important;
+    padding: 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .contact-brand-icon {
+    width: 46px !important;
+    height: 46px !important;
+    margin-bottom: 0 !important;
+    border-radius: 14px !important;
+  }
+
+  .contact-method-content {
+    gap: 3px !important;
+    min-width: 0 !important;
+  }
+
+  .contact-method-name {
+    font-size: 0.88rem !important;
+  }
+
+  .contact-method-card strong {
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .contact-method-card small {
+    font-size: 0.78rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .contact-method-card.wechat::after,
+  .contact-method-card.instagram::after,
+  .contact-method-card.whatsapp::after {
+    display: none !important;
+  }
+
+  .contact-note-premium {
+    margin-top: 12px !important;
+    padding: 12px 14px !important;
+    font-size: 0.8rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .contact-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.25rem !important;
+  }
+}
