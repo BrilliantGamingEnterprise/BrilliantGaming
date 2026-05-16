@@ -348,6 +348,81 @@ const categories = {
       },
 
       {
+  id: 'last-war-survival',
+  name: '最后的战争',
+  detailName: '最后的战争 Last War: Survival',
+  description: 'Last War: Survival',
+  tag: '国际游戏',
+  image: 'assets/images/games/last.jpg',
+  detailArt: 'assets/images/games/last2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 16.50', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 33.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 66.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 82.50', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 165.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 330.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'kingshot',
+  name: '国王战争',
+  detailName: '国王战争 KingShot',
+  description: 'KingShot',
+  tag: '国际游戏',
+  image: 'assets/images/games/king.jpg',
+  detailArt: 'assets/images/games/king2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'whiteout-survival',
+  name: '寒霜启示录',
+  detailName: '寒霜启示录 Whiteout Survival',
+  description: 'Whiteout Survival',
+  tag: '国际游戏',
+  image: 'assets/images/games/white.jpg',
+  detailArt: 'assets/images/games/white2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+      {
   id: 'neverness-to-everness',
   name: 'NTE 异环',
   detailName: 'NTE 异环',
@@ -532,6 +607,197 @@ const categories = {
   ]
 },
 
+{
+  id: 'sword-of-justice',
+  name: 'Sword Of Justice',
+  detailName: 'Sword Of Justice',
+  description: 'Sword Of Justice',
+  tag: '国际游戏',
+  image: 'assets/images/games/sword-of-justice.jpg',
+  detailArt: 'assets/images/games/sword-of-justice2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'ragnarok-origin-classic',
+  name: 'Ragnarok Origin Classic',
+  detailName: 'Ragnarok Origin Classic',
+  description: 'Ragnarok Origin Classic',
+  tag: '国际游戏',
+  image: 'assets/images/games/ragnarok-origin-classic.jpg',
+  detailArt: 'assets/images/games/ragnarok-origin-classic2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'dark-war-survival',
+  name: 'Dark War Survival',
+  detailName: 'Dark War Survival',
+  description: 'Dark War Survival',
+  tag: '国际游戏',
+  image: 'assets/images/games/dark-war-survival.jpg',
+  detailArt: 'assets/images/games/dark-war-survival2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'heartopia',
+  name: '心动小镇',
+  detailName: '心动小镇 Heartopia',
+  description: 'Heartopia',
+  tag: '国际游戏',
+  image: 'assets/images/games/heartopia.jpg',
+  detailArt: 'assets/images/games/heartopia2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'douluo-liehun-shijie',
+  name: '斗罗大陆 · 猎魂世界',
+  detailName: '斗罗大陆 · 猎魂世界',
+  description: 'Douluo Dalu Liehun Shijie',
+  tag: '国际游戏',
+  image: 'assets/images/games/douluo-liehun-shijie.jpg',
+  detailArt: 'assets/images/games/douluo-liehun-shijie2.jpg',
+  productSections: [
+    {
+      title: '海神币',
+      subtitle: 'Sea God Coin',
+      icon: '◆',
+      products: [
+        { title: '3290 海神币', en: '3290 Sea God Coins', price: 'RM 340.00', note: '海神币 / Sea God Coin' }
+      ]
+    }
+  ]
+},
+{
+  id: 'jianxia-qingyuan',
+  name: '剑侠情缘',
+  detailName: '剑侠情缘',
+  description: 'Jianxia Qingyuan',
+  tag: '国际游戏',
+  image: 'assets/images/games/jianxia-qingyuan.jpg',
+  detailArt: 'assets/images/games/jianxia-qingyuan2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'legends-of-mushroom',
+  name: 'Legends of Mushroom',
+  detailName: 'Legends of Mushroom',
+  description: 'Legends of Mushroom',
+  tag: '国际游戏',
+  image: 'assets/images/games/legends-of-mushroom.jpg',
+  detailArt: 'assets/images/games/legends-of-mushroom2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'zombie-wave',
+  name: 'Zombie Wave',
+  detailName: 'Zombie Wave',
+  description: 'Zombie Wave',
+  tag: '国际游戏',
+  image: 'assets/images/games/zombie-wave.jpg',
+  detailArt: 'assets/images/games/zombie-wave2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'ni-shui-han-tw',
+  name: '逆水寒 台服',
+  detailName: '逆水寒 台服',
+  description: 'Ni Shui Han Taiwan',
+  tag: '国际游戏',
+  image: 'assets/images/games/ni-shui-han-tw.jpg',
+  detailArt: 'assets/images/games/ni-shui-han-tw2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'lands-of-jails',
+  name: 'Lands Of Jails',
+  detailName: 'Lands Of Jails',
+  description: 'Lands Of Jails',
+  tag: '国际游戏',
+  image: 'assets/images/games/lands-of-jails.jpg',
+  detailArt: 'assets/images/games/lands-of-jails2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+
     ]
   },
   cn: {
@@ -542,7 +808,7 @@ const categories = {
       {
   id: 'honor-of-kings-cn',
   name: '王者荣耀',
-  detailName: '王者荣耀官方代充服务',
+  detailName: '双系统 · 王者荣耀',
   description: '中国·腾讯 王者荣耀',
   tag: '热门充值',
   image: 'assets/images/games/王者荣耀.jpg',
@@ -599,7 +865,7 @@ const categories = {
       {
   id: 'peace-elite',
   name: '和平精英',
-  detailName: '和平精英官方代充服务',
+  detailName: '双系统 · 和平精英',
   description: '中国·腾讯 和平精英',
   tag: '热门充值',
   image: 'assets/images/games/和平精英.jpg',
