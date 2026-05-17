@@ -248,8 +248,8 @@ const categories = {
 },
       {
   id: 'garena-codm',
-  name: 'Call of Duty Mobile',
-  detailName: 'Call Of Duty Mobile',
+  name: 'Garena 使命召唤',
+  detailName: 'Garena 使命召唤',
   description: 'Garena CODM',
   tag: '热门充值',
   image: 'assets/images/games/codm.jpg',
@@ -273,8 +273,8 @@ const categories = {
 },
       {
   id: 'garena-delta-force',
-  name: 'Garena Delta Force',
-  detailName: 'Delta Force',
+  name: 'Garena 三角洲',
+  detailName: 'Garena 三角洲',
   description: 'Garena Delta Force',
   tag: '热门充值',
   image: 'assets/images/games/三角洲1.jpg',
@@ -350,7 +350,7 @@ const categories = {
       {
   id: 'last-war-survival',
   name: '最后的战争',
-  detailName: '最后的战争 Last War: Survival',
+  detailName: '最后的战争',
   description: 'Last War: Survival',
   tag: '国际游戏',
   image: 'assets/images/games/last.jpg',
@@ -375,7 +375,7 @@ const categories = {
 {
   id: 'kingshot',
   name: '国王战争',
-  detailName: '国王战争 KingShot',
+  detailName: '国王战争',
   description: 'KingShot',
   tag: '国际游戏',
   image: 'assets/images/games/king.jpg',
@@ -400,7 +400,7 @@ const categories = {
 {
   id: 'whiteout-survival',
   name: '寒霜启示录',
-  detailName: '寒霜启示录 Whiteout Survival',
+  detailName: '寒霜启示录',
   description: 'Whiteout Survival',
   tag: '国际游戏',
   image: 'assets/images/games/white.jpg',
