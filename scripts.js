@@ -1150,6 +1150,54 @@ const categories = {
 
 
     ]
+  },
+  cards: {
+    title: '点数 / 点卡',
+    subtitle: 'Brilliant Gaming 精选点数、点卡与账号相关服务。',
+    page: 'index.html',
+    games: [
+      {
+        id: 'china-apple-gift-card',
+        name: '中国苹果卡',
+        detailName: '中国苹果卡',
+        description: 'China Apple Gift Card',
+        tag: '点数/点卡',
+        image: 'assets/images/games/pgk.jpg',
+        detailArt: 'assets/images/games/pgk2.jpg',
+        keywords: ['苹果卡', 'Apple Gift Card', 'China Apple Gift Card', '中国 Apple Card', '点数', '点卡'],
+        productSections: [
+          {
+            title: '苹果卡充值',
+            subtitle: 'Apple Card Top Up',
+            icon: '◆',
+            products: [
+              { title: '6 元 苹果卡', en: '6 RMB Apple Card', price: 'RM 6.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '10 元 苹果卡', en: '10 RMB Apple Card', price: 'RM 10.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '30 元 苹果卡', en: '30 RMB Apple Card', price: 'RM 24.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '50 元 苹果卡', en: '50 RMB Apple Card', price: 'RM 37.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '68 元 苹果卡', en: '68 RMB Apple Card', price: 'RM 48.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '100 元 苹果卡', en: '100 RMB Apple Card', price: 'RM 66.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '200 元 苹果卡', en: '200 RMB Apple Card', price: 'RM 126.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '330 元 苹果卡', en: '330 RMB Apple Card', price: 'RM 216.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '350 元 苹果卡', en: '350 RMB Apple Card', price: 'RM 229.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '500 元 苹果卡', en: '500 RMB Apple Card', price: 'RM 313.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '648 元 苹果卡', en: '648 RMB Apple Card', price: 'RM 405.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '900 元 苹果卡', en: '900 RMB Apple Card', price: 'RM 562.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '1000 元 苹果卡', en: '1000 RMB Apple Card', price: 'RM 615.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '1300 元 苹果卡', en: '1300 RMB Apple Card', price: 'RM 800.00', note: '苹果卡充值 / Apple Card Top Up' }
+            ]
+          },
+          {
+            title: '其他服务',
+            subtitle: 'Other Service',
+            icon: '◆',
+            products: [
+              { title: '中国区 Apple ID（已实名）', en: 'China Region Apple ID (Verified)', price: 'RM 15.00', note: '其他服务 / Other Service' }
+            ]
+          }
+        ]
+      }
+    ]
   }
 };
 
@@ -1564,6 +1612,9 @@ function renderHomeCategoryFilter(showAll, filterCategory) {
     <button type="button" class="home-filter-btn ${filterCategory === 'cn' ? 'active' : ''}" data-home-filter="cn">
       中国服游戏
     </button>
+    <button type="button" class="home-filter-btn ${filterCategory === 'cards' ? 'active' : ''}" data-home-filter="cards">
+      点数 / 点卡
+    </button>
   `;
 }
 
@@ -1631,6 +1682,7 @@ function searchGames(query, categoryId = null) {
         game.name,
         game.description,
         game.tag,
+        ...(game.keywords || []),
       ].join(' ').toLowerCase();
 
       if (searchable.includes(lowerQuery)) {
