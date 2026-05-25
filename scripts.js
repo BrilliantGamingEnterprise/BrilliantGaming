@@ -2,6 +2,31 @@ const storageKey = 'bge-cart-v1';
 const statsKey = 'bge-stats-v1';
 const dailyOrdersKey = 'bge-daily-order-stats-v1';
 
+const pricePresets = {
+  // 共用价格：需要调整这些单档 RM340 游戏时，只改这里一次即可。
+  // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
+  // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
+  rm340: 'RM 330.00'
+};
+
+function resolveProductPrice(product) {
+  if (!product) return product;
+  if (!product.pricePreset) return product;
+  return {
+    ...product,
+    price: pricePresets[product.pricePreset] || product.price || ''
+  };
+}
+
+function resolveProductSections(game) {
+  if (!game || !Array.isArray(game.productSections)) return [];
+  return game.productSections.map((section) => ({
+    ...section,
+    products: (section.products || []).map(resolveProductPrice)
+  }));
+}
+
+
 const categories = {
   intl: {
     title: '热门国际游戏',
@@ -613,15 +638,15 @@ const categories = {
   detailName: 'Sword Of Justice',
   description: 'Sword Of Justice',
   tag: '国际游戏',
-  image: 'assets/images/games/sword-of-justice.jpg',
-  detailArt: 'assets/images/games/sword-of-justice2.jpg',
+  image: 'assets/images/games/soj.jpg',
+  detailArt: 'assets/images/games/soj.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -632,15 +657,15 @@ const categories = {
   detailName: 'Ragnarok Origin Classic',
   description: 'Ragnarok Origin Classic',
   tag: '国际游戏',
-  image: 'assets/images/games/ragnarok-origin-classic.jpg',
-  detailArt: 'assets/images/games/ragnarok-origin-classic2.jpg',
+  image: 'assets/images/games/rooc.jpg',
+  detailArt: 'assets/images/games/rooc2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -651,15 +676,15 @@ const categories = {
   detailName: 'Dark War Survival',
   description: 'Dark War Survival',
   tag: '国际游戏',
-  image: 'assets/images/games/dark-war-survival.jpg',
-  detailArt: 'assets/images/games/dark-war-survival2.jpg',
+  image: 'assets/images/games/darkwar.jpg',
+  detailArt: 'assets/images/games/darkwar2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -670,15 +695,15 @@ const categories = {
   detailName: '心动小镇 Heartopia',
   description: 'Heartopia',
   tag: '国际游戏',
-  image: 'assets/images/games/heartopia.jpg',
-  detailArt: 'assets/images/games/heartopia2.jpg',
+  image: 'assets/images/games/heartopia2.jpg',
+  detailArt: 'assets/images/games/heartopia.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -689,15 +714,15 @@ const categories = {
   detailName: '斗罗大陆 · 猎魂世界',
   description: 'Douluo Dalu Liehun Shijie',
   tag: '国际游戏',
-  image: 'assets/images/games/douluo-liehun-shijie.jpg',
-  detailArt: 'assets/images/games/douluo-liehun-shijie2.jpg',
+  image: 'assets/images/games/dldl.jpg',
+  detailArt: 'assets/images/games/dldl2.jpg',
   productSections: [
     {
-      title: '海神币',
-      subtitle: 'Sea God Coin',
+      title: '礼包',
+      subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '3290 海神币', en: '3290 Sea God Coins', price: 'RM 340.00', note: '海神币 / Sea God Coin' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -708,15 +733,15 @@ const categories = {
   detailName: '剑侠情缘',
   description: 'Jianxia Qingyuan',
   tag: '国际游戏',
-  image: 'assets/images/games/jianxia-qingyuan.jpg',
-  detailArt: 'assets/images/games/jianxia-qingyuan2.jpg',
+  image: 'assets/images/games/jianxia2.jpg',
+  detailArt: 'assets/images/games/jianxia2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -727,15 +752,15 @@ const categories = {
   detailName: 'Legends of Mushroom',
   description: 'Legends of Mushroom',
   tag: '国际游戏',
-  image: 'assets/images/games/legends-of-mushroom.jpg',
-  detailArt: 'assets/images/games/legends-of-mushroom2.jpg',
+  image: 'assets/images/games/mogu.jpg',
+  detailArt: 'assets/images/games/mogu.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -746,15 +771,15 @@ const categories = {
   detailName: 'Zombie Wave',
   description: 'Zombie Wave',
   tag: '国际游戏',
-  image: 'assets/images/games/zombie-wave.jpg',
-  detailArt: 'assets/images/games/zombie-wave2.jpg',
+  image: 'assets/images/games/zombie.jpg',
+  detailArt: 'assets/images/games/zombie2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -765,15 +790,15 @@ const categories = {
   detailName: '逆水寒 台服',
   description: 'Ni Shui Han Taiwan',
   tag: '国际游戏',
-  image: 'assets/images/games/ni-shui-han-tw.jpg',
-  detailArt: 'assets/images/games/ni-shui-han-tw2.jpg',
+  image: 'assets/images/games/nsh.jpg',
+  detailArt: 'assets/images/games/nsh2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -784,19 +809,43 @@ const categories = {
   detailName: 'Lands Of Jails',
   description: 'Lands Of Jails',
   tag: '国际游戏',
-  image: 'assets/images/games/lands-of-jails.jpg',
-  detailArt: 'assets/images/games/lands-of-jails2.jpg',
+  image: 'assets/images/games/jail.jpg',
+  detailArt: 'assets/images/games/jail2.jpg',
   productSections: [
     {
       title: '礼包',
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 340.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
 },
+{
+  id: 'one-punch-man-the-strongest',
+  name: '一拳超人',
+  detailName: '一拳超人 One Punch Man: The Strongest',
+  description: 'One Punch Man: The Strongest',
+  tag: '国际游戏',
+  image: 'assets/images/games/strongest.jpg',
+  detailArt: 'assets/images/games/strongest2.jpg',
+  productSections: [
+    {
+      title: 'Coupon',
+      subtitle: 'Coupon Top-Up',
+      icon: '◆',
+      products: [
+        { title: '6 Coupon', en: '6 Coupon', price: 'RM 4.50', note: 'Coupon / Top-Up' },
+        { title: '37 Coupon', en: '37 Coupon', price: 'RM 20.00', note: 'Coupon / Top-Up' },
+        { title: '109 Coupon', en: '109 Coupon', price: 'RM 57.00', note: 'Coupon / Top-Up' },
+        { title: '362 Coupon', en: '362 Coupon', price: 'RM 190.00', note: 'Coupon / Top-Up' },
+        { title: '904 Coupon', en: '904 Coupon', price: 'RM 450.00', note: 'Coupon / Top-Up' }
+      ]
+    }
+  ]
+},
+
 
     ]
   },
@@ -1245,10 +1294,11 @@ function getAllGames() {
 
 function getGameProducts(game) {
   if (!game) return [];
-  if (Array.isArray(game.productSections)) {
-    return game.productSections.flatMap((section) => section.products || []);
+  const sections = resolveProductSections(game);
+  if (sections.length) {
+    return sections.flatMap((section) => section.products || []);
   }
-  return game.products || [];
+  return (game.products || []).map(resolveProductPrice);
 }
 function getCurrentGameForCart() {
   const params = getQueryParams();
@@ -1509,9 +1559,10 @@ function makeCategoryGameCard(categoryId, game) {
 }
 
 function makeProductCard(product) {
-  const title = product.title || '';
-  const en = product.en || '';
-  const price = product.price || '';
+  const resolvedProduct = resolveProductPrice(product);
+  const title = resolvedProduct.title || '';
+  const en = resolvedProduct.en || '';
+  const price = resolvedProduct.price || '';
   const cartTitle = en ? `${title} / ${en}` : title;
 
   return `
@@ -1523,9 +1574,9 @@ function makeProductCard(product) {
 }
 
 function makeProductSections(game) {
-  const sections = game.productSections || [];
+  const sections = resolveProductSections(game);
   if (!sections.length) {
-    const products = game.products || [];
+    const products = (game.products || []).map(resolveProductPrice);
     if (!products.length) {
       return '<div class="cart-empty">该游戏商品暂未上架，价格整理中。请先联系客服确认。</div>';
     }
