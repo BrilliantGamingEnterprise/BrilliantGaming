@@ -38,7 +38,7 @@ const categories = {
         name: '原神',
         detailName: '国际服 · 原神',
         description: 'Genshin Impact',
-        tag: '热门充值',
+        tag: 'Login Top Up',
         image: 'assets/images/games/genshin.jpg',
         detailArt: 'assets/images/games/genshin2.jpg',
         productSections: [
@@ -48,11 +48,11 @@ const categories = {
             icon: '💎',
             products: [
               { title: '60 创世结晶', en: '60 Genesis Crystals', price: 'RM 4.00', note: '结晶 / Genesis Crystal' },
-              { title: '300 创世结晶', en: '300 Genesis Crystals', price: 'RM 18.00', note: '结晶 / Genesis Crystal' },
-              { title: '980 创世结晶', en: '980 Genesis Crystals', price: 'RM 54.00', note: '结晶 / Genesis Crystal' },
-              { title: '1980 创世结晶', en: '1980 Genesis Crystals', price: 'RM 105.00', note: '结晶 / Genesis Crystal' },
-              { title: '3280 创世结晶', en: '3280 Genesis Crystals', price: 'RM 170.00', note: '结晶 / Genesis Crystal' },
-              { title: '6480 创世结晶', en: '6480 Genesis Crystals', price: 'RM 300.00', note: '结晶 / Genesis Crystal' },
+              { title: '300 + 30 创世结晶', en: '300 + 30 Genesis Crystals', price: 'RM 18.00', note: '结晶 / Genesis Crystal' },
+              { title: '980 + 110 创世结晶', en: '980 + 110 Genesis Crystals', price: 'RM 54.00', note: '结晶 / Genesis Crystal' },
+              { title: '1980 + 260 创世结晶', en: '1980 + 260 Genesis Crystals', price: 'RM 105.00', note: '结晶 / Genesis Crystal' },
+              { title: '3280 + 600 创世结晶', en: '3280 + 600 Genesis Crystals', price: 'RM 170.00', note: '结晶 / Genesis Crystal' },
+              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 300.00', note: '结晶 / Genesis Crystal' },
               { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Genesis Crystals', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
             ]
           },
@@ -73,7 +73,7 @@ const categories = {
   name: '崩坏：星穹铁道',
   detailName: '国际服 · 崩坏：星穹铁道',
   description: 'Honkai: Star Rail',
-  tag: '热门充值',
+  tag: 'Login Top Up',
   image: 'assets/images/games/honkai-star-rail.jpg',
   detailArt: 'assets/images/games/honkai-star-rail-hero.jpg',
   productSections: [
@@ -83,11 +83,11 @@ const categories = {
       icon: '◆',
       products: [
         { title: '60 古老梦华', en: '60 Oneiric Shards', price: 'RM 4.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '300 古老梦华', en: '300 Oneiric Shards', price: 'RM 18.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '980 古老梦华', en: '980 Oneiric Shards', price: 'RM 54.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '1980 古老梦华', en: '1980 Oneiric Shards', price: 'RM 105.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '3280 古老梦华', en: '3280 Oneiric Shards', price: 'RM 170.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '6480 古老梦华', en: '6480 Oneiric Shards', price: 'RM 300.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '300 + 30 古老梦华', en: '300 + 30 Oneiric Shards', price: 'RM 18.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '980 + 110 古老梦华', en: '980 + 110 Oneiric Shards', price: 'RM 54.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '1980 + 260 古老梦华', en: '1980 + 260 Oneiric Shards', price: 'RM 105.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '3280 + 600 古老梦华', en: '3280 + 600 Oneiric Shards', price: 'RM 170.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '6480 + 1600 古老梦华', en: '6480 + 1600 Oneiric Shards', price: 'RM 300.00', note: '古老梦华 / Oneiric Shard' },
         { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Oneiric Shards', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
@@ -108,7 +108,7 @@ const categories = {
   name: '绝区零',
   detailName: '国际服 · 绝区零',
   description: 'Zenless Zone Zero',
-  tag: '热门充值',
+  tag: 'Login Top Up',
   image: 'assets/images/games/zzz.jpg',
   detailArt: 'assets/images/games/zzz2.jpg',
   productSections: [
@@ -118,11 +118,11 @@ const categories = {
       icon: '◆',
       products: [
         { title: '60 菲林底片', en: '60 Monochrome', price: 'RM 4.00', note: '菲林底片 / Monochrome' },
-        { title: '300 菲林底片', en: '300 Monochrome', price: 'RM 18.00', note: '菲林底片 / Monochrome' },
-        { title: '980 菲林底片', en: '980 Monochrome', price: 'RM 54.00', note: '菲林底片 / Monochrome' },
-        { title: '1980 菲林底片', en: '1980 Monochrome', price: 'RM 105.00', note: '菲林底片 / Monochrome' },
-        { title: '3280 菲林底片', en: '3280 Monochrome', price: 'RM 170.00', note: '菲林底片 / Monochrome' },
-        { title: '6480 菲林底片', en: '6480 Monochrome', price: 'RM 300.00', note: '菲林底片 / Monochrome' },
+        { title: '300 + 30 菲林底片', en: '300 + 30 Monochrome', price: 'RM 18.00', note: '菲林底片 / Monochrome' },
+        { title: '980 + 110 菲林底片', en: '980 + 110 Monochrome', price: 'RM 54.00', note: '菲林底片 / Monochrome' },
+        { title: '1980 + 260 菲林底片', en: '1980 + 260 Monochrome', price: 'RM 105.00', note: '菲林底片 / Monochrome' },
+        { title: '3280 + 600 菲林底片', en: '3280 + 600 Monochrome', price: 'RM 170.00', note: '菲林底片 / Monochrome' },
+        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 300.00', note: '菲林底片 / Monochrome' },
         { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Monochrome', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
@@ -143,7 +143,7 @@ const categories = {
   name: '鸣潮',
   detailName: '国际服 · 鸣潮',
   description: 'Wuthering Waves',
-  tag: '热门充值',
+  tag: 'Login Top Up',
   image: 'assets/images/games/wuwa.jpg',
   detailArt: 'assets/images/games/wuwa2.jpg',
   productSections: [
@@ -153,11 +153,11 @@ const categories = {
       icon: '◆',
       products: [
         { title: '60 月相', en: '60 Lunite', price: 'RM 4.00', note: '月相 / Lunite' },
-        { title: '300 月相', en: '300 Lunite', price: 'RM 18.00', note: '月相 / Lunite' },
-        { title: '980 月相', en: '980 Lunite', price: 'RM 54.00', note: '月相 / Lunite' },
-        { title: '1980 月相', en: '1980 Lunite', price: 'RM 108.00', note: '月相 / Lunite' },
-        { title: '3280 月相', en: '3280 Lunite', price: 'RM 180.00', note: '月相 / Lunite' },
-        { title: '6480 月相', en: '6480 Lunite', price: 'RM 330.00', note: '月相 / Lunite' },
+        { title: '300 + 30 月相', en: '300 + 30 Lunite', price: 'RM 18.00', note: '月相 / Lunite' },
+        { title: '980 + 110 月相', en: '980 + 110 Lunite', price: 'RM 54.00', note: '月相 / Lunite' },
+        { title: '1980 + 260 月相', en: '1980 + 260 Lunite', price: 'RM 108.00', note: '月相 / Lunite' },
+        { title: '3280 + 600 月相', en: '3280 + 600 Lunite', price: 'RM 180.00', note: '月相 / Lunite' },
+        { title: '6480 + 1600 月相', en: '6480 + 1600 Lunite', price: 'RM 330.00', note: '月相 / Lunite' },
         { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Lunite', price: 'RM 680.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
@@ -178,7 +178,7 @@ const categories = {
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',
   description: 'Pokémon TCG Pocket',
-  tag: '热门充值',
+  tag: 'Login Top Up',
   image: 'assets/images/games/TCG.jpg',
   detailArt: 'assets/images/games/TCG2.jpg',
   productSections: [
@@ -211,7 +211,7 @@ const categories = {
   name: '王者荣耀国际服',
   detailName: '国际服 · 王者荣耀',
   description: 'Honor of Kings Global',
-  tag: '热门充值',
+  tag: 'UID Top Up',
   image: 'assets/images/games/hok.jpg',
   detailArt: 'assets/images/games/hok2.jpg',
   productSections: [
@@ -238,7 +238,7 @@ const categories = {
   name: 'PUBG Mobile',
   detailName: 'PUBG Mobile',
   description: 'PUBG Mobile UC',
-  tag: '热门充值',
+  tag: 'UID Top Up',
   image: 'assets/images/games/PUBG.jpg',
   detailArt: 'assets/images/games/PUBG2.jpg',
   productSections: [
@@ -276,7 +276,7 @@ const categories = {
   name: 'Garena 使命召唤',
   detailName: 'Garena 使命召唤',
   description: 'Garena CODM',
-  tag: '热门充值',
+  tag: 'UID Top Up',
   image: 'assets/images/games/codm.jpg',
   detailArt: 'assets/images/games/codm2.jpg',
   productSections: [
@@ -301,7 +301,7 @@ const categories = {
   name: 'Garena 三角洲',
   detailName: 'Garena 三角洲',
   description: 'Garena Delta Force',
-  tag: '热门充值',
+  tag: 'UID Top Up',
   image: 'assets/images/games/三角洲1.jpg',
   detailArt: 'assets/images/games/三角洲2.jpg',
   productSections: [
@@ -329,7 +329,7 @@ const categories = {
   name: 'Mobile Legends',
   detailName: 'Mobile Legends BangBang',
   description: 'MLBB GLOBAL',
-  tag: '热门充值',
+  tag: 'UID Top Up',
   image: 'assets/images/games/mlbb.jpg',
   detailArt: 'assets/images/games/mlbb2.jpg',
   productSections: [
@@ -338,13 +338,15 @@ const categories = {
       subtitle: 'Diamonds',
       icon: '◆',
       products: [
-        { title: '250 + 25 Diamonds', en: '250 + 25 Diamonds', price: 'RM 20.00', note: '钻石充值 / Diamonds Top-Up' },
-        { title: '500 + 65 Diamonds', en: '500 + 65 Diamonds', price: 'RM 40.00', note: '钻石充值 / Diamonds Top-Up' },
-        { title: '1000 + 160 Diamonds', en: '1000 + 160 Diamonds', price: 'RM 80.00', note: '钻石充值 / Diamonds Top-Up' },
-        { title: '1500 + 270 Diamonds', en: '1500 + 270 Diamonds', price: 'RM 120.00', note: '钻石充值 / Diamonds Top-Up' },
-        { title: '2500 + 475 Diamonds', en: '2500 + 475 Diamonds', price: 'RM 190.00', note: '钻石充值 / Diamonds Top-Up' },
-        { title: '5000 + 1000 Diamonds', en: '5000 + 1000 Diamonds', price: 'RM 380.00', note: 'BEST VALUE 推荐 / Diamonds Top-Up' }
-      ]
+  { title: '254 + 30 Diamond', en: '254 + 30 Diamond', price: 'RM 20.00', note: 'Diamond Top-Up' },
+  { title: '317 + 38 Diamond', en: '317 + 38 Diamond', price: 'RM 25.00', note: 'Diamond Top-Up' },
+  { title: '383 + 46 Diamond', en: '383 + 46 Diamond', price: 'RM 30.00', note: 'Diamond Top-Up' },
+  { title: '633 + 83 Diamond', en: '633 + 83 Diamond', price: 'RM 50.00', note: 'Diamond Top-Up' },
+  { title: '1252 + 194 Diamond', en: '1252 + 194 Diamond', price: 'RM 100.00', note: 'Diamond Top-Up' },
+  { title: '2501 + 475 Diamond', en: '2501 + 475 Diamond', price: 'RM 200.00', note: 'HOT 推荐 / Diamond Top-Up' },
+  { title: '5002 + 950 Diamond', en: '5002 + 950 Diamond', price: 'RM 400.00', note: 'BEST VALUE 推荐 / Diamond Top-Up' },
+  { title: '7503 + 1425 Diamond', en: '7503 + 1425 Diamond', price: 'RM 600.00', note: 'BEST VALUE 推荐 / Diamond Top-Up' }
+]
     },
     {
       title: '其他商品',
@@ -364,7 +366,7 @@ const categories = {
         id: 'pokemon-go',
         name: 'Pokemon Go',
         description: 'Pokémon GO',
-        tag: '国际游戏',
+        tag: 'Login Top Up',
         image: 'assets/images/games/go.jpg',
         detailArt: 'assets/images/games/go2.jpg',
         products: [
@@ -377,7 +379,7 @@ const categories = {
   name: '最后的战争',
   detailName: '最后的战争',
   description: 'Last War: Survival',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/last.jpg',
   detailArt: 'assets/images/games/last2.jpg',
   productSections: [
@@ -402,7 +404,7 @@ const categories = {
   name: '国王战争',
   detailName: '国王战争',
   description: 'KingShot',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/king.jpg',
   detailArt: 'assets/images/games/king2.jpg',
   productSections: [
@@ -427,7 +429,7 @@ const categories = {
   name: '寒霜启示录',
   detailName: '寒霜启示录',
   description: 'Whiteout Survival',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/white.jpg',
   detailArt: 'assets/images/games/white2.jpg',
   productSections: [
@@ -452,7 +454,7 @@ const categories = {
   name: 'NTE 异环',
   detailName: 'NTE 异环',
   description: 'Neverness to Everness',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/nte.jpg',
   detailArt: 'assets/images/games/nte2.jpg',
   productSections: [
@@ -487,7 +489,7 @@ const categories = {
   name: '仗剑传说',
   detailName: '仗剑传说',
   description: 'Sword X Staff',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/仗剑.jpg',
   detailArt: 'assets/images/games/仗剑2.jpg',
   productSections: [
@@ -524,7 +526,7 @@ const categories = {
   name: '问剑长生',
   detailName: '问剑长生',
   description: '问剑长生 · 御剑斗法',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/问剑.jpg',
   detailArt: 'assets/images/games/问剑2.jpg',
   productSections: [
@@ -553,7 +555,7 @@ const categories = {
   name: '燕云十六声',
   detailName: '国际服 · 燕云十六声',
   description: 'Where Winds Meet',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/16.jpg',
   detailArt: 'assets/images/games/162.jpg',
   productSections: [
@@ -590,7 +592,7 @@ const categories = {
   name: '晶核',
   detailName: '国际服 · 晶核',
   description: 'Crystal of Atlan',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/coa.jpg',
   detailArt: 'assets/images/games/coa2.jpg',
   productSections: [
@@ -637,7 +639,7 @@ const categories = {
   name: 'Sword Of Justice',
   detailName: 'Sword Of Justice',
   description: 'Sword Of Justice',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/soj.jpg',
   detailArt: 'assets/images/games/soj.jpg',
   productSections: [
@@ -653,10 +655,10 @@ const categories = {
 },
 {
   id: 'ragnarok-origin-classic',
-  name: 'Ragnarok Origin Classic',
+  name: 'ROOC',
   detailName: 'Ragnarok Origin Classic',
   description: 'Ragnarok Origin Classic',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/rooc.jpg',
   detailArt: 'assets/images/games/rooc2.jpg',
   productSections: [
@@ -675,7 +677,7 @@ const categories = {
   name: 'Dark War Survival',
   detailName: 'Dark War Survival',
   description: 'Dark War Survival',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/darkwar.jpg',
   detailArt: 'assets/images/games/darkwar2.jpg',
   productSections: [
@@ -694,7 +696,7 @@ const categories = {
   name: '心动小镇',
   detailName: '心动小镇 Heartopia',
   description: 'Heartopia',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/heartopia2.jpg',
   detailArt: 'assets/images/games/heartopia.jpg',
   productSections: [
@@ -713,7 +715,7 @@ const categories = {
   name: '斗罗大陆 · 猎魂世界',
   detailName: '斗罗大陆 · 猎魂世界',
   description: 'Douluo Dalu Liehun Shijie',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/dldl.jpg',
   detailArt: 'assets/images/games/dldl2.jpg',
   productSections: [
@@ -732,7 +734,7 @@ const categories = {
   name: '剑侠情缘',
   detailName: '剑侠情缘',
   description: 'Jianxia Qingyuan',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/jianxia2.jpg',
   detailArt: 'assets/images/games/jianxia2.jpg',
   productSections: [
@@ -748,10 +750,10 @@ const categories = {
 },
 {
   id: 'legends-of-mushroom',
-  name: 'Legends of Mushroom',
+  name: '蘑菇传奇',
   detailName: 'Legends of Mushroom',
   description: 'Legends of Mushroom',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/mogu.jpg',
   detailArt: 'assets/images/games/mogu.jpg',
   productSections: [
@@ -770,7 +772,7 @@ const categories = {
   name: 'Zombie Wave',
   detailName: 'Zombie Wave',
   description: 'Zombie Wave',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/zombie.jpg',
   detailArt: 'assets/images/games/zombie2.jpg',
   productSections: [
@@ -789,7 +791,7 @@ const categories = {
   name: '逆水寒 台服',
   detailName: '逆水寒 台服',
   description: 'Ni Shui Han Taiwan',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/nsh.jpg',
   detailArt: 'assets/images/games/nsh2.jpg',
   productSections: [
@@ -808,7 +810,7 @@ const categories = {
   name: 'Lands Of Jails',
   detailName: 'Lands Of Jails',
   description: 'Lands Of Jails',
-  tag: '国际游戏',
+  tag: 'Login Top Up',
   image: 'assets/images/games/jail.jpg',
   detailArt: 'assets/images/games/jail2.jpg',
   productSections: [
@@ -826,8 +828,8 @@ const categories = {
   id: 'one-punch-man-the-strongest',
   name: '一拳超人',
   detailName: '一拳超人 One Punch Man: The Strongest',
-  description: 'One Punch Man: The Strongest',
-  tag: '国际游戏',
+  description: 'One Punch:The Strongest',
+  tag: 'UID Top Up',
   image: 'assets/images/games/strongest.jpg',
   detailArt: 'assets/images/games/strongest2.jpg',
   productSections: [
@@ -846,6 +848,131 @@ const categories = {
   ]
 },
 
+{
+  id: 'dragon-nest-m-classic',
+  name: '龙之谷 M：经典版',
+  detailName: '龙之谷 M：经典版',
+  description: 'Dragon Nest M: Classic',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/dnmc.jpg',
+  detailArt: 'assets/images/games/dnmc2.jpg',
+  productSections: [
+    {
+      title: 'Gems',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '600 + 26 Gems', en: '600 + 26 Gems', price: 'RM 5.00', note: 'UID Top Up' },
+        { title: '3000 + 130 Gems', en: '3000 + 130 Gems', price: 'RM 25.00', note: 'UID Top Up' },
+        { title: '6000 + 366 Gems', en: '6000 + 366 Gems', price: 'RM 50.00', note: 'UID Top Up' },
+        { title: '12000 + 800 Gems', en: '12000 + 800 Gems', price: 'RM 98.00', note: 'UID Top Up' },
+        { title: '18000 + 1500 Gems', en: '18000 + 1500 Gems', price: 'RM 148.00', note: 'UID Top Up' },
+        { title: '30000 + 2900 Gems', en: '30000 + 2900 Gems', price: 'RM 238.00', note: 'UID Top Up' },
+        { title: '60000 + 6000 Gems', en: '60000 + 6000 Gems', price: 'RM 450.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'age-of-empires-mobile',
+  name: '世纪帝国 Mobile',
+  detailName: '世纪帝国 Mobile',
+  description: 'Age of Empires Mobile',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/age-of-empires-mobile.jpg',
+  detailArt: 'assets/images/games/age-of-empires-mobile2.jpg',
+  productSections: [
+    {
+      title: 'Empire Coins',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '400 Empire Coins', en: '400 Empire Coins', price: 'RM 4.80', note: 'UID Top Up' },
+        { title: '2100 Empire Coins', en: '2100 Empire Coins', price: 'RM 22.00', note: 'UID Top Up' },
+        { title: '4400 Empire Coins', en: '4400 Empire Coins', price: 'RM 42.00', note: 'UID Top Up' },
+        { title: '9200 Empire Coins', en: '9200 Empire Coins', price: 'RM 80.00', note: 'UID Top Up' },
+        { title: '24000 Empire Coins', en: '24000 Empire Coins', price: 'RM 190.00', note: 'UID Top Up' },
+        { title: '50000 Empire Coins', en: '50000 Empire Coins', price: 'RM 380.00', note: 'UID Top Up' }
+      ]
+    },
+    {
+      title: 'Apex Coins',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '99 Apex Coins', en: '99 Apex Coins', price: 'RM 4.80', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '499 Apex Coins', en: '499 Apex Coins', price: 'RM 22.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '999 Apex Coins', en: '999 Apex Coins', price: 'RM 42.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '1999 Apex Coins', en: '1999 Apex Coins', price: 'RM 80.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '4999 Apex Coins', en: '4999 Apex Coins', price: 'RM 190.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '9999 Apex Coins', en: '9999 Apex Coins', price: 'RM 380.00', note: '首充该档位可能双倍 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'zhen-de-jiang-shan',
+  name: '朕的江山',
+  detailName: '朕的江山',
+  description: 'Three Kingdoms Overlord',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/zhen-de-jiang-shan.jpg',
+  detailArt: 'assets/images/games/zhen-de-jiang-shan2.jpg',
+  productSections: [
+    {
+      title: '元宝',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '220 元宝', en: '220 Yuanbao', price: 'RM 19.00', note: 'UID Top Up' },
+        { title: '500 元宝', en: '500 Yuanbao', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1100 元宝', en: '1100 Yuanbao', price: 'RM 76.00', note: 'UID Top Up' },
+        { title: '3000 元宝', en: '3000 Yuanbao', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 元宝', en: '6500 Yuanbao', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    },
+    {
+      title: '礼包币',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '220 礼包币', en: '220 Gift Coins', price: 'RM 19.00', note: 'UID Top Up' },
+        { title: '500 礼包币', en: '500 Gift Coins', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1100 礼包币', en: '1100 Gift Coins', price: 'RM 76.00', note: 'UID Top Up' },
+        { title: '3000 礼包币', en: '3000 Gift Coins', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 礼包币', en: '6500 Gift Coins', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'astral-guardians-cyber-fantasy',
+  name: '星界守护者',
+  detailName: '星界守护者',
+  description: 'Astral Guardians',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/astral-guardians.jpg',
+  detailArt: 'assets/images/games/astral-guardians2.jpg',
+  productSections: [
+    {
+      title: 'Diamonds',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '90 Diamonds', en: '90 Diamonds', price: 'RM 4.50', note: 'UID Top Up' },
+        { title: '450 Diamonds', en: '450 Diamonds', price: 'RM 22.50', note: 'UID Top Up' },
+        { title: '900 Diamonds', en: '900 Diamonds', price: 'RM 45.00', note: 'UID Top Up' },
+        { title: '1350 Diamonds', en: '1350 Diamonds', price: 'RM 68.00', note: 'UID Top Up' },
+        { title: '1840 Diamonds', en: '1840 Diamonds', price: 'RM 90.00', note: 'UID Top Up' },
+        { title: '4800 Diamonds', en: '4800 Diamonds', price: 'RM 217.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '9800 Diamonds', en: '9800 Diamonds', price: 'RM 432.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
 
     ]
   },
@@ -859,7 +986,7 @@ const categories = {
   name: '王者荣耀',
   detailName: '双系统 · 王者荣耀',
   description: '中国·腾讯 王者荣耀',
-  tag: '热门充值',
+  tag: '扫码充值',
   image: 'assets/images/games/王者荣耀.jpg',
   detailArt: 'assets/images/games/王者荣耀2.jpg',
   productSections: [
@@ -916,7 +1043,7 @@ const categories = {
   name: '和平精英',
   detailName: '双系统 · 和平精英',
   description: '中国·腾讯 和平精英',
-  tag: '热门充值',
+  tag: '扫码充值',
   image: 'assets/images/games/和平精英.jpg',
   detailArt: 'assets/images/games/和平精英2.jpg',
   productSections: [
@@ -977,7 +1104,7 @@ const categories = {
   name: '火影忍者手游',
   detailName: '双系统 · 火影忍者手游',
   description: '中国·腾讯 火影忍者手游',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/火影.jpg',
   detailArt: 'assets/images/games/火影2.jpg',
   productSections: [
@@ -1024,7 +1151,7 @@ const categories = {
   name: '金铲铲之战',
   detailName: '双系统 · 金铲铲',
   description: '中国·腾讯 金铲铲之战',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/金铲铲.jpg',
   detailArt: 'assets/images/games/金铲铲2.jpg',
   productSections: [
@@ -1051,7 +1178,7 @@ const categories = {
   name: '洛克王国',
   detailName: '双系统 ·洛克王国',
   description: '中国·腾讯 洛克王国',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/洛克王国.jpg',
   detailArt: 'assets/images/games/洛克王国2.jpg',
   productSections: [
@@ -1077,7 +1204,7 @@ const categories = {
   name: '三角洲行动',
   detailName: '双系统 · 三角洲',
   description: '中国·腾讯 三角洲行动',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/三角洲.jpg',
   detailArt: 'assets/images/games/三角洲2.jpg',
   productSections: [
@@ -1112,7 +1239,7 @@ const categories = {
   name: '王者荣耀世界',
   detailName: '双系统 · 王者荣耀世界',
   description: '中国·腾讯 王者荣耀世界',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/王者荣耀世界.jpg',
   detailArt: 'assets/images/games/王者荣耀世界2.jpg',
   productSections: [
@@ -1138,7 +1265,7 @@ const categories = {
   name: '无畏契约手游',
   detailName: '双系统 · 无畏契约手游',
   description: '中国·腾讯 无畏契约手游',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/无畏契约.jpg',
   detailArt: 'assets/images/games/无畏契约2.jpg',
   productSections: [
@@ -1172,7 +1299,7 @@ const categories = {
   name: '元梦之星',
   detailName: '双系统 · 元梦之星',
   description: '中国·腾讯 元梦之星',
-  tag: '中国游戏',
+  tag: '扫码充值',
   image: 'assets/images/games/元梦之星.jpg',
   detailArt: 'assets/images/games/元梦之星2.jpg',
   productSections: [
@@ -1286,6 +1413,15 @@ function escapeAttribute(value) {
   return String(value || '').replace(/"/g, '&quot;');
 }
 
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function getAllGames() {
   return Object.entries(categories).flatMap(([categoryId, category]) =>
     (category.games || []).map((game) => ({ ...game, categoryId }))
@@ -1337,6 +1473,172 @@ let stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
 const page = document.body.dataset.page;
 let isShowingAllGames = false;
 let activeHomeCategory = 'all';
+
+
+const paymentMethodOptions = [
+  'Touch n Go eWallet',
+  'DuitNow QR',
+  'Bank Transfer',
+  'GrabPay',
+  'ShopeePay',
+  'PayNow SG',
+  '其他'
+];
+
+const loginTopupGameIds = new Set([
+  'genshin',
+  'honkai-star-rail',
+  'zenless-zone-zero',
+  'wuthering-waves'
+]);
+
+const topupFormConfigs = {
+  login: {
+    badge: 'Login Top Up',
+    title: '充值资料 · 登入充值',
+    description: '适用于需要登入账号处理的游戏。资料只用于生成订单文字，不会上传或保存到网站数据库。',
+    fields: [
+      {
+        name: 'paymentMethod',
+        label: '付款方式',
+        type: 'select',
+        required: true,
+        options: paymentMethodOptions
+      },
+      {
+        name: 'loginMethod',
+        label: '登入方式',
+        type: 'select',
+        required: true,
+        options: [
+          '邮箱 / Email',
+          'Google',
+          'Facebook',
+          '其他'
+        ]
+      },
+      {
+        name: 'accountEmail',
+        label: '账号 / Email',
+        type: 'text',
+        required: true,
+        placeholder: '请输入账号或邮箱'
+      },
+      {
+        name: 'password',
+        label: '账号密码',
+        type: 'text',
+        required: true,
+        placeholder: '请输入账号密码'
+      },
+      {
+        name: 'server',
+        label: '服务器',
+        type: 'text',
+        required: true,
+        placeholder: '例如：Asia / America / Europe'
+      },
+      {
+        name: 'uid',
+        label: 'UID',
+        type: 'text',
+        required: true,
+        placeholder: '请输入 UID'
+      },
+      {
+        name: 'characterName',
+        label: '角色名字',
+        type: 'text',
+        required: true,
+        placeholder: '请输入角色名字'
+      }
+    ]
+  },
+  uid: {
+    badge: 'UID Top Up',
+    title: '充值资料 · UID充值',
+    description: '适用于通过 UID、服务器或角色资料处理的游戏。',
+    fields: [
+      {
+        name: 'paymentMethod',
+        label: '付款方式',
+        type: 'select',
+        required: true,
+        options: paymentMethodOptions
+      },
+      {
+        name: 'uid',
+        label: 'UID / 玩家ID',
+        type: 'text',
+        required: true,
+        placeholder: '请输入 UID / 玩家ID'
+      },
+      {
+        name: 'server',
+        label: '服务器 / 区服',
+        type: 'text',
+        required: true,
+        placeholder: '例如：Asia / Global / 服务器名称'
+      },
+      {
+        name: 'characterName',
+        label: '角色名字',
+        type: 'text',
+        required: true,
+        placeholder: '请输入角色名字'
+      }
+    ]
+  },
+  tencent: {
+    badge: 'Tencent CN',
+    title: '充值资料 · 中国腾讯游戏',
+    description: '适用于王者荣耀、和平精英等中国腾讯游戏。请确认系统、区服与角色名字正确。',
+    fields: [
+      {
+        name: 'paymentMethod',
+        label: '付款方式',
+        type: 'select',
+        required: true,
+        options: paymentMethodOptions
+      },
+      {
+        name: 'system',
+        label: '系统',
+        type: 'select',
+        required: true,
+        options: [
+          '苹果 iOS',
+          '安卓 Android'
+        ]
+      },
+      {
+        name: 'loginArea',
+        label: '登录区',
+        type: 'select',
+        required: true,
+        options: [
+          '微信区',
+          'QQ区'
+        ]
+      },
+      {
+        name: 'server',
+        label: '大区',
+        type: 'text',
+        required: true,
+        placeholder: '例如：391区'
+      },
+      {
+        name: 'characterName',
+        label: '角色名字',
+        type: 'text',
+        required: true,
+        placeholder: '请输入角色名字'
+      }
+    ]
+  }
+};
+
 
 
 function saveCart() {
@@ -1500,9 +1802,141 @@ function toggleCartPanel() {
   panel.classList.toggle('open');
 }
 
-function copyCartToClipboard() {
+
+function getGameTopupFormType(game, categoryId) {
+  if (!game) return '';
+  if (game.topupFormType) return game.topupFormType;
+  if (categoryId === 'cn') return 'tencent';
+  if (categoryId === 'cards') return '';
+  if (loginTopupGameIds.has(game.id)) return 'login';
+  return 'uid';
+}
+
+function makeTopupField(field) {
+  const requiredMark = field.required ? '<span class="topup-required">*</span>' : '';
+  const commonAttrs = `data-topup-field="${escapeAttribute(field.name)}" data-topup-label="${escapeAttribute(field.label)}" data-required="${field.required ? 'true' : 'false'}"`;
+  const placeholder = field.placeholder ? ` placeholder="${escapeAttribute(field.placeholder)}"` : '';
+  let control = '';
+
+  if (field.type === 'select') {
+    const options = (field.options || [])
+      .map((option) => `<option value="${escapeAttribute(option)}">${escapeHtml(option)}</option>`)
+      .join('');
+
+    control = `
+      <select ${commonAttrs}>
+        <option value="">请选择${escapeHtml(field.label)}</option>
+        ${options}
+      </select>`;
+  } else if (field.type === 'textarea') {
+    control = `<textarea ${commonAttrs}${placeholder} rows="3"></textarea>`;
+  } else {
+    const inputType = field.type || 'text';
+    control = `<input type="${escapeAttribute(inputType)}" ${commonAttrs}${placeholder} autocomplete="off">`;
+  }
+
+  return `
+    <label class="topup-field" data-field-wrap="${escapeAttribute(field.name)}">
+      <span>${escapeHtml(field.label)}${requiredMark}</span>
+      ${control}
+    </label>`;
+}
+
+function renderTopupInfoForm(categoryId, game) {
+  const container = document.getElementById('topupFormContainer');
+  if (!container) return;
+
+  const formType = getGameTopupFormType(game, categoryId);
+  const config = topupFormConfigs[formType];
+
+  if (!config) {
+    container.innerHTML = '';
+    container.hidden = true;
+    document.body.dataset.topupFormType = '';
+    return;
+  }
+
+  document.body.dataset.topupFormType = formType;
+  container.hidden = false;
+  container.innerHTML = `
+    <section class="topup-form-panel" data-topup-form-type="${escapeAttribute(formType)}">
+      <div class="topup-form-header">
+        <div>
+          <span class="topup-form-badge">${escapeHtml(config.badge)}</span>
+          <h4>${escapeHtml(config.title)}</h4>
+          <p>${escapeHtml(config.description)}</p>
+        </div>
+      </div>
+      <div class="topup-form-grid">
+        ${config.fields.map(makeTopupField).join('')}
+      </div>
+    </section>`;
+}
+
+function getTopupInfoFields() {
+  return Array.from(document.querySelectorAll('[data-topup-field]')).map((field) => ({
+    name: field.dataset.topupField || '',
+    label: field.dataset.topupLabel || '',
+    required: field.dataset.required === 'true',
+    value: String(field.value || '').trim(),
+    element: field
+  }));
+}
+
+function validateTopupRequiredFields() {
+  const missing = getTopupInfoFields().filter((field) => field.required && !field.value);
+
+  if (!missing.length) return true;
+
+  const firstMissing = missing[0];
+  firstMissing.element.focus();
+  showCartToast(`请填写：${firstMissing.label}`);
+  return false;
+}
+
+function getTopupInfoLines() {
+  const fields = getTopupInfoFields();
+  if (!fields.length) return [];
+
+  return fields
+    .filter((field) => field.name !== 'remark')
+    .filter((field) => field.required || field.value)
+    .map((field) => `${field.label}：${field.value || '未填写'}`);
+}
+
+function writeTextToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    document.execCommand('copy');
+    return Promise.resolve();
+  } catch (error) {
+    return Promise.reject(error);
+  } finally {
+    document.body.removeChild(textarea);
+  }
+}
+
+
+function copyCartToClipboard(options = {}) {
+  const { openContactAfterCopy = false, requireTopupInfo = false } = options;
+
   if (!cart.length) {
     alert('购物车为空，无法复制订单。');
+    return;
+  }
+
+  if (requireTopupInfo && !validateTopupRequiredFields()) {
     return;
   }
 
@@ -1513,24 +1947,37 @@ function copyCartToClipboard() {
     document.getElementById('detailGameName')?.textContent.trim() ||
     'Brilliant Gaming';
 
-  const lines = getSortedCartEntries().map(({ item }) => {
+  const productLines = getSortedCartEntries().map(({ item }, index) => {
     const chineseTitle = String(item.title).split(' / ')[0].trim();
-    return `${chineseTitle} x${item.quantity} - ${item.price}`;
+    return `${index + 1}. ${chineseTitle} x${item.quantity} - ${item.price}`;
   });
 
-  const text = `Brilliant Gaming 购物单：
-${currentGameName}
-${lines.join('\n')}
+  const topupLines = getTopupInfoLines();
 
-合计：${formatTotal(total)}  请把以上内容发送给客服下单。`;
+  const text = `游戏：${currentGameName}
 
-  navigator.clipboard
-    .writeText(text)
+商品：
+${productLines.join('\n')}
+
+合计：${formatTotal(total)}
+
+充值资料：
+${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认'}`;
+
+  writeTextToClipboard(text)
     .then(() => {
       recordCopiedOrderStats(total);
-      showCartToast('购物单已复制，请联系客服完成充值');
+      showCartToast(openContactAfterCopy ? '购物单已复制，请选择客服发送订单' : '购物单已复制');
+      if (openContactAfterCopy) openContactModal();
     })
     .catch(() => alert('复制失败，请手动选择并复制。'));
+}
+
+function copyCartAndOpenContact() {
+  copyCartToClipboard({
+    openContactAfterCopy: true,
+    requireTopupInfo: true
+  });
 }
 
 function makeGameCover(game) {
@@ -1698,6 +2145,7 @@ function renderGamePage(categoryId, gameId) {
     if (summary) summary.textContent = '请返回首页选择正确的游戏。';
     if (products) products.innerHTML = '<div class="cart-empty">未找到该游戏，请返回首页继续选择。</div>';
     if (backLink) backLink.href = 'index.html';
+    renderTopupInfoForm('', null);
     return;
   }
 
@@ -1720,6 +2168,7 @@ function renderGamePage(categoryId, gameId) {
   }
   if (backLink) backLink.href = category.page || 'index.html';
   if (products) products.innerHTML = makeProductSections(game);
+  renderTopupInfoForm(categoryId, game);
 }
 
 function searchGames(query, categoryId = null) {
@@ -1914,6 +2363,11 @@ function initEvents() {
     if (target.matches('#clearCartButton')) {
       clearCart();
     }
+    if (target.matches('#contactOrderButton')) {
+      event.preventDefault();
+      copyCartAndOpenContact();
+      return;
+    }
     if (target.matches('#clearSearch')) {
       clearSearch();
     }
@@ -1969,7 +2423,6 @@ if (homeFilterButton) {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeContactModal();
   });
-  document.getElementById('copyCartButton')?.addEventListener('click', copyCartToClipboard);
 }
 
 function start() {
