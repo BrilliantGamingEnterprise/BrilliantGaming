@@ -1901,10 +1901,20 @@ function toggleCartPanel() {
 
 function getGameTopupFormType(game, categoryId) {
   if (!game) return '';
+
   if (game.topupFormType) return game.topupFormType;
+
+  const rawTag = String(game.tag || '').trim();
+  const normalizedTag = rawTag.toLowerCase().replace(/\s+/g, ' ');
+
+  if (normalizedTag === 'login top up') return 'login';
+  if (normalizedTag === 'uid top up') return 'uid';
+  if (rawTag.includes('扫码充值')) return 'tencent';
+  if (rawTag.includes('点数/点卡')) return '';
+
   if (categoryId === 'cn') return 'tencent';
   if (categoryId === 'cards') return '';
-  if (loginTopupGameIds.has(game.id)) return 'login';
+
   return 'uid';
 }
 
@@ -2063,8 +2073,8 @@ ${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认
   writeTextToClipboard(text)
     .then(() => {
       recordCopiedOrderStats(total);
-      showCartToast(openContactAfterCopy ? '购物单已复制，请选择客服发送订单' : '购物单已复制');
-      if (openContactAfterCopy) openContactModal();
+      showCartToast(openContactAfterCopy ? '订单内容已复制' : '购物单已复制');
+if (openContactAfterCopy) openContactModal('order');
     })
     .catch(() => alert('复制失败，请手动选择并复制。'));
 }
@@ -2367,9 +2377,32 @@ function initHeaderLinks() {
 }
 
 
-function openContactModal() {
+function openContactModal(mode = 'default') {
   const modal = document.getElementById('contactModal');
   if (!modal) return;
+
+  const title = modal.querySelector('#contactModalTitle');
+  const intro = modal.querySelector('.contact-intro');
+  const note = modal.querySelector('.contact-note-premium');
+
+  if (mode === 'order') {
+    if (title) title.textContent = '订单内容已复制';
+    if (intro) {
+      intro.textContent = '你的购物单、充值资料和付款方式已经复制。请选择联系方式发送给客服，客服确认后会协助你完成充值。';
+    }
+    if (note) {
+      note.innerHTML = '<strong>下单提醒：</strong>请把刚刚复制的订单内容发送给客服。付款前请先等待客服确认商品、金额与充值资料。';
+    }
+  } else {
+    if (title) title.textContent = '联系客服下单';
+    if (intro) {
+      intro.textContent = '请选择你常用的联系方式，联系客服确认商品、付款方式或充值资料。';
+    }
+    if (note) {
+      note.innerHTML = '<strong>营业时间：</strong>每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。';
+    }
+  }
+
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('contact-modal-open');
