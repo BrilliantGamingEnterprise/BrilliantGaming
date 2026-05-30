@@ -824,6 +824,41 @@ const categories = {
     }
   ]
 },
+
+{
+  id: 'three-kingdoms-tactics',
+  name: '三国志战略版',
+  detailName: '三国志战略版',
+  description: 'Three Kingdoms Tactics',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/three-kingdoms-tactics.jpg',
+  detailArt: 'assets/images/games/three-kingdoms-tactics2.jpg',
+  productSections: [
+    {
+      title: '玉璧',
+      subtitle: 'Jade',
+      icon: '◆',
+      products: [
+        { title: '60 玉璧', en: '60 Jade', price: 'RM 4.00', note: 'Login Top Up' },
+        { title: '300 玉璧', en: '300 Jade', price: 'RM 19.00', note: 'Login Top Up' },
+        { title: '980 玉璧', en: '980 Jade', price: 'RM 57.00', note: 'Login Top Up' },
+        { title: '1980 玉璧', en: '1980 Jade', price: 'RM 114.00', note: 'Login Top Up' },
+        { title: '3280 玉璧', en: '3280 Jade', price: 'RM 185.00', note: 'HOT 推荐 / Login Top Up' },
+        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 370.00', note: 'BEST VALUE 推荐 / Login Top Up' }
+      ]
+    },
+    {
+      title: '印记礼包',
+      subtitle: 'Others Packages',
+      icon: '◆',
+      products: [
+        { title: '银印礼包', en: 'Silver Seal Pack', price: 'RM 12.00', note: 'Login Top Up' },
+        { title: '金印礼包', en: 'Gold Seal Pack', price: 'RM 19.00', note: 'Login Top Up' }
+      ]
+    }
+  ]
+},
+
 {
   id: 'one-punch-man-the-strongest',
   name: '一拳超人',
@@ -885,7 +920,7 @@ const categories = {
   productSections: [
     {
       title: 'Empire Coins',
-      subtitle: 'UID Top Up',
+      subtitle: 'Empire Coins',
       icon: '◆',
       products: [
         { title: '400 Empire Coins', en: '400 Empire Coins', price: 'RM 4.80', note: 'UID Top Up' },
@@ -897,8 +932,8 @@ const categories = {
       ]
     },
     {
-      title: 'Apex Coins',
-      subtitle: 'UID Top Up',
+      title: '至高币',
+      subtitle: 'Apex Coins',
       icon: '◆',
       products: [
         { title: '99 Apex Coins', en: '99 Apex Coins', price: 'RM 4.80', note: '首充该档位可能双倍 / UID Top Up' },
@@ -907,6 +942,31 @@ const categories = {
         { title: '1999 Apex Coins', en: '1999 Apex Coins', price: 'RM 80.00', note: '首充该档位可能双倍 / UID Top Up' },
         { title: '4999 Apex Coins', en: '4999 Apex Coins', price: 'RM 190.00', note: '首充该档位可能双倍 / UID Top Up' },
         { title: '9999 Apex Coins', en: '9999 Apex Coins', price: 'RM 380.00', note: '首充该档位可能双倍 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'arena-breakout',
+  name: '暗区突围',
+  detailName: '暗区突围',
+  description: 'Arena Breakout',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/arena-breakout.jpg',
+  detailArt: 'assets/images/games/arena-breakout2.jpg',
+  productSections: [
+    {
+      title: 'Bonds',
+      subtitle: 'Bonds',
+      icon: '◆',
+      products: [
+        { title: '60 + 6 Bonds', en: '60 + 6 Bonds', price: 'RM 4.50', note: 'UID Top Up' },
+        { title: '310 + 25 Bonds', en: '310 + 25 Bonds', price: 'RM 20.00', note: 'UID Top Up' },
+        { title: '630 + 45 Bonds', en: '630 + 45 Bonds', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1580 + 110 Bonds', en: '1580 + 110 Bonds', price: 'RM 95.00', note: 'UID Top Up' },
+        { title: '3200 + 200 Bonds', en: '3200 + 200 Bonds', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 + 320 Bonds', en: '6500 + 320 Bonds', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
       ]
     }
   ]
@@ -1332,6 +1392,41 @@ const categories = {
     subtitle: 'Brilliant Gaming 精选点数、点卡与账号相关服务。',
     page: 'index.html',
     games: [
+
+      {
+  id: 'razer-gold-top-up-pin',
+  name: 'Razer Gold 点卡',
+  detailName: 'Razer Gold 点卡',
+  description: 'Razer Gold Top-Up PIN',
+  tag: '点数/点卡',
+  image: 'assets/images/games/razer-gold.jpg',
+  detailArt: 'assets/images/games/razer-gold2.jpg',
+  productSections: [
+    {
+      title: 'Razer Gold Top-Up PIN',
+      subtitle: 'Direct Top-Up PIN',
+      icon: '◆',
+      products: [
+        { title: 'RM 3 Razer Gold PIN', en: 'Direct Top-Up PIN - 3', price: 'RM 3.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 5 Razer Gold PIN', en: 'Direct Top-Up PIN - 5', price: 'RM 5.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 7 Razer Gold PIN', en: 'Direct Top-Up PIN - 7', price: 'RM 7.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 10 Razer Gold PIN', en: 'Direct Top-Up PIN - 10', price: 'RM 10.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 20 Razer Gold PIN', en: 'Direct Top-Up PIN - 20', price: 'RM 20.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 30 Razer Gold PIN', en: 'Direct Top-Up PIN - 30', price: 'RM 30.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 40 Razer Gold PIN', en: 'Direct Top-Up PIN - 40', price: 'RM 40.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 50 Razer Gold PIN', en: 'Direct Top-Up PIN - 50', price: 'RM 50.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 100 Razer Gold PIN', en: 'Direct Top-Up PIN - 100', price: 'RM 100.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 200 Razer Gold PIN', en: 'Direct Top-Up PIN - 200', price: 'RM 200.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 300 Razer Gold PIN', en: 'Direct Top-Up PIN - 300', price: 'RM 300.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 500 Razer Gold PIN', en: 'Direct Top-Up PIN - 500', price: 'RM 500.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 1000 Razer Gold PIN', en: 'Direct Top-Up PIN - 1000', price: 'RM 1000.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 2000 Razer Gold PIN', en: 'Direct Top-Up PIN - 2000', price: 'RM 2000.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 3000 Razer Gold PIN', en: 'Direct Top-Up PIN - 3000', price: 'RM 3000.00', note: 'Razer Gold Top-Up PIN' }
+      ]
+    }
+  ]
+},
+
       {
         id: 'china-apple-gift-card',
         name: '中国苹果卡',
@@ -1376,6 +1471,7 @@ const categories = {
     ]
   }
 };
+
 
 
 const homeFeaturedIds = [
