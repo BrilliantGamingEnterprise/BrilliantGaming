@@ -551,6 +551,72 @@ const categories = {
 },
 
 {
+  id: 'tian-long-ba-bu',
+  name: '天龍八部2',
+  detailName: '天龍八部2：血戰江湖',
+  description: '天龍八部2：血戰江湖',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/tian-long-ba-bu.jpg',
+  detailArt: 'assets/images/games/tian-long-ba-bu2.jpg',
+  productSections: [
+    {
+      title: '代金券',
+      subtitle: 'Vouchers',
+      icon: '◆',
+      products: [
+        { title: '30 代金券', price: 'RM 20.00' },
+        { title: '50 代金券', price: 'RM 32.00' },
+        { title: '98 代金券', price: 'RM 57.00' },
+        { title: '198 代金券', price: 'RM 114.00' },
+        { title: '328 代金券', price: 'RM 185.00' },
+        { title: '648 代金券', price: 'RM 365.00' },
+        { title: '998 代金券', price: 'RM 545.00' },
+        { title: '1998 代金券', price: 'RM 1095.00' },
+        { title: '2998 代金券', price: 'RM 1640.00' }
+      ]
+    },
+    {
+      title: '其他礼包',
+      subtitle: 'Other Packs',
+      icon: '◆',
+      products: [
+        { title: '重楼链 + 9980 元宝 + 40 万金币', price: 'RM 570.00' },
+        { title: '重楼链 + 19980 元宝 + 45 万金币', price: 'RM 1140.00' },
+        { title: '重楼链 + 29980 元宝 + 50 万金币', price: 'RM 1700.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'perfect-world-w',
+  name: '完美世界W',
+  detailName: '完美世界W',
+  description: 'Perfect World W',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/perfect-world-w.jpg',
+  detailArt: 'assets/images/games/perfect-world-w2.jpg',
+  productSections: [
+    {
+      title: '诸神币',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '499 诸神币 + 30 绑定元宝', price: 'RM 20.00' },
+        { title: '999 诸神币 + 68 绑定元宝', price: 'RM 38.00' },
+        { title: '1499 诸神币 + 98 绑定元宝', price: 'RM 57.00' },
+        { title: '2999 诸神币 + 198 绑定元宝', price: 'RM 114.00' },
+        { title: '4999 诸神币 + 328 绑定元宝', price: 'RM 185.00' },
+        { title: '9999 诸神币 + 648 绑定元宝', price: 'RM 365.00' },
+        { title: '29999 诸神币 + 1950 绑定元宝', price: 'RM 1095.00' }
+      ]
+    }
+  ]
+},
+
+{
   id: 'where-winds-meet',
   name: '燕云十六声',
   detailName: '国际服 · 燕云十六声',
@@ -1632,7 +1698,7 @@ const topupFormConfigs = {
         label: '服务器',
         type: 'text',
         required: true,
-        placeholder: '例如：Asia / America / Europe'
+        placeholder: '例如：服务器名称 / 区服名称 / Server Name'
       },
       {
         name: 'uid',
