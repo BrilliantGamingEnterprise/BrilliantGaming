@@ -2138,8 +2138,50 @@ ${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认
 
   writeTextToClipboard(text)
     .then(() => {
-      recordCopiedOrderStats(total);
-      showCartToast(openContactAfterCopy ? '订单内容已复制' : '购物单已复制');
+showCartToast(openContactAfterCopy ? '订单内容已复制' : '购物单已复制');
+
+if (openContactAfterCopy) {
+showOrderCopiedDialog(() => {
+  openContactModal('order');
+});
+
+function showOrderCopiedDialog(onConfirm) {
+  const existing = document.getElementById('orderCopiedDialog');
+  if (existing) existing.remove();
+
+  const dialog = document.createElement('div');
+  dialog.id = 'orderCopiedDialog';
+  dialog.className = 'order-copied-modal open';
+
+  dialog.innerHTML = `
+    <div class="order-copied-dialog" role="dialog" aria-modal="true">
+      <div class="order-copied-icon">✓</div>
+      <h3>订单内容已复制</h3>
+      <p>
+        请把刚刚复制的订单内容发送给客服确认。<br>
+        客服确认商品、金额与充值资料后，再进行付款。
+      </p>
+      <div class="order-copied-note">
+        付款前请先等待客服确认，避免资料或金额错误。
+      </div>
+      <button type="button" class="button button-primary" id="orderCopiedConfirm">
+        我知道了，联系客服
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(dialog);
+
+  const confirmBtn = dialog.querySelector('#orderCopiedConfirm');
+
+  confirmBtn.addEventListener('click', () => {
+    dialog.remove();
+    if (typeof onConfirm === 'function') onConfirm();
+  });
+}
+
+  openContactModal('order');
+}
 if (openContactAfterCopy) openContactModal('order');
     })
     .catch(() => alert('复制失败，请手动选择并复制。'));

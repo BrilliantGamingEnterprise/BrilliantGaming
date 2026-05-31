@@ -4180,3 +4180,82 @@ body.contact-modal-open {
     font-size: 0.88rem;
   }
 }
+
+/* ==================== ORDER COPIED CONFIRM MODAL ==================== */
+
+.order-copied-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(216, 179, 90, 0.18), transparent 34%),
+    rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+}
+
+.order-copied-modal.open {
+  display: flex;
+}
+
+.order-copied-dialog {
+  width: min(460px, 100%);
+  padding: 34px 28px 28px;
+  border: 1px solid rgba(245, 199, 107, 0.34);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(245, 199, 107, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(10, 14, 22, 0.985), rgba(4, 5, 8, 0.99));
+  box-shadow:
+    0 36px 110px rgba(0, 0, 0, 0.68),
+    0 0 34px rgba(216, 179, 90, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  text-align: center;
+}
+
+.order-copied-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D8B35A, #F5C76B);
+  color: #050A14;
+  font-size: 2rem;
+  font-weight: 950;
+  box-shadow: 0 0 28px rgba(216, 179, 90, 0.28);
+}
+
+.order-copied-dialog h3 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: 1.65rem;
+  font-weight: 950;
+}
+
+.order-copied-dialog p {
+  margin: 0;
+  color: rgba(226, 232, 240, 0.9);
+  line-height: 1.75;
+  font-size: 0.98rem;
+}
+
+.order-copied-note {
+  margin: 18px 0 22px;
+  padding: 12px 14px;
+  border: 1px solid rgba(216, 179, 90, 0.18);
+  border-radius: 14px;
+  background: rgba(216, 179, 90, 0.065);
+  color: rgba(245, 199, 107, 0.92);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.order-copied-dialog .button {
+  width: 100%;
+}
