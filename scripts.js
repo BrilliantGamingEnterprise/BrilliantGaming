@@ -2,6 +2,8 @@ const storageKey = 'bge-cart-v1';
 const statsKey = 'bge-stats-v1';
 const dailyOrdersKey = 'bge-daily-order-stats-v1';
 
+let latestOrderText = '';
+
 const pricePresets = {
   // 共用价格：需要调整这些单档 RM340 游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
@@ -2136,8 +2138,10 @@ ${productLines.join('\n')}
 充值资料：
 ${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认'}`;
 
-  writeTextToClipboard(text)
-    .then(() => {
+  latestOrderText = text;
+
+writeTextToClipboard(text)
+  .then(() => {
 showCartToast(openContactAfterCopy ? '订单内容已复制' : '购物单已复制');
 
 if (openContactAfterCopy) {
@@ -2488,28 +2492,33 @@ function initHeaderLinks() {
 function openContactModal(mode = 'default') {
   const modal = document.getElementById('contactModal');
   if (!modal) return;
+    const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
+  const whatsappSmall = whatsappLink ? whatsappLink.querySelector('small') : null;
+  const whatsappBaseUrl = 'https://wa.me/60124458242';
+
+  if (whatsappLink) {
+    if (mode === 'order' && latestOrderText) {
+      whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestOrderText)}`;
+      if (whatsappSmall) whatsappSmall.textContent = '自动带入订单内容';
+    } else {
+      whatsappLink.href = whatsappBaseUrl;
+      if (whatsappSmall) whatsappSmall.textContent = '点击打开 WhatsApp';
+    }
+  }
 
   const title = modal.querySelector('#contactModalTitle');
   const intro = modal.querySelector('.contact-intro');
   const note = modal.querySelector('.contact-note-premium');
 
-  if (mode === 'order') {
-    if (title) title.textContent = '订单内容已复制';
-    if (intro) {
-      intro.textContent = '你的购物单、充值资料和付款方式已经复制。请选择联系方式发送给客服，客服确认后会协助你完成充值。';
-    }
-    if (note) {
-      note.innerHTML = '<strong>下单提醒：</strong>请把刚刚复制的订单内容发送给客服。付款前请先等待客服确认商品、金额与充值资料。';
-    }
-  } else {
-    if (title) title.textContent = '联系客服下单';
-    if (intro) {
-      intro.textContent = '请选择你常用的联系方式，联系客服确认商品、付款方式或充值资料。';
-    }
-    if (note) {
-      note.innerHTML = '<strong>营业时间：</strong>每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。';
-    }
+if (mode === 'order') {
+  if (title) title.textContent = '发送订单给客服';
+  if (intro) {
+    intro.textContent = '请选择一种联系方式，把刚刚复制的订单内容发送给客服。客服确认商品、金额与充值资料后，再进行付款。';
   }
+  if (note) {
+    note.innerHTML = '<strong>重要提醒：</strong>付款前请先等待客服确认商品、金额与充值资料，确认无误后再付款。';
+  }
+}
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
