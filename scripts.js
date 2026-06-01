@@ -2130,13 +2130,13 @@ function copyCartToClipboard(options = {}) {
 
   const text = `游戏：${currentGameName}
 
+充值资料：
+${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认'}
+
 商品：
 ${productLines.join('\n')}
 
-合计：${formatTotal(total)}
-
-充值资料：
-${topupLines.length ? topupLines.join('\n') : '未填写 / 请客服协助确认'}`;
+合计：${formatTotal(total)}`;
 
   latestOrderText = text;
 
