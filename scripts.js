@@ -2511,12 +2511,20 @@ function openContactModal(mode = 'default') {
   const note = modal.querySelector('.contact-note-premium');
 
 if (mode === 'order') {
-  if (title) title.textContent = '发送订单给客服';
+  if (title) title.textContent = '使用 WhatsApp 发送订单';
   if (intro) {
-    intro.textContent = '请选择一种联系方式，把刚刚复制的订单内容发送给客服。客服确认商品、金额与充值资料后，再进行付款。';
+    intro.textContent = '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。';
   }
   if (note) {
-    note.innerHTML = '<strong>重要提醒：</strong>付款前请先等待客服确认商品、金额与充值资料，确认无误后再付款。';
+    note.innerHTML = '<strong>重要提醒：</strong>目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。';
+  }
+} else {
+  if (title) title.textContent = 'WhatsApp 客服';
+  if (intro) {
+    intro.textContent = '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。';
+  }
+  if (note) {
+    note.innerHTML = '<strong>营业时间：</strong>每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。';
   }
 }
 

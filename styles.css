@@ -4259,3 +4259,19 @@ body.contact-modal-open {
 .order-copied-dialog .button {
   width: 100%;
 }
+
+/* ==================== TEMP: WHATSAPP ONLY CONTACT MODAL ==================== */
+
+.contact-method-card.wechat,
+.contact-method-card.instagram {
+  display: none !important;
+}
+
+.contact-methods-premium {
+  grid-template-columns: minmax(0, 420px) !important;
+  justify-content: center !important;
+}
+
+.contact-dialog-premium {
+  width: min(560px, 100%) !important;
+}
