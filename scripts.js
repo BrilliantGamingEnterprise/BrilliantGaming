@@ -469,8 +469,8 @@ const categories = {
         { title: '300 昇晶', en: '300 Riftcrystals', price: 'RM 19.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '980 昇晶', en: '980 Riftcrystals', price: 'RM 57.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '1980 昇晶', en: '1980 Riftcrystals', price: 'RM 114.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 180.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 350.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 185.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 365.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '昇晶开采凭证', en: 'Riftcrystal Permit', price: 'RM 19.00', note: 'HOT 推荐 / Riftcrystal Permit' }
       ]
     },

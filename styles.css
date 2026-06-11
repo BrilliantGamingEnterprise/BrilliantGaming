@@ -4275,3 +4275,36 @@ body.contact-modal-open {
 .contact-dialog-premium {
   width: min(560px, 100%) !important;
 }
+
+/* ==================== HERO CHANNEL ICONS: XHS + TIKTOK ==================== */
+
+.xhs-mini-icon,
+.tiktok-mini-icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+.xhs-mini-icon {
+  background: linear-gradient(135deg, #ff2442, #d80032);
+  color: #ffffff;
+  font-size: 0.86rem;
+  letter-spacing: -0.04em;
+}
+
+.tiktok-mini-icon {
+  background: #050505;
+  color: #ffffff;
+  font-size: 1.25rem;
+  text-shadow:
+    -1px -1px 0 #25f4ee,
+    1px 1px 0 #fe2c55;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
