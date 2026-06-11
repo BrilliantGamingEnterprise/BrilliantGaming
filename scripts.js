@@ -5,7 +5,7 @@ const dailyOrdersKey = 'bge-daily-order-stats-v1';
 let latestOrderText = '';
 
 const pricePresets = {
-  // 共用价格：需要调整这些单档 RM340 游戏时，只改这里一次即可。
+  // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
   // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
   rm340: 'RM 340.00'
@@ -721,6 +721,34 @@ const categories = {
     }
   ]
 },
+
+{
+  id: 'ro-the-new-world',
+  name: 'RO The New World',
+  detailName: 'RO New World',
+  description: 'Ragnarok The New World',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/ro-the-new-world.jpg',
+  detailArt: 'assets/images/games/ro-the-new-world2.jpg',
+  productSections: [
+    {
+      title: '星石',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '60 星石', price: 'RM 4.00' },
+        { title: '300 星石', price: 'RM 20.00' },
+        { title: '980 星石', price: 'RM 57.00' },
+        { title: '1980 星石', price: 'RM 114.00' },
+        { title: '3280 星石', price: 'RM 190.00' },
+        { title: '6480 星石', price: 'RM 335.00' },
+        { title: '12980 星石', price: 'RM 670.00' }
+      ]
+    }
+  ]
+},
+
 {
   id: 'ragnarok-origin-classic',
   name: 'ROOC',
@@ -735,7 +763,8 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' },
+        { title: '月卡', en: 'Bounty Hunter Pass', price: 'RM 57.00', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -792,7 +821,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '3290 海神币', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
