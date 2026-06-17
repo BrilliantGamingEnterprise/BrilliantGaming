@@ -8,7 +8,7 @@ const pricePresets = {
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
   // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
-  rm340: 'RM 340.00'
+  rm340: 'RM 345.00'
 };
 
 function resolveProductPrice(product) {
@@ -54,8 +54,8 @@ const categories = {
               { title: '980 + 110 创世结晶', en: '980 + 110 Genesis Crystals', price: 'RM 54.00', note: '结晶 / Genesis Crystal' },
               { title: '1980 + 260 创世结晶', en: '1980 + 260 Genesis Crystals', price: 'RM 105.00', note: '结晶 / Genesis Crystal' },
               { title: '3280 + 600 创世结晶', en: '3280 + 600 Genesis Crystals', price: 'RM 170.00', note: '结晶 / Genesis Crystal' },
-              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 300.00', note: '结晶 / Genesis Crystal' },
-              { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Genesis Crystals', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
+              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 330.00', note: '结晶 / Genesis Crystal' },
+              { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Genesis Crystals', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
             ]
           },
           {
@@ -89,8 +89,8 @@ const categories = {
         { title: '980 + 110 古老梦华', en: '980 + 110 Oneiric Shards', price: 'RM 54.00', note: '古老梦华 / Oneiric Shard' },
         { title: '1980 + 260 古老梦华', en: '1980 + 260 Oneiric Shards', price: 'RM 105.00', note: '古老梦华 / Oneiric Shard' },
         { title: '3280 + 600 古老梦华', en: '3280 + 600 Oneiric Shards', price: 'RM 170.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '6480 + 1600 古老梦华', en: '6480 + 1600 Oneiric Shards', price: 'RM 300.00', note: '古老梦华 / Oneiric Shard' },
-        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Oneiric Shards', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
+        { title: '6480 + 1600 古老梦华', en: '6480 + 1600 Oneiric Shards', price: 'RM 330.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Oneiric Shards', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
     {
@@ -124,8 +124,8 @@ const categories = {
         { title: '980 + 110 菲林底片', en: '980 + 110 Monochrome', price: 'RM 54.00', note: '菲林底片 / Monochrome' },
         { title: '1980 + 260 菲林底片', en: '1980 + 260 Monochrome', price: 'RM 105.00', note: '菲林底片 / Monochrome' },
         { title: '3280 + 600 菲林底片', en: '3280 + 600 Monochrome', price: 'RM 170.00', note: '菲林底片 / Monochrome' },
-        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 300.00', note: '菲林底片 / Monochrome' },
-        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Monochrome', price: 'RM 630.00', note: '一条龙套餐 / Full Bundle' }
+        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 330 .00', note: '菲林底片 / Monochrome' },
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Monochrome', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
     {
@@ -372,7 +372,7 @@ const categories = {
         image: 'assets/images/games/go.jpg',
         detailArt: 'assets/images/games/go2.jpg',
         products: [
-                { title: '14500 金币', en: '14500金币', price: 'RM 135.00', note: 'BEST VALUE 推荐 / Diamonds Top-Up' }
+                { title: '14500 金币', en: '14500金币', price: 'RM 145.00', note: 'BEST VALUE 推荐 / Diamonds Top-Up' }
         ]
       },
 
@@ -390,12 +390,12 @@ const categories = {
       subtitle: 'USD Packages',
       icon: '◆',
       products: [
-        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 16.50', note: '4.99 USD 进位计算 / Hot Package' },
-        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 33.00', note: '9.99 USD 进位计算 / USD Package' },
-        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 66.00', note: '19.99 USD 进位计算 / USD Package' },
-        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 82.50', note: '24.99 USD 进位计算 / USD Package' },
-        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 165.00', note: '49.99 USD 进位计算 / USD Package' },
-        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 330.00', note: '99.99 USD 进位计算 / USD Package' }
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 17.50', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 35.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 70.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 87.50', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 175.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 345.00', note: '99.99 USD 进位计算 / USD Package' }
       ]
     }
   ]
@@ -469,8 +469,8 @@ const categories = {
         { title: '300 昇晶', en: '300 Riftcrystals', price: 'RM 19.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '980 昇晶', en: '980 Riftcrystals', price: 'RM 57.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '1980 昇晶', en: '1980 Riftcrystals', price: 'RM 114.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 185git add ..00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 365.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 185.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 360.00', note: '昇晶充值 / Riftcrystal Top-Up' },
         { title: '昇晶开采凭证', en: 'Riftcrystal Permit', price: 'RM 19.00', note: 'HOT 推荐 / Riftcrystal Permit' }
       ]
     },
