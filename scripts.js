@@ -941,7 +941,7 @@ const categories = {
         { title: '980 玉璧', en: '980 Jade', price: 'RM 57.00', note: 'Login Top Up' },
         { title: '1980 玉璧', en: '1980 Jade', price: 'RM 114.00', note: 'Login Top Up' },
         { title: '3280 玉璧', en: '3280 Jade', price: 'RM 185.00', note: 'HOT 推荐 / Login Top Up' },
-        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 370.00', note: 'BEST VALUE 推荐 / Login Top Up' }
+        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Login Top Up' }
       ]
     },
     {
@@ -1001,6 +1001,51 @@ const categories = {
         { title: '18000 + 1500 Gems', en: '18000 + 1500 Gems', price: 'RM 148.00', note: 'UID Top Up' },
         { title: '30000 + 2900 Gems', en: '30000 + 2900 Gems', price: 'RM 238.00', note: 'UID Top Up' },
         { title: '60000 + 6000 Gems', en: '60000 + 6000 Gems', price: 'RM 450.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'rf-online-next',
+  name: 'RF Online Next',
+  detailName: 'RF Online Next',
+  description: 'RF Online Next',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/rf-online-next.jpg',
+  detailArt: 'assets/images/games/rf-online-next2.jpg',
+  productSections: [
+    {
+      title: '钻石',
+      subtitle: 'Diamonds',
+      icon: '◆',
+      products: [
+        { title: '109 Diamonds', price: 'RM 4.00' },
+        { title: '436 Diamonds', price: 'RM 16.00' },
+        { title: '2110 Diamonds', price: 'RM 72.20' },
+        { title: '3750 Diamonds', price: 'RM 121.60' },
+        { title: '7950 Diamonds', price: 'RM 266.00' }
+      ]
+    },
+    {
+      title: '周卡 / 月卡',
+      subtitle: 'Weekly / Monthly Pass',
+      icon: '◆',
+      products: [
+        { title: 'Weekly Summon Ticket Pack', price: 'RM 136.80' },
+        { title: 'Monthly Summon Ticket Pack', price: 'RM 136.80' },
+        { title: 'Monthly Artifact Package', price: 'RM 136.80' }
+      ]
+    },
+    {
+      title: '其他礼包',
+      subtitle: 'Other Packages',
+      icon: '◆',
+      products: [
+        { title: "Arca's Privilege", price: 'RM 20.00' },
+        { title: "Arca's Supply Package", price: 'RM 247.00' },
+        { title: 'Character Name Change Ticket', price: 'RM 83.60' }
       ]
     }
   ]
@@ -1087,7 +1132,7 @@ const categories = {
         { title: '500 元宝', en: '500 Yuanbao', price: 'RM 38.00', note: 'UID Top Up' },
         { title: '1100 元宝', en: '1100 Yuanbao', price: 'RM 76.00', note: 'UID Top Up' },
         { title: '3000 元宝', en: '3000 Yuanbao', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
-        { title: '6500 元宝', en: '6500 Yuanbao', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+        { title: '6500 元宝', en: '6500 Yuanbao', price: 'RM 365.00', note: 'BEST VALUE 推荐 / UID Top Up' }
       ]
     },
     {
@@ -1099,7 +1144,7 @@ const categories = {
         { title: '500 礼包币', en: '500 Gift Coins', price: 'RM 38.00', note: 'UID Top Up' },
         { title: '1100 礼包币', en: '1100 Gift Coins', price: 'RM 76.00', note: 'UID Top Up' },
         { title: '3000 礼包币', en: '3000 Gift Coins', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
-        { title: '6500 礼包币', en: '6500 Gift Coins', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+        { title: '6500 礼包币', en: '6500 Gift Coins', price: 'RM 365.00', note: 'BEST VALUE 推荐 / UID Top Up' }
       ]
     }
   ]
