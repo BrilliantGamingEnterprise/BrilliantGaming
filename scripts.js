@@ -8,7 +8,7 @@ const pricePresets = {
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
   // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
-  rm340: 'RM 345.00'
+  rm340: 'RM 350.00'
 };
 
 function resolveProductPrice(product) {
