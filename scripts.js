@@ -8,7 +8,27 @@ const pricePresets = {
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
   // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
-  rm340: 'RM 350.00'
+  rm340: 'RM 350.00',
+
+  // 中国服共用价格：王者荣耀、和平精英、火影忍者、金铲铲等共用的人民币档位。
+  // 以后要统一调整中国游戏档位价格，只改这里一次即可。
+  cny6: 'RM 6.00',
+  cny10: 'RM 10.00',
+  cny18: 'RM 15.00',
+  cny25: 'RM 20.00',
+  cny30: 'RM 24.00',
+  cny50: 'RM 38.00',
+  cny68: 'RM 48.00',
+  cny98: 'RM 68.00',
+  cny118: 'RM 78.00',
+  cny128: 'RM 84.00',
+  cny198: 'RM 128.00',
+  cny328: 'RM 207.00',
+  cny348: 'RM 218.00',
+  cny648: 'RM 405.00',
+  cny898: 'RM 561.00',
+  cny1298: 'RM 811.00',
+  cny1998: 'RM 1225.00'
 };
 
 function resolveProductPrice(product) {
@@ -1198,15 +1218,15 @@ const categories = {
       subtitle: 'iOS Fast Top-Up',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '苹果区快充 / iOS Fast Top-Up' },
         { title: '450 点券 赠送 25', en: '450 点券 + 25 赠送', price: 'RM 32.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '680 点券 赠送 35', en: '680 点券 + 35 赠送', price: 'RM 48.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '1180 点券 赠送 60', en: '1180 点券 + 60 赠送', price: 'RM 78.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '1980 点券 赠送 120', en: '1980 点券 + 120 赠送', price: 'RM 126.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '3480 点券 赠送 210', en: '3480 点券 + 210 赠送', price: 'RM 218.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '6480 点券 赠送 388', en: '6480 点券 + 388 赠送', price: 'RM 393.00', note: 'HOT 推荐 / iOS Fast Top-Up' },
-        { title: '8980 点券 赠送 538', en: '8980 点券 + 538 赠送', price: 'RM 541.00', note: '苹果区快充 / iOS Fast Top-Up' },
-        { title: '12980 点券 赠送 778', en: '12980 点券 + 778 赠送', price: 'RM 777.00', note: '苹果区快充 / iOS Fast Top-Up' }
+        { title: '680 点券 赠送 35', en: '680 点券 + 35 赠送', pricePreset: 'cny68', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '1180 点券 赠送 60', en: '1180 点券 + 60 赠送', pricePreset: 'cny118', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '1980 点券 赠送 120', en: '1980 点券 + 120 赠送', pricePreset: 'cny198', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '3480 点券 赠送 210', en: '3480 点券 + 210 赠送', pricePreset: 'cny348', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '6480 点券 赠送 388', en: '6480 点券 + 388 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '8980 点券 赠送 538', en: '8980 点券 + 538 赠送', pricePreset: 'cny898', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '12980 点券 赠送 778', en: '12980 点券 + 778 赠送', pricePreset: 'cny1298', note: '苹果区快充 / iOS Fast Top-Up' }
       ]
     },
 
@@ -1215,16 +1235,16 @@ const categories = {
       subtitle: 'Android Fast Top-Up',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '180 点券', en: '180 点券', price: 'RM 15.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '300 点券', en: '300 点券', price: 'RM 24.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '680 点券', en: '680 点券', price: 'RM 48.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '1180 点券', en: '1180 点券', price: 'RM 78.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '1980 点券', en: '1980 点券', price: 'RM 126.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '3480 点券', en: '3480 点券', price: 'RM 218.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '6480 点券', en: '6480 点券', price: 'RM 393.00', note: 'HOT 推荐 / Android Fast Top-Up' },
-        { title: '8980 点券', en: '8980 点券', price: 'RM 541.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '12980 点券', en: '12980 点券', price: 'RM 777.00', note: '安卓快充 / Android Fast Top-Up' }
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '180 点券', en: '180 点券', pricePreset: 'cny18', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '300 点券', en: '300 点券', pricePreset: 'cny30', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '680 点券', en: '680 点券', pricePreset: 'cny68', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1180 点券', en: '1180 点券', pricePreset: 'cny118', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1980 点券', en: '1980 点券', pricePreset: 'cny198', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '3480 点券', en: '3480 点券', pricePreset: 'cny348', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '6480 点券', en: '6480 点券', pricePreset: 'cny648', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '8980 点券', en: '8980 点券', pricePreset: 'cny898', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '12980 点券', en: '12980 点券', pricePreset: 'cny1298', note: '安卓快充 / Android Fast Top-Up' }
       ]
     },
     
@@ -1254,15 +1274,15 @@ const categories = {
       subtitle: 'iOS Fast Top-Up',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', price: 'RM 24.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', price: 'RM 48.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', price: 'RM 84.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', price: 'RM 126.00', note: 'HOT 推荐 / iOS Fast Top-Up' },
-        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', price: 'RM 207.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', price: 'RM 393.00', note: 'HOT 推荐 / iOS Fast Top-Up' },
-        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', price: 'RM 541.00', note: '苹果快充 / iOS Fast Top-Up' },
-        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', price: 'RM 777.00', note: '苹果快充 / iOS Fast Top-Up' }
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', pricePreset: 'cny30', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', pricePreset: 'cny68', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', pricePreset: 'cny128', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', pricePreset: 'cny198', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', pricePreset: 'cny328', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', pricePreset: 'cny898', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', pricePreset: 'cny1298', note: '苹果快充 / iOS Fast Top-Up' }
       ]
     },
     {
@@ -1270,15 +1290,15 @@ const categories = {
       subtitle: 'Android Fast Top-Up',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', price: 'RM 24.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', price: 'RM 48.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', price: 'RM 84.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', price: 'RM 126.00', note: 'HOT 推荐 / Android Fast Top-Up' },
-        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', price: 'RM 207.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', price: 'RM 393.00', note: 'HOT 推荐 / Android Fast Top-Up' },
-        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', price: 'RM 541.00', note: '安卓快充 / Android Fast Top-Up' },
-        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', price: 'RM 777.00', note: '安卓快充 / Android Fast Top-Up' }
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', pricePreset: 'cny30', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', pricePreset: 'cny68', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', pricePreset: 'cny128', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', pricePreset: 'cny198', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', pricePreset: 'cny328', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', pricePreset: 'cny898', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', pricePreset: 'cny1298', note: '安卓快充 / Android Fast Top-Up' }
       ]
     },
     {
@@ -1295,7 +1315,7 @@ const categories = {
       subtitle: 'Elite Privilege Card',
       icon: '◆',
       products: [
-        { title: '特权精英卡', en: '特权精英卡 18元', price: 'RM 15.00', note: '特权精英卡 / Elite Privilege Card' }
+        { title: '特权精英卡', en: '特权精英卡 18元', pricePreset: 'cny18', note: '特权精英卡 / Elite Privilege Card' }
       ]
     }
   ]
@@ -1315,14 +1335,14 @@ const categories = {
       subtitle: '金币',
       icon: '◆',
       products: [
-        { title: '60 金币', en: '60 金币', price: 'RM 6.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '180 金币', en: '180 金币', price: 'RM 15.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '250 金币', en: '250 金币', price: 'RM 20.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '500 金币', en: '500 金币', price: 'RM 38.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '980 金币', en: '980 金币', price: 'RM 66.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '1680 金币', en: '1680 金币', price: 'RM 109.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '3280 金币', en: '3280 金币', price: 'RM 207.00', note: '金币充值 / Jinbi Chongzhi' },
-        { title: '6480 金币', en: '6480 金币', price: 'RM 393.00', note: 'HOT 推荐 / Jinbi Chongzhi' }
+        { title: '60 金币', en: '60 金币', pricePreset: 'cny6', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '180 金币', en: '180 金币', pricePreset: 'cny18', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '250 金币', en: '250 金币', pricePreset: 'cny25', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '500 金币', en: '500 金币', pricePreset: 'cny50', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '980 金币', en: '980 金币', pricePreset: 'cny98', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '1680 金币', en: '1680 金币', pricePreset: 'cny168', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '3280 金币', en: '3280 金币', pricePreset: 'cny328', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '6480 金币', en: '6480 金币', pricePreset: 'cny648', note: 'HOT 推荐 / Jinbi Chongzhi' }
       ]
     },
     {
@@ -1330,11 +1350,11 @@ const categories = {
       subtitle: '点券',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '500 点券', en: '500 点券', price: 'RM 38.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '980 点券', en: '980 点券', price: 'RM 66.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '1980 点券', en: '1980 点券', price: 'RM 126.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '6480 点券', en: '6480 点券', price: 'RM 393.00', note: 'HOT 推荐 / Dianquan Chongzhi' }
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '500 点券', en: '500 点券', pricePreset: 'cny50', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '980 点券', en: '980 点券', pricePreset: 'cny98', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '1980 点券', en: '1980 点券', pricePreset: 'cny198', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '6480 点券', en: '6480 点券', pricePreset: 'cny648', note: 'HOT 推荐 / Dianquan Chongzhi' }
       ]
     },
     {
@@ -1342,8 +1362,8 @@ const categories = {
       subtitle: 'Others Items',
       icon: '◆',
       products: [
-        { title: '豪华忍法帖', en: '豪华忍法帖 25元', price: 'RM 25.00', note: 'HOT 推荐 / Haohua Renfatie' },
-        { title: '传说忍法帖', en: '传说忍法帖 198元', price: 'RM 126.00', note: '推荐 / Chuanshuo Renfatie' }
+        { title: '豪华忍法帖', en: '豪华忍法帖 25元', pricePreset: 'cny25', note: 'HOT 推荐 / Haohua Renfatie' },
+        { title: '传说忍法帖', en: '传说忍法帖 198元', pricePreset: 'cny198', note: '推荐 / Chuanshuo Renfatie' }
       ]
     }
   ]
@@ -1362,15 +1382,15 @@ const categories = {
       subtitle: '点券',
       icon: '◆',
       products: [
-        { title: '3000 + 108 点券', en: '3000 + 108 点券', price: 'RM 24.00', note: '赠送 108 / Dianquan Chongzhi' },
-        { title: '6800 + 288 点券', en: '6800 + 288 点券', price: 'RM 48.00', note: '赠送 288 / Dianquan Chongzhi' },
-        { title: '12800 + 588 点券', en: '12800 + 588 点券', price: 'RM 84.00', note: '赠送 588 / Dianquan Chongzhi' },
-        { title: '19800 + 1088 点券', en: '19800 + 1088 点券', price: 'RM 126.00', note: '赠送 1088 / Dianquan Chongzhi' },
-        { title: '32800 + 1788 点券', en: '32800 + 1788 点券', price: 'RM 207.00', note: '赠送 1788 / Dianquan Chongzhi' },
-        { title: '64800 + 3588 点券', en: '64800 + 3588 点券', price: 'RM 393.00', note: 'HOT 推荐 / 赠送 3588' },
-        { title: '89800 + 4973 点券', en: '89800 + 4973 点券', price: 'RM 541.00', note: '赠送 4973 / Dianquan Chongzhi' },
-        { title: '129800 + 7190 点券', en: '129800 + 7190 点券', price: 'RM 777.00', note: 'HOT 推荐 / 赠送 7190' },
-        { title: '199800 + 11068 点券', en: '199800 + 11068 点券', price: 'RM 1196.00', note: '赠送 11068 / Dianquan Chongzhi' }
+        { title: '3000 + 108 点券', en: '3000 + 108 点券', pricePreset: 'cny30', note: '赠送 108 / Dianquan Chongzhi' },
+        { title: '6800 + 288 点券', en: '6800 + 288 点券', pricePreset: 'cny68', note: '赠送 288 / Dianquan Chongzhi' },
+        { title: '12800 + 588 点券', en: '12800 + 588 点券', pricePreset: 'cny128', note: '赠送 588 / Dianquan Chongzhi' },
+        { title: '19800 + 1088 点券', en: '19800 + 1088 点券', pricePreset: 'cny198', note: '赠送 1088 / Dianquan Chongzhi' },
+        { title: '32800 + 1788 点券', en: '32800 + 1788 点券', pricePreset: 'cny328', note: '赠送 1788 / Dianquan Chongzhi' },
+        { title: '64800 + 3588 点券', en: '64800 + 3588 点券', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 3588' },
+        { title: '89800 + 4973 点券', en: '89800 + 4973 点券', pricePreset: 'cny898', note: '赠送 4973 / Dianquan Chongzhi' },
+        { title: '129800 + 7190 点券', en: '129800 + 7190 点券', pricePreset: 'cny1298', note: 'HOT 推荐 / 赠送 7190' },
+        { title: '199800 + 11068 点券', en: '199800 + 11068 点券', pricePreset: 'cny1998', note: '赠送 11068 / Dianquan Chongzhi' }
       ]
     }
   ]
@@ -1389,13 +1409,13 @@ const categories = {
       subtitle: '洛克钻',
       icon: '◆',
       products: [
-        { title: '100 洛克钻', en: '100 洛克钻', price: 'RM 10.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
-        { title: '300 洛克钻', en: '300 洛克钻', price: 'RM 24.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
-        { title: '688 洛克钻', en: '688 洛克钻', price: 'RM 48.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
-        { title: '1200 洛克钻', en: '1200 洛克钻', price: 'RM 78.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
-        { title: '2060 洛克钻', en: '2060 洛克钻', price: 'RM 126.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '100 洛克钻', en: '100 洛克钻', pricePreset: 'cny10', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '300 洛克钻', en: '300 洛克钻', pricePreset: 'cny30', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '688 洛克钻', en: '688 洛克钻', pricePreset: 'cny68', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '1200 洛克钻', en: '1200 洛克钻', pricePreset: 'cny118', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '2060 洛克钻', en: '2060 洛克钻', pricePreset: 'cny198', note: '洛克钻充值 / Luokezuan Chongzhi' },
         { title: '3725 洛克钻', en: '3725 洛克钻', price: 'RM 219.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
-        { title: '7128 洛克钻', en: '7128 洛克钻', price: 'RM 393.00', note: '推荐 / Luokezuan Chongzhi' },
+        { title: '7128 洛克钻', en: '7128 洛克钻', pricePreset: 'cny648', note: '推荐 / Luokezuan Chongzhi' },
         { title: '11000 洛克钻', en: '11000 洛克钻', price: 'RM 598.00', note: 'HOT 推荐 / Luokezuan Chongzhi' }
       ]
     }
@@ -1415,12 +1435,12 @@ const categories = {
       subtitle: '三角币',
       icon: '◆',
       products: [
-        { title: '60 三角币', en: '60 三角币', price: 'RM 6.00', note: '三角币充值 / Sanjiaobi Chongzhi' },
-        { title: '300 三角币 赠送 20', en: '300 三角币 + 20 Bonus', price: 'RM 24.00', note: '赠送 20 / Sanjiaobi Chongzhi' },
-        { title: '680 三角币 赠送 70', en: '680 三角币 + 70 Bonus', price: 'RM 48.00', note: '赠送 70 / Sanjiaobi Chongzhi' },
-        { title: '1280 三角币 赠送 200', en: '1280 三角币 + 200 Bonus', price: 'RM 84.00', note: '赠送 200 / Sanjiaobi Chongzhi' },
-        { title: '3280 三角币 赠送 670', en: '3280 三角币 + 670 Bonus', price: 'RM 207.00', note: '赠送 670 / Sanjiaobi Chongzhi' },
-        { title: '6480 三角币 赠送 1620', en: '6480 三角币 + 1620 Bonus', price: 'RM 393.00', note: 'HOT 推荐 / 赠送 1620' }
+        { title: '60 三角币', en: '60 三角币', pricePreset: 'cny6', note: '三角币充值 / Sanjiaobi Chongzhi' },
+        { title: '300 三角币 赠送 20', en: '300 三角币 + 20 Bonus', pricePreset: 'cny30', note: '赠送 20 / Sanjiaobi Chongzhi' },
+        { title: '680 三角币 赠送 70', en: '680 三角币 + 70 Bonus', pricePreset: 'cny68', note: '赠送 70 / Sanjiaobi Chongzhi' },
+        { title: '1280 三角币 赠送 200', en: '1280 三角币 + 200 Bonus', pricePreset: 'cny128', note: '赠送 200 / Sanjiaobi Chongzhi' },
+        { title: '3280 三角币 赠送 670', en: '3280 三角币 + 670 Bonus', pricePreset: 'cny328', note: '赠送 670 / Sanjiaobi Chongzhi' },
+        { title: '6480 三角币 赠送 1620', en: '6480 三角币 + 1620 Bonus', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 1620' }
       ]
     },
     {
@@ -1450,14 +1470,14 @@ const categories = {
       subtitle: '碎晶',
       icon: '◆',
       products: [
-        { title: '60 碎晶', en: '60 碎晶', price: 'RM 6.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '180 碎晶', en: '180 碎晶', price: 'RM 15.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '300 碎晶', en: '300 碎晶', price: 'RM 24.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '680 碎晶', en: '680 碎晶', price: 'RM 48.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '980 碎晶', en: '980 碎晶', price: 'RM 68.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '1980 碎晶', en: '1980 碎晶', price: 'RM 126.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '3280 碎晶', en: '3280 碎晶', price: 'RM 207.00', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '6480 碎晶', en: '6480 碎晶', price: 'RM 393.00', note: '碎晶充值 / Suijing Chongzhi' }
+        { title: '60 碎晶', en: '60 碎晶', pricePreset: 'cny6', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '180 碎晶', en: '180 碎晶', pricePreset: 'cny18', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '300 碎晶', en: '300 碎晶', pricePreset: 'cny30', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '680 碎晶', en: '680 碎晶', pricePreset: 'cny68', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '980 碎晶', en: '980 碎晶', pricePreset: 'cny98', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '1980 碎晶', en: '1980 碎晶', pricePreset: 'cny198', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '3280 碎晶', en: '3280 碎晶', pricePreset: 'cny328', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '6480 碎晶', en: '6480 碎晶', pricePreset: 'cny648', note: '碎晶充值 / Suijing Chongzhi' }
       ]
     }
   ]
@@ -1476,14 +1496,14 @@ const categories = {
       subtitle: '点券',
       icon: '◆',
       products: [
-        { title: '60 点券', en: '60 点券', price: 'RM 6.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '100 点券', en: '100 点券', price: 'RM 10.00', note: '点券充值 / Dianquan Chongzhi' },
-        { title: '300 + 8 点券', en: '300 + 8 点券', price: 'RM 24.00', note: '赠送 8 / Dianquan Chongzhi' },
-        { title: '680 + 20 点券', en: '680 + 20 点券', price: 'RM 48.00', note: '赠送 20 / Dianquan Chongzhi' },
-        { title: '1280 + 38 点券', en: '1280 + 38 点券', price: 'RM 84.00', note: '赠送 38 / Dianquan Chongzhi' },
-        { title: '1980 + 80 点券', en: '1980 + 80 点券', price: 'RM 126.00', note: '赠送 80 / Dianquan Chongzhi' },
-        { title: '3280 + 238 点券', en: '3280 + 238 点券', price: 'RM 207.00', note: '赠送 238 / Dianquan Chongzhi' },
-        { title: '6480 + 738 点券', en: '6480 + 738 点券', price: 'RM 393.00', note: 'HOT 推荐 / 赠送 738' }
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '100 点券', en: '100 点券', pricePreset: 'cny10', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '300 + 8 点券', en: '300 + 8 点券', pricePreset: 'cny30', note: '赠送 8 / Dianquan Chongzhi' },
+        { title: '680 + 20 点券', en: '680 + 20 点券', pricePreset: 'cny68', note: '赠送 20 / Dianquan Chongzhi' },
+        { title: '1280 + 38 点券', en: '1280 + 38 点券', pricePreset: 'cny128', note: '赠送 38 / Dianquan Chongzhi' },
+        { title: '1980 + 80 点券', en: '1980 + 80 点券', pricePreset: 'cny198', note: '赠送 80 / Dianquan Chongzhi' },
+        { title: '3280 + 238 点券', en: '3280 + 238 点券', pricePreset: 'cny328', note: '赠送 238 / Dianquan Chongzhi' },
+        { title: '6480 + 738 点券', en: '6480 + 738 点券', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 738' }
       ]
     },
     {
@@ -1491,7 +1511,7 @@ const categories = {
       subtitle: 'Others Items',
       icon: '◆',
       products: [
-        { title: '无畏先行卡', en: '无畏先行卡', price: 'RM 15.00', note: '无畏先行卡 / Wuwei Xianxing Ka' }
+        { title: '无畏先行卡', en: '无畏先行卡', pricePreset: 'cny18', note: '无畏先行卡 / Wuwei Xianxing Ka' }
       ]
     }
   ]
@@ -1510,13 +1530,13 @@ const categories = {
       subtitle: '星钻',
       icon: '◆',
       products: [
-        { title: '60 星钻', en: '60 星钻', price: 'RM 6.00', note: '星钻充值 / Xingzuan Chongzhi' },
-        { title: '325 星钻', en: '325 星钻', price: 'RM 24.00', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '745 星钻', en: '745 星钻', price: 'RM 48.00', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '1300 星钻', en: '1300 星钻', price: 'RM 78.00', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '2185 星钻', en: '2185 星钻', price: 'RM 126.00', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '3890 星钻', en: '3890 星钻', price: 'RM 218.00', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '7280 星钻', en: '7280 星钻', price: 'RM 393.00', note: 'HOT 推荐 / Xingzuan Chongzhi' }
+        { title: '60 星钻', en: '60 星钻', pricePreset: 'cny6', note: '星钻充值 / Xingzuan Chongzhi' },
+        { title: '325 星钻', en: '325 星钻', pricePreset: 'cny30', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '745 星钻', en: '745 星钻', pricePreset: 'cny68', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '1300 星钻', en: '1300 星钻', pricePreset: 'cny118', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '2185 星钻', en: '2185 星钻', pricePreset: 'cny198', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '3890 星钻', en: '3890 星钻', pricePreset: 'cny348', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '7280 星钻', en: '7280 星钻', pricePreset: 'cny648', note: 'HOT 推荐 / Xingzuan Chongzhi' }
       ]
     }
   ]
