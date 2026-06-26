@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brilliant Gaming - 游戏资料生成器</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body.admin-price-page {
+      background:
+        radial-gradient(circle at 76% 0%, rgba(216, 179, 90, 0.12), transparent 30%),
+        linear-gradient(180deg, #050505 0%, #090b10 100%);
+    }
+
+    .admin-shell {
+      width: min(1280px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 36px 0 70px;
+    }
+
+    .admin-hero {
+      margin-bottom: 24px;
+      padding: 30px;
+      border: 1px solid rgba(216, 179, 90, 0.22);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 86% 0%, rgba(245, 199, 107, 0.14), transparent 34%),
+        linear-gradient(135deg, rgba(9, 13, 21, 0.96), rgba(5, 5, 5, 0.98));
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .admin-hero h1 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .admin-hero p {
+      margin: 0;
+      color: rgba(203, 213, 225, 0.9);
+      line-height: 1.7;
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .admin-panel {
+      padding: 22px;
+      border: 1px solid rgba(216, 179, 90, 0.16);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(13, 17, 24, 0.9), rgba(5, 7, 10, 0.97));
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    }
+
+    .admin-panel h2,
+    .admin-panel h3 {
+      margin: 0 0 16px;
+      color: #ffffff;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .admin-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .admin-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .admin-field span {
+      color: rgba(226, 232, 240, 0.92);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .admin-field input,
+    .admin-field select,
+    .admin-field textarea {
+      width: 100%;
+      min-height: 44px;
+      padding: 11px 13px;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      border-radius: 12px;
+      background: rgba(4, 8, 14, 0.88);
+      color: #ffffff;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .admin-field textarea {
+      min-height: 420px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      line-height: 1.55;
+    }
+
+    .admin-section-card {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px solid rgba(216, 179, 90, 0.14);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .admin-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .admin-product-row {
+      display: grid;
+      grid-template-columns: 1.15fr 1.15fr 0.72fr 0.82fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+      margin-top: 10px;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .admin-small-button {
+      min-height: 42px;
+      padding: 9px 12px;
+      border: 1px solid rgba(216, 179, 90, 0.26);
+      border-radius: 10px;
+      background: rgba(216, 179, 90, 0.07);
+      color: var(--gold-bright);
+      font-weight: 800;
+    }
+
+    .admin-danger {
+      color: #ff9aa8;
+      border-color: rgba(255, 107, 122, 0.35);
+      background: rgba(255, 107, 122, 0.07);
+    }
+
+    .admin-note {
+      margin-top: 14px;
+      color: rgba(148, 163, 184, 0.86);
+      font-size: 0.86rem;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 980px) {
+      .admin-layout,
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-product-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-shell {
+        width: min(100% - 28px, 1280px);
+        padding-top: 22px;
+      }
+
+      .admin-hero,
+      .admin-panel {
+        padding: 18px;
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body class="admin-price-page">
+  <div class="admin-shell">
+    <a class="back-link" href="index.html">← 返回首页</a>
+
+    <section class="admin-hero">
+      <span class="section-kicker">LOCAL ADMIN TOOL</span>
+      <h1>游戏资料生成器</h1>
+      <p>输入游戏资料和商品档位后，自动生成可复制到 <strong>scripts.js</strong> 的游戏对象代码。这个页面不会写入数据库，也不会自动修改现有文件。</p>
+    </section>
+
+    <div class="admin-layout">
+      <section class="admin-panel">
+        <h2>基础资料</h2>
+        <div class="admin-grid">
+          <label class="admin-field">
+            <span>游戏 ID</span>
+            <input id="gameId" placeholder="例如：ro-the-new-world" />
+          </label>
+          <label class="admin-field">
+            <span>分类</span>
+            <select id="categoryHint">
+              <option value="intl">国际游戏</option>
+              <option value="cn">中国游戏</option>
+              <option value="cards">点数 / 点卡</option>
+            </select>
+          </label>
+          <label class="admin-field">
+            <span>name 中文名</span>
+            <input id="gameName" placeholder="例如：RO The New World" />
+          </label>
+          <label class="admin-field">
+            <span>detailName</span>
+            <input id="detailName" placeholder="例如：RO New World" />
+          </label>
+          <label class="admin-field">
+            <span>description 英文名</span>
+            <input id="description" placeholder="例如：Ragnarok The New World" />
+          </label>
+          <label class="admin-field">
+            <span>tag / 充值方式</span>
+            <select id="tag">
+              <option value="Login Top Up">Login Top Up</option>
+              <option value="UID Top Up">UID Top Up</option>
+              <option value="扫码充值">扫码充值</option>
+              <option value="点数/点卡">点数/点卡</option>
+            </select>
+          </label>
+          <label class="admin-field">
+            <span>topupFormType</span>
+            <select id="topupFormType">
+              <option value="">留空 / 自动判断</option>
+              <option value="login">login</option>
+              <option value="uid">uid</option>
+              <option value="tencent">tencent</option>
+            </select>
+          </label>
+          <label class="admin-field">
+            <span>image</span>
+            <input id="image" placeholder="assets/images/games/game.jpg" />
+          </label>
+          <label class="admin-field">
+            <span>detailArt</span>
+            <input id="detailArt" placeholder="assets/images/games/game2.jpg" />
+          </label>
+        </div>
+
+        <div id="sections"></div>
+
+        <div class="admin-actions">
+          <button type="button" class="button button-secondary" id="addSection">新增商品分类</button>
+          <button type="button" class="button button-primary" id="generateCode">生成代码</button>
+          <button type="button" class="admin-small-button admin-danger" id="clearForm">清空</button>
+        </div>
+
+        <p class="admin-note">建议：普通价格填 <strong>price</strong>；需要统一同步的中国档位填 <strong>pricePreset</strong>，例如 cny648。若 price 与 pricePreset 都填写，生成代码会同时保留，price 作为 fallback。</p>
+      </section>
+
+      <section class="admin-panel">
+        <h2>生成结果</h2>
+        <label class="admin-field full">
+          <span>复制以下代码，贴进 scripts.js 对应分类的 games 数组</span>
+          <textarea id="output" spellcheck="false" placeholder="点击“生成代码”后会出现在这里"></textarea>
+        </label>
+        <div class="admin-actions">
+          <button type="button" class="button button-primary" id="copyOutput">复制代码</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <datalist id="presetOptions">
+    <option value="rm340"></option>
+    <option value="cny6"></option>
+    <option value="cny10"></option>
+    <option value="cny18"></option>
+    <option value="cny25"></option>
+    <option value="cny30"></option>
+    <option value="cny50"></option>
+    <option value="cny68"></option>
+    <option value="cny98"></option>
+    <option value="cny118"></option>
+    <option value="cny128"></option>
+    <option value="cny168"></option>
+    <option value="cny198"></option>
+    <option value="cny328"></option>
+    <option value="cny348"></option>
+    <option value="cny648"></option>
+    <option value="cny898"></option>
+    <option value="cny1298"></option>
+    <option value="cny1998"></option>
+  </datalist>
+
+  <script>
+    const sectionsNode = document.getElementById('sections');
+    const outputNode = document.getElementById('output');
+
+    function escapeJs(value) {
+      return String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+
+    function q(value) {
+      return `'${escapeJs(value)}'`;
+    }
+
+    function fieldValue(root, selector) {
+      return String(root.querySelector(selector)?.value || '').trim();
+    }
+
+    function makeLine(key, value, indent, isRaw = false) {
+      if (!value) return '';
+      return `${' '.repeat(indent)}${key}: ${isRaw ? value : q(value)},`;
+    }
+
+    function addProduct(sectionEl) {
+      const products = sectionEl.querySelector('[data-products]');
+      const row = document.createElement('div');
+      row.className = 'admin-product-row';
+      row.innerHTML = `
+        <label class="admin-field"><span>title</span><input data-product-title placeholder="6480 点券"></label>
+        <label class="admin-field"><span>en</span><input data-product-en placeholder="6480 Tokens"></label>
+        <label class="admin-field"><span>price</span><input data-product-price placeholder="RM 405.00"></label>
+        <label class="admin-field"><span>pricePreset</span><input data-product-preset list="presetOptions" placeholder="cny648"></label>
+        <label class="admin-field"><span>note</span><input data-product-note placeholder="HOT 推荐 / Login Top Up"></label>
+        <button type="button" class="admin-small-button admin-danger" data-remove-product>删除</button>
+      `;
+      products.appendChild(row);
+    }
+
+    function addSection() {
+      const index = sectionsNode.querySelectorAll('.admin-section-card').length + 1;
+      const section = document.createElement('div');
+      section.className = 'admin-section-card';
+      section.innerHTML = `
+        <div class="admin-section-head">
+          <h3>商品分类 ${index}</h3>
+          <button type="button" class="admin-small-button admin-danger" data-remove-section>删除分类</button>
+        </div>
+        <div class="admin-grid">
+          <label class="admin-field"><span>section title</span><input data-section-title placeholder="点券"></label>
+          <label class="admin-field"><span>section subtitle</span><input data-section-subtitle placeholder="Tokens"></label>
+          <label class="admin-field"><span>icon</span><input data-section-icon value="◆"></label>
+        </div>
+        <div data-products></div>
+        <div class="admin-actions">
+          <button type="button" class="admin-small-button" data-add-product>新增商品</button>
+        </div>
+      `;
+      sectionsNode.appendChild(section);
+      addProduct(section);
+    }
+
+    function generateCode() {
+      const game = {
+        id: fieldValue(document, '#gameId'),
+        name: fieldValue(document, '#gameName'),
+        detailName: fieldValue(document, '#detailName'),
+        description: fieldValue(document, '#description'),
+        tag: fieldValue(document, '#tag'),
+        topupFormType: fieldValue(document, '#topupFormType'),
+        image: fieldValue(document, '#image'),
+        detailArt: fieldValue(document, '#detailArt')
+      };
+
+      const lines = ['{'];
+      lines.push(makeLine('id', game.id, 2));
+      lines.push(makeLine('name', game.name, 2));
+      lines.push(makeLine('detailName', game.detailName, 2));
+      lines.push(makeLine('description', game.description, 2));
+      lines.push(makeLine('tag', game.tag, 2));
+      lines.push(makeLine('topupFormType', game.topupFormType, 2));
+      lines.push(makeLine('image', game.image, 2));
+      lines.push(makeLine('detailArt', game.detailArt, 2));
+      lines.push('  productSections: [');
+
+      const sectionEls = Array.from(sectionsNode.querySelectorAll('.admin-section-card'));
+      sectionEls.forEach((sectionEl, sectionIndex) => {
+        lines.push('    {');
+        lines.push(makeLine('title', fieldValue(sectionEl, '[data-section-title]'), 6));
+        lines.push(makeLine('subtitle', fieldValue(sectionEl, '[data-section-subtitle]'), 6));
+        lines.push(makeLine('icon', fieldValue(sectionEl, '[data-section-icon]') || '◆', 6));
+        lines.push('      products: [');
+
+        const productRows = Array.from(sectionEl.querySelectorAll('.admin-product-row'));
+        productRows.forEach((row, productIndex) => {
+          const productLines = [];
+          productLines.push(makeLine('title', fieldValue(row, '[data-product-title]'), 10));
+          productLines.push(makeLine('en', fieldValue(row, '[data-product-en]'), 10));
+          productLines.push(makeLine('price', fieldValue(row, '[data-product-price]'), 10));
+          productLines.push(makeLine('pricePreset', fieldValue(row, '[data-product-preset]'), 10));
+          productLines.push(makeLine('note', fieldValue(row, '[data-product-note]'), 10));
+          const compact = productLines.filter(Boolean).map(line => line.trim().replace(/,$/, '')).join(', ');
+          lines.push(`        { ${compact} }${productIndex < productRows.length - 1 ? ',' : ''}`);
+        });
+
+        lines.push('      ]');
+        lines.push(`    }${sectionIndex < sectionEls.length - 1 ? ',' : ''}`);
+      });
+
+      lines.push('  ]');
+      lines.push('}');
+      outputNode.value = lines.filter(Boolean).join('\n');
+    }
+
+    document.getElementById('addSection').addEventListener('click', addSection);
+    document.getElementById('generateCode').addEventListener('click', generateCode);
+    document.getElementById('copyOutput').addEventListener('click', () => {
+      if (!outputNode.value.trim()) return;
+      navigator.clipboard.writeText(outputNode.value).then(() => alert('代码已复制'));
+    });
+    document.getElementById('clearForm').addEventListener('click', () => {
+      if (!confirm('确认清空当前填写内容？')) return;
+      document.querySelectorAll('input').forEach(input => {
+        if (input.hasAttribute('data-section-icon')) input.value = '◆';
+        else input.value = '';
+      });
+      document.getElementById('topupFormType').value = '';
+      document.getElementById('tag').value = 'Login Top Up';
+      sectionsNode.innerHTML = '';
+      outputNode.value = '';
+      addSection();
+    });
+
+    sectionsNode.addEventListener('click', (event) => {
+      const sectionEl = event.target.closest('.admin-section-card');
+      if (!sectionEl) return;
+      if (event.target.matches('[data-add-product]')) addProduct(sectionEl);
+      if (event.target.matches('[data-remove-product]')) event.target.closest('.admin-product-row')?.remove();
+      if (event.target.matches('[data-remove-section]')) sectionEl.remove();
+    });
+
+    addSection();
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+Brilliant Gaming Currency Patch
+
+已完成：
+1. 新增 MYR / SGD / USD 三币种切换。
+2. 默认 MYR。
+3. SGD 使用 MYR / 3.0 后 Math.ceil 向上进位。
+4. USD 使用 MYR / 4.0 后 Math.ceil 向上进位。
+5. 商品价格、购物车价格、合计、复制订单内容都会跟随当前币种。
+6. 原始商品价格仍然只保存 RM，不需要维护 SGD / USD 两套价格。
+7. 客户选择的币种会保存到 localStorage。
+
+以后改汇率位置：scripts.js 顶部 currencySettings.rates
+- SGD: 3.0
+- USD: 4.0
+
+示例：
+RM 100.00 -> USD 25
+RM 101.00 -> USD 26
+RM 350.00 -> SGD 117 / USD 88
+
+替换文件：
+- scripts.js
+- styles.css
+
+HTML 文件没有结构性修改，但已一起打包，方便整套覆盖。

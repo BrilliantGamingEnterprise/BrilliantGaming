@@ -1,6 +1,24 @@
 const storageKey = 'bge-cart-v1';
 const statsKey = 'bge-stats-v1';
 const dailyOrdersKey = 'bge-daily-order-stats-v1';
+const currencyKey = 'bge-currency-v1';
+
+const currencySettings = {
+  defaultCurrency: 'MYR',
+  rates: {
+    MYR: 1,
+    SGD: 3.0,
+    USD: 4.0
+  },
+  labels: {
+    MYR: 'MYR',
+    SGD: 'SGD',
+    USD: 'USD'
+  }
+};
+
+let activeCurrency = localStorage.getItem(currencyKey) || currencySettings.defaultCurrency;
+if (!currencySettings.rates[activeCurrency]) activeCurrency = currencySettings.defaultCurrency;
 
 let latestOrderText = '';
 
@@ -22,6 +40,7 @@ const pricePresets = {
   cny98: 'RM 68.00',
   cny118: 'RM 78.00',
   cny128: 'RM 84.00',
+  cny168: 'RM 109.00',
   cny198: 'RM 128.00',
   cny328: 'RM 207.00',
   cny348: 'RM 218.00',
@@ -144,7 +163,7 @@ const categories = {
         { title: '980 + 110 菲林底片', en: '980 + 110 Monochrome', price: 'RM 54.00', note: '菲林底片 / Monochrome' },
         { title: '1980 + 260 菲林底片', en: '1980 + 260 Monochrome', price: 'RM 105.00', note: '菲林底片 / Monochrome' },
         { title: '3280 + 600 菲林底片', en: '3280 + 600 Monochrome', price: 'RM 170.00', note: '菲林底片 / Monochrome' },
-        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 330 .00', note: '菲林底片 / Monochrome' },
+        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 330.00', note: '菲林底片 / Monochrome' },
         { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Monochrome', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
@@ -1907,16 +1926,98 @@ function saveStats() {
   localStorage.setItem(statsKey, JSON.stringify(stats));
 }
 
+function hasNumericPrice(price) {
+  return /\d/.test(String(price || ''));
+}
+
 function parsePrice(price) {
   return Number(String(price).replace(/[^\d.-]/g, '')) || 0;
 }
 
+function getConvertedAmountFromMyr(myrAmount, currency = activeCurrency) {
+  const amount = Number(myrAmount) || 0;
+  if (currency === 'MYR') return amount;
+
+  const rate = currencySettings.rates[currency];
+  if (!rate) return amount;
+
+  return Math.ceil(amount / rate);
+}
+
+function getDisplayUnitAmount(price) {
+  if (!hasNumericPrice(price)) return 0;
+  return getConvertedAmountFromMyr(parsePrice(price), activeCurrency);
+}
+
 function getCartTotal() {
-  return cart.reduce((sum, item) => sum + parsePrice(item.price) * item.quantity, 0);
+  return cart.reduce((sum, item) => sum + getDisplayUnitAmount(item.price) * item.quantity, 0);
+}
+
+function formatCurrencyAmount(amount, currency = activeCurrency) {
+  if (currency === 'MYR') return `RM ${Number(amount || 0).toFixed(2)}`;
+  return `${currencySettings.labels[currency] || currency} ${Math.ceil(Number(amount || 0))}`;
+}
+
+function formatPriceForCurrency(price) {
+  if (!hasNumericPrice(price)) return price || '';
+
+  const myrAmount = parsePrice(price);
+  if (activeCurrency === 'MYR') return formatCurrencyAmount(myrAmount, 'MYR');
+
+  return formatCurrencyAmount(getConvertedAmountFromMyr(myrAmount, activeCurrency), activeCurrency);
 }
 
 function formatTotal(total) {
-  return `RM ${total.toFixed(2)}`;
+  return formatCurrencyAmount(total, activeCurrency);
+}
+
+function initCurrencySwitcher() {
+  document.querySelectorAll('.header-container').forEach((header) => {
+    if (header.querySelector('.currency-switch')) return;
+
+    const switcher = document.createElement('div');
+    switcher.className = 'currency-switch';
+    switcher.setAttribute('aria-label', '选择显示币种');
+    switcher.innerHTML = `
+      <button type="button" data-currency="MYR">MYR</button>
+      <button type="button" data-currency="SGD">SGD</button>
+      <button type="button" data-currency="USD">USD</button>
+    `;
+
+    const ctaButton = header.querySelector('.cta-button');
+    if (ctaButton) {
+      header.insertBefore(switcher, ctaButton);
+    } else {
+      header.appendChild(switcher);
+    }
+  });
+
+  updateCurrencySwitcherUI();
+}
+
+function updateCurrencySwitcherUI() {
+  document.querySelectorAll('[data-currency]').forEach((button) => {
+    button.classList.toggle('active', button.dataset.currency === activeCurrency);
+  });
+}
+
+function setActiveCurrency(currency) {
+  if (!currencySettings.rates[currency]) return;
+
+  activeCurrency = currency;
+  localStorage.setItem(currencyKey, activeCurrency);
+
+  updateCurrencySwitcherUI();
+  refreshCurrencyDisplay();
+}
+
+function refreshCurrencyDisplay() {
+  document.querySelectorAll('[data-price-base]').forEach((node) => {
+    node.textContent = formatPriceForCurrency(node.dataset.priceBase);
+  });
+
+  updateCartUI();
+  updateDailyOrderStatsUI();
 }
 
 function getTodayDateKey() {
@@ -1949,7 +2050,7 @@ function updateDailyOrderStatsUI() {
   const countNode = document.getElementById('todayOrderCount');
   const amountNode = document.getElementById('todayOrderAmount');
   if (countNode) countNode.textContent = data.count;
-  if (amountNode) amountNode.textContent = formatTotal(data.amount);
+  if (amountNode) amountNode.textContent = formatCurrencyAmount(getConvertedAmountFromMyr(data.amount, activeCurrency), activeCurrency);
 }
 
 function recordCopiedOrderStats(total) {
@@ -1990,7 +2091,7 @@ function renderCartItems() {
       <div class="cart-item">
         <strong>${item.title}</strong>
         <span>数量：${item.quantity}</span>
-        <span>价格：${item.price}</span>
+        <span>价格：${formatPriceForCurrency(item.price)}</span>
         <div class="quantity-actions">
           <button class="adjust-qty" data-index="${index}" data-action="minus">-</button>
           <button class="adjust-qty" data-index="${index}" data-action="plus">+</button>
@@ -2217,7 +2318,7 @@ function copyCartToClipboard(options = {}) {
 
   const productLines = getSortedCartEntries().map(({ item }, index) => {
     const chineseTitle = String(item.title).split(' / ')[0].trim();
-    return `${index + 1}. ${chineseTitle} x${item.quantity} - ${item.price}`;
+    return `${index + 1}. ${chineseTitle} x${item.quantity} - ${formatPriceForCurrency(item.price)}`;
   });
 
   const topupLines = getTopupInfoLines();
@@ -2328,13 +2429,14 @@ function makeProductCard(product) {
   const title = resolvedProduct.title || '';
   const en = resolvedProduct.en || '';
   const price = resolvedProduct.price || '';
+  const displayPrice = formatPriceForCurrency(price);
   const cartTitle = en ? `${title} / ${en}` : title;
 
   return `
-    <article class="product-card" role="button" tabindex="0" data-title="${escapeAttribute(cartTitle)}" data-price="${escapeAttribute(price)}" aria-label="加入购物车：${escapeAttribute(cartTitle)} ${escapeAttribute(price)}">
+    <article class="product-card" role="button" tabindex="0" data-title="${escapeAttribute(cartTitle)}" data-price="${escapeAttribute(price)}" aria-label="加入购物车：${escapeAttribute(cartTitle)} ${escapeAttribute(displayPrice)}">
       <h3>${title}</h3>
       <p>${en}</p>
-      <div class="product-price">${price}</div>
+      <div class="product-price" data-price-base="${escapeAttribute(price)}">${displayPrice}</div>
     </article>`;
 }
 
@@ -2659,6 +2761,13 @@ function initEvents() {
   document.body.addEventListener('click', (event) => {
     const target = event.target;
 
+    const currencyButton = target.closest('[data-currency]');
+    if (currencyButton) {
+      event.preventDefault();
+      setActiveCurrency(currencyButton.dataset.currency);
+      return;
+    }
+
     if (target.closest('[data-contact-open]')) {
       event.preventDefault();
       openContactModal();
@@ -2780,6 +2889,7 @@ if (homeFilterButton) {
 }
 
 function start() {
+  initCurrencySwitcher();
   updateCartUI();
   updateDailyOrderStatsUI();
   initHeaderLinks();
@@ -2794,6 +2904,7 @@ function start() {
     initSearch();
   }
   initEvents();
+  refreshCurrencyDisplay();
 }
 
 window.addEventListener('DOMContentLoaded', start);

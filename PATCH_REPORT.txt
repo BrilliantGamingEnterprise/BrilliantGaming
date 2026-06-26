@@ -1,0 +1,47 @@
+Brilliant Gaming Site Patch Report
+
+Scope completed:
+1. scripts.js audit and fixes
+2. admin-price.html generator page
+3. mobile UI safety patch for 390px / 430px / 768px widths
+
+Files included:
+- scripts.js
+- styles.css
+- index.html
+- game.html
+- admin-price.html
+- PATCH_REPORT.txt
+
+Scripts audit result:
+- JavaScript syntax check passed with: node --check scripts.js
+- Total games detected: 51
+- Total products detected: 413
+- Duplicate game IDs: 0
+- Products missing price / pricePreset: 0
+- Undefined pricePreset references: 0
+- Bad price format found after patch: 0
+- Home featured IDs not found in games: 0
+
+Fixes applied:
+- Added missing price preset: cny168 = RM 109.00
+- Fixed malformed price string: RM 330 .00 -> RM 330.00
+- Fixed index.html extra closing </div> tags inside footer section
+- Added admin-price.html for local game object generation
+- Appended mobile CSS safety patch at the bottom of styles.css
+
+Mobile UI patch coverage:
+- Prevent horizontal overflow on mobile
+- Improve text wrapping in game cards, product cards, cart items, contact modal, and channel links
+- Improve cart panel sizing on mobile using 100dvh
+- Improve contact modal and order copied modal scrolling on mobile
+- Adjust header CTA, hero, game grid, product grid, and card text for small screens
+- Add one-column fallback below 360px only
+
+Not changed:
+- Shopping cart ordering and WhatsApp order flow logic were not changed.
+- Desktop layout was intentionally left unchanged.
+- Existing game images and product data were not removed.
+
+Recommended git commit message:
+add admin price generator and mobile safety fixes
