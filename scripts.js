@@ -678,7 +678,7 @@ const categories = {
         { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
         { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
         { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 340.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 380.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -783,6 +783,71 @@ const categories = {
         { title: '3280 星石', price: 'RM 190.00' },
         { title: '6480 星石', price: 'RM 335.00' },
         { title: '12980 星石', price: 'RM 670.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'arknights-endfield',
+  name: '明日方舟：终末地',
+  detailName: '明日方舟：终末地',
+  description: 'Arknights: Endfield',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/arknights-endfield.jpg',
+  detailArt: 'assets/images/games/arknights-endfield2.jpg',
+  productSections: [
+    {
+      title: '衍质源石',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '4 衍质源石 + 2 赠送', price: 'RM 8.00' },
+        { title: '21 衍质源石 + 5 赠送', price: 'RM 34.20' },
+        { title: '34 衍质源石 + 34 赠送', price: 'RM 49.40' },
+        { title: '57 衍质源石 + 11 赠送', price: 'RM 79.80' },
+        { title: '92 衍质源石 + 20 赠送', price: 'RM 129.20' },
+        { title: '194 衍质源石 + 48 赠送', price: 'RM 252.00' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '月卡', price: 'RM 19.00' },
+        { title: '通行证付费档', price: 'RM 38.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'x-hero-epic-hero',
+  name: 'X-Hero',
+  detailName: 'X-Hero',
+  description: 'Epic Hero',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/x-hero-epic-hero.jpg',
+  detailArt: 'assets/images/games/x-hero-epic-hero2.jpg',
+  productSections: [
+    {
+      title: '红钻',
+      subtitle: 'Red Diamond',
+      icon: '◆',
+      products: [
+        { title: '20 + 1 红钻', price: 'RM 4.00' },
+        { title: '50 + 2 红钻', price: 'RM 19.50' },
+        { title: '100 + 4 红钻', price: 'RM 38.00' },
+        { title: '150 + 6 红钻', price: 'RM 57.00' },
+        { title: '200 + 8 红钻', price: 'RM 76.00' },
+        { title: '250 + 10 红钻', price: 'RM 95.00' },
+        { title: '500 + 20 红钻', price: 'RM 190.00' },
+        { title: '1000 + 40 红钻', price: 'RM 370.00' },
+        { title: '2000 + 80 红钻', price: 'RM 740.00' },
+        { title: '4000 + 160 红钻', price: 'RM 1480.00' },
+        { title: '6000 + 240 红钻', price: 'RM 2190.00' }
       ]
     }
   ]
@@ -1628,15 +1693,15 @@ const categories = {
               { title: '30 元 苹果卡', en: '30 RMB Apple Card', price: 'RM 24.00', note: '苹果卡充值 / Apple Card Top Up' },
               { title: '50 元 苹果卡', en: '50 RMB Apple Card', price: 'RM 37.00', note: '苹果卡充值 / Apple Card Top Up' },
               { title: '68 元 苹果卡', en: '68 RMB Apple Card', price: 'RM 48.00', note: '苹果卡充值 / Apple Card Top Up' },
-              { title: '100 元 苹果卡', en: '100 RMB Apple Card', price: 'RM 66.00', note: 'HOT 推荐 / Apple Card Top Up' },
-              { title: '200 元 苹果卡', en: '200 RMB Apple Card', price: 'RM 126.00', note: 'HOT 推荐 / Apple Card Top Up' },
-              { title: '330 元 苹果卡', en: '330 RMB Apple Card', price: 'RM 216.00', note: '苹果卡充值 / Apple Card Top Up' },
-              { title: '350 元 苹果卡', en: '350 RMB Apple Card', price: 'RM 229.00', note: '苹果卡充值 / Apple Card Top Up' },
-              { title: '500 元 苹果卡', en: '500 RMB Apple Card', price: 'RM 313.00', note: '苹果卡充值 / Apple Card Top Up' },
-              { title: '648 元 苹果卡', en: '648 RMB Apple Card', price: 'RM 405.00', note: 'HOT 推荐 / Apple Card Top Up' },
-              { title: '900 元 苹果卡', en: '900 RMB Apple Card', price: 'RM 562.00', note: '苹果卡充值 / Apple Card Top Up' },
-              { title: '1000 元 苹果卡', en: '1000 RMB Apple Card', price: 'RM 615.00', note: 'HOT 推荐 / Apple Card Top Up' },
-              { title: '1300 元 苹果卡', en: '1300 RMB Apple Card', price: 'RM 800.00', note: '苹果卡充值 / Apple Card Top Up' }
+              { title: '100 元 苹果卡', en: '100 RMB Apple Card', price: 'RM 68.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '200 元 苹果卡', en: '200 RMB Apple Card', price: 'RM 130.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '330 元 苹果卡', en: '330 RMB Apple Card', price: 'RM 208.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '350 元 苹果卡', en: '350 RMB Apple Card', price: 'RM 242.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '500 元 苹果卡', en: '500 RMB Apple Card', price: 'RM 330.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '648 元 苹果卡', en: '648 RMB Apple Card', price: 'RM 420.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '900 元 苹果卡', en: '900 RMB Apple Card', price: 'RM 581.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '1000 元 苹果卡', en: '1000 RMB Apple Card', price: 'RM 640.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '1300 元 苹果卡', en: '1300 RMB Apple Card', price: 'RM 830.00', note: '苹果卡充值 / Apple Card Top Up' }
             ]
           },
           {
