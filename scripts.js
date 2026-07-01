@@ -678,7 +678,7 @@ const categories = {
         { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
         { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
         { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 380.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 360.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -755,7 +755,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 360.00', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
