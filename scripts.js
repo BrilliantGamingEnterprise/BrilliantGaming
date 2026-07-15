@@ -1,4 +1,6 @@
-const storageKey = 'bge-cart-v1';
+const legacyCartStorageKey = 'bge-cart-v1';
+const cartsStorageKey = 'bge-carts-v2';
+const activeCartContextKey = 'bge-active-cart-context-v2';
 const statsKey = 'bge-stats-v1';
 const dailyOrdersKey = 'bge-daily-order-stats-v1';
 const currencyKey = 'bge-currency-v1';
@@ -21,6 +23,126 @@ let activeCurrency = localStorage.getItem(currencyKey) || currencySettings.defau
 if (!currencySettings.rates[activeCurrency]) activeCurrency = currencySettings.defaultCurrency;
 
 let latestOrderText = '';
+let activeContactMode = 'default';
+
+const uiTextFallbacks = {
+  'currency.switcher': '选择显示币种',
+  'cart.summary': '已选商品 {count} 项',
+  'cart.total': '合计：{total}',
+  'cart.empty': '购物车空空如也，先添加一个商品吧。',
+  'cart.quantity': '数量：{quantity}',
+  'cart.price': '价格：{price}',
+  'cart.remove': '移除',
+  'cart.added': '已加入：{title}',
+  'cart.emptyCopy': '购物车为空，无法复制订单。',
+  'cart.copied': '购物单已复制',
+  'order.copied': '订单内容已复制',
+  'order.copyFailed': '复制失败，请手动选择并复制。',
+  'order.game': '游戏',
+  'order.topupInfo': '充值资料',
+  'order.products': '商品',
+  'order.total': '合计',
+  'order.unfilled': '未填写',
+  'order.unfilledHelp': '未填写 / 请客服协助确认',
+  'order.dialogTitle': '订单内容已复制',
+  'order.dialogText': '请把刚刚复制的订单内容发送给客服确认。\n客服确认商品、金额与充值资料后，再进行付款。',
+  'order.dialogNote': '付款前请先等待客服确认，避免资料或金额错误。',
+  'order.dialogConfirm': '我知道了，联系客服',
+  'topup.select': '请选择{label}',
+  'topup.required': '请填写：{label}',
+  'game.notFound': '未找到游戏',
+  'game.notFoundSummary': '请返回首页选择正确的游戏。',
+  'game.notFoundBody': '未找到该游戏，请返回首页继续选择。',
+  'game.noProducts': '该游戏商品暂未上架，价格整理中。请先联系客服确认。',
+  'game.pricingPending': '该游戏价格正在整理中，请联系客服获取最新报价。',
+  'home.showLess': '收起游戏 ↑',
+  'home.showAll': '查看全部游戏 ›',
+  'home.filterAll': '全部游戏',
+  'home.filterIntl': '国际服游戏',
+  'home.filterCn': '中国服游戏',
+  'home.filterCards': '点数 / 点卡',
+  'search.prompt': '请输入关键词开始搜索',
+  'search.none': '未找到与 “{query}” 匹配的游戏',
+  'search.noneBody': '没有搜索到符合条件的游戏。',
+  'search.count': '找到 {count} 个结果，点击卡片即可进入充值页面',
+  'product.addAria': '加入购物车：{title} {price}',
+  'contact.orderTitle': '使用 WhatsApp 发送订单',
+  'contact.orderIntro': '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。',
+  'contact.orderNoteLabel': '重要提醒：',
+  'contact.orderNote': '目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。',
+  'contact.defaultTitle': 'WhatsApp 客服',
+  'contact.defaultIntro': '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。',
+  'contact.hoursLabel': '营业时间：',
+  'contact.hours': '每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。',
+  'contact.whatsappOrder': '自动带入订单内容',
+  'contact.whatsappOpen': '点击打开 WhatsApp',
+  'contact.wechatCopied': '微信 ID 已复制',
+  'contact.copied': '已复制',
+  'contact.unavailable': 'WhatsApp 暂未开放，请先使用微信或 Instagram'
+};
+
+function formatUiText(template, variables = {}) {
+  return String(template).replace(/\{(\w+)\}/g, (match, key) => (
+    Object.prototype.hasOwnProperty.call(variables, key) ? variables[key] : match
+  ));
+}
+
+function uiText(key, variables = {}) {
+  if (window.BGE_I18N?.t) return window.BGE_I18N.t(key, variables);
+  return formatUiText(uiTextFallbacks[key] || key, variables);
+}
+
+function isEnglishLanguage() {
+  return window.BGE_I18N?.isEnglish?.() || false;
+}
+
+function localizedText(value) {
+  return window.BGE_I18N?.translate?.(value) || value || '';
+}
+
+function localizedGameName(game, detail = false) {
+  return window.BGE_I18N?.getGameName?.(game, detail) || (detail ? (game?.detailName || game?.name || '') : (game?.name || ''));
+}
+
+function englishGameName(game, detail = false) {
+  return window.BGE_I18N?.getGameEnglishName?.(game, detail) || game?.description || game?.name || '';
+}
+
+function localizedGameDescription(game) {
+  return window.BGE_I18N?.getGameDescription?.(game) || game?.description || '';
+}
+
+function localizedGameTag(game) {
+  return window.BGE_I18N?.getGameTag?.(game) || game?.tag || '';
+}
+
+function localizedProductTitle(gameId, product) {
+  return window.BGE_I18N?.getProductTitle?.(gameId, product) || product?.title || '';
+}
+
+function englishProductTitle(gameId, product) {
+  return window.BGE_I18N?.getProductEnglish?.(gameId, product) || product?.en || product?.title || '';
+}
+
+function localizedProductNote(product) {
+  return window.BGE_I18N?.getProductNote?.(product) || product?.note || '';
+}
+
+function localizedSectionTitle(section) {
+  return window.BGE_I18N?.getSectionTitle?.(section) || section?.title || '';
+}
+
+function localizedSectionSubtitle(section) {
+  return window.BGE_I18N?.getSectionSubtitle?.(section) ?? section?.subtitle ?? '';
+}
+
+function localizedCategoryTitle(categoryId, category) {
+  return window.BGE_I18N?.getCategoryTitle?.(categoryId, category) || category?.title || '';
+}
+
+function localizedCategorySubtitle(categoryId, category) {
+  return window.BGE_I18N?.getCategorySubtitle?.(categoryId, category) || category?.subtitle || '';
+}
 
 const pricePresets = {
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
@@ -221,7 +343,7 @@ const categories = {
   description: 'Pokémon TCG Pocket',
   tag: 'Login Top Up',
   image: 'assets/images/games/TCG.jpg',
-  detailArt: 'assets/images/games/TCG2.jpg',
+  detailArt: 'assets/images/games/tcg2.jpg',
   productSections: [
     {
       title: 'Poké Gold',
@@ -867,8 +989,15 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' },
-        { title: '月卡', en: 'Bounty Hunter Pass', price: 'RM 57.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Other Items',
+      icon: '◆',
+      products: [
+        { title: '月卡', en: 'Bounty Hunter Pass', price: 'RM 57.00', note: '月卡 / Monthly Pass' }
       ]
     }
   ]
@@ -1743,6 +1872,15 @@ function getQueryParams() {
   };
 }
 
+function readStoredJson(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
 function getAvatarText(name) {
   const parts = name.split(/[\s：\-–]/).filter(Boolean);
   if (parts.length >= 2) {
@@ -1770,6 +1908,49 @@ function getAllGames() {
   );
 }
 
+function getGameCartContext(categoryId, gameId) {
+  const category = categories[categoryId];
+  const game = category?.games?.find((item) => item.id === gameId);
+  if (!game) return null;
+
+  return {
+    categoryId,
+    gameId,
+    gameName: game.detailName || game.name
+  };
+}
+
+function getPageCartContext() {
+  if (document.body.dataset.page !== 'game') return null;
+  const params = getQueryParams();
+  return getGameCartContext(params.category, params.gameId);
+}
+
+function getCartScopeKey(context) {
+  if (!context) return '';
+  return `${context.categoryId}:${context.gameId}`;
+}
+
+function getGameFromCartContext(context) {
+  if (!context) return null;
+  const category = categories[context.categoryId];
+  return category?.games?.find((game) => game.id === context.gameId) || null;
+}
+
+function legacyCartMatchesGame(legacyCart, game) {
+  if (!Array.isArray(legacyCart) || !legacyCart.length || !game) return false;
+
+  const validItems = new Set(
+    getGameProducts(game).map((product) =>
+      `${getProductCartTitle(product)}\u0000${product.price}`
+    )
+  );
+
+  return legacyCart.every((item) =>
+    validItems.has(`${item.title}\u0000${item.price}`)
+  );
+}
+
 function getGameProducts(game) {
   if (!game) return [];
   const sections = resolveProductSections(game);
@@ -1778,26 +1959,53 @@ function getGameProducts(game) {
   }
   return (game.products || []).map(resolveProductPrice);
 }
-function getCurrentGameForCart() {
-  const params = getQueryParams();
-  const category = categories[params.category];
-
-  if (!category) return null;
-
-  return category.games.find((game) => game.id === params.gameId) || null;
-}
-
 function getProductCartTitle(product) {
   return product.en ? `${product.title} / ${product.en}` : product.title;
 }
 
+function getProductCartKey(product) {
+  const resolvedProduct = resolveProductPrice(product);
+  return `${encodeURIComponent(resolvedProduct.title || '')}::${resolvedProduct.price || ''}`;
+}
+
+function getCartItemChineseTitle(item) {
+  if (item?.titleZh) return item.titleZh;
+  return String(item?.title || '').split(' / ')[0].trim();
+}
+
+function getCartItemEnglishTitle(item) {
+  if (item?.titleEn) return item.titleEn;
+
+  const currentGame = getGameFromCartContext(cartContext);
+  const gameId = currentGame?.id || cartContext?.gameId || '';
+  const chineseTitle = getCartItemChineseTitle(item);
+  const matchingProduct = getGameProducts(currentGame).find((product) => (
+    getProductCartKey(product) === item?.key ||
+    (product.title === chineseTitle && product.price === item?.price)
+  ));
+
+  if (matchingProduct) return englishProductTitle(gameId, matchingProduct);
+
+  const titleParts = String(item?.title || '').split(' / ');
+  return titleParts.length > 1 ? titleParts.slice(1).join(' / ').trim() : chineseTitle;
+}
+
+function getCartItemDisplayTitle(item) {
+  return isEnglishLanguage() ? getCartItemEnglishTitle(item) : getCartItemChineseTitle(item);
+}
+
+function getCartItemKey(item) {
+  return item?.key || `${encodeURIComponent(getCartItemChineseTitle(item))}::${item?.price || ''}`;
+}
+
 function getSortedCartEntries() {
-  const currentGame = getCurrentGameForCart();
+  const currentGame = getGameFromCartContext(cartContext);
   const products = getGameProducts(currentGame);
 
   const orderMap = new Map();
 
   products.forEach((product, index) => {
+    orderMap.set(getProductCartKey(product), index);
     orderMap.set(getProductCartTitle(product), index);
     orderMap.set(product.title, index);
   });
@@ -1806,13 +2014,40 @@ function getSortedCartEntries() {
     .map((item, index) => ({
       item,
       index,
-      order: orderMap.has(item.title) ? orderMap.get(item.title) : 999999 + index
+      order: orderMap.has(getCartItemKey(item))
+        ? orderMap.get(getCartItemKey(item))
+        : (orderMap.has(item.title) ? orderMap.get(item.title) : 999999 + index)
     }))
     .sort((a, b) => a.order - b.order || a.index - b.index);
 }
-let cart = JSON.parse(localStorage.getItem(storageKey) || '[]');
-let stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
 const page = document.body.dataset.page;
+let cartsByGame = readStoredJson(cartsStorageKey, {});
+if (!cartsByGame || Array.isArray(cartsByGame) || typeof cartsByGame !== 'object') {
+  cartsByGame = {};
+}
+
+let cartContext = getPageCartContext() || readStoredJson(activeCartContextKey, null);
+if (!getGameFromCartContext(cartContext)) cartContext = null;
+
+const cartScopeKey = getCartScopeKey(cartContext);
+if (cartContext && !Array.isArray(cartsByGame[cartScopeKey])) {
+  const legacyCart = readStoredJson(legacyCartStorageKey, []);
+  const currentGame = getGameFromCartContext(cartContext);
+  cartsByGame[cartScopeKey] = legacyCartMatchesGame(legacyCart, currentGame)
+    ? legacyCart
+    : [];
+  localStorage.setItem(cartsStorageKey, JSON.stringify(cartsByGame));
+}
+
+if (getPageCartContext()) {
+  localStorage.setItem(activeCartContextKey, JSON.stringify(cartContext));
+  localStorage.removeItem(legacyCartStorageKey);
+}
+
+let cart = cartScopeKey && Array.isArray(cartsByGame[cartScopeKey])
+  ? cartsByGame[cartScopeKey]
+  : [];
+let stats = readStoredJson(statsKey, {});
 let isShowingAllGames = false;
 let activeHomeCategory = 'all';
 
@@ -1984,7 +2219,12 @@ const topupFormConfigs = {
 
 
 function saveCart() {
-  localStorage.setItem(storageKey, JSON.stringify(cart));
+  const scopeKey = getCartScopeKey(cartContext);
+  if (!scopeKey) return;
+
+  cartsByGame[scopeKey] = cart;
+  localStorage.setItem(cartsStorageKey, JSON.stringify(cartsByGame));
+  localStorage.setItem(activeCartContextKey, JSON.stringify(cartContext));
 }
 
 function saveStats() {
@@ -2024,7 +2264,7 @@ function formatCurrencyAmount(amount, currency = activeCurrency) {
 }
 
 function formatPriceForCurrency(price) {
-  if (!hasNumericPrice(price)) return price || '';
+  if (!hasNumericPrice(price)) return localizedText(price || '');
 
   const myrAmount = parsePrice(price);
   if (activeCurrency === 'MYR') return formatCurrencyAmount(myrAmount, 'MYR');
@@ -2042,7 +2282,7 @@ function initCurrencySwitcher() {
 
     const switcher = document.createElement('div');
     switcher.className = 'currency-switch';
-    switcher.setAttribute('aria-label', '选择显示币种');
+    switcher.setAttribute('aria-label', uiText('currency.switcher'));
     switcher.innerHTML = `
       <button type="button" data-currency="MYR">MYR</button>
       <button type="button" data-currency="SGD">SGD</button>
@@ -2131,10 +2371,10 @@ function updateCartUI() {
   const total = getCartTotal();
   document.querySelectorAll('#cartCount').forEach((node) => (node.textContent = count));
   document.querySelectorAll('#cartSummary').forEach((node) => {
-    node.textContent = `已选商品 ${count} 项`;
+    node.textContent = uiText('cart.summary', { count });
   });
   document.querySelectorAll('#cartTotal').forEach((node) => {
-    node.textContent = `合计：${formatTotal(total)}`;
+    node.textContent = uiText('cart.total', { total: formatTotal(total) });
   });
   renderCartItems();
 }
@@ -2144,7 +2384,7 @@ function renderCartItems() {
   if (!list) return;
 
   if (!cart.length) {
-    list.innerHTML = '<div class="cart-empty">购物车空空如也，先添加一个商品吧。</div>';
+    list.innerHTML = `<div class="cart-empty">${escapeHtml(uiText('cart.empty'))}</div>`;
     return;
   }
 
@@ -2154,13 +2394,13 @@ function renderCartItems() {
     .map(
       ({ item, index }) => `
       <div class="cart-item">
-        <strong>${item.title}</strong>
-        <span>数量：${item.quantity}</span>
-        <span>价格：${formatPriceForCurrency(item.price)}</span>
+        <strong>${escapeHtml(getCartItemDisplayTitle(item))}</strong>
+        <span>${escapeHtml(uiText('cart.quantity', { quantity: item.quantity }))}</span>
+        <span>${escapeHtml(uiText('cart.price', { price: formatPriceForCurrency(item.price) }))}</span>
         <div class="quantity-actions">
-          <button class="adjust-qty" data-index="${index}" data-action="minus">-</button>
-          <button class="adjust-qty" data-index="${index}" data-action="plus">+</button>
-          <button class="remove-item" data-index="${index}">移除</button>
+          <button class="adjust-qty" data-index="${index}" data-action="minus" aria-label="${isEnglishLanguage() ? 'Decrease quantity' : '减少数量'}">-</button>
+          <button class="adjust-qty" data-index="${index}" data-action="plus" aria-label="${isEnglishLanguage() ? 'Increase quantity' : '增加数量'}">+</button>
+          <button class="remove-item" data-index="${index}">${escapeHtml(uiText('cart.remove'))}</button>
         </div>
       </div>`
     )
@@ -2183,16 +2423,47 @@ function showCartToast(message) {
   }, 1200);
 }
 
-function addToCart(title, price) {
-  const existing = cart.find((item) => item.title === title && item.price === price);
+function addToCart(productOrTitle, fallbackPrice) {
+  const payload = typeof productOrTitle === 'object' && productOrTitle !== null
+    ? {
+        key: productOrTitle.key || `${encodeURIComponent(productOrTitle.titleZh || productOrTitle.title || '')}::${productOrTitle.price || fallbackPrice || ''}`,
+        titleZh: productOrTitle.titleZh || productOrTitle.title || '',
+        titleEn: productOrTitle.titleEn || productOrTitle.title || '',
+        price: productOrTitle.price || fallbackPrice || ''
+      }
+    : {
+        key: `${encodeURIComponent(String(productOrTitle || '').split(' / ')[0].trim())}::${fallbackPrice || ''}`,
+        titleZh: String(productOrTitle || '').split(' / ')[0].trim(),
+        titleEn: String(productOrTitle || '').split(' / ').slice(1).join(' / ').trim() || String(productOrTitle || '').split(' / ')[0].trim(),
+        price: fallbackPrice || ''
+      };
+
+  const canonicalTitle = payload.titleEn && payload.titleEn !== payload.titleZh
+    ? `${payload.titleZh} / ${payload.titleEn}`
+    : payload.titleZh;
+  const existing = cart.find((item) => getCartItemKey(item) === payload.key && item.price === payload.price);
+
   if (existing) {
     existing.quantity += 1;
+    existing.key = payload.key;
+    existing.titleZh = payload.titleZh;
+    existing.titleEn = payload.titleEn;
+    existing.title = canonicalTitle;
   } else {
-    cart.push({ title, price, quantity: 1 });
+    cart.push({
+      key: payload.key,
+      titleZh: payload.titleZh,
+      titleEn: payload.titleEn,
+      title: canonicalTitle,
+      price: payload.price,
+      quantity: 1
+    });
   }
   saveCart();
   updateCartUI();
-  showCartToast(`已加入：${title}`);
+  showCartToast(uiText('cart.added', {
+    title: isEnglishLanguage() ? payload.titleEn : payload.titleZh
+  }));
 }
 
 function removeCartItem(index) {
@@ -2247,19 +2518,20 @@ function getGameTopupFormType(game, categoryId) {
 }
 
 function makeTopupField(field) {
+  const label = localizedText(field.label);
   const requiredMark = field.required ? '<span class="topup-required">*</span>' : '';
-  const commonAttrs = `data-topup-field="${escapeAttribute(field.name)}" data-topup-label="${escapeAttribute(field.label)}" data-required="${field.required ? 'true' : 'false'}"`;
-  const placeholder = field.placeholder ? ` placeholder="${escapeAttribute(field.placeholder)}"` : '';
+  const commonAttrs = `data-topup-field="${escapeAttribute(field.name)}" data-topup-label="${escapeAttribute(label)}" data-topup-label-zh="${escapeAttribute(field.label)}" data-required="${field.required ? 'true' : 'false'}"`;
+  const placeholder = field.placeholder ? ` placeholder="${escapeAttribute(localizedText(field.placeholder))}"` : '';
   let control = '';
 
   if (field.type === 'select') {
     const options = (field.options || [])
-      .map((option) => `<option value="${escapeAttribute(option)}">${escapeHtml(option)}</option>`)
+      .map((option) => `<option value="${escapeAttribute(option)}">${escapeHtml(localizedText(option))}</option>`)
       .join('');
 
     control = `
       <select ${commonAttrs}>
-        <option value="">请选择${escapeHtml(field.label)}</option>
+        <option value="">${escapeHtml(uiText('topup.select', { label }))}</option>
         ${options}
       </select>`;
   } else if (field.type === 'textarea') {
@@ -2271,7 +2543,7 @@ function makeTopupField(field) {
 
   return `
     <label class="topup-field" data-field-wrap="${escapeAttribute(field.name)}">
-      <span>${escapeHtml(field.label)}${requiredMark}</span>
+      <span>${escapeHtml(label)}${requiredMark}</span>
       ${control}
     </label>`;
 }
@@ -2297,8 +2569,8 @@ function renderTopupInfoForm(categoryId, game) {
       <div class="topup-form-header">
         <div>
           <span class="topup-form-badge">${escapeHtml(config.badge)}</span>
-          <h4>${escapeHtml(config.title)}</h4>
-          <p>${escapeHtml(config.description)}</p>
+          <h4>${escapeHtml(localizedText(config.title))}</h4>
+          <p>${escapeHtml(localizedText(config.description))}</p>
         </div>
       </div>
       <div class="topup-form-grid">
@@ -2308,13 +2580,21 @@ function renderTopupInfoForm(categoryId, game) {
 }
 
 function getTopupInfoFields() {
-  return Array.from(document.querySelectorAll('[data-topup-field]')).map((field) => ({
-    name: field.dataset.topupField || '',
-    label: field.dataset.topupLabel || '',
-    required: field.dataset.required === 'true',
-    value: String(field.value || '').trim(),
-    element: field
-  }));
+  return Array.from(document.querySelectorAll('[data-topup-field]')).map((field) => {
+    const value = String(field.value || '').trim();
+    const displayValue = field.tagName === 'SELECT' && value
+      ? String(field.selectedOptions?.[0]?.textContent || value).trim()
+      : value;
+
+    return {
+      name: field.dataset.topupField || '',
+      label: field.dataset.topupLabel || '',
+      required: field.dataset.required === 'true',
+      value,
+      displayValue,
+      element: field
+    };
+  });
 }
 
 function validateTopupRequiredFields() {
@@ -2324,7 +2604,7 @@ function validateTopupRequiredFields() {
 
   const firstMissing = missing[0];
   firstMissing.element.focus();
-  showCartToast(`请填写：${firstMissing.label}`);
+  showCartToast(uiText('topup.required', { label: firstMissing.label }));
   return false;
 }
 
@@ -2335,7 +2615,7 @@ function getTopupInfoLines() {
   return fields
     .filter((field) => field.name !== 'remark')
     .filter((field) => field.required || field.value)
-    .map((field) => `${field.label}：${field.value || '未填写'}`);
+    .map((field) => `${field.label}: ${field.displayValue || uiText('order.unfilled')}`);
 }
 
 function writeTextToClipboard(text) {
@@ -2366,7 +2646,7 @@ function copyCartToClipboard(options = {}) {
   const { openContactAfterCopy = false, requireTopupInfo = false } = options;
 
   if (!cart.length) {
-    alert('购物车为空，无法复制订单。');
+    alert(uiText('cart.emptyCopy'));
     return;
   }
 
@@ -2375,45 +2655,50 @@ function copyCartToClipboard(options = {}) {
   }
 
   const total = getCartTotal();
+  const currentGame = getGameFromCartContext(cartContext);
 
   const currentGameName =
+    localizedGameName(currentGame, true) ||
     document.getElementById('detailTitle')?.textContent.trim() ||
     document.getElementById('detailGameName')?.textContent.trim() ||
+    cartContext?.gameName ||
     'Brilliant Gaming';
 
   const productLines = getSortedCartEntries().map(({ item }, index) => {
-    const chineseTitle = String(item.title).split(' / ')[0].trim();
-    return `${index + 1}. ${chineseTitle} x${item.quantity} - ${formatPriceForCurrency(item.price)}`;
+    return `${index + 1}. ${getCartItemDisplayTitle(item)} x${item.quantity} - ${formatPriceForCurrency(item.price)}`;
   });
 
-  const topupLines = getTopupInfoLines();
+  const separator = isEnglishLanguage() ? ': ' : '：';
+  const topupFields = getTopupInfoFields()
+    .filter((field) => field.name !== 'remark')
+    .filter((field) => field.required || field.value);
+  const paymentField = topupFields.find((field) => field.name === 'paymentMethod');
+  const otherTopupFields = topupFields.filter((field) => field.name !== 'paymentMethod');
+  const makeTopupLine = (field) => `${field.label}${separator}${field.displayValue || uiText('order.unfilled')}`;
+  const paymentLine = paymentField ? makeTopupLine(paymentField) : '';
+  const otherTopupLines = otherTopupFields.map(makeTopupLine);
 
-const isPaymentLine = (line) =>
-  line.startsWith('付款方式：') || line.startsWith('付款方式:');
+  const text = `${paymentLine ? `${paymentLine}\n\n` : ''}${uiText('order.game')}${separator}${currentGameName}
 
-const paymentLine = topupLines.find(isPaymentLine);
-const otherTopupLines = topupLines.filter((line) => !isPaymentLine(line));
+${uiText('order.topupInfo')}${separator.trim()}
+${otherTopupLines.length ? otherTopupLines.join('\n') : uiText('order.unfilledHelp')}
 
-const text = `${paymentLine ? `${paymentLine}\n\n` : ''}游戏：${currentGameName}
-
-充值资料：
-${otherTopupLines.length ? otherTopupLines.join('\n') : '未填写 / 请客服协助确认'}
-
-商品：
+${uiText('order.products')}${separator.trim()}
 ${productLines.join('\n')}
 
-合计：${formatTotal(total)}`;
+${uiText('order.total')}${separator}${formatTotal(total)}`;
 
-latestOrderText = text;
+  latestOrderText = text;
 
-writeTextToClipboard(text)
-  .then(() => {
-showCartToast(openContactAfterCopy ? '订单内容已复制' : '购物单已复制');
-
-if (openContactAfterCopy) {
-showOrderCopiedDialog(() => {
-  openContactModal('order');
-});
+  writeTextToClipboard(text)
+    .then(() => {
+      showCartToast(openContactAfterCopy ? uiText('order.copied') : uiText('cart.copied'));
+      if (openContactAfterCopy) {
+        showOrderCopiedDialog(() => openContactModal('order'));
+      }
+    })
+    .catch(() => alert(uiText('order.copyFailed')));
+}
 
 function showOrderCopiedDialog(onConfirm) {
   const existing = document.getElementById('orderCopiedDialog');
@@ -2426,16 +2711,13 @@ function showOrderCopiedDialog(onConfirm) {
   dialog.innerHTML = `
     <div class="order-copied-dialog" role="dialog" aria-modal="true">
       <div class="order-copied-icon">✓</div>
-      <h3>订单内容已复制</h3>
-      <p>
-        请把刚刚复制的订单内容发送给客服确认。<br>
-        客服确认商品、金额与充值资料后，再进行付款。
-      </p>
+      <h3>${escapeHtml(uiText('order.dialogTitle'))}</h3>
+      <p>${escapeHtml(uiText('order.dialogText')).replace(/\n/g, '<br>')}</p>
       <div class="order-copied-note">
-        付款前请先等待客服确认，避免资料或金额错误。
+        ${escapeHtml(uiText('order.dialogNote'))}
       </div>
       <button type="button" class="button button-primary" id="orderCopiedConfirm">
-        我知道了，联系客服
+        ${escapeHtml(uiText('order.dialogConfirm'))}
       </button>
     </div>
   `;
@@ -2450,13 +2732,6 @@ function showOrderCopiedDialog(onConfirm) {
   });
 }
 
-  openContactModal('order');
-}
-if (openContactAfterCopy) openContactModal('order');
-    })
-    .catch(() => alert('复制失败，请手动选择并复制。'));
-}
-
 function copyCartAndOpenContact() {
   copyCartToClipboard({
     openContactAfterCopy: true,
@@ -2465,23 +2740,27 @@ function copyCartAndOpenContact() {
 }
 
 function makeGameCover(game) {
+  const displayName = localizedGameName(game);
   if (!game.image) {
-    return `<div class="game-avatar"><span>${getAvatarText(game.name)}</span></div>`;
+    return `<div class="game-avatar"><span>${escapeHtml(getAvatarText(displayName))}</span></div>`;
   }
-  const fallback = escapeAttribute(getAvatarText(game.name));
+  const fallback = escapeAttribute(getAvatarText(displayName));
   return `
     <div class="game-avatar game-cover">
-      <img src="${game.image}" alt="${game.name}" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
+      <img src="${escapeAttribute(game.image)}" alt="${escapeAttribute(displayName)}" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
     </div>`;
 }
 
 function makeHomeGameCard(categoryId, game) {
+  const name = localizedGameName(game);
+  const description = localizedGameDescription(game);
+  const tag = localizedGameTag(game);
   return `
-    <a class="game-card" href="game.html?category=${categoryId}&game=${game.id}" data-name="${game.name.toLowerCase()}" data-game-id="${game.id}" data-category="${categoryId}">
+    <a class="game-card" href="game.html?category=${escapeAttribute(categoryId)}&game=${escapeAttribute(game.id)}" data-name="${escapeAttribute(`${game.name} ${englishGameName(game)}`.toLowerCase())}" data-game-id="${escapeAttribute(game.id)}" data-category="${escapeAttribute(categoryId)}">
       ${makeGameCover(game)}
-      <h3>${game.name}</h3>
-      <p>${game.description}</p>
-      <div class="tag">${game.tag}</div>
+      <h3>${escapeHtml(name)}</h3>
+      <p>${escapeHtml(description)}</p>
+      <div class="tag">${escapeHtml(tag)}</div>
     </a>`;
 }
 
@@ -2489,19 +2768,21 @@ function makeCategoryGameCard(categoryId, game) {
   return makeHomeGameCard(categoryId, game);
 }
 
-function makeProductCard(product) {
+function makeProductCard(product, gameId = '') {
   const resolvedProduct = resolveProductPrice(product);
-  const title = resolvedProduct.title || '';
-  const en = resolvedProduct.en || '';
+  const titleZh = resolvedProduct.title || '';
+  const titleEn = englishProductTitle(gameId, resolvedProduct);
+  const title = localizedProductTitle(gameId, resolvedProduct);
+  const subtitle = isEnglishLanguage() ? localizedProductNote(resolvedProduct) : titleEn;
   const price = resolvedProduct.price || '';
   const displayPrice = formatPriceForCurrency(price);
-  const cartTitle = en ? `${title} / ${en}` : title;
+  const cartKey = getProductCartKey(resolvedProduct);
 
   return `
-    <article class="product-card" role="button" tabindex="0" data-title="${escapeAttribute(cartTitle)}" data-price="${escapeAttribute(price)}" aria-label="加入购物车：${escapeAttribute(cartTitle)} ${escapeAttribute(displayPrice)}">
-      <h3>${title}</h3>
-      <p>${en}</p>
-      <div class="product-price" data-price-base="${escapeAttribute(price)}">${displayPrice}</div>
+    <article class="product-card" role="button" tabindex="0" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-price="${escapeAttribute(price)}" aria-label="${escapeAttribute(uiText('product.addAria', { title, price: displayPrice }))}">
+      <h3>${escapeHtml(title)}</h3>
+      <p>${escapeHtml(subtitle)}</p>
+      <div class="product-price" data-price-base="${escapeAttribute(price)}">${escapeHtml(displayPrice)}</div>
     </article>`;
 }
 
@@ -2510,24 +2791,28 @@ function makeProductSections(game) {
   if (!sections.length) {
     const products = (game.products || []).map(resolveProductPrice);
     if (!products.length) {
-      return '<div class="cart-empty">该游戏商品暂未上架，价格整理中。请先联系客服确认。</div>';
+      return `<div class="cart-empty">${escapeHtml(uiText('game.noProducts'))}</div>`;
     }
-    return `<div class="product-grid">${products.map(makeProductCard).join('')}</div>`;
+    return `<div class="product-grid">${products.map((product) => makeProductCard(product, game.id)).join('')}</div>`;
   }
 
   return sections
-    .map((section) => `
+    .map((section) => {
+      const sectionTitle = localizedSectionTitle(section);
+      const sectionSubtitle = localizedSectionSubtitle(section);
+      return `
       <div class="product-section">
         <div class="product-section-header">
           <h3>
-            <span class="product-section-main"><span class="product-section-icon">${section.icon || '◆'}</span>${section.title}</span>
-            <span>${section.subtitle}</span>
+            <span class="product-section-main"><span class="product-section-icon">${section.icon || '◆'}</span>${escapeHtml(sectionTitle)}</span>
+            ${sectionSubtitle ? `<span>${escapeHtml(sectionSubtitle)}</span>` : ''}
           </h3>
         </div>
         <div class="product-grid">
-          ${(section.products || []).map(makeProductCard).join('')}
+          ${(section.products || []).map((product) => makeProductCard(product, game.id)).join('')}
         </div>
-      </div>`)
+      </div>`;
+    })
     .join('');
 }
 
@@ -2558,7 +2843,7 @@ function renderHomePage(showAll = false, filterCategory = 'all') {
   const showAllButton = document.getElementById('showAllGamesButton');
 
   if (showAllButton) {
-    showAllButton.textContent = showAll ? '收起游戏 ↑' : '查看全部游戏 ›';
+    showAllButton.textContent = showAll ? uiText('home.showLess') : uiText('home.showAll');
   }
 
   renderHomeCategoryFilter(showAll, filterCategory);
@@ -2587,16 +2872,16 @@ function renderHomeCategoryFilter(showAll, filterCategory) {
 
   filterWrap.innerHTML = `
     <button type="button" class="home-filter-btn ${filterCategory === 'all' ? 'active' : ''}" data-home-filter="all">
-      全部游戏
+      ${escapeHtml(uiText('home.filterAll'))}
     </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'intl' ? 'active' : ''}" data-home-filter="intl">
-      国际服游戏
+      ${escapeHtml(uiText('home.filterIntl'))}
     </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'cn' ? 'active' : ''}" data-home-filter="cn">
-      中国服游戏
+      ${escapeHtml(uiText('home.filterCn'))}
     </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'cards' ? 'active' : ''}" data-home-filter="cards">
-      点数 / 点卡
+      ${escapeHtml(uiText('home.filterCards'))}
     </button>
   `;
 }
@@ -2607,8 +2892,8 @@ function renderCategoryPage(pageId) {
   const title = document.getElementById('pageTitle');
   const subtitle = document.getElementById('pageSubtitle');
   const container = document.getElementById('gamesGrid');
-  if (title) title.textContent = pageConfig.title;
-  if (subtitle) subtitle.textContent = pageConfig.subtitle;
+  if (title) title.textContent = localizedCategoryTitle(pageId, pageConfig);
+  if (subtitle) subtitle.textContent = localizedCategorySubtitle(pageId, pageConfig);
   if (container) {
     container.innerHTML = pageConfig.games.map((game) => makeCategoryGameCard(pageId, game)).join('');
   }
@@ -2626,9 +2911,9 @@ function renderGamePage(categoryId, gameId) {
   const products = document.getElementById('gameProducts');
 
   if (!game) {
-    if (title) title.textContent = '未找到游戏';
-    if (summary) summary.textContent = '请返回首页选择正确的游戏。';
-    if (products) products.innerHTML = '<div class="cart-empty">未找到该游戏，请返回首页继续选择。</div>';
+    if (title) title.textContent = uiText('game.notFound');
+    if (summary) summary.textContent = uiText('game.notFoundSummary');
+    if (products) products.innerHTML = `<div class="cart-empty">${escapeHtml(uiText('game.notFoundBody'))}</div>`;
     if (backLink) backLink.href = 'index.html';
     renderTopupInfoForm('', null);
     return;
@@ -2642,14 +2927,14 @@ function renderGamePage(categoryId, gameId) {
   } else {
     document.documentElement.style.removeProperty('--game-art');
   }
-  if (title) title.textContent = game.detailName || game.name;
-  if (gameName) gameName.textContent = game.name;
-  if (description) description.textContent = game.description;
-  if (summary) summary.textContent = game.description || '';
+  if (title) title.textContent = localizedGameName(game, true);
+  if (gameName) gameName.textContent = localizedGameName(game);
+  if (description) description.textContent = localizedGameDescription(game);
+  if (summary) summary.textContent = localizedGameDescription(game);
   if (tagline) {
     tagline.textContent = productCount
       ? ''
-      : '该游戏价格正在整理中，请联系客服获取最新报价。';
+      : uiText('game.pricingPending');
   }
   if (backLink) backLink.href = category.page || 'index.html';
   if (products) products.innerHTML = makeProductSections(game);
@@ -2665,18 +2950,22 @@ function searchGames(query, categoryId = null) {
       const products = getGameProducts(game);
       const searchable = [
         game.name,
+        game.detailName,
         game.description,
         game.tag,
+        englishGameName(game),
+        englishGameName(game, true),
         ...(game.keywords || []),
+        ...products.flatMap((product) => [product.title, product.en || '', englishProductTitle(game.id, product)]),
       ].join(' ').toLowerCase();
 
       if (searchable.includes(lowerQuery)) {
         const score =
-          (game.name.toLowerCase() === lowerQuery ? 180 : 0) +
-          (game.name.toLowerCase().startsWith(lowerQuery) ? 120 : 0) +
-          (game.name.toLowerCase().includes(lowerQuery) ? 80 : 0) +
-          (game.description.toLowerCase().includes(lowerQuery) ? 30 : 0) +
-          (products.some((product) => `${product.title} ${product.en || ''}`.toLowerCase().includes(lowerQuery)) ? 20 : 0);
+          ([game.name, englishGameName(game)].some((name) => String(name).toLowerCase() === lowerQuery) ? 180 : 0) +
+          ([game.name, englishGameName(game)].some((name) => String(name).toLowerCase().startsWith(lowerQuery)) ? 120 : 0) +
+          ([game.name, englishGameName(game)].some((name) => String(name).toLowerCase().includes(lowerQuery)) ? 80 : 0) +
+          (String(game.description || '').toLowerCase().includes(lowerQuery) ? 30 : 0) +
+          (products.some((product) => `${product.title} ${product.en || ''} ${englishProductTitle(game.id, product)}`.toLowerCase().includes(lowerQuery)) ? 20 : 0);
         const heat = (stats[`${key}-${game.id}`]?.clicks || 0) + (stats[`${key}-${game.id}`]?.searches || 0);
         results.push({ categoryId: key, game, score, heat });
       }
@@ -2686,16 +2975,19 @@ function searchGames(query, categoryId = null) {
 }
 
 function makeSearchResultCard(categoryId, game) {
-  const categoryLabel = categories[categoryId]?.title || '';
+  const categoryLabel = localizedCategoryTitle(categoryId, categories[categoryId]);
+  const name = localizedGameName(game);
+  const description = localizedGameDescription(game);
+  const tag = localizedGameTag(game);
   return `
-    <a class="game-card" href="game.html?category=${categoryId}&game=${game.id}" data-name="${game.name.toLowerCase()}" data-game-id="${game.id}" data-category="${categoryId}">
+    <a class="game-card" href="game.html?category=${escapeAttribute(categoryId)}&game=${escapeAttribute(game.id)}" data-name="${escapeAttribute(`${game.name} ${englishGameName(game)}`.toLowerCase())}" data-game-id="${escapeAttribute(game.id)}" data-category="${escapeAttribute(categoryId)}">
       ${makeGameCover(game)}
       <div class="game-meta">
-        <span class="game-category">${categoryLabel}</span>
+        <span class="game-category">${escapeHtml(categoryLabel)}</span>
       </div>
-      <h3>${game.name}</h3>
-      <p>${game.description}</p>
-      <div class="tag">${game.tag}</div>
+      <h3>${escapeHtml(name)}</h3>
+      <p>${escapeHtml(description)}</p>
+      <div class="tag">${escapeHtml(tag)}</div>
     </a>`;
 }
 
@@ -2704,16 +2996,16 @@ function renderSearchResults(results, query) {
   const countText = document.getElementById('searchResultsCount');
   if (!grid || !countText) return;
   if (!query) {
-    countText.textContent = '请输入关键词开始搜索';
+    countText.textContent = uiText('search.prompt');
     grid.innerHTML = '';
     return;
   }
   if (!results.length) {
-    countText.textContent = `未找到与 “${query}” 匹配的游戏`;
-    grid.innerHTML = '<div class="cart-empty">没有搜索到符合条件的游戏。</div>';
+    countText.textContent = uiText('search.none', { query });
+    grid.innerHTML = `<div class="cart-empty">${escapeHtml(uiText('search.noneBody'))}</div>`;
     return;
   }
-  countText.textContent = `找到 ${results.length} 个结果，点击卡片即可进入充值页面`;
+  countText.textContent = uiText('search.count', { count: results.length });
   grid.innerHTML = results.map(({ categoryId, game }) => makeSearchResultCard(categoryId, game)).join('');
 }
 
@@ -2759,6 +3051,7 @@ function initHeaderLinks() {
 function openContactModal(mode = 'default') {
   const modal = document.getElementById('contactModal');
   if (!modal) return;
+  activeContactMode = mode;
     const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
   const whatsappSmall = whatsappLink ? whatsappLink.querySelector('small') : null;
   const whatsappBaseUrl = 'https://wa.me/60124458242';
@@ -2766,10 +3059,10 @@ function openContactModal(mode = 'default') {
   if (whatsappLink) {
     if (mode === 'order' && latestOrderText) {
       whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestOrderText)}`;
-      if (whatsappSmall) whatsappSmall.textContent = '自动带入订单内容';
+      if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOrder');
     } else {
       whatsappLink.href = whatsappBaseUrl;
-      if (whatsappSmall) whatsappSmall.textContent = '点击打开 WhatsApp';
+      if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
     }
   }
 
@@ -2778,20 +3071,20 @@ function openContactModal(mode = 'default') {
   const note = modal.querySelector('.contact-note-premium');
 
 if (mode === 'order') {
-  if (title) title.textContent = '使用 WhatsApp 发送订单';
+  if (title) title.textContent = uiText('contact.orderTitle');
   if (intro) {
-    intro.textContent = '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。';
+    intro.textContent = uiText('contact.orderIntro');
   }
   if (note) {
-    note.innerHTML = '<strong>重要提醒：</strong>目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。';
+    note.innerHTML = `<strong>${escapeHtml(uiText('contact.orderNoteLabel'))}</strong>${escapeHtml(uiText('contact.orderNote'))}`;
   }
 } else {
-  if (title) title.textContent = 'WhatsApp 客服';
+  if (title) title.textContent = uiText('contact.defaultTitle');
   if (intro) {
-    intro.textContent = '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。';
+    intro.textContent = uiText('contact.defaultIntro');
   }
   if (note) {
-    note.innerHTML = '<strong>营业时间：</strong>每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。';
+    note.innerHTML = `<strong>${escapeHtml(uiText('contact.hoursLabel'))}</strong>${escapeHtml(uiText('contact.hours'))}`;
   }
 }
 
@@ -2808,12 +3101,12 @@ function closeContactModal() {
   document.body.classList.remove('contact-modal-open');
 }
 
-function copyTextToClipboard(value, successMessage = '已复制') {
+function copyTextToClipboard(value, successMessage = uiText('contact.copied')) {
   if (!value) return;
   navigator.clipboard
     .writeText(value)
     .then(() => showCartToast(successMessage))
-    .catch(() => alert('复制失败，请手动复制。'));
+    .catch(() => alert(uiText('order.copyFailed')));
 }
 
 function toggleFaqItem(button) {
@@ -2854,13 +3147,13 @@ function initEvents() {
     const copyButton = target.closest('[data-copy-value]');
     if (copyButton) {
       event.preventDefault();
-      copyTextToClipboard(copyButton.dataset.copyValue, '微信 ID 已复制');
+      copyTextToClipboard(copyButton.dataset.copyValue, uiText('contact.wechatCopied'));
       return;
     }
 
     if (target.closest('[data-whatsapp-empty]')) {
       event.preventDefault();
-      showCartToast('WhatsApp 暂未开放，请先使用微信或 Instagram');
+      showCartToast(uiText('contact.unavailable'));
       return;
     }
 
@@ -2873,7 +3166,12 @@ function initEvents() {
 
     const productCard = target.closest('.product-card[data-title][data-price]');
     if (productCard) {
-      addToCart(productCard.dataset.title, productCard.dataset.price);
+      addToCart({
+        key: productCard.dataset.cartKey,
+        titleZh: productCard.dataset.titleZh,
+        titleEn: productCard.dataset.titleEn,
+        price: productCard.dataset.price
+      });
       return;
     }
     if (target.matches('.add-cart')) {
@@ -2894,6 +3192,11 @@ function initEvents() {
     if (target.matches('#contactOrderButton')) {
       event.preventDefault();
       copyCartAndOpenContact();
+      return;
+    }
+    if (target.matches('#copyCartButton')) {
+      event.preventDefault();
+      copyCartToClipboard();
       return;
     }
     if (target.matches('#clearSearch')) {
@@ -2946,11 +3249,61 @@ if (homeFilterButton) {
     const productCard = event.target.closest?.('.product-card[data-title][data-price]');
     if (!productCard) return;
     event.preventDefault();
-    addToCart(productCard.dataset.title, productCard.dataset.price);
+    addToCart({
+      key: productCard.dataset.cartKey,
+      titleZh: productCard.dataset.titleZh,
+      titleEn: productCard.dataset.titleEn,
+      price: productCard.dataset.price
+    });
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeContactModal();
   });
+}
+
+function captureTopupFormValues() {
+  return getTopupInfoFields().reduce((values, field) => {
+    values[field.name] = field.value;
+    return values;
+  }, {});
+}
+
+function restoreTopupFormValues(values) {
+  Object.entries(values || {}).forEach(([name, value]) => {
+    const field = Array.from(document.querySelectorAll('[data-topup-field]'))
+      .find((candidate) => candidate.dataset.topupField === name);
+    if (field) field.value = value;
+  });
+}
+
+function refreshLanguageContent() {
+  document.querySelectorAll('.currency-switch').forEach((switcher) => {
+    switcher.setAttribute('aria-label', uiText('currency.switcher'));
+  });
+
+  if (page === 'home') {
+    renderHomePage(isShowingAllGames, activeHomeCategory);
+    const query = document.getElementById('searchInput')?.value || '';
+    if (query.trim()) handleSearch(query);
+  } else if (page === 'game') {
+    const values = captureTopupFormValues();
+    const params = getQueryParams();
+    renderGamePage(params.category, params.gameId);
+    restoreTopupFormValues(values);
+  } else if (categories[page]) {
+    renderCategoryPage(page);
+    const query = document.getElementById('searchInput')?.value || '';
+    if (query.trim()) handleSearch(query);
+  }
+
+  updateCartUI();
+  updateDailyOrderStatsUI();
+  if (document.getElementById('contactModal')?.classList.contains('open')) {
+    openContactModal(activeContactMode);
+  }
+  if (document.getElementById('orderCopiedDialog')) {
+    showOrderCopiedDialog(() => openContactModal('order'));
+  }
 }
 
 function start() {
@@ -2972,4 +3325,5 @@ function start() {
   refreshCurrencyDisplay();
 }
 
+window.addEventListener('bge:languagechange', refreshLanguageContent);
 window.addEventListener('DOMContentLoaded', start);
