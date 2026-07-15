@@ -5,6 +5,13 @@ const statsKey = 'bge-stats-v1';
 const dailyOrdersKey = 'bge-daily-order-stats-v1';
 const currencyKey = 'bge-currency-v1';
 
+// 网站商品资料设置。每次正式调整价格或商品后，只需更新 updatedAt。
+const catalogSettings = {
+  updatedAt: '2026-07-15',
+  timeZone: 'Asia/Kuala_Lumpur',
+  whatsappNumber: '60124458242'
+};
+
 const currencySettings = {
   defaultCurrency: 'MYR',
   rates: {
@@ -23,6 +30,10 @@ let activeCurrency = localStorage.getItem(currencyKey) || currencySettings.defau
 if (!currencySettings.rates[activeCurrency]) activeCurrency = currencySettings.defaultCurrency;
 
 let latestOrderText = '';
+let latestOrderIdentity = null;
+let latestInquiryText = '';
+let latestInquiryLabel = '';
+let currentOrderIdentity = null;
 let activeContactMode = 'default';
 
 const uiTextFallbacks = {
@@ -38,6 +49,8 @@ const uiTextFallbacks = {
   'cart.copied': '购物单已复制',
   'order.copied': '订单内容已复制',
   'order.copyFailed': '复制失败，请手动选择并复制。',
+  'order.number': '订单编号',
+  'order.time': '下单时间',
   'order.game': '游戏',
   'order.topupInfo': '充值资料',
   'order.products': '商品',
@@ -64,14 +77,30 @@ const uiTextFallbacks = {
   'search.prompt': '请输入关键词开始搜索',
   'search.none': '未找到与 “{query}” 匹配的游戏',
   'search.noneBody': '没有搜索到符合条件的游戏。',
+  'search.askTitle': '还是找不到你要的游戏？',
+  'search.askBody': '把游戏名称发给客服，我们会帮你确认是否可以充值。',
+  'search.askButton': 'WhatsApp 询问这个游戏',
+  'search.inquiryMessage': '你好，我在 Brilliant Gaming 网站搜索不到“{query}”。请问这个游戏可以充值吗？',
   'search.count': '找到 {count} 个结果，点击卡片即可进入充值页面',
   'product.addAria': '加入购物车：{title} {price}',
+  'product.inquiryAria': '询问商品：{title}',
+  'product.status.paused': '暂停接单',
+  'product.status.soldout': '暂时售罄',
+  'product.status.inquiry': '联系客服询价',
+  'product.pausedNotice': '此商品目前暂停接单，请选择其他商品。',
+  'product.soldoutNotice': '此商品目前暂时售罄，请选择其他商品。',
+  'product.inquiryMessage': '你好，我想询问 {game} 的“{item}”。请问目前价格和充值方式是什么？',
+  'catalog.updated': '价格更新：{date}',
   'contact.orderTitle': '使用 WhatsApp 发送订单',
   'contact.orderIntro': '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。',
   'contact.orderNoteLabel': '重要提醒：',
   'contact.orderNote': '目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。',
   'contact.defaultTitle': 'WhatsApp 客服',
   'contact.defaultIntro': '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。',
+  'contact.inquiryTitle': 'WhatsApp 商品询价',
+  'contact.inquiryIntro': '询问内容已经准备好。点击下方 WhatsApp 即可发送给客服确认价格与充值方式。',
+  'contact.inquiryNoteLabel': '询价商品：',
+  'contact.inquiryNote': '客服会根据最新渠道与库存回复你，付款前请先等待确认。',
   'contact.hoursLabel': '营业时间：',
   'contact.hours': '每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。',
   'contact.whatsappOrder': '自动带入订单内容',
@@ -130,6 +159,10 @@ function localizedProductNote(product) {
 
 function localizedSectionTitle(section) {
   return window.BGE_I18N?.getSectionTitle?.(section) || section?.title || '';
+}
+
+function englishSectionTitle(section) {
+  return window.BGE_I18N?.getSectionEnglishTitle?.(section) || section?.subtitle || section?.title || '';
 }
 
 function localizedSectionSubtitle(section) {
@@ -261,7 +294,7 @@ const categories = {
       products: [
         { title: '列车补给凭证', en: 'Express Supply Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
         { title: '无名客的荣勋', en: 'Nameless Glory', price: 'RM 38.00', note: '纪行 / Battle Pass' },
-        { title: '无名客的奖章', en: 'Nameless Medal', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
+        { title: '无名客的勋章', en: 'Nameless Medal', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
       ]
     }
   ]
@@ -1951,21 +1984,42 @@ function legacyCartMatchesGame(legacyCart, game) {
   );
 }
 
-function getGameProducts(game) {
+function getGameProductEntries(game) {
   if (!game) return [];
   const sections = resolveProductSections(game);
   if (sections.length) {
-    return sections.flatMap((section) => section.products || []);
+    return sections.flatMap((section, sectionIndex) => {
+      const sectionKey = section.id || `${sectionIndex + 1}-${section.title || 'items'}`;
+      return (section.products || []).map((product, productIndex) => ({
+        product,
+        section,
+        sectionKey,
+        sectionIndex,
+        productIndex
+      }));
+    });
   }
-  return (game.products || []).map(resolveProductPrice);
+  return (game.products || []).map(resolveProductPrice).map((product, productIndex) => ({
+    product,
+    section: null,
+    sectionKey: '',
+    sectionIndex: 0,
+    productIndex
+  }));
 }
+
+function getGameProducts(game) {
+  return getGameProductEntries(game).map((entry) => entry.product);
+}
+
 function getProductCartTitle(product) {
   return product.en ? `${product.title} / ${product.en}` : product.title;
 }
 
-function getProductCartKey(product) {
+function getProductCartKey(product, sectionKey = '') {
   const resolvedProduct = resolveProductPrice(product);
-  return `${encodeURIComponent(resolvedProduct.title || '')}::${resolvedProduct.price || ''}`;
+  const productKey = `${encodeURIComponent(resolvedProduct.title || '')}::${resolvedProduct.price || ''}`;
+  return sectionKey ? `section:${encodeURIComponent(sectionKey)}::${productKey}` : productKey;
 }
 
 function getCartItemChineseTitle(item) {
@@ -1979,19 +2033,35 @@ function getCartItemEnglishTitle(item) {
   const currentGame = getGameFromCartContext(cartContext);
   const gameId = currentGame?.id || cartContext?.gameId || '';
   const chineseTitle = getCartItemChineseTitle(item);
-  const matchingProduct = getGameProducts(currentGame).find((product) => (
+  const matchingEntry = getGameProductEntries(currentGame).find(({ product, sectionKey }) => (
+    getProductCartKey(product, sectionKey) === item?.key ||
     getProductCartKey(product) === item?.key ||
     (product.title === chineseTitle && product.price === item?.price)
   ));
 
-  if (matchingProduct) return englishProductTitle(gameId, matchingProduct);
+  if (matchingEntry) return englishProductTitle(gameId, matchingEntry.product);
 
   const titleParts = String(item?.title || '').split(' / ');
   return titleParts.length > 1 ? titleParts.slice(1).join(' / ').trim() : chineseTitle;
 }
 
+function getCartItemChineseSection(item) {
+  return item?.sectionZh || '';
+}
+
+function getCartItemEnglishSection(item) {
+  if (item?.sectionEn) return item.sectionEn;
+  if (!item?.sectionKey) return '';
+
+  const currentGame = getGameFromCartContext(cartContext);
+  const matchingEntry = getGameProductEntries(currentGame).find(({ sectionKey }) => sectionKey === item.sectionKey);
+  return matchingEntry?.section ? englishSectionTitle(matchingEntry.section) : getCartItemChineseSection(item);
+}
+
 function getCartItemDisplayTitle(item) {
-  return isEnglishLanguage() ? getCartItemEnglishTitle(item) : getCartItemChineseTitle(item);
+  const productTitle = isEnglishLanguage() ? getCartItemEnglishTitle(item) : getCartItemChineseTitle(item);
+  const sectionTitle = isEnglishLanguage() ? getCartItemEnglishSection(item) : getCartItemChineseSection(item);
+  return sectionTitle ? `${sectionTitle} · ${productTitle}` : productTitle;
 }
 
 function getCartItemKey(item) {
@@ -2000,11 +2070,12 @@ function getCartItemKey(item) {
 
 function getSortedCartEntries() {
   const currentGame = getGameFromCartContext(cartContext);
-  const products = getGameProducts(currentGame);
+  const productEntries = getGameProductEntries(currentGame);
 
   const orderMap = new Map();
 
-  products.forEach((product, index) => {
+  productEntries.forEach(({ product, sectionKey }, index) => {
+    orderMap.set(getProductCartKey(product, sectionKey), index);
     orderMap.set(getProductCartKey(product), index);
     orderMap.set(getProductCartTitle(product), index);
     orderMap.set(product.title, index);
@@ -2429,31 +2500,48 @@ function addToCart(productOrTitle, fallbackPrice) {
         key: productOrTitle.key || `${encodeURIComponent(productOrTitle.titleZh || productOrTitle.title || '')}::${productOrTitle.price || fallbackPrice || ''}`,
         titleZh: productOrTitle.titleZh || productOrTitle.title || '',
         titleEn: productOrTitle.titleEn || productOrTitle.title || '',
+        sectionKey: productOrTitle.sectionKey || '',
+        sectionZh: productOrTitle.sectionZh || '',
+        sectionEn: productOrTitle.sectionEn || '',
         price: productOrTitle.price || fallbackPrice || ''
       }
     : {
         key: `${encodeURIComponent(String(productOrTitle || '').split(' / ')[0].trim())}::${fallbackPrice || ''}`,
         titleZh: String(productOrTitle || '').split(' / ')[0].trim(),
         titleEn: String(productOrTitle || '').split(' / ').slice(1).join(' / ').trim() || String(productOrTitle || '').split(' / ')[0].trim(),
+        sectionKey: '',
+        sectionZh: '',
+        sectionEn: '',
         price: fallbackPrice || ''
       };
 
   const canonicalTitle = payload.titleEn && payload.titleEn !== payload.titleZh
     ? `${payload.titleZh} / ${payload.titleEn}`
     : payload.titleZh;
-  const existing = cart.find((item) => getCartItemKey(item) === payload.key && item.price === payload.price);
+  const existing = cart.find((item) => getCartItemKey(item) === payload.key && item.price === payload.price)
+    || cart.find((item) => (
+      !item.sectionKey
+      && getCartItemChineseTitle(item) === payload.titleZh
+      && item.price === payload.price
+    ));
 
   if (existing) {
     existing.quantity += 1;
     existing.key = payload.key;
     existing.titleZh = payload.titleZh;
     existing.titleEn = payload.titleEn;
+    existing.sectionKey = payload.sectionKey;
+    existing.sectionZh = payload.sectionZh;
+    existing.sectionEn = payload.sectionEn;
     existing.title = canonicalTitle;
   } else {
     cart.push({
       key: payload.key,
       titleZh: payload.titleZh,
       titleEn: payload.titleEn,
+      sectionKey: payload.sectionKey,
+      sectionZh: payload.sectionZh,
+      sectionEn: payload.sectionEn,
       title: canonicalTitle,
       price: payload.price,
       quantity: 1
@@ -2462,7 +2550,9 @@ function addToCart(productOrTitle, fallbackPrice) {
   saveCart();
   updateCartUI();
   showCartToast(uiText('cart.added', {
-    title: isEnglishLanguage() ? payload.titleEn : payload.titleZh
+    title: isEnglishLanguage()
+      ? (payload.sectionEn ? `${payload.sectionEn} · ${payload.titleEn}` : payload.titleEn)
+      : (payload.sectionZh ? `${payload.sectionZh} · ${payload.titleZh}` : payload.titleZh)
   }));
 }
 
@@ -2641,6 +2731,76 @@ function writeTextToClipboard(text) {
   }
 }
 
+function getMalaysiaDateParts(date = new Date()) {
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone: catalogSettings.timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  });
+  return formatter.formatToParts(date).reduce((parts, part) => {
+    if (part.type !== 'literal') parts[part.type] = part.value;
+    return parts;
+  }, {});
+}
+
+function makeOrderFingerprint() {
+  const source = JSON.stringify({
+    cartContext: getCartScopeKey(cartContext),
+    currency: activeCurrency,
+    cart: getSortedCartEntries().map(({ item }) => ({
+      key: getCartItemKey(item),
+      price: item.price,
+      quantity: item.quantity
+    })),
+    topup: getTopupInfoFields().map((field) => [field.name, field.value])
+  });
+
+  let hash = 2166136261;
+  for (let index = 0; index < source.length; index += 1) {
+    hash ^= source.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(16).padStart(8, '0');
+}
+
+function makeOrderRandomCode() {
+  const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const values = new Uint8Array(4);
+  if (window.crypto?.getRandomValues) {
+    window.crypto.getRandomValues(values);
+  } else {
+    values.forEach((value, index) => {
+      values[index] = Math.floor(Math.random() * 256);
+    });
+  }
+  return Array.from(values, (value) => alphabet[value % alphabet.length]).join('');
+}
+
+function getOrCreateOrderIdentity() {
+  const fingerprint = makeOrderFingerprint();
+  if (currentOrderIdentity?.fingerprint === fingerprint) return currentOrderIdentity;
+
+  const createdAt = new Date();
+  const parts = getMalaysiaDateParts(createdAt);
+  const displayTime = new Intl.DateTimeFormat('en-US', {
+  timeZone: catalogSettings.timeZone,
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true
+}).format(createdAt);
+  currentOrderIdentity = {
+    fingerprint,
+    id: `BG-${parts.year}${parts.month}${parts.day}-${parts.hour}${parts.minute}-${makeOrderRandomCode()}`,
+    time: `${parts.year}-${parts.month}-${parts.day} ${displayTime}`
+  };
+  return currentOrderIdentity;
+}
+
 
 function copyCartToClipboard(options = {}) {
   const { openContactAfterCopy = false, requireTopupInfo = false } = options;
@@ -2656,6 +2816,7 @@ function copyCartToClipboard(options = {}) {
 
   const total = getCartTotal();
   const currentGame = getGameFromCartContext(cartContext);
+  const orderIdentity = getOrCreateOrderIdentity();
 
   const currentGameName =
     localizedGameName(currentGame, true) ||
@@ -2664,9 +2825,9 @@ function copyCartToClipboard(options = {}) {
     cartContext?.gameName ||
     'Brilliant Gaming';
 
-  const productLines = getSortedCartEntries().map(({ item }, index) => {
-    return `${index + 1}. ${getCartItemDisplayTitle(item)} x${item.quantity} - ${formatPriceForCurrency(item.price)}`;
-  });
+  const productLines = getSortedCartEntries().map(({ item }) => {
+  return `${getCartItemDisplayTitle(item)} x${item.quantity}`;
+});
 
   const separator = isEnglishLanguage() ? ': ' : '：';
   const topupFields = getTopupInfoFields()
@@ -2678,7 +2839,10 @@ function copyCartToClipboard(options = {}) {
   const paymentLine = paymentField ? makeTopupLine(paymentField) : '';
   const otherTopupLines = otherTopupFields.map(makeTopupLine);
 
-  const text = `${paymentLine ? `${paymentLine}\n\n` : ''}${uiText('order.game')}${separator}${currentGameName}
+  const text = `${uiText('order.number')}${separator}${orderIdentity.id}
+${uiText('order.time')}${separator}${orderIdentity.time}
+
+${paymentLine ? `${paymentLine}\n\n` : ''}${uiText('order.game')}${separator}${currentGameName}
 
 ${uiText('order.topupInfo')}${separator.trim()}
 ${otherTopupLines.length ? otherTopupLines.join('\n') : uiText('order.unfilledHelp')}
@@ -2689,6 +2853,7 @@ ${productLines.join('\n')}
 ${uiText('order.total')}${separator}${formatTotal(total)}`;
 
   latestOrderText = text;
+  latestOrderIdentity = orderIdentity;
 
   writeTextToClipboard(text)
     .then(() => {
@@ -2712,6 +2877,7 @@ function showOrderCopiedDialog(onConfirm) {
     <div class="order-copied-dialog" role="dialog" aria-modal="true">
       <div class="order-copied-icon">✓</div>
       <h3>${escapeHtml(uiText('order.dialogTitle'))}</h3>
+      ${latestOrderIdentity?.id ? `<div class="order-copied-reference">${escapeHtml(uiText('order.number'))}: <strong>${escapeHtml(latestOrderIdentity.id)}</strong></div>` : ''}
       <p>${escapeHtml(uiText('order.dialogText')).replace(/\n/g, '<br>')}</p>
       <div class="order-copied-note">
         ${escapeHtml(uiText('order.dialogNote'))}
@@ -2747,7 +2913,7 @@ function makeGameCover(game) {
   const fallback = escapeAttribute(getAvatarText(displayName));
   return `
     <div class="game-avatar game-cover">
-      <img src="${escapeAttribute(game.image)}" alt="${escapeAttribute(displayName)}" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
+      <img src="${escapeAttribute(game.image)}" alt="${escapeAttribute(displayName)}" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
     </div>`;
 }
 
@@ -2768,18 +2934,106 @@ function makeCategoryGameCard(categoryId, game) {
   return makeHomeGameCard(categoryId, game);
 }
 
-function makeProductCard(product, gameId = '') {
+const validProductStatuses = new Set(['active', 'paused', 'soldout', 'inquiry']);
+
+function getProductStatus(product) {
+  const explicitStatus = String(product?.status || '').toLowerCase();
+  if (validProductStatuses.has(explicitStatus)) return explicitStatus;
+  return hasNumericPrice(product?.price) ? 'active' : 'inquiry';
+}
+
+function getSectionSystemValue(section) {
+  const title = String(section?.title || '');
+  if (title.includes('苹果系统')) return '苹果 iOS';
+  if (title.includes('安卓系统')) return '安卓 Android';
+  return '';
+}
+
+function applyProductFormDefaults(productCard) {
+  const systemValue = productCard?.dataset.systemValue || '';
+  if (!systemValue) return;
+
+  const systemField = document.querySelector('[data-topup-field="system"]');
+  if (!systemField) return;
+  const hasOption = Array.from(systemField.options || []).some((option) => option.value === systemValue);
+  if (!hasOption) return;
+  systemField.value = systemValue;
+  systemField.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function openInquiryChannel(message, label = '') {
+  latestInquiryText = message;
+  latestInquiryLabel = label;
+  if (document.getElementById('contactModal')) {
+    openContactModal('inquiry');
+    return;
+  }
+
+  const url = `https://wa.me/${catalogSettings.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
+function openProductInquiry(productCard) {
+  const currentGame = getGameFromCartContext(cartContext);
+  const gameName = localizedGameName(currentGame, true) || cartContext?.gameName || 'Brilliant Gaming';
+  const sectionTitle = productCard?.dataset.sectionTitle || '';
+  const productTitle = productCard?.dataset.title || '';
+  const item = sectionTitle ? `${sectionTitle} · ${productTitle}` : productTitle;
+  openInquiryChannel(uiText('product.inquiryMessage', { game: gameName, item }), item);
+}
+
+function handleProductCardAction(productCard) {
+  const status = productCard?.dataset.productStatus || 'active';
+  if (status === 'paused') {
+    showCartToast(uiText('product.pausedNotice'));
+    return;
+  }
+  if (status === 'soldout') {
+    showCartToast(uiText('product.soldoutNotice'));
+    return;
+  }
+  if (status === 'inquiry') {
+    openProductInquiry(productCard);
+    return;
+  }
+
+  addToCart({
+    key: productCard.dataset.cartKey,
+    titleZh: productCard.dataset.titleZh,
+    titleEn: productCard.dataset.titleEn,
+    sectionKey: productCard.dataset.sectionKey,
+    sectionZh: productCard.dataset.sectionZh,
+    sectionEn: productCard.dataset.sectionEn,
+    price: productCard.dataset.price
+  });
+  applyProductFormDefaults(productCard);
+}
+
+function makeProductCard(product, gameId = '', section = null, sectionKey = '') {
   const resolvedProduct = resolveProductPrice(product);
   const titleZh = resolvedProduct.title || '';
   const titleEn = englishProductTitle(gameId, resolvedProduct);
   const title = localizedProductTitle(gameId, resolvedProduct);
+  const sectionZh = section?.title || '';
+  const sectionEn = section ? englishSectionTitle(section) : '';
+  const sectionTitle = section ? localizedSectionTitle(section) : '';
   const subtitle = isEnglishLanguage() ? localizedProductNote(resolvedProduct) : titleEn;
   const price = resolvedProduct.price || '';
   const displayPrice = formatPriceForCurrency(price);
-  const cartKey = getProductCartKey(resolvedProduct);
+  const cartKey = getProductCartKey(resolvedProduct, sectionKey);
+  const status = getProductStatus(resolvedProduct);
+  const systemValue = getSectionSystemValue(section);
+  const isUnavailable = status === 'paused' || status === 'soldout';
+  const actionLabel = status === 'inquiry'
+    ? uiText('product.inquiryAria', { title })
+    : uiText('product.addAria', { title, price: displayPrice });
+  const statusBadge = status === 'active'
+    ? ''
+    : `<span class="product-status-badge">${escapeHtml(uiText(`product.status.${status}`))}</span>`;
 
   return `
-    <article class="product-card" role="button" tabindex="0" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-price="${escapeAttribute(price)}" aria-label="${escapeAttribute(uiText('product.addAria', { title, price: displayPrice }))}">
+    <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
+      ${statusBadge}
       <h3>${escapeHtml(title)}</h3>
       <p>${escapeHtml(subtitle)}</p>
       <div class="product-price" data-price-base="${escapeAttribute(price)}">${escapeHtml(displayPrice)}</div>
@@ -2797,7 +3051,7 @@ function makeProductSections(game) {
   }
 
   return sections
-    .map((section) => {
+    .map((section, sectionIndex) => {
       const sectionTitle = localizedSectionTitle(section);
       const sectionSubtitle = localizedSectionSubtitle(section);
       return `
@@ -2809,7 +3063,12 @@ function makeProductSections(game) {
           </h3>
         </div>
         <div class="product-grid">
-          ${(section.products || []).map((product) => makeProductCard(product, game.id)).join('')}
+          ${(section.products || []).map((product) => makeProductCard(
+            product,
+            game.id,
+            section,
+            section.id || `${sectionIndex + 1}-${section.title || 'items'}`
+          )).join('')}
         </div>
       </div>`;
     })
@@ -2899,6 +3158,64 @@ function renderCategoryPage(pageId) {
   }
 }
 
+function setMetaContent(selector, attributes, content) {
+  let node = document.head.querySelector(selector);
+  if (!node) {
+    node = document.createElement('meta');
+    Object.entries(attributes).forEach(([name, value]) => node.setAttribute(name, value));
+    document.head.appendChild(node);
+  }
+  node.setAttribute('content', content);
+}
+
+function updateGameSeo(categoryId, game) {
+  if (!game) return;
+  const gameName = localizedGameName(game, true);
+  const description = isEnglishLanguage()
+    ? `Top up ${gameName} with Brilliant Gaming. Clear prices, human support, and service for Malaysia and Singapore players.`
+    : `${gameName}充值服务，价格清楚、人工客服确认，为马来西亚与新加坡玩家提供便利的游戏充值体验。`;
+  const title = isEnglishLanguage()
+    ? `${gameName} Top-Up - Brilliant Gaming`
+    : `${gameName}充值 - Brilliant Gaming`;
+  let canonicalUrl = '';
+  try {
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.searchParams.delete('lang');
+    url.searchParams.set('category', categoryId);
+    url.searchParams.set('game', game.id);
+    canonicalUrl = url.href;
+  } catch (error) {
+    canonicalUrl = `game.html?category=${encodeURIComponent(categoryId)}&game=${encodeURIComponent(game.id)}`;
+  }
+  let imageUrl = '';
+  try {
+    imageUrl = new URL(game.detailArt || game.image || '', canonicalUrl).href;
+  } catch (error) {
+    imageUrl = '';
+  }
+
+  document.title = title;
+  setMetaContent('meta[name="description"]', { name: 'description' }, description);
+  setMetaContent('meta[property="og:title"]', { property: 'og:title' }, title);
+  setMetaContent('meta[property="og:description"]', { property: 'og:description' }, description);
+  setMetaContent('meta[property="og:type"]', { property: 'og:type' }, 'website');
+  setMetaContent('meta[property="og:url"]', { property: 'og:url' }, canonicalUrl);
+  if (imageUrl) setMetaContent('meta[property="og:image"]', { property: 'og:image' }, imageUrl);
+  setMetaContent('meta[name="twitter:card"]', { name: 'twitter:card' }, imageUrl ? 'summary_large_image' : 'summary');
+  setMetaContent('meta[name="twitter:title"]', { name: 'twitter:title' }, title);
+  setMetaContent('meta[name="twitter:description"]', { name: 'twitter:description' }, description);
+  if (imageUrl) setMetaContent('meta[name="twitter:image"]', { name: 'twitter:image' }, imageUrl);
+
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+}
+
 function renderGamePage(categoryId, gameId) {
   const category = categories[categoryId];
   const game = category?.games.find((item) => item.id === gameId);
@@ -2909,12 +3226,14 @@ function renderGamePage(categoryId, gameId) {
   const tagline = document.getElementById('detailTagline');
   const backLink = document.getElementById('detailBackLink');
   const products = document.getElementById('gameProducts');
+  const updatedMeta = document.getElementById('catalogUpdatedMeta');
 
   if (!game) {
     if (title) title.textContent = uiText('game.notFound');
     if (summary) summary.textContent = uiText('game.notFoundSummary');
     if (products) products.innerHTML = `<div class="cart-empty">${escapeHtml(uiText('game.notFoundBody'))}</div>`;
     if (backLink) backLink.href = 'index.html';
+    if (updatedMeta) updatedMeta.textContent = '';
     renderTopupInfoForm('', null);
     return;
   }
@@ -2937,8 +3256,14 @@ function renderGamePage(categoryId, gameId) {
       : uiText('game.pricingPending');
   }
   if (backLink) backLink.href = category.page || 'index.html';
+  if (updatedMeta) {
+    updatedMeta.textContent = uiText('catalog.updated', {
+      date: game.updatedAt || catalogSettings.updatedAt
+    });
+  }
   if (products) products.innerHTML = makeProductSections(game);
   renderTopupInfoForm(categoryId, game);
+  updateGameSeo(categoryId, game);
 }
 
 function searchGames(query, categoryId = null) {
@@ -3002,7 +3327,15 @@ function renderSearchResults(results, query) {
   }
   if (!results.length) {
     countText.textContent = uiText('search.none', { query });
-    grid.innerHTML = `<div class="cart-empty">${escapeHtml(uiText('search.noneBody'))}</div>`;
+    grid.innerHTML = `
+      <div class="search-empty-state">
+        <span class="search-empty-icon" aria-hidden="true">?</span>
+        <h3>${escapeHtml(uiText('search.askTitle'))}</h3>
+        <p>${escapeHtml(uiText('search.askBody'))}</p>
+        <button type="button" class="button button-primary" data-search-inquiry data-query="${escapeAttribute(query)}">
+          ${escapeHtml(uiText('search.askButton'))}
+        </button>
+      </div>`;
     return;
   }
   countText.textContent = uiText('search.count', { count: results.length });
@@ -3052,14 +3385,17 @@ function openContactModal(mode = 'default') {
   const modal = document.getElementById('contactModal');
   if (!modal) return;
   activeContactMode = mode;
-    const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
+  const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
   const whatsappSmall = whatsappLink ? whatsappLink.querySelector('small') : null;
-  const whatsappBaseUrl = 'https://wa.me/60124458242';
+  const whatsappBaseUrl = `https://wa.me/${catalogSettings.whatsappNumber}`;
 
   if (whatsappLink) {
     if (mode === 'order' && latestOrderText) {
       whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestOrderText)}`;
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOrder');
+    } else if (mode === 'inquiry' && latestInquiryText) {
+      whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestInquiryText)}`;
+      if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
     } else {
       whatsappLink.href = whatsappBaseUrl;
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
@@ -3070,23 +3406,26 @@ function openContactModal(mode = 'default') {
   const intro = modal.querySelector('.contact-intro');
   const note = modal.querySelector('.contact-note-premium');
 
-if (mode === 'order') {
-  if (title) title.textContent = uiText('contact.orderTitle');
-  if (intro) {
-    intro.textContent = uiText('contact.orderIntro');
+  if (mode === 'order') {
+    if (title) title.textContent = uiText('contact.orderTitle');
+    if (intro) intro.textContent = uiText('contact.orderIntro');
+    if (note) {
+      note.innerHTML = `<strong>${escapeHtml(uiText('contact.orderNoteLabel'))}</strong>${escapeHtml(uiText('contact.orderNote'))}`;
+    }
+  } else if (mode === 'inquiry') {
+    if (title) title.textContent = uiText('contact.inquiryTitle');
+    if (intro) intro.textContent = uiText('contact.inquiryIntro');
+    if (note) {
+      const label = latestInquiryLabel ? `${latestInquiryLabel} · ` : '';
+      note.innerHTML = `<strong>${escapeHtml(uiText('contact.inquiryNoteLabel'))}</strong>${escapeHtml(label + uiText('contact.inquiryNote'))}`;
+    }
+  } else {
+    if (title) title.textContent = uiText('contact.defaultTitle');
+    if (intro) intro.textContent = uiText('contact.defaultIntro');
+    if (note) {
+      note.innerHTML = `<strong>${escapeHtml(uiText('contact.hoursLabel'))}</strong>${escapeHtml(uiText('contact.hours'))}`;
+    }
   }
-  if (note) {
-    note.innerHTML = `<strong>${escapeHtml(uiText('contact.orderNoteLabel'))}</strong>${escapeHtml(uiText('contact.orderNote'))}`;
-  }
-} else {
-  if (title) title.textContent = uiText('contact.defaultTitle');
-  if (intro) {
-    intro.textContent = uiText('contact.defaultIntro');
-  }
-  if (note) {
-    note.innerHTML = `<strong>${escapeHtml(uiText('contact.hoursLabel'))}</strong>${escapeHtml(uiText('contact.hours'))}`;
-  }
-}
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
@@ -3132,6 +3471,17 @@ function initEvents() {
       return;
     }
 
+    const searchInquiryButton = target.closest('[data-search-inquiry]');
+    if (searchInquiryButton) {
+      event.preventDefault();
+      const query = searchInquiryButton.dataset.query || '';
+      openInquiryChannel(
+        uiText('search.inquiryMessage', { query }),
+        query
+      );
+      return;
+    }
+
     if (target.closest('[data-contact-close]')) {
       event.preventDefault();
       closeContactModal();
@@ -3166,12 +3516,7 @@ function initEvents() {
 
     const productCard = target.closest('.product-card[data-title][data-price]');
     if (productCard) {
-      addToCart({
-        key: productCard.dataset.cartKey,
-        titleZh: productCard.dataset.titleZh,
-        titleEn: productCard.dataset.titleEn,
-        price: productCard.dataset.price
-      });
+      handleProductCardAction(productCard);
       return;
     }
     if (target.matches('.add-cart')) {
@@ -3249,12 +3594,7 @@ if (homeFilterButton) {
     const productCard = event.target.closest?.('.product-card[data-title][data-price]');
     if (!productCard) return;
     event.preventDefault();
-    addToCart({
-      key: productCard.dataset.cartKey,
-      titleZh: productCard.dataset.titleZh,
-      titleEn: productCard.dataset.titleEn,
-      price: productCard.dataset.price
-    });
+    handleProductCardAction(productCard);
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeContactModal();
@@ -3275,6 +3615,110 @@ function restoreTopupFormValues(values) {
     if (field) field.value = value;
   });
 }
+
+function validateCatalogData() {
+  const issues = [];
+  const seenGameIds = new Map();
+  const allowedStatuses = new Set(['active', 'paused', 'soldout', 'inquiry']);
+  let gameCount = 0;
+  let productCount = 0;
+
+  const addIssue = (severity, code, message, path) => {
+    issues.push({ severity, code, message, path });
+  };
+
+  Object.entries(categories).forEach(([categoryId, category]) => {
+    (category.games || []).forEach((game, gameIndex) => {
+      gameCount += 1;
+      const gamePath = `${categoryId}.games[${gameIndex}]`;
+      const gameId = String(game.id || '').trim();
+
+      ['id', 'name', 'description', 'image', 'detailArt'].forEach((field) => {
+        if (!String(game[field] || '').trim()) {
+          addIssue('error', 'missing-game-field', `缺少游戏字段：${field}`, `${gamePath}.${field}`);
+        }
+      });
+
+      if (gameId) {
+        if (seenGameIds.has(gameId)) {
+          addIssue('error', 'duplicate-game-id', `游戏 ID 重复：${gameId}`, gamePath);
+        } else {
+          seenGameIds.set(gameId, gamePath);
+        }
+      }
+
+      const englishName = englishGameName(game, true);
+      if (!englishName || window.BGE_I18N?.hasChinese?.(englishName)) {
+        addIssue('warning', 'missing-game-english', `游戏缺少完整英文名：${game.name || gameId}`, gamePath);
+      }
+
+      if (game.updatedAt && !/^\d{4}-\d{2}-\d{2}$/.test(game.updatedAt)) {
+        addIssue('warning', 'invalid-update-date', 'updatedAt 建议使用 YYYY-MM-DD 格式', `${gamePath}.updatedAt`);
+      }
+
+      const rawSections = Array.isArray(game.productSections) && game.productSections.length
+        ? game.productSections
+        : [{ title: '', products: game.products || [] }];
+
+      rawSections.forEach((section, sectionIndex) => {
+        const sectionPath = `${gamePath}.productSections[${sectionIndex}]`;
+        const seenProducts = new Set();
+        if (section.title) {
+          const englishSection = englishSectionTitle(section);
+          if (!englishSection || window.BGE_I18N?.hasChinese?.(englishSection)) {
+            addIssue('warning', 'missing-section-english', `商品分类缺少英文：${section.title}`, sectionPath);
+          }
+        }
+
+        (section.products || []).forEach((rawProduct, productIndex) => {
+          productCount += 1;
+          const productPath = `${sectionPath}.products[${productIndex}]`;
+          const product = resolveProductPrice(rawProduct);
+          const title = String(product?.title || '').trim();
+          if (!title) addIssue('error', 'missing-product-title', '商品缺少 title', productPath);
+          if (!String(product?.price || '').trim()) addIssue('error', 'missing-product-price', `商品缺少价格：${title || productIndex + 1}`, productPath);
+
+          if (title) {
+            const duplicateKey = `${title}\u0000${String(product?.price || '')}`;
+            if (seenProducts.has(duplicateKey)) {
+              addIssue('warning', 'duplicate-product', `同一分类有重复商品：${title}`, productPath);
+            }
+            seenProducts.add(duplicateKey);
+          }
+
+          if (rawProduct.pricePreset && !Object.prototype.hasOwnProperty.call(pricePresets, rawProduct.pricePreset)) {
+            addIssue('error', 'unknown-price-preset', `找不到 pricePreset：${rawProduct.pricePreset}`, productPath);
+          }
+
+          const rawStatus = String(rawProduct.status || '').toLowerCase();
+          if (rawStatus && !allowedStatuses.has(rawStatus)) {
+            addIssue('error', 'invalid-product-status', `不支持的商品状态：${rawProduct.status}`, productPath);
+          }
+
+          const englishTitle = englishProductTitle(gameId, product);
+          if (!englishTitle || window.BGE_I18N?.hasChinese?.(englishTitle)) {
+            addIssue('warning', 'missing-product-english', `商品缺少完整英文：${title || productIndex + 1}`, productPath);
+          }
+        });
+      });
+    });
+  });
+
+  const errors = issues.filter((issue) => issue.severity === 'error').length;
+  const warnings = issues.filter((issue) => issue.severity === 'warning').length;
+  return {
+    ok: errors === 0,
+    summary: { gameCount, productCount, errors, warnings },
+    issues
+  };
+}
+
+window.BGE_CATALOG_VALIDATOR = {
+  run: validateCatalogData,
+  getCatalog: () => categories,
+  getSettings: () => ({ ...catalogSettings }),
+  getPricePresets: () => ({ ...pricePresets })
+};
 
 function refreshLanguageContent() {
   document.querySelectorAll('.currency-switch').forEach((switcher) => {

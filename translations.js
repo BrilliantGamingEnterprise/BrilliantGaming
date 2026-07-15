@@ -19,6 +19,8 @@
   const messages = {
     zh: {
       'language.switcher': '选择网站语言',
+      'nav.open': '打开菜单',
+      'nav.close': '关闭菜单',
       'currency.switcher': '选择显示币种',
       'cart.summary': '已选商品 {count} 项',
       'cart.total': '合计：{total}',
@@ -31,6 +33,8 @@
       'cart.copied': '购物单已复制',
       'order.copied': '订单内容已复制',
       'order.copyFailed': '复制失败，请手动选择并复制。',
+      'order.number': '订单编号',
+      'order.time': '下单时间',
       'order.game': '游戏',
       'order.topupInfo': '充值资料',
       'order.products': '商品',
@@ -57,14 +61,33 @@
       'search.prompt': '请输入关键词开始搜索',
       'search.none': '未找到与 “{query}” 匹配的游戏',
       'search.noneBody': '没有搜索到符合条件的游戏。',
+      'search.askTitle': '还是找不到你要的游戏？',
+      'search.askBody': '把游戏名称发给客服，我们会帮你确认是否可以充值。',
+      'search.askButton': 'WhatsApp 询问这个游戏',
+      'search.inquiryMessage': '你好，我在 Brilliant Gaming 网站搜索不到“{query}”。请问这个游戏可以充值吗？',
       'search.count': '找到 {count} 个结果，点击卡片即可进入充值页面',
       'product.addAria': '加入购物车：{title} {price}',
+      'product.inquiryAria': '询问商品：{title}',
+      'product.status.paused': '暂停接单',
+      'product.status.soldout': '暂时售罄',
+      'product.status.inquiry': '联系客服询价',
+      'product.pausedNotice': '此商品目前暂停接单，请选择其他商品。',
+      'product.soldoutNotice': '此商品目前暂时售罄，请选择其他商品。',
+      'product.inquiryMessage': '你好，我想询问 {game} 的“{item}”。请问目前价格和充值方式是什么？',
+      'catalog.updated': '价格更新：{date}',
+      'service.online': '客服在线',
+      'service.offline': '可以留言',
+      'service.timezone': '马来西亚时间 · 每天 10AM - 2AM',
       'contact.orderTitle': '使用 WhatsApp 发送订单',
       'contact.orderIntro': '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。',
       'contact.orderNoteLabel': '重要提醒：',
       'contact.orderNote': '目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。',
       'contact.defaultTitle': 'WhatsApp 客服',
       'contact.defaultIntro': '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。',
+      'contact.inquiryTitle': 'WhatsApp 商品询价',
+      'contact.inquiryIntro': '询问内容已经准备好。点击下方 WhatsApp 即可发送给客服确认价格与充值方式。',
+      'contact.inquiryNoteLabel': '询价商品：',
+      'contact.inquiryNote': '客服会根据最新渠道与库存回复你，付款前请先等待确认。',
       'contact.hoursLabel': '营业时间：',
       'contact.hours': '每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。',
       'contact.whatsappOrder': '自动带入订单内容',
@@ -81,6 +104,8 @@
     },
     en: {
       'language.switcher': 'Choose website language',
+      'nav.open': 'Open menu',
+      'nav.close': 'Close menu',
       'currency.switcher': 'Choose display currency',
       'cart.summary': '{count} item(s) selected',
       'cart.total': 'Total: {total}',
@@ -93,6 +118,8 @@
       'cart.copied': 'Cart copied',
       'order.copied': 'Order copied',
       'order.copyFailed': 'Copy failed. Please select and copy the text manually.',
+      'order.number': 'Order ID',
+      'order.time': 'Order Time',
       'order.game': 'Game',
       'order.topupInfo': 'Top-Up Details',
       'order.products': 'Items',
@@ -119,14 +146,33 @@
       'search.prompt': 'Enter a keyword to search',
       'search.none': 'No games matched “{query}”',
       'search.noneBody': 'No matching games were found.',
+      'search.askTitle': 'Still cannot find your game?',
+      'search.askBody': 'Send the game name to our team and we will check whether a top-up is available.',
+      'search.askButton': 'Ask on WhatsApp',
+      'search.inquiryMessage': 'Hi, I could not find “{query}” on the Brilliant Gaming website. Is top-up available for this game?',
       'search.count': '{count} result(s) found. Select a card to open its top-up page.',
       'product.addAria': 'Add to cart: {title} {price}',
+      'product.inquiryAria': 'Ask about item: {title}',
+      'product.status.paused': 'Orders Paused',
+      'product.status.soldout': 'Sold Out',
+      'product.status.inquiry': 'Ask for Price',
+      'product.pausedNotice': 'Orders for this item are currently paused. Please choose another item.',
+      'product.soldoutNotice': 'This item is temporarily sold out. Please choose another item.',
+      'product.inquiryMessage': 'Hi, I would like to ask about “{item}” for {game}. What is the current price and top-up method?',
+      'catalog.updated': 'Prices updated: {date}',
+      'service.online': 'Customer Service Online',
+      'service.offline': 'Leave a Message',
+      'service.timezone': 'Malaysia time · Daily 10AM - 2AM',
       'contact.orderTitle': 'Send Your Order via WhatsApp',
       'contact.orderIntro': 'Your order has been copied. Tap WhatsApp below and send it to customer service. Please pay only after the items, amount, and top-up details are confirmed.',
       'contact.orderNoteLabel': 'Important: ',
       'contact.orderNote': 'Please place orders through WhatsApp and wait for confirmation before making payment.',
       'contact.defaultTitle': 'WhatsApp Customer Service',
       'contact.defaultIntro': 'Contact Brilliant Gaming through WhatsApp. Our team will help confirm the item, payment method, and top-up details.',
+      'contact.inquiryTitle': 'Ask About an Item on WhatsApp',
+      'contact.inquiryIntro': 'Your inquiry is ready. Tap WhatsApp below to ask our team about the latest price and top-up method.',
+      'contact.inquiryNoteLabel': 'Item inquiry: ',
+      'contact.inquiryNote': 'Our team will reply based on the latest channel availability and stock. Please wait for confirmation before paying.',
       'contact.hoursLabel': 'Business hours: ',
       'contact.hours': 'Daily, 10AM - 2AM. You may leave a message outside business hours and we will reply as soon as we are online.',
       'contact.whatsappOrder': 'Order text included automatically',
@@ -149,6 +195,11 @@
     '玩家好评 - Brilliant Gaming': 'Customer Reviews - Brilliant Gaming',
     '国际游戏 - Brilliant Gaming Enterprise': 'Global Games - Brilliant Gaming Enterprise',
     '中国腾讯游戏 - Brilliant Gaming Enterprise': 'China Tencent Games - Brilliant Gaming Enterprise',
+    'Brilliant Gaming 为马来西亚与新加坡玩家提供热门国际服、中国服游戏充值与人工客服支持。': 'Brilliant Gaming provides popular global and China-server game top-ups with personal support for players in Malaysia and Singapore.',
+    'Brilliant Gaming 游戏充值商品、价格与充值资料确认页面。': 'Browse Brilliant Gaming top-up items, prices, and required order details.',
+    '查看 Brilliant Gaming 客户的真实游戏充值评价与服务体验。': 'Read genuine customer reviews and top-up service experiences with Brilliant Gaming.',
+    'Brilliant Gaming 国际服手游充值目录与游戏搜索。': 'Browse and search the Brilliant Gaming global game top-up catalog.',
+    'Brilliant Gaming 中国腾讯游戏充值目录与游戏搜索。': 'Browse and search the Brilliant Gaming China Tencent game top-up catalog.',
     '首页': 'Home',
     '游戏充值': 'Game Top-Up',
     '充值指南': 'Top-Up Guide',
@@ -318,6 +369,7 @@
     '国际游戏页面包含 30 款热门手游充值入口。搜索名字即可快速定位，需要更多游戏可直接复制购物单发给客服。': 'Browse top-ups for popular global mobile games. Search by name to find a game quickly, then copy your order and send it to customer service.',
     '搜索 + 购物车双功能，帮助用户高效完成订单准备。': 'Search and cart tools make preparing your order quick and easy.',
     '国际游戏': 'Global Games',
+    '中国游戏': 'China Games',
     '首页已展示精选 9 个，完整 30 个国际游戏请查看下方列表。': 'The home page shows selected games. Browse the full global game list below.',
     '国际游戏充值、游戏代充与客服下单支持，页面风格专业简洁。': 'Global game top-ups with customer-service-assisted ordering.',
     '官方服务仅供充值咨询与订单复制使用，最终以客服实际报价与渠道为准。': 'This service is for top-up enquiries and order preparation. Final pricing and availability are confirmed by customer service.',
@@ -608,6 +660,15 @@
     return translateCatalogText(section.title || 'Items');
   }
 
+  function getSectionEnglishTitle(section) {
+    if (!section) return '';
+    if (sectionEnglish[section.title]) return sectionEnglish[section.title];
+    if (section.title && !hasChinese(section.title)) return section.title;
+    if (section.subtitle && !hasChinese(section.subtitle)) return section.subtitle;
+    const translated = translateCatalogText(section.title || 'Items');
+    return hasChinese(translated) ? 'Items' : translated;
+  }
+
   function getSectionSubtitle(section) {
     if (!section) return '';
     if (language !== 'en') return section.subtitle || '';
@@ -651,6 +712,10 @@
         }
       });
     });
+
+    document.querySelectorAll('meta[name="description"][content]').forEach((element) => {
+      attributeRecords.push({ element, attribute: 'content', original: element.getAttribute('content') });
+    });
   }
 
   function translateStaticValue(original) {
@@ -689,6 +754,115 @@
     document.querySelectorAll('.language-switch').forEach((switcher) => {
       switcher.setAttribute('aria-label', t('language.switcher'));
     });
+    updateMobileNavigationUI();
+    updateServiceStatus();
+  }
+
+  function updateMobileNavigationUI() {
+    document.querySelectorAll('.mobile-nav-toggle').forEach((button) => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      const label = t(expanded ? 'nav.close' : 'nav.open');
+      button.setAttribute('aria-label', label);
+      const labelNode = button.querySelector('.mobile-nav-label');
+      if (labelNode) labelNode.textContent = label;
+    });
+  }
+
+  function closeMobileNavigation() {
+    document.querySelectorAll('.site-nav.mobile-nav-enabled.mobile-open').forEach((nav) => {
+      nav.classList.remove('mobile-open');
+      const button = document.querySelector(`.mobile-nav-toggle[aria-controls="${nav.id}"]`);
+      if (button) button.setAttribute('aria-expanded', 'false');
+    });
+    updateMobileNavigationUI();
+  }
+
+  function createMobileNavigation() {
+    const nav = document.querySelector('.site-nav');
+    if (!nav || document.querySelector('.mobile-nav-toggle')) return;
+
+    if (!nav.id) nav.id = 'siteNavigation';
+    nav.classList.add('mobile-nav-enabled');
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'mobile-nav-toggle';
+    button.setAttribute('aria-controls', nav.id);
+    button.setAttribute('aria-expanded', 'false');
+    button.innerHTML = `
+      <span class="mobile-nav-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="mobile-nav-label"></span>
+    `;
+
+    const brand = nav.parentElement?.querySelector('.brand');
+    if (brand) brand.insertAdjacentElement('afterend', button);
+    else nav.insertAdjacentElement('beforebegin', button);
+
+    button.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('mobile-open');
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      updateMobileNavigationUI();
+    });
+
+    nav.addEventListener('click', (event) => {
+      if (event.target.closest('a')) closeMobileNavigation();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMobileNavigation();
+    });
+
+    updateMobileNavigationUI();
+  }
+
+  function getMalaysiaHour() {
+    try {
+      const hour = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kuala_Lumpur',
+        hour: '2-digit',
+        hourCycle: 'h23'
+      }).formatToParts(new Date()).find((part) => part.type === 'hour')?.value;
+      return Number(hour);
+    } catch (error) {
+      return new Date().getUTCHours() + 8;
+    }
+  }
+
+  function isServiceOnline() {
+    const hour = ((getMalaysiaHour() % 24) + 24) % 24;
+    return hour >= 10 || hour < 2;
+  }
+
+  function updateServiceStatus() {
+    const online = isServiceOnline();
+    document.querySelectorAll('[data-service-status]').forEach((badge) => {
+      badge.classList.toggle('is-online', online);
+      badge.classList.toggle('is-offline', !online);
+      badge.setAttribute('title', t('service.timezone'));
+      const textNode = badge.querySelector('[data-service-status-text]');
+      if (textNode) textNode.textContent = t(online ? 'service.online' : 'service.offline');
+      const hoursNode = badge.querySelector('[data-service-status-hours]');
+      if (hoursNode) hoursNode.textContent = t('service.timezone');
+    });
+  }
+
+  function createServiceStatus() {
+    if (document.querySelector('[data-service-status]')) return;
+    const anchor = document.querySelector('.detail-status, .hero-kicker, .hero-badge, .reviews-kicker');
+    if (!anchor) return;
+
+    const badge = document.createElement('span');
+    badge.className = 'service-status-badge';
+    badge.dataset.serviceStatus = 'true';
+    badge.dataset.bgeI18nIgnore = 'true';
+    badge.innerHTML = `
+      <span class="service-status-dot" aria-hidden="true"></span>
+      <strong data-service-status-text></strong>
+      <span data-service-status-hours></span>
+    `;
+    anchor.insertAdjacentElement('afterend', badge);
+    updateServiceStatus();
+    window.setInterval(updateServiceStatus, 60000);
   }
 
   function createLanguageSwitcher() {
@@ -733,11 +907,30 @@
     }
   }
 
+  function updateCanonicalUrl() {
+    try {
+      const url = new URL(window.location.href);
+      if (!/^https?:$/.test(url.protocol)) return;
+      url.hash = '';
+      url.searchParams.delete('lang');
+      let canonical = document.head.querySelector('link[rel="canonical"]');
+      if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = url.href;
+    } catch (error) {
+      // Canonical metadata is skipped only for invalid local preview URLs.
+    }
+  }
+
   function setLanguage(nextLanguage, options = {}) {
     if (!supportedLanguages.has(nextLanguage)) return;
     language = nextLanguage;
     localStorage.setItem(storageKey, language);
     if (options.updateUrl !== false) updateUrl(language);
+    updateCanonicalUrl();
     applyStaticLanguage();
     updateSwitcherUI();
     window.dispatchEvent(new CustomEvent('bge:languagechange', {
@@ -767,6 +960,7 @@
     getProductEnglish,
     getProductNote,
     getSectionTitle,
+    getSectionEnglishTitle,
     getSectionSubtitle,
     getCategoryTitle,
     getCategorySubtitle,
@@ -774,8 +968,12 @@
   };
 
   window.addEventListener('DOMContentLoaded', () => {
+    if (document.body.dataset.bgeI18nDisabled === 'true') return;
     captureStaticContent();
     createLanguageSwitcher();
+    createMobileNavigation();
+    createServiceStatus();
+    updateCanonicalUrl();
     applyStaticLanguage();
     updateSwitcherUI();
   });

@@ -123,7 +123,7 @@
 
     .admin-product-row {
       display: grid;
-      grid-template-columns: 1.15fr 1.15fr 0.72fr 0.82fr 1fr auto;
+      grid-template-columns: 1.1fr 1.1fr 0.7fr 0.78fr 0.8fr 1fr auto;
       gap: 10px;
       align-items: end;
       margin-top: 10px;
@@ -159,6 +159,41 @@
       line-height: 1.65;
     }
 
+    .admin-validation {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(216, 179, 90, 0.16);
+    }
+
+    .admin-validation-result {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 13px;
+      background: rgba(3, 7, 12, 0.78);
+      color: rgba(226, 232, 240, 0.88);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .admin-validation-result.is-ok {
+      border-color: rgba(57, 211, 135, 0.3);
+    }
+
+    .admin-validation-result.is-error {
+      border-color: rgba(255, 107, 122, 0.35);
+    }
+
+    .admin-validation-summary {
+      color: #ffffff;
+      font-weight: 900;
+    }
+
+    .admin-validation-issue.error { color: #ff9aa8; }
+    .admin-validation-issue.warning { color: #f5c76b; }
+
     @media (max-width: 980px) {
       .admin-layout,
       .admin-grid {
@@ -184,7 +219,7 @@
     }
   </style>
 </head>
-<body class="admin-price-page">
+<body class="admin-price-page" data-page="admin" data-bge-i18n-disabled="true">
   <div class="admin-shell">
     <a class="back-link" href="index.html">← 返回首页</a>
 
@@ -248,6 +283,10 @@
             <span>detailArt</span>
             <input id="detailArt" placeholder="assets/images/games/game2.jpg" />
           </label>
+          <label class="admin-field">
+            <span>价格更新日期（可选）</span>
+            <input id="updatedAt" type="date" />
+          </label>
         </div>
 
         <div id="sections"></div>
@@ -258,7 +297,7 @@
           <button type="button" class="admin-small-button admin-danger" id="clearForm">清空</button>
         </div>
 
-        <p class="admin-note">建议：普通价格填 <strong>price</strong>；需要统一同步的中国档位填 <strong>pricePreset</strong>，例如 cny648。若 price 与 pricePreset 都填写，生成代码会同时保留，price 作为 fallback。</p>
+        <p class="admin-note">建议：普通价格填 <strong>price</strong>；需要统一同步的中国档位填 <strong>pricePreset</strong>，例如 cny648。若 price 与 pricePreset 都填写，生成代码会同时保留，price 作为 fallback。商品暂时不能接单时，可用 <strong>status</strong> 标记暂停、售罄或询价，不需要删除商品。</p>
       </section>
 
       <section class="admin-panel">
@@ -269,6 +308,13 @@
         </label>
         <div class="admin-actions">
           <button type="button" class="button button-primary" id="copyOutput">复制代码</button>
+        </div>
+
+        <div class="admin-validation">
+          <h3>现有网站资料检查</h3>
+          <p class="admin-note">检查重复 ID、缺少中英文、错误 pricePreset、商品状态，以及图片是否能正常载入。</p>
+          <button type="button" class="button button-secondary" id="validateCatalog">检查现有网站资料</button>
+          <div id="validationResult" class="admin-validation-result" hidden></div>
         </div>
       </section>
     </div>
@@ -296,6 +342,8 @@
     <option value="cny1998"></option>
   </datalist>
 
+  <script src="translations.js"></script>
+  <script src="scripts.js"></script>
   <script>
     const sectionsNode = document.getElementById('sections');
     const outputNode = document.getElementById('output');
@@ -326,6 +374,7 @@
         <label class="admin-field"><span>en</span><input data-product-en placeholder="6480 Tokens"></label>
         <label class="admin-field"><span>price</span><input data-product-price placeholder="RM 405.00"></label>
         <label class="admin-field"><span>pricePreset</span><input data-product-preset list="presetOptions" placeholder="cny648"></label>
+        <label class="admin-field"><span>status</span><select data-product-status><option value="active">正常上架</option><option value="paused">暂停接单</option><option value="soldout">暂时售罄</option><option value="inquiry">联系客服询价</option></select></label>
         <label class="admin-field"><span>note</span><input data-product-note placeholder="HOT 推荐 / Login Top Up"></label>
         <button type="button" class="admin-small-button admin-danger" data-remove-product>删除</button>
       `;
@@ -364,7 +413,8 @@
         tag: fieldValue(document, '#tag'),
         topupFormType: fieldValue(document, '#topupFormType'),
         image: fieldValue(document, '#image'),
-        detailArt: fieldValue(document, '#detailArt')
+        detailArt: fieldValue(document, '#detailArt'),
+        updatedAt: fieldValue(document, '#updatedAt')
       };
 
       const lines = ['{'];
@@ -376,6 +426,7 @@
       lines.push(makeLine('topupFormType', game.topupFormType, 2));
       lines.push(makeLine('image', game.image, 2));
       lines.push(makeLine('detailArt', game.detailArt, 2));
+      lines.push(makeLine('updatedAt', game.updatedAt, 2));
       lines.push('  productSections: [');
 
       const sectionEls = Array.from(sectionsNode.querySelectorAll('.admin-section-card'));
@@ -393,6 +444,8 @@
           productLines.push(makeLine('en', fieldValue(row, '[data-product-en]'), 10));
           productLines.push(makeLine('price', fieldValue(row, '[data-product-price]'), 10));
           productLines.push(makeLine('pricePreset', fieldValue(row, '[data-product-preset]'), 10));
+          const productStatus = fieldValue(row, '[data-product-status]');
+          productLines.push(makeLine('status', productStatus === 'active' ? '' : productStatus, 10));
           productLines.push(makeLine('note', fieldValue(row, '[data-product-note]'), 10));
           const compact = productLines.filter(Boolean).map(line => line.trim().replace(/,$/, '')).join(', ');
           lines.push(`        { ${compact} }${productIndex < productRows.length - 1 ? ',' : ''}`);
@@ -421,6 +474,7 @@
       });
       document.getElementById('topupFormType').value = '';
       document.getElementById('tag').value = 'Login Top Up';
+      document.querySelectorAll('[data-product-status]').forEach(select => { select.value = 'active'; });
       sectionsNode.innerHTML = '';
       outputNode.value = '';
       addSection();
@@ -432,6 +486,61 @@
       if (event.target.matches('[data-add-product]')) addProduct(sectionEl);
       if (event.target.matches('[data-remove-product]')) event.target.closest('.admin-product-row')?.remove();
       if (event.target.matches('[data-remove-section]')) sectionEl.remove();
+    });
+
+    function escapeOutput(value) {
+      return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function checkImagePath(path) {
+      return new Promise((resolve) => {
+        const image = new Image();
+        image.onload = () => resolve({ path, ok: true });
+        image.onerror = () => resolve({ path, ok: false });
+        image.src = path;
+      });
+    }
+
+    document.getElementById('validateCatalog').addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      const resultNode = document.getElementById('validationResult');
+      const validator = window.BGE_CATALOG_VALIDATOR;
+      resultNode.hidden = false;
+
+      if (!validator?.run) {
+        resultNode.className = 'admin-validation-result is-error';
+        resultNode.textContent = '检查器没有载入，请确认 translations.js 与 scripts.js 在同一个文件夹。';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = '检查中…';
+      const report = validator.run();
+      const imagePaths = new Set();
+      Object.values(validator.getCatalog()).forEach((category) => {
+        (category.games || []).forEach((game) => {
+          if (game.image) imagePaths.add(game.image);
+          if (game.detailArt) imagePaths.add(game.detailArt);
+        });
+      });
+      const imageResults = await Promise.all(Array.from(imagePaths).map(checkImagePath));
+      const missingImages = imageResults.filter((item) => !item.ok);
+      const errorCount = report.summary.errors + missingImages.length;
+      resultNode.className = `admin-validation-result ${errorCount ? 'is-error' : 'is-ok'}`;
+
+      const summary = `<div class="admin-validation-summary">${report.summary.gameCount} 个游戏 · ${report.summary.productCount} 个商品 · ${errorCount} 个错误 · ${report.summary.warnings} 个提醒</div>`;
+      const issues = [
+        ...report.issues.map((issue) => `<div class="admin-validation-issue ${issue.severity}">${issue.severity === 'error' ? '错误' : '提醒'}：${escapeOutput(issue.message)} <small>${escapeOutput(issue.path)}</small></div>`),
+        ...missingImages.map((item) => `<div class="admin-validation-issue error">错误：图片无法载入 <small>${escapeOutput(item.path)}</small></div>`)
+      ];
+      resultNode.innerHTML = summary + (issues.length ? issues.slice(0, 100).join('') : '<div>✓ 没有发现资料错误，现有目录可以正常使用。</div>');
+      if (issues.length > 100) resultNode.insertAdjacentHTML('beforeend', `<div>另外还有 ${issues.length - 100} 项未显示。</div>`);
+      button.disabled = false;
+      button.textContent = '重新检查现有网站资料';
     });
 
     addSection();
