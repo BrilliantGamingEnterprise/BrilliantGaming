@@ -261,7 +261,7 @@ const categories = {
       products: [
         { title: '列车补给凭证', en: 'Express Supply Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
         { title: '无名客的荣勋', en: 'Nameless Glory', price: 'RM 38.00', note: '纪行 / Battle Pass' },
-        { title: '无名客的勋章', en: 'Nameless Medal', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
+        { title: '无名客的奖章', en: 'Nameless Medal', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
       ]
     }
   ]
