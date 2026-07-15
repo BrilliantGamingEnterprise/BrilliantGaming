@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /admin-price.html
+
+Sitemap: https://brilliantgamingtopup.com/sitemap.xml

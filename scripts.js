@@ -9,7 +9,8 @@ const currencyKey = 'bge-currency-v1';
 const catalogSettings = {
   updatedAt: '2026-07-15',
   timeZone: 'Asia/Kuala_Lumpur',
-  whatsappNumber: '60124458242'
+  whatsappNumber: '60124458242',
+  siteUrl: 'https://brilliantgamingtopup.com'
 };
 
 const currencySettings = {
@@ -2347,6 +2348,36 @@ function formatTotal(total) {
   return formatCurrencyAmount(total, activeCurrency);
 }
 
+function trackAnalyticsEvent(eventName, parameters = {}) {
+  window.BGE_ANALYTICS?.track?.(eventName, parameters);
+}
+
+function makeAnalyticsItem(item, quantity = item?.quantity || 1) {
+  const currentGame = getGameFromCartContext(cartContext);
+  return {
+    item_id: getCartItemKey(item),
+    item_name: getCartItemDisplayTitle(item),
+    item_category: currentGame?.id || cartContext?.gameId || '',
+    item_category2: cartContext?.categoryId || '',
+    price: getDisplayUnitAmount(item?.price),
+    quantity
+  };
+}
+
+function getCartAnalyticsPayload(items = cart) {
+  const analyticsItems = (items || []).map((item) => makeAnalyticsItem(item));
+  return {
+    currency: activeCurrency,
+    value: analyticsItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    items: analyticsItems
+  };
+}
+
+function trackCartAnalyticsEvent(eventName, items = cart) {
+  if (!items?.length) return;
+  trackAnalyticsEvent(eventName, getCartAnalyticsPayload(items));
+}
+
 function initCurrencySwitcher() {
   document.querySelectorAll('.header-container').forEach((header) => {
     if (header.querySelector('.currency-switch')) return;
@@ -2380,11 +2411,15 @@ function updateCurrencySwitcherUI() {
 function setActiveCurrency(currency) {
   if (!currencySettings.rates[currency]) return;
 
+  const previousCurrency = activeCurrency;
   activeCurrency = currency;
   localStorage.setItem(currencyKey, activeCurrency);
 
   updateCurrencySwitcherUI();
   refreshCurrencyDisplay();
+  if (previousCurrency !== activeCurrency) {
+    trackAnalyticsEvent('change_currency', { currency: activeCurrency });
+  }
 }
 
 function refreshCurrencyDisplay() {
@@ -2554,9 +2589,14 @@ function addToCart(productOrTitle, fallbackPrice) {
       ? (payload.sectionEn ? `${payload.sectionEn} · ${payload.titleEn}` : payload.titleEn)
       : (payload.sectionZh ? `${payload.sectionZh} · ${payload.titleZh}` : payload.titleZh)
   }));
+  const addedItem = existing || cart[cart.length - 1];
+  trackCartAnalyticsEvent('add_to_cart', [{ ...addedItem, quantity: 1 }]);
 }
 
 function removeCartItem(index) {
+  const removedItem = cart[index];
+  if (!removedItem) return;
+  trackCartAnalyticsEvent('remove_from_cart', [{ ...removedItem }]);
   cart.splice(index, 1);
   saveCart();
   updateCartUI();
@@ -2566,8 +2606,10 @@ function changeCartQuantity(index, action) {
   const item = cart[index];
   if (!item) return;
   if (action === 'plus') {
+    trackCartAnalyticsEvent('add_to_cart', [{ ...item, quantity: 1 }]);
     item.quantity += 1;
   } else if (action === 'minus') {
+    trackCartAnalyticsEvent('remove_from_cart', [{ ...item, quantity: 1 }]);
     item.quantity -= 1;
   }
   cart = cart.filter((entry) => entry.quantity > 0);
@@ -2576,6 +2618,7 @@ function changeCartQuantity(index, action) {
 }
 
 function clearCart() {
+  trackCartAnalyticsEvent('remove_from_cart', cart.map((item) => ({ ...item })));
   cart = [];
   saveCart();
   updateCartUI();
@@ -2585,6 +2628,9 @@ function toggleCartPanel() {
   const panel = document.getElementById('cartPanel');
   if (!panel) return;
   panel.classList.toggle('open');
+  if (panel.classList.contains('open')) {
+    trackCartAnalyticsEvent('view_cart');
+  }
 }
 
 
@@ -2854,9 +2900,11 @@ ${uiText('order.total')}${separator}${formatTotal(total)}`;
 
   latestOrderText = text;
   latestOrderIdentity = orderIdentity;
+  const checkoutAnalytics = getCartAnalyticsPayload();
 
   writeTextToClipboard(text)
     .then(() => {
+      trackAnalyticsEvent('begin_checkout', checkoutAnalytics);
       showCartToast(openContactAfterCopy ? uiText('order.copied') : uiText('cart.copied'));
       if (openContactAfterCopy) {
         showOrderCopiedDialog(() => openContactModal('order'));
@@ -3168,6 +3216,27 @@ function setMetaContent(selector, attributes, content) {
   node.setAttribute('content', content);
 }
 
+function setLinkHref(selector, attributes, href) {
+  let node = document.head.querySelector(selector);
+  if (!node) {
+    node = document.createElement('link');
+    Object.entries(attributes).forEach(([name, value]) => node.setAttribute(name, value));
+    document.head.appendChild(node);
+  }
+  node.href = href;
+}
+
+function setStructuredData(id, payload) {
+  let node = document.getElementById(id);
+  if (!node) {
+    node = document.createElement('script');
+    node.id = id;
+    node.type = 'application/ld+json';
+    document.head.appendChild(node);
+  }
+  node.textContent = JSON.stringify(payload);
+}
+
 function updateGameSeo(categoryId, game) {
   if (!game) return;
   const gameName = localizedGameName(game, true);
@@ -3177,20 +3246,13 @@ function updateGameSeo(categoryId, game) {
   const title = isEnglishLanguage()
     ? `${gameName} Top-Up - Brilliant Gaming`
     : `${gameName}充值 - Brilliant Gaming`;
-  let canonicalUrl = '';
-  try {
-    const url = new URL(window.location.href);
-    url.hash = '';
-    url.searchParams.delete('lang');
-    url.searchParams.set('category', categoryId);
-    url.searchParams.set('game', game.id);
-    canonicalUrl = url.href;
-  } catch (error) {
-    canonicalUrl = `game.html?category=${encodeURIComponent(categoryId)}&game=${encodeURIComponent(game.id)}`;
-  }
+  const siteRoot = catalogSettings.siteUrl.replace(/\/$/, '');
+  const chineseUrl = `${siteRoot}/game.html?category=${encodeURIComponent(categoryId)}&game=${encodeURIComponent(game.id)}`;
+  const englishUrl = `${chineseUrl}&lang=en`;
+  const canonicalUrl = isEnglishLanguage() ? englishUrl : chineseUrl;
   let imageUrl = '';
   try {
-    imageUrl = new URL(game.detailArt || game.image || '', canonicalUrl).href;
+    imageUrl = new URL(game.detailArt || game.image || '', `${siteRoot}/`).href;
   } catch (error) {
     imageUrl = '';
   }
@@ -3201,19 +3263,32 @@ function updateGameSeo(categoryId, game) {
   setMetaContent('meta[property="og:description"]', { property: 'og:description' }, description);
   setMetaContent('meta[property="og:type"]', { property: 'og:type' }, 'website');
   setMetaContent('meta[property="og:url"]', { property: 'og:url' }, canonicalUrl);
+  setMetaContent('meta[property="og:locale"]', { property: 'og:locale' }, isEnglishLanguage() ? 'en_MY' : 'zh_MY');
   if (imageUrl) setMetaContent('meta[property="og:image"]', { property: 'og:image' }, imageUrl);
   setMetaContent('meta[name="twitter:card"]', { name: 'twitter:card' }, imageUrl ? 'summary_large_image' : 'summary');
   setMetaContent('meta[name="twitter:title"]', { name: 'twitter:title' }, title);
   setMetaContent('meta[name="twitter:description"]', { name: 'twitter:description' }, description);
   if (imageUrl) setMetaContent('meta[name="twitter:image"]', { name: 'twitter:image' }, imageUrl);
 
-  let canonical = document.head.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement('link');
-    canonical.rel = 'canonical';
-    document.head.appendChild(canonical);
-  }
-  canonical.href = canonicalUrl;
+  setLinkHref('link[rel="canonical"]', { rel: 'canonical' }, canonicalUrl);
+  setLinkHref('link[rel="alternate"][hreflang="zh-Hans"]', { rel: 'alternate', hreflang: 'zh-Hans' }, chineseUrl);
+  setLinkHref('link[rel="alternate"][hreflang="en"]', { rel: 'alternate', hreflang: 'en' }, englishUrl);
+  setLinkHref('link[rel="alternate"][hreflang="x-default"]', { rel: 'alternate', hreflang: 'x-default' }, chineseUrl);
+  setStructuredData('bge-game-service-schema', {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: title,
+    description,
+    url: canonicalUrl,
+    image: imageUrl || undefined,
+    serviceType: 'Game top-up service',
+    areaServed: ['MY', 'SG'],
+    provider: {
+      '@type': 'Organization',
+      name: 'Brilliant Gaming',
+      url: `${siteRoot}/`
+    }
+  });
 }
 
 function renderGamePage(categoryId, gameId) {
@@ -3385,19 +3460,18 @@ function openContactModal(mode = 'default') {
   const modal = document.getElementById('contactModal');
   if (!modal) return;
   activeContactMode = mode;
+  modal.dataset.contactMode = mode;
   const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
   const whatsappSmall = whatsappLink ? whatsappLink.querySelector('small') : null;
   const whatsappBaseUrl = `https://wa.me/${catalogSettings.whatsappNumber}`;
 
   if (whatsappLink) {
+    whatsappLink.href = whatsappBaseUrl;
     if (mode === 'order' && latestOrderText) {
-      whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestOrderText)}`;
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOrder');
     } else if (mode === 'inquiry' && latestInquiryText) {
-      whatsappLink.href = `${whatsappBaseUrl}?text=${encodeURIComponent(latestInquiryText)}`;
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
     } else {
-      whatsappLink.href = whatsappBaseUrl;
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
     }
   }
@@ -3468,6 +3542,20 @@ function initEvents() {
     if (target.closest('[data-contact-open]')) {
       event.preventDefault();
       openContactModal();
+      return;
+    }
+
+    const whatsappLink = target.closest('.contact-method-card.whatsapp');
+    if (whatsappLink) {
+      const mode = whatsappLink.closest('#contactModal')?.dataset.contactMode || 'default';
+      const message = mode === 'order'
+        ? latestOrderText
+        : (mode === 'inquiry' ? latestInquiryText : '');
+      if (message) {
+        event.preventDefault();
+        const url = `https://wa.me/${catalogSettings.whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank', 'noopener');
+      }
       return;
     }
 
