@@ -3154,7 +3154,17 @@ function renderHomePage(showAll = false, filterCategory = 'all') {
   }
 
   renderHomeCategoryFilter(showAll, filterCategory);
+  updateDirectoryCategoryUI(showAll, filterCategory);
 }
+
+function updateDirectoryCategoryUI(showAll, filterCategory) {
+  const featuredControl = document.querySelector('.directory-categories [data-home-featured]');
+  if (featuredControl) featuredControl.classList.toggle('is-active', !showAll);
+  document.querySelectorAll('.directory-categories [data-home-filter]').forEach((control) => {
+    control.classList.toggle('is-active', showAll && control.dataset.homeFilter === filterCategory);
+  });
+}
+
 function renderHomeCategoryFilter(showAll, filterCategory) {
   let filterWrap = document.getElementById('homeCategoryFilter');
 
@@ -3439,7 +3449,12 @@ function clearSearch() {
 }
 
 function initSearch() {
-  const input = document.getElementById('searchInput') || document.querySelector('.search-box input');
+  const directoryInput = document.getElementById('directorySearchInput');
+  const legacyInput = document.getElementById('searchInput');
+  if (directoryInput && legacyInput && directoryInput !== legacyInput) {
+    legacyInput.id = 'legacySearchInput';
+  }
+  const input = directoryInput || legacyInput || document.querySelector('.search-box input');
   if (!input) return;
   input.id = 'searchInput';
   input.addEventListener('input', (event) => {
@@ -3514,6 +3529,32 @@ function closeContactModal() {
   document.body.classList.remove('contact-modal-open');
 }
 
+function openCustomerGuideModal() {
+  const modal = document.getElementById('customerGuideModal');
+  if (!modal) return;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('contact-modal-open');
+  modal.querySelector('[data-guide-close]')?.focus();
+}
+
+function closeCustomerGuideModal() {
+  const modal = document.getElementById('customerGuideModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('contact-modal-open');
+}
+
+function scrollToPriceDirectory() {
+  const grid = document.getElementById('home-intl-grid');
+  const section = grid?.closest('.featured-section');
+  if (!section) return;
+  section.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  section.classList.add('directory-focus-ring');
+  window.setTimeout(() => section.classList.remove('directory-focus-ring'), 1400);
+}
+
 function copyTextToClipboard(value, successMessage = uiText('contact.copied')) {
   if (!value) return;
   navigator.clipboard
@@ -3542,6 +3583,44 @@ function initEvents() {
     if (target.closest('[data-contact-open]')) {
       event.preventDefault();
       openContactModal();
+      return;
+    }
+
+    if (target.closest('[data-guide-open]')) {
+      event.preventDefault();
+      openCustomerGuideModal();
+      return;
+    }
+
+    if (target.closest('[data-price-guide]')) {
+      event.preventDefault();
+      scrollToPriceDirectory();
+      return;
+    }
+
+    if (target.closest('[data-guide-close]')) {
+      event.preventDefault();
+      closeCustomerGuideModal();
+      return;
+    }
+
+    if (target.closest('[data-guide-process]')) {
+      event.preventDefault();
+      closeCustomerGuideModal();
+      document.getElementById('orderProcess')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      return;
+    }
+
+    if (target.closest('[data-guide-contact]')) {
+      event.preventDefault();
+      closeCustomerGuideModal();
+      openContactModal();
+      return;
+    }
+
+    const customerGuideModal = document.getElementById('customerGuideModal');
+    if (customerGuideModal && target === customerGuideModal) {
+      closeCustomerGuideModal();
       return;
     }
 
@@ -3659,6 +3738,17 @@ if (homeFilterButton) {
   return;
 }
 
+const homeFeaturedButton = target.closest('[data-home-featured]');
+
+if (homeFeaturedButton) {
+  event.preventDefault();
+  isShowingAllGames = false;
+  activeHomeCategory = 'all';
+  renderHomePage(false, activeHomeCategory);
+  document.getElementById('home-intl-grid')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  return;
+}
+
     if (target.matches('.adjust-qty')) {
       changeCartQuantity(Number(target.dataset.index), target.dataset.action);
     }
@@ -3685,7 +3775,10 @@ if (homeFilterButton) {
     handleProductCardAction(productCard);
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeContactModal();
+    if (event.key === 'Escape') {
+      closeContactModal();
+      closeCustomerGuideModal();
+    }
   });
 }
 

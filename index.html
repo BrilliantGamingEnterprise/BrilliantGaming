@@ -8,6 +8,7 @@
   <script src="analytics.js"></script>
   <script src="seo.js" defer></script>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="directory-layout.css?v=11" />
 </head>
 <body class="page-home" data-page="home">
   <div class="page-shell">
@@ -18,7 +19,7 @@
           <img src="assets/images/7a0a2ed3-adc1-45c6-9409-3e41c6478d4a.png" alt="Brilliant Gaming" class="brand-logo" />
           <span class="brand-text"></span>
         </a>
-        
+
         <nav class="site-nav">
           <a href="index.html" class="nav-link active">首页</a>
           <a href="#home-intl-grid" class="nav-link">游戏充值</a>
@@ -27,120 +28,81 @@
           <a href="#faqSection" class="nav-link">常见问题</a>
         </nav>
 
+        <p class="header-tagline">快速找到游戏，直接查看充值面额</p>
+
         <button class="cta-button" type="button" data-contact-open>联系客服下单</button>
       </div>
     </header>
 
-    <!-- Hero 第一屏 -->
-    <section class="hero">
-      <div class="hero-wrapper">
-        <!-- Hero 左侧内容 -->
-        <div class="hero-content">
-        <div class="hero-kicker">PREMIUM GAME TOP-UP SERVICE</div>
-        <h1 class="hero-title"><span>专业手游充值服务</span></h1>
-        <p class="hero-subtitle">PLAY MORE · STAY SAFE · PAY LESS</p>
-          
-         <div class="trust-badges">
-  <div class="trust-item">
-    <span class="trust-icon trust-svg-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2.2 4.5 5.5v6.2c0 4.7 3.1 8.7 7.5 10.1 4.4-1.4 7.5-5.4 7.5-10.1V5.5L12 2.2Zm-1.1 13.3-3.2-3.2 1.4-1.4 1.8 1.8 4.3-4.3 1.4 1.4-5.7 5.7Z"/>
-      </svg>
-    </span>
-    <span>安全可靠</span>
-  </div>
+    <main class="directory-home">
+      <section class="directory-intro" aria-labelledby="directoryTitle">
+        <p class="directory-eyebrow">GAME TOP-UP DIRECTORY</p>
+        <h1 id="directoryTitle">今天要充值什么游戏？</h1>
+        <p class="directory-lead">输入中文名或英文名，立即找到对应游戏与价格。</p>
 
-  <div class="trust-item">
-    <span class="trust-icon trust-svg-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M13.2 2 4.8 13.2h5.4L9.2 22l10-12.8h-5.7L13.2 2Z"/>
-      </svg>
-    </span>
-    <span>快速处理</span>
-  </div>
+        <label class="directory-search" for="directorySearchInput">
+          <span class="directory-search-icon" aria-hidden="true">⌕</span>
+          <input id="directorySearchInput" type="search" placeholder="搜索游戏，例如：原神、PUBG Mobile" autocomplete="off" />
+          <span>自动搜索</span>
+        </label>
 
-  <div class="trust-item">
-    <span class="trust-icon trust-svg-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3a8 8 0 0 0-8 8v4.2A3.8 3.8 0 0 0 7.8 19H9v-6H5.8V11a6.2 6.2 0 0 1 12.4 0v2H15v6h1.4c-.5 1-1.4 1.5-2.8 1.5H12V22h1.6c2.7 0 4.5-1.1 5.3-3.1A3.8 3.8 0 0 0 20 16.2V11a8 8 0 0 0-8-8Zm-5.2 12H7v2h-.2A1.8 1.8 0 0 1 5 15.2V15h1.8Zm12.2.2A1.8 1.8 0 0 1 17.2 17H17v-2h2v.2Z"/>
-      </svg>
-    </span>
-    <span>人工客服</span>
-  </div>
+        <nav class="directory-categories" aria-label="游戏分类">
+          <button class="is-active" type="button" data-home-featured>热门充值</button>
+          <button type="button" data-home-filter="intl">国际游戏</button>
+          <button type="button" data-home-filter="cn">中国游戏</button>
+          <button type="button" data-home-filter="cards">点卡与礼品卡</button>
+          <button type="button" data-home-filter="all">全部游戏</button>
+        </nav>
+      </section>
 
-  <div class="trust-item">
-    <span class="trust-icon trust-svg-icon">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 3v2h16V8H4Zm3 6.5v1.5h5v-1.5H7Zm8 0v1.5h3v-1.5h-3Z"/>
-      </svg>
-    </span>
-    <span>多种付款方式</span>
-  </div>
-</div>
+      <section class="directory-proof" aria-label="服务信息">
+        <div data-service-status>
+          <span class="service-status-dot" aria-hidden="true"></span>
+          <strong data-service-status-text>客服在线</strong>
+          <span data-service-status-hours>每天 10AM–2AM</span>
+        </div>
+        <div><strong>MYR / SGD / USD</strong><span>三种显示币种</span></div>
+        <div><strong>人工确认订单</strong><span>付款前核对资料</span></div>
+        <div><strong>多种充值方式</strong><span>登入、UID 与点卡</span></div>
+      </section>
 
-          <div class="search-box">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input id="searchInput" type="text" placeholder="搜索游戏名称 / Game name" autocomplete="off">
+      <section class="official-channels" aria-labelledby="officialChannelsTitle">
+        <div class="official-channels-heading">
+          <div>
+            <p class="section-kicker">OFFICIAL CHANNELS</p>
+            <h2 id="officialChannelsTitle">选择你想看的内容</h2>
           </div>
-<div class="brand-channel-strip" aria-label="Brilliant Gaming 频道入口">
-  <div class="brand-channel-title">
-    <span>OUR CHANNELS</span>
-    <strong>关注更多内容频道</strong>
-  </div>
-
-  <div class="brand-channel-links">
-    <a class="brand-channel-link" href="https://www.instagram.com/zhuoyuedianjing.official/" target="_blank" rel="noopener">
-      <span class="ig-mini-icon"></span>
-      <div>
-        <strong>Brilliant Gaming｜充值与游戏资讯</strong>
-        <small>@Brilliant.Gaming.Enterprise</small>
-        <small>Game Top-Up · News · Reward Updates</small>
-      </div>
-    </a>
-
-    <a class="brand-channel-link" href="https://www.instagram.com/rupa.rupacraft/" target="_blank" rel="noopener">
-      <span class="ig-mini-icon"></span>
-      <div>
-        <strong>Rupa Rupa Craft｜手作 · 花礼 · 定制</strong>
-        <small>@rupa.rupacraft</small>
-        <small>Handmade Flowers · Gifts · Deco</small>
-      </div>
-    </a>
-
-    <a class="brand-channel-link" href="https://www.instagram.com/novarupa.studio/" target="_blank" rel="noopener">
-  <span class="ig-mini-icon"></span>
-  <div>
-    <strong>Nova Rupa Studio｜3D 打印小物</strong>
-    <small>@novarupa.studio</small>
-    <small>3D Prints · Anime Goods · Creative Gifts</small>
-  </div>
-</a>
-
-<a class="brand-channel-link" href="https://www.xiaohongshu.com/user/profile/6795caa5000000000a03c430" target="_blank" rel="noopener">
-  <span class="xhs-mini-icon">小</span>
-  <div>
-    <strong>小红书｜游戏活动情报</strong>
-    <small>热门活动 · 福利整理 · 游戏资讯</small>
-  </div>
-</a>
-
-  </div>
-</div>
+          <p>每个频道主题不同，查看说明后再选择关注。</p>
         </div>
 
-        <!-- Hero 右侧视觉 -->
-        <div class="hero-visual">
-  <img 
-    src="assets/images/hero-logo-core-transparent.png" 
-    alt="Brilliant Gaming Logo Core" 
-    class="hero-core-image"
-  />
-</div>
-      </div>
-    </section>
+        <div class="official-channel-grid">
+          <a class="official-channel-card" href="https://www.instagram.com/zhuoyuedianjing.official/" target="_blank" rel="noopener">
+            <span class="official-channel-meta"><span class="channel-platform"><span class="channel-icon instagram" aria-hidden="true"></span><b>INSTAGRAM</b></span><i aria-hidden="true">↗</i></span>
+            <strong>Brilliant Gaming</strong>
+            <p>游戏充值报价、活动更新与服务公告。</p>
+            <small>@zhuoyuedianjing.official</small>
+          </a>
+          <a class="official-channel-card" href="https://www.instagram.com/rupa.rupacraft/" target="_blank" rel="noopener">
+            <span class="official-channel-meta"><span class="channel-platform"><span class="channel-icon instagram" aria-hidden="true"></span><b>INSTAGRAM</b></span><i aria-hidden="true">↗</i></span>
+            <strong>Rupa Rupa Craft</strong>
+            <p>手作花礼、节日礼物与客制作品。</p>
+            <small>@rupa.rupacraft</small>
+          </a>
+          <a class="official-channel-card" href="https://www.instagram.com/novarupa.studio/" target="_blank" rel="noopener">
+            <span class="official-channel-meta"><span class="channel-platform"><span class="channel-icon instagram" aria-hidden="true"></span><b>INSTAGRAM</b></span><i aria-hidden="true">↗</i></span>
+            <strong>Nova Rupa Studio</strong>
+            <p>3D 打印、动漫周边与创意礼物。</p>
+            <small>@novarupa.studio</small>
+          </a>
+          <a class="official-channel-card" href="https://www.xiaohongshu.com/user/profile/6795caa5000000000a03c430" target="_blank" rel="noopener">
+            <span class="official-channel-meta"><span class="channel-platform"><span class="channel-icon xiaohongshu" aria-hidden="true">小</span><b>小红书</b></span><i aria-hidden="true">↗</i></span>
+            <strong>游戏活动情报</strong>
+            <p>热门活动、福利整理与游戏资讯。</p>
+            <small>Brilliant Gaming 内容频道</small>
+          </a>
+        </div>
+      </section>
+    </main>
 
     <!-- 搜索结果区 -->
     <section class="featured-section search-results hidden" id="searchResultsSection">
@@ -172,23 +134,33 @@
 </section>
 
     <!-- 客户入口区 -->
-    <section class="customer-entry searchable-section">
+    <section class="customer-entry searchable-section" id="customerHelp">
+      <div class="customer-entry-heading">
+        <div>
+          <span class="section-kicker">QUICK HELP</span>
+          <h2>需要哪一种协助？</h2>
+        </div>
+        <p>选择入口，我们直接带你到下一步。</p>
+      </div>
       <div class="entry-container">
-        <div class="entry-card">
-          <div class="entry-icon">🎮</div>
+        <button class="entry-card entry-card-button" type="button" data-guide-open>
+          <span class="entry-label">FIRST ORDER</span>
           <h3>我是新客户</h3>
-          <p>第一次下单？查看流程与安全说明</p>
-        </div>
-        <div class="entry-card">
-          <div class="entry-icon">💰</div>
+          <p>打开图解，先了解如何选商品、发送订单与付款。</p>
+          <span class="entry-action">查看新手图解 →</span>
+        </button>
+        <button class="entry-card entry-card-button" type="button" data-price-guide>
+          <span class="entry-label">GAME PRICES</span>
           <h3>查看价格</h3>
-          <p>选择游戏，查看当前充值价格</p>
-        </div>
-        <div class="entry-card" data-contact-open>
-          <div class="entry-icon">💬</div>
+          <p>直接返回游戏目录，选择游戏后查看当前充值面额。</p>
+          <span class="entry-action">前往游戏目录 →</span>
+        </button>
+        <button class="entry-card entry-card-button" type="button" data-contact-open>
+          <span class="entry-label">PERSONAL SUPPORT</span>
           <h3>联系客服</h3>
-          <p>有目标游戏？直接联系客服快速下单</p>
-        </div>
+          <p>找不到游戏或不确定资料？让客服协助确认。</p>
+          <span class="entry-action">打开联系方式 →</span>
+        </button>
       </div>
     </section>
 
@@ -199,38 +171,33 @@
           <div>
             <span class="section-kicker">ORDER PROCESS</span>
             <h2>下单流程</h2>
-            <p>从选择商品到复制购物单，每一步都让客户清楚知道下一步该做什么。</p>
+            <p>四个步骤完成下单；先由客服核对，确认后才付款。</p>
           </div>
           <div class="order-process-note">
-            <strong>人工客服核对</strong>
-            <span>下单前确认游戏资料、商品与付款方式，减少填错资料的风险。</span>
+            <strong>先确认，再付款</strong>
+            <span>客服会先核对商品、充值资料、金额和付款方式。</span>
           </div>
         </div>
-        <div class="process-steps process-steps-premium">
+        <div class="process-steps process-steps-premium is-four-step">
           <div class="step">
             <div class="step-number">01</div>
-            <h4>选择游戏</h4>
-            <p>从首页进入对应游戏页面，确认服务器与商品分类。</p>
+            <h4>找到游戏与商品</h4>
+            <p>搜索游戏，确认服务器或版本，再选择需要的充值面额。</p>
           </div>
           <div class="step">
             <div class="step-number">02</div>
-            <h4>选择商品</h4>
-            <p>点击价格卡即可加入购物车，可在购物车调整数量。</p>
+            <h4>填写充值资料</h4>
+            <p>按照页面提示填写 UID、角色名、服务器或登录资料。</p>
           </div>
           <div class="step">
             <div class="step-number">03</div>
-            <h4>复制购物单</h4>
-            <p>核对商品与金额后，一键复制订单内容发送给客服。</p>
+            <h4>发送订单给客服</h4>
+            <p>检查购物车并复制订单，客服会确认资料、金额与付款方式。</p>
           </div>
           <div class="step">
             <div class="step-number">04</div>
-            <h4>付款确认</h4>
-            <p>客服确认资料与付款方式，付款后发送截图核对。</p>
-          </div>
-          <div class="step">
-            <div class="step-number">05</div>
-            <h4>安排充值</h4>
-            <p>确认无误后安排处理，完成后通知客户确认到账。</p>
+            <h4>付款并完成充值</h4>
+            <p>收到客服确认后付款；充值完成后，我们会通知你检查到账。</p>
           </div>
         </div>
       </div>
@@ -240,33 +207,28 @@
     <section class="why-choose-us searchable-section" id="whyChooseUs">
       <div class="section-header">
         <h2>为什么选择我们</h2>
-        <p>Brilliant Gaming 的优势</p>
+        <p>正规渠道、清楚报价、人工核对。</p>
       </div>
-      <div class="features-grid">
+      <div class="features-grid is-four-feature">
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h4>安全可靠</h4>
-          <p>正规流程处理，保障交易体验</p>
+          <div class="feature-icon">01</div>
+          <h4>正规充值渠道</h4>
+          <p>不使用黑卡、盗刷或来路不明的危险渠道。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h4>快速处理</h4>
-          <p>确认订单后尽快安排充值</p>
+          <div class="feature-icon">02</div>
+          <h4>价格清楚</h4>
+          <p>商品与币种清楚展示，下单前再次确认金额。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💵</div>
-          <h4>价格透明</h4>
-          <p>页面价格清楚展示，下单前可确认</p>
+          <div class="feature-icon">03</div>
+          <h4>人工核对</h4>
+          <p>处理前核对游戏、商品、充值资料和付款方式。</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">👥</div>
-          <h4>人工客服</h4>
-          <p>客服协助核对资料，减少下单错误</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💳</div>
-          <h4>多种付款方式</h4>
-          <p>支持马来西亚与新加坡常用付款方式</p>
+          <div class="feature-icon">04</div>
+          <h4>长期稳定服务</h4>
+          <p>自 2019 年起，为马来西亚与新加坡玩家提供服务。</p>
         </div>
       </div>
     </section>
@@ -275,20 +237,20 @@
     <section class="about-section searchable-section" id="aboutSection">
       <div class="section-header">
         <h2>关于 Brilliant Gaming</h2>
-        <p>自 2019 年 6 月开始，我们专注为新马玩家提供安全、稳定的手游充值服务。</p>
+        <p>自 2019 年起，为马来西亚与新加坡玩家提供稳定的手游充值服务。</p>
       </div>
       <div class="about-panel">
         <div class="about-copy">
           <span class="section-kicker">EST. JUNE 2019</span>
-          <h3>正规充值 · 安全优先 · 长期稳定服务</h3>
-          <p>Brilliant Gaming 自 2019 年 6 月开始提供手游充值服务，长期服务马来西亚与新加坡玩家，覆盖中国服与国际服热门手游。</p>
-          <p>我们只做正规充值渠道，不做盗刷、不做黑卡，也不使用来路不明的危险渠道。每一笔订单都会由人工客服核对资料后再安排处理。</p>
+          <h3>正规渠道 · 人工核对 · 稳定服务</h3>
+          <p>我们提供国际服与中国服热门手游充值。每笔订单都会先确认游戏、商品、充值资料与付款方式，再安排处理。</p>
+          <p>坚持使用正规渠道，不使用黑卡、盗刷或来源不明的危险低价方式。</p>
         </div>
         <div class="about-stats about-stats-upgraded">
-          <div class="about-stat"><span class="about-stat-label">STARTED</span><strong>2019.06</strong><p>自 2019 年 6 月开始经营手游充值服务，长期为新马玩家提供稳定充值体验。</p></div>
-          <div class="about-stat"><span class="about-stat-label">SAFETY</span><strong>0 封号记录</strong><p>坚持正规充值方式，目前未遇过因我们充值导致封号的情况。</p></div>
-          <div class="about-stat"><span class="about-stat-label">CHANNEL</span><strong>正规充值</strong><p>不做盗刷、不做黑卡、不碰来路不明的危险低价渠道。</p></div>
-          <div class="about-stat"><span class="about-stat-label">SERVICE</span><strong>人工客服</strong><p>下单前核对游戏资料、付款方式与订单内容，减少填错资料的风险。</p></div>
+          <div class="about-stat"><span class="about-stat-label">STARTED</span><strong>2019.06</strong><p>持续服务马来西亚与新加坡玩家。</p></div>
+          <div class="about-stat"><span class="about-stat-label">CHANNEL</span><strong>正规渠道</strong><p>拒绝黑卡、盗刷与来源不明的充值方式。</p></div>
+          <div class="about-stat"><span class="about-stat-label">PRICING</span><strong>价格清楚</strong><p>商品与币种清楚展示，付款前再次确认。</p></div>
+          <div class="about-stat"><span class="about-stat-label">SERVICE</span><strong>人工客服</strong><p>处理前核对商品、充值资料与付款方式。</p></div>
         </div>
       </div>
     </section>
@@ -297,44 +259,44 @@
     <section class="faq-section searchable-section" id="faqSection">
       <div class="section-header">
         <h2>常见问题</h2>
-        <p>下单前可以先了解充值流程、安全说明与付款方式。</p>
+        <p>下单前，先确认资料、付款方式与处理规则。</p>
       </div>
       <div class="faq-list">
         <div class="faq-item active">
           <button class="faq-question" type="button">充值安全吗？</button>
-          <div class="faq-answer">安全。Brilliant Gaming 自 2019 年 6 月开始提供手游充值服务，我们只做正规充值渠道，不做盗刷、不做黑卡、不碰来路不明的低价渠道。目前从未遇过因我们充值导致封号的情况。</div>
+          <div class="faq-answer">我们坚持使用正规充值渠道，不使用黑卡、盗刷或来源不明的低价方式。每笔订单都会在付款前由客服核对。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">需要提供什么资料？</button>
-          <div class="faq-answer">不同游戏需要的资料不同，一般会需要 UID、角色 ID、服务器、区服或账号相关识别资料。下单前客服会和你确认清楚，避免填错资料。</div>
+          <div class="faq-answer">页面会按游戏显示必填资料，通常包括 UID、角色名、服务器或登录资料。不确定时可以先联系客服。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">一般多久到账？</button>
-          <div class="faq-answer">大多数订单会在确认付款后尽快安排。部分游戏会根据官方渠道、排单情况或活动高峰期有所延迟，如有特殊情况客服会主动说明。</div>
+          <div class="faq-answer">客服确认付款后会尽快处理。实际时间取决于游戏渠道、库存与排单情况；如有延迟，客服会主动说明。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">支持哪些付款方式？</button>
-          <div class="faq-answer">我们主要服务马来西亚与新加坡玩家，支持 TNG eWallet、DuitNow QR、银行转账、GrabPay、ShopeePay、PayNow 等常见付款方式。实际付款方式以下单时客服确认为准。</div>
+          <div class="faq-answer">支持马来西亚与新加坡常用付款方式，包括 TNG eWallet、DuitNow QR、银行转账和 PayNow 等，实际以下单时客服确认为准。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">为什么价格会变动？</button>
-          <div class="faq-answer">游戏充值价格会受到官方汇率、渠道成本、活动价格与库存情况影响，所以价格可能调整。下单前请以网站显示或客服最终确认为准。</div>
+          <div class="faq-answer">价格会受到汇率、渠道成本、活动与库存影响。付款前请以网站显示及客服最终确认金额为准。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">下单后可以退款吗？</button>
-          <div class="faq-answer">如果订单还没处理，可以联系客服确认是否可以取消。如果订单已经开始处理或已经充值完成，一般无法退款。</div>
+          <div class="faq-answer">订单尚未处理时，可以联系客服询问是否能够取消；已经开始处理或充值完成的订单一般无法退款。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">填错资料怎么办？</button>
-          <div class="faq-answer">请第一时间联系客服。如果订单还没开始处理，我们可以协助修改资料；如果已经提交或充值完成，就可能无法更改，所以付款前一定要确认资料正确。</div>
+          <div class="faq-answer">请立即联系客服。订单尚未处理时可以协助修改；已经提交或完成后可能无法更改，因此付款前请再次核对。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">没有看到我要充值的游戏怎么办？</button>
-          <div class="faq-answer">可以直接联系客服询问。网站会优先展示热门游戏，部分游戏可能没有公开放在首页，但仍然可以咨询是否支持充值。</div>
+          <div class="faq-answer">请把游戏名称发送给 WhatsApp 客服，我们会确认是否支持充值及当前价格。</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" type="button">营业时间是几点？</button>
-          <div class="faq-answer">营业时间为每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。</div>
+          <div class="faq-answer">客服时间为每天 10AM - 2AM（马来西亚时间）。非营业时间可以先留言，我们上线后会按顺序回复。</div>
         </div>
       </div>
     </section>
@@ -349,9 +311,8 @@
         <div class="footer-column">
           <h4>联系我们</h4>
           <ul>
-            <li>Facebook: <a href="#">Brilliant Gaming</a></li>
-            <li>Instagram: <a href="#">zhuoyuedianjing.official</a></li>
-            <li>WhatsApp: <a href="#">点击联系</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/zhuoyuedianjing.official/" target="_blank" rel="noopener">zhuoyuedianjing.official</a></li>
+            <li>WhatsApp: <a href="https://wa.me/60124458242" target="_blank" rel="noopener">+60 12-445 8242</a></li>
             <li>微信: <span>Brilliant_Gaming</span></li>
             <li>营业时间: <span>每天 10AM - 2AM</span></li>
           </ul>
@@ -372,14 +333,41 @@
     </footer>
   </div>
 
+  <!-- 新客户下单图解 -->
+  <div class="contact-modal customer-guide-modal" id="customerGuideModal" aria-hidden="true">
+    <div class="contact-dialog customer-guide-dialog" role="dialog" aria-modal="true" aria-labelledby="customerGuideTitle">
+      <button class="contact-close" type="button" data-guide-close aria-label="关闭">×</button>
+      <span class="section-kicker">FIRST ORDER GUIDE</span>
+      <h3 id="customerGuideTitle">第一次充值？四步完成下单</h3>
+      <p class="customer-guide-intro">选择游戏、填写资料并发送订单；客服确认后再付款。</p>
+
+      <div class="customer-guide-visual" aria-label="新客户下单图解">
+        <article><span>01</span><strong>选择游戏</strong><p>搜索游戏并选择充值面额。</p></article>
+        <article><span>02</span><strong>填写资料</strong><p>按照页面要求填写 UID 或登录资料。</p></article>
+        <article><span>03</span><strong>发送订单</strong><p>复制购物车内容并发给客服核对。</p></article>
+        <article><span>04</span><strong>确认付款</strong><p>客服确认后付款，等待充值完成。</p></article>
+      </div>
+
+      <div class="customer-guide-safety">
+        <strong>重要：</strong>
+        <span>请先等待客服确认商品、金额与付款方式，再进行付款。</span>
+      </div>
+
+      <div class="customer-guide-actions">
+        <button class="button button-secondary" type="button" data-guide-process>查看完整流程</button>
+        <button class="button button-primary" type="button" data-guide-contact>直接联系客服</button>
+      </div>
+    </div>
+  </div>
+
   <!-- 联系客服弹窗 -->
   <div class="contact-modal" id="contactModal" aria-hidden="true">
     <div class="contact-dialog contact-dialog-premium" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
       <button class="contact-close" type="button" data-contact-close aria-label="关闭">×</button>
 
       <span class="section-kicker">CONTACT BRILLIANT GAMING</span>
-      <h3 id="contactModalTitle">联系客服下单</h3>
-      <p class="contact-intro">请选择你常用的联系方式，把购物车订单、付款截图或游戏资料发送给客服确认。</p>
+      <h3 id="contactModalTitle">联系 Brilliant Gaming 客服</h3>
+      <p class="contact-intro">通过 WhatsApp 发送游戏、商品与充值资料。客服会先核对金额和付款方式，确认后再付款。</p>
 
       <div class="contact-methods contact-methods-premium">
         <button type="button" class="contact-method-card wechat" data-copy-value="Brilliant_Gaming">
@@ -400,7 +388,7 @@
           </span>
         </button>
 
-        <a class="contact-method-card instagram" href="https://www.instagram.com/Brilliant.Gaming.Enterprise/" target="_blank" rel="noopener">
+        <a class="contact-method-card instagram" href="https://www.instagram.com/zhuoyuedianjing.official/" target="_blank" rel="noopener">
           <span class="contact-brand-icon" aria-hidden="true">
             <svg viewBox="0 0 64 64" role="img">
               <defs>
@@ -419,7 +407,7 @@
           </span>
           <span class="contact-method-content">
             <span class="contact-method-name">Instagram</span>
-            <strong>Brilliant.Gaming.Enterprise</strong>
+            <strong>zhuoyuedianjing.official</strong>
             <small>点击打开 IG 私信</small>
           </span>
         </a>
@@ -434,13 +422,13 @@
           <span class="contact-method-content">
             <span class="contact-method-name">WhatsApp</span>
             <strong>+60 12-445 8242</strong>
-            <small>点击打开 WhatsApp</small>
+            <small>推荐联系渠道 · 点击打开</small>
           </span>
         </a>
       </div>
 
       <div class="contact-note-premium">
-        <strong>营业时间：</strong>每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。
+        <strong>客服时间：</strong>每天 10AM - 2AM（马来西亚时间）。非营业时间可先留言，我们上线后会按顺序回复。
       </div>
     </div>
   </div>
