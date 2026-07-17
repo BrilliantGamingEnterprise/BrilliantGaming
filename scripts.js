@@ -701,8 +701,8 @@ const categories = {
         { title: '1999 + 100 代金券', en: '1999 + 100 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '2999 + 140 代金券', en: '2999 + 140 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '4999 + 250 代金券', en: '4999 + 250 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '9999 + 500 代金券', en: '9999 + 500 Vouchers', price: 'RM 365.00', note: 'HOT 推荐 / Voucher Top-Up' },
-        { title: '29999 + 1500 代金券', en: '29999 + 1500 Vouchers', price: 'RM 1095.00', note: 'HOT 推荐 / Voucher Top-Up' }
+        { title: '9999 + 500 代金券', en: '9999 + 500 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '29999 + 1500 代金券', en: '29999 + 1500 Vouchers', price: 'RM 1110.00', note: 'HOT 推荐 / Voucher Top-Up' }
       ]
     },
     {
@@ -737,11 +737,11 @@ const categories = {
         { title: '1,999 代金券', en: '1,999 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '2,998 代金券', en: '2,998 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '4,999 代金券', en: '4,999 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '9,999 代金券', en: '9,999 Vouchers', price: 'RM 365.00', note: 'HOT 推荐 / Voucher Top-Up' },
-        { title: '19,999 代金券', en: '19,999 Vouchers', price: 'RM 730.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '29,999 代金券', en: '29,999 Vouchers', price: 'RM 1095.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '49,999 代金券', en: '49,999 Vouchers', price: 'RM 1820.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '99,998 代金券', en: '99,998 Vouchers', price: 'RM 3600.00', note: 'HOT 推荐 / Voucher Top-Up' }
+        { title: '9,999 代金券', en: '9,999 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '19,999 代金券', en: '19,999 Vouchers', price: 'RM 760.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '29,999 代金券', en: '29,999 Vouchers', price: 'RM 1140.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '49,999 代金券', en: '49,999 Vouchers', price: 'RM 1850 .00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '99,998 代金券', en: '99,998 Vouchers', price: 'RM 3700.00', note: 'HOT 推荐 / Voucher Top-Up' }
       ]
     }
   ]
@@ -766,11 +766,11 @@ const categories = {
         { title: '50 代金券', price: 'RM 32.00' },
         { title: '98 代金券', price: 'RM 57.00' },
         { title: '198 代金券', price: 'RM 114.00' },
-        { title: '328 代金券', price: 'RM 185.00' },
-        { title: '648 代金券', price: 'RM 365.00' },
-        { title: '998 代金券', price: 'RM 545.00' },
-        { title: '1998 代金券', price: 'RM 1095.00' },
-        { title: '2998 代金券', price: 'RM 1640.00' }
+        { title: '328 代金券', price: 'RM 190.00' },
+        { title: '648 代金券', price: 'RM 380.00' },
+        { title: '998 代金券', price: 'RM 570.00' },
+        { title: '1998 代金券', price: 'RM 1110.00' },
+        { title: '2998 代金券', price: 'RM 1665.00' }
       ]
     },
     {
@@ -805,9 +805,9 @@ const categories = {
         { title: '999 诸神币 + 68 绑定元宝', price: 'RM 38.00' },
         { title: '1499 诸神币 + 98 绑定元宝', price: 'RM 57.00' },
         { title: '2999 诸神币 + 198 绑定元宝', price: 'RM 114.00' },
-        { title: '4999 诸神币 + 328 绑定元宝', price: 'RM 185.00' },
-        { title: '9999 诸神币 + 648 绑定元宝', price: 'RM 365.00' },
-        { title: '29999 诸神币 + 1950 绑定元宝', price: 'RM 1095.00' }
+        { title: '4999 诸神币 + 328 绑定元宝', price: 'RM 190.00' },
+        { title: '9999 诸神币 + 648 绑定元宝', price: 'RM 380.00' },
+        { title: '29999 诸神币 + 1950 绑定元宝', price: 'RM 1110.00' }
       ]
     }
   ]
@@ -868,8 +868,8 @@ const categories = {
         { title: '300 欧泊', en: '300 Opals', price: 'RM 19.00', note: '赠送 60 / Bonus +60' },
         { title: '980 欧泊', en: '980 Opals', price: 'RM 57.00', note: '赠送 229 / Bonus +229' },
         { title: '1980 欧泊', en: '1980 Opals', price: 'RM 114.00', note: '赠送 499 / Bonus +499' },
-        { title: '3280 欧泊', en: '3280 Opals', price: 'RM 185.00', note: '赠送 965 / Bonus +965' },
-        { title: '6480 欧泊', en: '6480 Opals', price: 'RM 360.00', note: '赠送 2126 / Bonus +2126' }
+        { title: '3280 欧泊', en: '3280 Opals', price: 'RM 190.00', note: '赠送 965 / Bonus +965' },
+        { title: '6480 欧泊', en: '6480 Opals', price: 'RM 380.00', note: '赠送 2126 / Bonus +2126' }
       ]
     },
     {
@@ -932,13 +932,13 @@ const categories = {
       subtitle: 'Login Top Up',
       icon: '◆',
       products: [
-        { title: '60 星石', price: 'RM 4.00' },
+        { title: '60 星石', price: 'RM 4.40' },
         { title: '300 星石', price: 'RM 20.00' },
         { title: '980 星石', price: 'RM 57.00' },
         { title: '1980 星石', price: 'RM 114.00' },
         { title: '3280 星石', price: 'RM 190.00' },
-        { title: '6480 星石', price: 'RM 335.00' },
-        { title: '12980 星石', price: 'RM 670.00' }
+        { title: '6480 星石', price: 'RM 400.00' },
+        { title: '12980 星石', price: 'RM 800.00' }
       ]
     }
   ]
