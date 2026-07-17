@@ -932,11 +932,11 @@ const categories = {
       subtitle: 'Login Top Up',
       icon: '◆',
       products: [
-        { title: '60 星石', price: 'RM 4.40' },
-        { title: '300 星石', price: 'RM 20.00' },
-        { title: '980 星石', price: 'RM 57.00' },
-        { title: '1980 星石', price: 'RM 114.00' },
-        { title: '3280 星石', price: 'RM 190.00' },
+        { title: '60 星石', price: 'RM 4.40', status: 'soldout' },
+        { title: '300 星石', price: 'RM 20.00', status: 'soldout' },
+        { title: '980 星石', price: 'RM 57.00', status: 'soldout' },
+        { title: '1980 星石', price: 'RM 114.00', status: 'soldout' },
+        { title: '3280 星石', price: 'RM 190.00', status: 'soldout' },
         { title: '6480 星石', price: 'RM 400.00' },
         { title: '12980 星石', price: 'RM 800.00' }
       ]
@@ -1500,8 +1500,8 @@ const categories = {
       subtitle: 'Android / iOS Slow Top-Up',
       icon: '◆',
       products: [
-        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间 5 分钟 - 24 小时 / Slow Top-Up' },
-        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间 5 分钟 - 24 小时' }
+        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间 5 分钟 - 24 小时 / Slow Top-Up', status: 'soldout' },
+        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间 5 分钟 - 24 小时', status: 'soldout' }
       ]
     }
   ]
@@ -1553,8 +1553,8 @@ const categories = {
       subtitle: 'Android / iOS Slow Top-Up',
       icon: '◆',
       products: [
-        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间较慢 / Slow Top-Up' },
-        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间较慢' }
+        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间较慢 / Slow Top-Up', status: 'soldout' },
+        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间较慢', status: 'soldout' }
       ]
     },
     {
