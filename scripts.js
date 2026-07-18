@@ -27,6 +27,12 @@ const currencySettings = {
   }
 };
 
+const currencyFlagClasses = {
+  MYR: 'my',
+  SGD: 'sg',
+  USD: 'us'
+};
+
 let activeCurrency = localStorage.getItem(currencyKey) || currencySettings.defaultCurrency;
 if (!currencySettings.rates[activeCurrency]) activeCurrency = currencySettings.defaultCurrency;
 
@@ -2386,9 +2392,27 @@ function initCurrencySwitcher() {
     switcher.className = 'currency-switch';
     switcher.setAttribute('aria-label', uiText('currency.switcher'));
     switcher.innerHTML = `
-      <button type="button" data-currency="MYR">MYR</button>
-      <button type="button" data-currency="SGD">SGD</button>
-      <button type="button" data-currency="USD">USD</button>
+      <details class="preference-details">
+        <summary class="preference-trigger currency-trigger" aria-label="${escapeAttribute(uiText('currency.switcher'))}">
+          <span class="currency-flag currency-flag--my" data-current-currency-flag aria-hidden="true"></span>
+          <span class="preference-current" data-currency-current>MYR</span>
+          <span class="preference-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="preference-menu currency-menu" role="listbox" aria-label="${escapeAttribute(uiText('currency.switcher'))}">
+          <button type="button" class="preference-option" data-currency="MYR" role="option">
+            <span class="currency-flag currency-flag--my" aria-hidden="true"></span>
+            <span>MYR</span><span class="preference-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="preference-option" data-currency="SGD" role="option">
+            <span class="currency-flag currency-flag--sg" aria-hidden="true"></span>
+            <span>SGD</span><span class="preference-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="preference-option" data-currency="USD" role="option">
+            <span class="currency-flag currency-flag--us" aria-hidden="true"></span>
+            <span>USD</span><span class="preference-check" aria-hidden="true">✓</span>
+          </button>
+        </div>
+      </details>
     `;
 
     const ctaButton = header.querySelector('.cta-button');
@@ -2404,7 +2428,22 @@ function initCurrencySwitcher() {
 
 function updateCurrencySwitcherUI() {
   document.querySelectorAll('[data-currency]').forEach((button) => {
-    button.classList.toggle('active', button.dataset.currency === activeCurrency);
+    const active = button.dataset.currency === activeCurrency;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+
+  document.querySelectorAll('.currency-switch').forEach((switcher) => {
+    const currentLabel = switcher.querySelector('[data-currency-current]');
+    if (currentLabel) currentLabel.textContent = activeCurrency;
+
+    const currentFlag = switcher.querySelector('[data-current-currency-flag]');
+    if (currentFlag) {
+      currentFlag.className = `currency-flag currency-flag--${currencyFlagClasses[activeCurrency] || 'my'}`;
+      currentFlag.dataset.currentCurrencyFlag = '';
+    }
+
+    switcher.querySelector('.preference-details')?.removeAttribute('open');
   });
 }
 
@@ -3774,8 +3813,17 @@ if (homeFeaturedButton) {
     event.preventDefault();
     handleProductCardAction(productCard);
   });
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('.preference-details[open]').forEach((details) => {
+      if (!details.contains(event.target)) details.removeAttribute('open');
+    });
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
+      document.querySelectorAll('.preference-details[open]').forEach((details) => {
+        details.removeAttribute('open');
+        details.querySelector('summary')?.focus();
+      });
       closeContactModal();
       closeCustomerGuideModal();
     }

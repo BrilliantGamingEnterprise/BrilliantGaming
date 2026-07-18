@@ -844,9 +844,13 @@
       const active = button.dataset.bgeLanguage === language;
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', active ? 'true' : 'false');
+      button.setAttribute('aria-selected', active ? 'true' : 'false');
     });
     document.querySelectorAll('.language-switch').forEach((switcher) => {
       switcher.setAttribute('aria-label', t('language.switcher'));
+      const currentLabel = switcher.querySelector('[data-language-current]');
+      if (currentLabel) currentLabel.textContent = language === 'en' ? 'EN' : '中文';
+      switcher.querySelector('.preference-details')?.removeAttribute('open');
     });
     updateMobileNavigationUI();
     updateServiceStatus();
@@ -965,11 +969,22 @@
     const switcher = document.createElement('div');
     switcher.className = 'language-switch';
     switcher.dataset.bgeI18nIgnore = 'true';
-    switcher.setAttribute('role', 'group');
     switcher.innerHTML = `
-      <button type="button" data-bge-language="zh">中文</button>
-      <span aria-hidden="true">/</span>
-      <button type="button" data-bge-language="en">EN</button>
+      <details class="preference-details">
+        <summary class="preference-trigger language-trigger" aria-label="${t('language.switcher')}">
+          <span class="language-globe" aria-hidden="true"></span>
+          <span class="preference-current" data-language-current>中文</span>
+          <span class="preference-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="preference-menu language-menu" role="listbox" aria-label="${t('language.switcher')}">
+          <button type="button" class="preference-option" data-bge-language="zh" role="option">
+            <span>中文</span><span class="preference-check" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="preference-option" data-bge-language="en" role="option">
+            <span>English</span><span class="preference-check" aria-hidden="true">✓</span>
+          </button>
+        </div>
+      </details>
     `;
 
     const headerContainer = document.querySelector('.header-container');
@@ -1037,6 +1052,20 @@
     if (!button) return;
     event.preventDefault();
     setLanguage(button.dataset.bgeLanguage);
+  });
+
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('.preference-details[open]').forEach((details) => {
+      if (!details.contains(event.target)) details.removeAttribute('open');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('.preference-details[open]').forEach((details) => {
+      details.removeAttribute('open');
+      details.querySelector('summary')?.focus();
+    });
   });
 
   window.BGE_I18N = {

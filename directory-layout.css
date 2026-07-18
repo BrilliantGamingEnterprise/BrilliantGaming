@@ -34,6 +34,319 @@
   --shadow-lg: 0 26px 70px rgba(20, 23, 21, 0.14);
 }
 
+/* ==================== OPTION C: LANGUAGE + FLAG CURRENCY SELECTORS ==================== */
+.language-switch,
+.currency-switch {
+  position: relative !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: var(--dir-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  flex-shrink: 0 !important;
+}
+
+.preference-details {
+  position: relative;
+  display: block;
+}
+
+.preference-details > summary {
+  list-style: none;
+}
+
+.preference-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.preference-trigger {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 130px;
+  height: 44px;
+  padding: 0 15px;
+  color: #f7f4ec;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 52%),
+    linear-gradient(105deg, #111216 0%, #090a0d 72%, #17130d 100%);
+  border: 1px solid rgba(226, 184, 95, 0.55);
+  border-radius: 2px;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preference-trigger:hover,
+.preference-details[open] > .preference-trigger {
+  color: #ffe39a;
+  border-color: #e2b85f;
+  background:
+    linear-gradient(180deg, rgba(226, 184, 95, 0.11), transparent 58%),
+    linear-gradient(105deg, #14151a 0%, #0b0c10 66%, #211a0d 100%);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.42),
+    0 0 20px rgba(226, 184, 95, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+}
+
+.preference-trigger:focus-visible {
+  outline: 2px solid #f0ca73;
+  outline-offset: 3px;
+}
+
+.preference-current {
+  min-width: 40px;
+  font-size: 0.81rem;
+  font-weight: 900;
+  letter-spacing: 0.065em;
+  line-height: 1;
+}
+
+.preference-chevron {
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  border-right: 2px solid #e2b85f;
+  border-bottom: 2px solid #e2b85f;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.preference-details[open] .preference-chevron {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.language-globe {
+  position: relative;
+  width: 21px;
+  height: 21px;
+  border: 2px solid #e2b85f;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(226, 184, 95, 0.15);
+  flex: 0 0 auto;
+}
+
+.language-globe::before,
+.language-globe::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.language-globe::before {
+  inset: 3px 6px;
+  border-right: 1px solid #e2b85f;
+  border-left: 1px solid #e2b85f;
+  border-radius: 50%;
+}
+
+.language-globe::after {
+  top: 8px;
+  right: 1px;
+  left: 1px;
+  border-top: 1px solid #e2b85f;
+}
+
+.currency-flag {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 17px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.24), 0 4px 10px rgba(0, 0, 0, 0.24);
+  flex: 0 0 auto;
+}
+
+.currency-flag--my {
+  background: repeating-linear-gradient(to bottom, #c8102e 0 1.22px, #ffffff 1.22px 2.44px);
+}
+
+.currency-flag--my::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 12px;
+  height: 9px;
+  background: #012169;
+}
+
+.currency-flag--my::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border: 1.4px solid #ffcd00;
+  border-right-color: transparent;
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.currency-flag--sg {
+  background: linear-gradient(to bottom, #ef3340 0 50%, #ffffff 50% 100%);
+}
+
+.currency-flag--sg::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border: 1.4px solid #ffffff;
+  border-right-color: transparent;
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.currency-flag--us {
+  background: repeating-linear-gradient(to bottom, #b22234 0 1.31px, #ffffff 1.31px 2.62px);
+}
+
+.currency-flag--us::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 11px;
+  height: 9px;
+  background: #3c3b6e;
+}
+
+.currency-flag--us::after {
+  content: "•••";
+  position: absolute;
+  top: -3px;
+  left: 1px;
+  width: 9px;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 6px;
+  letter-spacing: -0.5px;
+  line-height: 8px;
+}
+
+.preference-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  z-index: 120;
+  display: grid;
+  gap: 4px;
+  min-width: 166px;
+  padding: 7px;
+  background: rgba(10, 11, 14, 0.985);
+  border: 1px solid rgba(226, 184, 95, 0.42);
+  border-radius: 11px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.58), 0 0 22px rgba(226, 184, 95, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.preference-option,
+.language-switch .preference-option,
+.currency-switch .preference-option {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 40px !important;
+  padding: 0 11px !important;
+  color: #c9c5bb !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+  font-size: 0.78rem !important;
+  font-weight: 850 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.035em !important;
+  text-align: left !important;
+  cursor: pointer !important;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease !important;
+}
+
+.language-menu .preference-option {
+  grid-template-columns: 1fr auto !important;
+}
+
+.preference-option:hover,
+.language-switch .preference-option:hover,
+.currency-switch .preference-option:hover {
+  color: #fff0bf !important;
+  background: rgba(226, 184, 95, 0.08) !important;
+  border-color: rgba(226, 184, 95, 0.16) !important;
+}
+
+.preference-option.active,
+.language-switch .preference-option.active,
+.currency-switch .preference-option.active {
+  color: #f4c967 !important;
+  background: rgba(226, 184, 95, 0.12) !important;
+  border-color: rgba(226, 184, 95, 0.24) !important;
+  box-shadow: inset 2px 0 0 #e2b85f !important;
+  transform: none !important;
+}
+
+.preference-check {
+  color: #e2b85f;
+  font-size: 0.86rem;
+  opacity: 0;
+}
+
+.preference-option.active .preference-check {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .preference-trigger {
+    min-width: 122px;
+    height: 42px;
+    padding: 0 13px;
+  }
+
+  .currency-trigger {
+    min-width: 126px;
+  }
+
+  .preference-menu {
+    top: auto;
+    bottom: calc(100% + 9px);
+  }
+}
+
+@media (max-width: 360px) {
+  .preference-trigger {
+    min-width: 112px;
+    padding: 0 10px;
+  }
+
+  .currency-trigger {
+    min-width: 116px;
+  }
+
+  .preference-current {
+    font-size: 0.76rem;
+  }
+}
+
 /* Homepage content clarity upgrade */
 
 .official-channels {
@@ -3011,6 +3324,24 @@ body,
   .page-home .directory-categories {
     justify-content: center;
   }
+}
+
+/* Keep the selected Option C controls above earlier shared switcher rules. */
+body .language-switch,
+body .currency-switch {
+  position: relative !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: var(--dir-ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
 }
 
 /* Final clarity and contrast fixes */
