@@ -2998,9 +2998,11 @@ function makeGameCover(game) {
     return `<div class="game-avatar"><span>${escapeHtml(getAvatarText(displayName))}</span></div>`;
   }
   const fallback = escapeAttribute(getAvatarText(displayName));
+  const coverSrc = escapeAttribute(game.image);
   return `
     <div class="game-avatar game-cover">
-      <img src="${escapeAttribute(game.image)}" alt="${escapeAttribute(displayName)}" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
+      <img class="game-cover-backdrop" src="${coverSrc}" alt="" loading="lazy" decoding="async" aria-hidden="true">
+      <img class="game-cover-main" src="${coverSrc}" alt="${escapeAttribute(displayName)}" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
     </div>`;
 }
 
