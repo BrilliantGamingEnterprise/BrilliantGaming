@@ -181,7 +181,7 @@ function sitemapEntry(url, zhUrl, enUrl, lastmod) {
 
 function makeSitemap() {
   const entries = [];
-  const basePages = ['/', '/intl.html', '/cn.html', '/review.html', '/policy.html'];
+  const basePages = ['/', '/intl.html', '/cn.html', '/policy.html'];
   for (const pathname of basePages) {
     const zhUrl = `${siteUrl}${pathname}`;
     const enUrl = `${zhUrl}${pathname.includes('?') ? '&' : '?'}lang=en`;

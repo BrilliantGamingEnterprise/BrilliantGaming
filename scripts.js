@@ -6,7 +6,7 @@ const dailyOrdersKey = 'bge-daily-order-stats-v1';
 const currencyKey = 'bge-currency-v1';
 
 // 网站商品资料设置。每次正式调整价格或商品后，只需更新 updatedAt。
-const { catalogSettings, currencySettings, currencyFlagClasses, reviewSettings } = globalThis.BGE_SITE_CONFIG;
+const { catalogSettings, currencySettings, currencyFlagClasses } = globalThis.BGE_SITE_CONFIG;
 const { pricePresets, categories, homeFeaturedIds } = globalThis.BGE_CATALOG_DATA;
 const catalogMeta = globalThis.BGE_CATALOG_META || { updatedAtByGame: {} };
 
@@ -56,6 +56,9 @@ const uiTextFallbacks = {
   'game.pricingPending': '该游戏价格正在整理中，请联系客服获取最新报价。',
   'home.showLess': '收起游戏 ↑',
   'home.showAll': '查看全部游戏 ›',
+  'home.directoryFeatured': '热门充值游戏',
+  'home.directoryAll': '全部充值游戏（{count}）',
+  'home.directoryFiltered': '筛选结果（{count}）',
   'home.filterAll': '全部游戏',
   'home.filterIntl': '国际服游戏',
   'home.filterCn': '中国服游戏',
@@ -1504,6 +1507,15 @@ function renderHomePage(showAll = false, filterCategory = 'all') {
     .map((game) => makeHomeGameCard(game.categoryId, game))
     .join('');
 
+  const directoryTitle = document.getElementById('gameDirectoryTitle');
+  if (directoryTitle) {
+    directoryTitle.textContent = !showAll
+      ? uiText('home.directoryFeatured')
+      : uiText(filterCategory === 'all' ? 'home.directoryAll' : 'home.directoryFiltered', {
+        count: gamesToShow.length
+      });
+  }
+
   const showAllButton = document.getElementById('showAllGamesButton');
 
   if (showAllButton) {
@@ -2071,6 +2083,17 @@ function initEvents() {
     if (target.matches('#clearSearch')) {
       clearSearch();
     }
+    const fullDirectoryLink = target.closest('a[href$="#all-games"]');
+    if (fullDirectoryLink && page === 'home') {
+      event.preventDefault();
+      isShowingAllGames = true;
+      activeHomeCategory = 'all';
+      renderHomePage(true, activeHomeCategory);
+      history.replaceState(null, '', `${window.location.pathname}${window.location.search}#all-games`);
+      document.getElementById('all-games')?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      return;
+    }
+
     if (target.closest('#showAllGamesButton')) {
   event.preventDefault();
 
@@ -2303,7 +2326,9 @@ function start() {
   updateDailyOrderStatsUI();
   initHeaderLinks();
   if (page === 'home') {
-    renderHomePage();
+    isShowingAllGames = window.location.hash === '#all-games';
+    activeHomeCategory = 'all';
+    renderHomePage(isShowingAllGames, activeHomeCategory);
     initSearch();
   } else if (page === 'game') {
     const params = getQueryParams();
@@ -2317,4 +2342,10 @@ function start() {
 }
 
 window.addEventListener('bge:languagechange', refreshLanguageContent);
+window.addEventListener('hashchange', () => {
+  if (page !== 'home' || window.location.hash !== '#all-games') return;
+  isShowingAllGames = true;
+  activeHomeCategory = 'all';
+  renderHomePage(true, activeHomeCategory);
+});
 window.addEventListener('DOMContentLoaded', start);

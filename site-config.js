@@ -27,17 +27,9 @@ const currencyFlagClasses = {
   USD: 'us'
 };
 
-  const reviewSettings = {
-    // Publish the approved Google Sheet as CSV, then paste its URL here.
-    publishedCsvUrl: '',
-    formUrl: 'https://forms.gle/25g3fthH2vgJ64A37',
-    homepageLimit: 3
-  };
-
   globalThis.BGE_SITE_CONFIG = Object.freeze({
     catalogSettings,
     currencySettings,
-    currencyFlagClasses,
-    reviewSettings
+    currencyFlagClasses
   });
 })();
