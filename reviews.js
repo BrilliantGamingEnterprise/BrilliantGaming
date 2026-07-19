@@ -83,7 +83,7 @@
   function card(review, index) {
     const colorClass = index % 3 === 1 ? ' review-avatar-blue' : (index % 3 === 2 ? ' review-avatar-gold' : '');
     const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-    return `<article class="review-card"><div class="review-card-top"><div class="review-avatar${colorClass}">${escapeHtml(review.name[0] || 'P')}</div><div><div class="review-name">${escapeHtml(review.name)}</div><div class="review-stars" aria-label="${review.rating} / 5">${stars}</div></div><span class="review-badge">${globalThis.BGE_I18N?.isEnglish?.() ? 'Approved' : '已审核'}</span></div><div class="review-product">${escapeHtml(review.product)}</div><p class="review-text">${escapeHtml(review.text)}</p><div class="review-date">${escapeHtml(review.date)}</div></article>`;
+    return `<article class="review-card"><div class="review-card-top"><div class="review-avatar${colorClass}">${escapeHtml(review.name[0] || 'P')}</div><div><div class="review-name">${escapeHtml(review.name)}</div><div class="review-stars" aria-label="${review.rating} / 5">${stars}</div></div></div><div class="review-product">${escapeHtml(review.product)}</div><p class="review-text">${escapeHtml(review.text)}</p><div class="review-date">${escapeHtml(review.date)}</div></article>`;
   }
 
   function render(reviews) {
@@ -98,7 +98,9 @@
       if (visible.length) grid.innerHTML = visible.map(card).join('');
     });
     document.querySelectorAll('[data-review-status]').forEach((node) => {
-      node.textContent = english ? 'Approved reviews are updated automatically.' : '已批准的评价会自动更新。';
+      node.textContent = english
+        ? 'Public reviews use masked names and never show account or order details.'
+        : '公开评价会对昵称打码，并隐藏账号、UID、角色名和订单资料。';
     });
   }
 
@@ -110,7 +112,7 @@
       const reviews = parseCsv(await response.text()).map(normalize).filter(Boolean);
       render(reviews);
     } catch (error) {
-      console.warn('Approved reviews could not be loaded; showing local fallback reviews.', error);
+      console.warn('Reviews could not be loaded; showing local fallback reviews.', error);
     }
   }
 

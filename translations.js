@@ -445,12 +445,12 @@
     '官方渠道 · 人工处理': 'Official Channels · Personal Processing',
     '去评价': 'Write a Review',
     '玩家真实评价': 'Real Customer Reviews',
-    '真实反馈 · 人工审核 · 保护隐私 · 精选公开展示': 'Genuine Feedback · Manually Reviewed · Privacy Protected · Selected for Public Display',
+    '客户分享 · 昵称打码 · 保护隐私': 'Customer Stories · Masked Names · Privacy Protected',
+    '真实评价 · 昵称打码 · 保护隐私': 'Real Reviews · Masked Names · Privacy Protected',
     '留下评价': 'Leave a Review',
     '返回首页好评区': 'Back to Home Reviews',
-    '审核说明': 'Review Policy',
-    '评价由 Google Form 收集后进行人工审核；公开展示时会对昵称打码处理，并只展示已授权公开的评价内容。': 'Reviews are collected through Google Forms and manually checked. Display names are masked, and only reviews approved for public display are shown.',
-    '已审核': 'Verified',
+    '隐私说明': 'Privacy Note',
+    '公开评价会对昵称打码，并隐藏账号、UID、角色名和订单资料。': 'Public reviews use masked names and never show account, UID, character, or order details.',
     '原神 · 6480 创世结晶': 'Genshin Impact · 6480 Genesis Crystals',
     '到账很快，客服回复也很清楚，第一次下单也很放心。之后还会继续支持！': 'The top-up arrived quickly and customer service explained everything clearly. I felt confident even on my first order and will order again!',
     '和平精英 · 点券充值': 'Peacekeeper Elite · Token Top-Up',
@@ -463,7 +463,7 @@
     '崩坏：星穹铁道 · 古老梦华': 'Honkai: Star Rail · Oneiric Shards',
     '整体服务很稳定，付款后很快安排，客服态度也很好，推荐。': 'The service was reliable, processing started soon after payment, and customer service was friendly. Recommended.',
     '想分享你的充值体验？': 'Want to Share Your Top-Up Experience?',
-    '点击按钮填写评价，我们审核后会以打码昵称的方式公开展示。': 'Submit a review and, after verification, we may display it publicly with your name masked.',
+    '点击按钮填写评价；公开展示时会隐藏账号、UID、角色名和订单资料。': 'Submit a review; public posts hide account, UID, character, and order details.',
     '返回首页': 'Back to Home',
     '完整国际游戏列表': 'Full Global Games List',
     '国际游戏充值专区': 'Global Game Top-Ups',
@@ -953,7 +953,7 @@
 
   function createServiceStatus() {
     if (document.querySelector('[data-service-status]')) return;
-    const anchor = document.querySelector('.detail-status, .hero-kicker, .hero-badge, .reviews-kicker');
+    const anchor = document.querySelector('.detail-status, .hero-kicker, .hero-badge');
     if (!anchor) return;
 
     const badge = document.createElement('span');
