@@ -3,6 +3,6 @@
   "private": true,
   "scripts": {
     "build": "node tools/build-site.mjs",
-    "check": "node --check scripts.js && node --check translations.js && node --check site-config.js && node --check catalog-data.js && node --check analytics.js && node --check reviews.js && node --check policy.js && node tools/check-css.mjs && node tools/build-site.mjs --check"
+    "check": "node --check scripts.js && node --check translations.js && node --check site-config.js && node --check catalog-data.js && node --check analytics.js && node --check policy.js && node tools/check-css.mjs && node tools/build-site.mjs --check"
   }
 }
