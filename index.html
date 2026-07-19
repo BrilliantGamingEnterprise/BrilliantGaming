@@ -9,6 +9,7 @@
   <script src="seo.js" defer></script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="directory-layout.css?v=15" />
+  <link rel="stylesheet" href="components.css?v=2" />
 </head>
 <body class="page-home" data-page="home">
   <div class="page-shell">
@@ -161,6 +162,23 @@
           <p>找不到游戏或不确定资料？让客服协助确认。</p>
           <span class="entry-action">打开联系方式 →</span>
         </button>
+      </div>
+    </section>
+
+    <!-- 玩家评价：Google Sheet 中批准的内容会自动替换备用评价 -->
+    <section class="home-reviews searchable-section" id="reviewsSection">
+      <div class="section-header home-reviews-header">
+        <div>
+          <span class="section-kicker">CUSTOMER REVIEWS</span>
+          <h2>玩家真实评价</h2>
+          <p data-review-status>客户分享 · 昵称打码 · 保护隐私</p>
+        </div>
+        <a class="view-all-link" href="review.html">查看全部评价 ›</a>
+      </div>
+      <div class="reviews-grid" data-review-grid="home">
+        <article class="review-card"><div class="review-card-top"><div class="review-avatar">M</div><div><div class="review-name">M**a</div><div class="review-stars">★★★★★</div></div></div><div class="review-product">原神 · 6480 创世结晶</div><p class="review-text">到账很快，客服回复也很清楚，第一次下单也很放心。</p><div class="review-date">2026-05-16</div></article>
+        <article class="review-card"><div class="review-card-top"><div class="review-avatar review-avatar-blue">A</div><div><div class="review-name">A***d</div><div class="review-stars">★★★★★</div></div></div><div class="review-product">和平精英 · 点券充值</div><p class="review-text">处理速度很快，付款后客服马上确认订单，整体体验很顺。</p><div class="review-date">2026-05-15</div></article>
+        <article class="review-card"><div class="review-card-top"><div class="review-avatar review-avatar-gold">J</div><div><div class="review-name">J***e</div><div class="review-stars">★★★★★</div></div></div><div class="review-product">Pokémon TCG Pocket · Poké Gold</div><p class="review-text">价格不错，流程简单，客服也很有耐心解释。</p><div class="review-date">2026-05-14</div></article>
       </div>
     </section>
 
@@ -322,6 +340,7 @@
           <ul>
             <li>🇲🇾 Malaysia</li>
             <li>🇸🇬 Singapore</li>
+            <li><a href="policy.html">服务与隐私政策</a></li>
           </ul>
         </div>
       </div>
@@ -458,7 +477,11 @@
   🛒 购物车 <span id="cartCount">0</span></button>
   <button id="cartToggleMobile" class="button button-primary" style="display: none;">打开购物车</button>
 
-  <script src="translations.js?v=13"></script>
-  <script src="scripts.js?v=14"></script>
+  <script src="site-config.js?v=1"></script>
+  <script src="catalog-data.js?v=1"></script>
+  <script src="catalog-meta.js?v=1"></script>
+  <script src="translations.js?v=14"></script>
+  <script src="reviews.js?v=2"></script>
+  <script src="scripts.js?v=15"></script>
 </body>
 </html>

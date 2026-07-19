@@ -1,0 +1,40 @@
+name: Website check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate pull request output
+        if: github.event_name == 'pull_request'
+        run: npm run check
+      - name: Build game pages and price dates
+        if: github.event_name == 'push'
+        run: npm run build
+      - name: Validate generated website
+        if: github.event_name == 'push'
+        run: npm run check
+      - name: Save generated pages and price dates
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          git add catalog-fingerprints.json catalog-meta.js sitemap.xml games
+          if git diff --cached --quiet; then
+            echo "Generated website is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update generated game pages and price dates"
+          git push

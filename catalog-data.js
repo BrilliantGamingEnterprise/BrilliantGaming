@@ -1,0 +1,1708 @@
+/* Brilliant Gaming game, product and shared price data. */
+(() => {
+const pricePresets = {
+  // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
+  // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
+  // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
+  rm340: 'RM 350.00',
+
+  // 中国服共用价格：王者荣耀、和平精英、火影忍者、金铲铲等共用的人民币档位。
+  // 以后要统一调整中国游戏档位价格，只改这里一次即可。
+  cny6: 'RM 6.00',
+  cny10: 'RM 10.00',
+  cny18: 'RM 15.00',
+  cny25: 'RM 20.00',
+  cny30: 'RM 24.00',
+  cny50: 'RM 38.00',
+  cny68: 'RM 48.00',
+  cny98: 'RM 68.00',
+  cny118: 'RM 78.00',
+  cny128: 'RM 84.00',
+  cny168: 'RM 109.00',
+  cny198: 'RM 128.00',
+  cny328: 'RM 207.00',
+  cny348: 'RM 218.00',
+  cny648: 'RM 405.00',
+  cny898: 'RM 561.00',
+  cny1298: 'RM 811.00',
+  cny1998: 'RM 1225.00'
+};
+
+const categories = {
+  intl: {
+    title: '热门国际游戏',
+    subtitle: 'Brilliant Gaming 精选热门国际服手游充值。',
+    page: 'index.html',
+    games: [
+      {
+        id: 'genshin',
+        name: '原神',
+        detailName: '国际服 · 原神',
+        description: 'Genshin Impact',
+        tag: 'Login Top Up',
+        image: 'assets/images/games/genshin.jpg',
+        detailArt: 'assets/images/games/genshin2.jpg',
+        productSections: [
+          {
+            title: '创世结晶',
+            subtitle: 'Genesis Crystal',
+            icon: '💎',
+            products: [
+              { title: '60 创世结晶', en: '60 Genesis Crystals', price: 'RM 4.00', note: '结晶 / Genesis Crystal' },
+              { title: '300 + 30 创世结晶', en: '300 + 30 Genesis Crystals', price: 'RM 18.00', note: '结晶 / Genesis Crystal' },
+              { title: '980 + 110 创世结晶', en: '980 + 110 Genesis Crystals', price: 'RM 54.00', note: '结晶 / Genesis Crystal' },
+              { title: '1980 + 260 创世结晶', en: '1980 + 260 Genesis Crystals', price: 'RM 105.00', note: '结晶 / Genesis Crystal' },
+              { title: '3280 + 600 创世结晶', en: '3280 + 600 Genesis Crystals', price: 'RM 170.00', note: '结晶 / Genesis Crystal' },
+              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 330.00', note: '结晶 / Genesis Crystal' },
+              { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Genesis Crystals', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
+            ]
+          },
+          {
+            title: '其他商品',
+            subtitle: 'Welkin Moon & Battle Pass',
+            icon: '🌙',
+            products: [
+              { title: '空月祝福', en: 'Blessing of the Welkin Moon', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
+              { title: '珍珠纪行', en: 'Gnostic Hymn', price: 'RM 38.00', note: '纪行 / Battle Pass' },
+              { title: '珍珠之歌', en: 'Gnostic Chorus', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
+            ]
+          }
+        ]
+      },
+      {
+  id: 'honkai-star-rail',
+  name: '崩坏：星穹铁道',
+  detailName: '国际服 · 崩坏：星穹铁道',
+  description: 'Honkai: Star Rail',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/honkai-star-rail.jpg',
+  detailArt: 'assets/images/games/honkai-star-rail-hero.jpg',
+  productSections: [
+    {
+      title: '古老梦华',
+      subtitle: 'Oneiric Shard',
+      icon: '◆',
+      products: [
+        { title: '60 古老梦华', en: '60 Oneiric Shards', price: 'RM 4.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '300 + 30 古老梦华', en: '300 + 30 Oneiric Shards', price: 'RM 18.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '980 + 110 古老梦华', en: '980 + 110 Oneiric Shards', price: 'RM 54.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '1980 + 260 古老梦华', en: '1980 + 260 Oneiric Shards', price: 'RM 105.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '3280 + 600 古老梦华', en: '3280 + 600 Oneiric Shards', price: 'RM 170.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '6480 + 1600 古老梦华', en: '6480 + 1600 Oneiric Shards', price: 'RM 330.00', note: '古老梦华 / Oneiric Shard' },
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Oneiric Shards', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Express Supply Pass & Nameless Honor',
+      icon: '◆',
+      products: [
+        { title: '列车补给凭证', en: 'Express Supply Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
+        { title: '无名客的荣勋', en: 'Nameless Glory', price: 'RM 38.00', note: '纪行 / Battle Pass' },
+        { title: '无名客的勋章', en: 'Nameless Medal', price: 'RM 76.00', note: '纪行升级 / Battle Pass Upgrade' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'zenless-zone-zero',
+  name: '绝区零',
+  detailName: '国际服 · 绝区零',
+  description: 'Zenless Zone Zero',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/zzz.jpg',
+  detailArt: 'assets/images/games/zzz2.jpg',
+  productSections: [
+    {
+      title: '菲林底片',
+      subtitle: 'Monochrome',
+      icon: '◆',
+      products: [
+        { title: '60 菲林底片', en: '60 Monochrome', price: 'RM 4.00', note: '菲林底片 / Monochrome' },
+        { title: '300 + 30 菲林底片', en: '300 + 30 Monochrome', price: 'RM 18.00', note: '菲林底片 / Monochrome' },
+        { title: '980 + 110 菲林底片', en: '980 + 110 Monochrome', price: 'RM 54.00', note: '菲林底片 / Monochrome' },
+        { title: '1980 + 260 菲林底片', en: '1980 + 260 Monochrome', price: 'RM 105.00', note: '菲林底片 / Monochrome' },
+        { title: '3280 + 600 菲林底片', en: '3280 + 600 Monochrome', price: 'RM 170.00', note: '菲林底片 / Monochrome' },
+        { title: '6480 + 1600 菲林底片', en: '6480 + 1600 Monochrome', price: 'RM 330.00', note: '菲林底片 / Monochrome' },
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Monochrome', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Membership & Plans',
+      icon: '◆',
+      products: [
+        { title: '绳网会员', en: 'Inter-Knot Membership', price: 'RM 18.00', note: '会员 / Membership' },
+        { title: '成长计划', en: 'Growth Plan', price: 'RM 38.00', note: '计划 / Plan' },
+        { title: '典藏计划', en: 'Premium Plan', price: 'RM 76.00', note: '典藏计划 / Premium Plan' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'wuthering-waves',
+  name: '鸣潮',
+  detailName: '国际服 · 鸣潮',
+  description: 'Wuthering Waves',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/wuwa.jpg',
+  detailArt: 'assets/images/games/wuwa2.jpg',
+  productSections: [
+    {
+      title: '月相',
+      subtitle: 'Lunite',
+      icon: '◆',
+      products: [
+        { title: '60 月相', en: '60 Lunite', price: 'RM 4.00', note: '月相 / Lunite' },
+        { title: '300 + 30 月相', en: '300 + 30 Lunite', price: 'RM 18.00', note: '月相 / Lunite' },
+        { title: '980 + 110 月相', en: '980 + 110 Lunite', price: 'RM 54.00', note: '月相 / Lunite' },
+        { title: '1980 + 260 月相', en: '1980 + 260 Lunite', price: 'RM 108.00', note: '月相 / Lunite' },
+        { title: '3280 + 600 月相', en: '3280 + 600 Lunite', price: 'RM 180.00', note: '月相 / Lunite' },
+        { title: '6480 + 1600 月相', en: '6480 + 1600 Lunite', price: 'RM 330.00', note: '月相 / Lunite' },
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Lunite', price: 'RM 680.00', note: '一条龙套餐 / Full Bundle' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Subscription & Podcast',
+      icon: '◆',
+      products: [
+        { title: '月相观测卡', en: 'Lunite Subscription', price: 'RM 19.00', note: '月卡 / Monthly Pass' },
+        { title: '寰宇频道', en: 'Insider Channel', price: 'RM 38.00', note: '通行证 / Battle Pass' },
+        { title: '寰宇特约', en: 'Connoisseur Channel', price: 'RM 76.00', note: '通行证升级 / Premium Battle Pass' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'pokemon-tcg-pocket',
+  name: 'Pokémon TCG Pocket',
+  detailName: 'Pokémon TCG Pocket',
+  description: 'Pokémon TCG Pocket',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/TCG.jpg',
+  detailArt: 'assets/images/games/tcg2.jpg',
+  productSections: [
+    {
+      title: 'Poké Gold',
+      subtitle: 'Poké Gold',
+      icon: '◆',
+      products: [
+        { title: '5 Poké Gold', en: '5 Poké Gold', price: 'RM 4.00', note: 'Poké Gold / Top-Up' },
+        { title: '25 + 1 Poké Gold', en: '25 + 1 Poké Gold', price: 'RM 19.00', note: '额外 +1 / Bonus +1' },
+        { title: '50 + 7 Poké Gold', en: '50 + 7 Poké Gold', price: 'RM 38.00', note: '额外 +7 / Bonus +7' },
+        { title: '100 + 20 Poké Gold', en: '100 + 20 Poké Gold', price: 'RM 76.00', note: '额外 +20 / Bonus +20' },
+        { title: '200 + 50 Poké Gold', en: '200 + 50 Poké Gold', price: 'RM 144.00', note: '额外 +50 / Bonus +50' },
+        { title: '500 + 190 Poké Gold', en: '500 + 190 Poké Gold', price: 'RM 350.00', note: 'HOT 推荐 / Bonus +190' }
+      ]
+    },
+    {
+      title: '礼包',
+      subtitle: 'Gift Pack',
+      icon: '◆',
+      products: [
+        { title: '礼包', en: 'Gift Pack', price: 'RM 87.00', note: '礼包 / Gift Pack' }
+      ]
+    }
+  ]
+},
+
+      {
+  id: 'honor-of-kings-global',
+  name: '王者荣耀国际服',
+  detailName: '国际服 · 王者荣耀',
+  description: 'Honor of Kings Global',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/hok.jpg',
+  detailArt: 'assets/images/games/hok2.jpg',
+  productSections: [
+    {
+      title: '点券',
+      subtitle: 'Tokens',
+      icon: '◆',
+      products: [
+        { title: '80 点券', en: '80 Tokens', price: 'RM 4.00', note: '国际服点券 / Global Tokens' },
+        { title: '240 点券', en: '240 Tokens', price: 'RM 12.00', note: '国际服点券 / Global Tokens' },
+        { title: '400 点券', en: '400 Tokens', price: 'RM 20.00', note: '国际服点券 / Global Tokens' },
+        { title: '560 点券', en: '560 Tokens', price: 'RM 28.00', note: '国际服点券 / Global Tokens' },
+        { title: '830 点券', en: '830 Tokens', price: 'RM 38.00', note: '国际服点券 / Global Tokens' },
+        { title: '1245 点券', en: '1245 Tokens', price: 'RM 57.00', note: '国际服点券 / Global Tokens' },
+        { title: '2508 点券', en: '2508 Tokens', price: 'RM 114.00', note: '国际服点券 / Global Tokens' },
+        { title: '4180 点券', en: '4180 Tokens', price: 'RM 188.00', note: 'HOT 推荐 / Most Popular' },
+        { title: '8360 点券', en: '8360 Tokens', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Best Value' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'pubg-mobile',
+  name: 'PUBG Mobile',
+  detailName: 'PUBG Mobile',
+  description: 'PUBG Mobile UC',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/PUBG.jpg',
+  detailArt: 'assets/images/games/PUBG2.jpg',
+  productSections: [
+    {
+      title: 'UC',
+      subtitle: 'UC',
+      icon: '◆',
+      products: [
+        { title: '60 UC', en: '60 UC', price: 'RM 4.30', note: 'UC 充值 / UC Top-Up' },
+        { title: '300 + 25 UC', en: '300 + 25 UC', price: 'RM 20.00', note: 'UC 充值 / UC Top-Up' },
+        { title: '600 + 60 UC', en: '600 + 60 UC', price: 'RM 39.00', note: 'UC 充值 / UC Top-Up' },
+        { title: '1500 + 300 UC', en: '1500 + 300 UC', price: 'RM 97.50', note: 'UC 充值 / UC Top-Up' },
+        { title: '3000 + 850 UC', en: '3000 + 850 UC', price: 'RM 190.00', note: 'UC 充值 / UC Top-Up' },
+        { title: '6000 + 2100 UC', en: '6000 + 2100 UC', price: 'RM 380.00', note: 'HOT 推荐 / UC Top-Up' },
+        { title: '12000 + 4200 UC', en: '12000 + 4200 UC', price: 'RM 760.00', note: 'UC 充值 / UC Top-Up' },
+        { title: '18000 + 6300 UC', en: '18000 + 6300 UC', price: 'RM 1140.00', note: 'UC 充值 / UC Top-Up' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Other Items',
+      icon: '◆',
+      products: [
+        { title: '普通会员 1 月', en: 'Normal Membership 1 Month', price: 'RM 4.30', note: '会员 / Membership' },
+        { title: '普通会员 12 月', en: 'Normal Membership 12 Months', price: 'RM 51.60', note: '会员 / Membership' },
+        { title: '高级会员 1 月', en: 'Prime Membership 1 Month', price: 'RM 42.00', note: '高级会员 / Prime Membership' },
+        { title: '高级会员 12 月', en: 'Prime Membership 12 Months', price: 'RM 490.00', note: '高级会员 / Prime Membership' },
+        { title: '其他礼包', en: 'Other Gift Packs', price: '详情询问', note: '其他礼包 / Please Ask Customer Service' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'garena-codm',
+  name: 'Garena 使命召唤',
+  detailName: 'Garena 使命召唤',
+  description: 'Garena CODM',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/codm.jpg',
+  detailArt: 'assets/images/games/codm2.jpg',
+  productSections: [
+    {
+      title: 'CP',
+      subtitle: 'CP',
+      icon: '◆',
+      products: [
+        { title: '114 CP', en: '114 CP', price: 'RM 6.00', note: 'CP 充值 / CP Top-Up' },
+        { title: '230 + 23 CP', en: '230 + 23 CP', price: 'RM 10.80', note: 'CP 充值 / CP Top-Up' },
+        { title: '460 + 69 CP', en: '460 + 69 CP', price: 'RM 20.50', note: 'CP 充值 / CP Top-Up' },
+        { title: '690 + 104 CP', en: '690 + 104 CP', price: 'RM 31.00', note: 'CP 充值 / CP Top-Up' },
+        { title: '1150 + 173 CP', en: '1150 + 173 CP', price: 'RM 51.00', note: 'CP 充值 / CP Top-Up' },
+        { title: '2300 + 460 CP', en: '2300 + 460 CP', price: 'RM 103.00', note: 'CP 充值 / CP Top-Up' },
+        { title: '4600 + 1840 CP', en: '4600 + 1840 CP', price: 'RM 205.00', note: 'HOT 推荐 / CP Top-Up' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'garena-delta-force',
+  name: 'Garena 三角洲',
+  detailName: 'Garena 三角洲',
+  description: 'Garena Delta Force',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/三角洲1.jpg',
+  detailArt: 'assets/images/games/三角洲2.jpg',
+  productSections: [
+    {
+      title: 'Delta Coin',
+      subtitle: 'Delta Coin',
+      icon: '◆',
+      products: [
+        { title: '60 Delta Coin', en: '60 Delta Coin', price: 'RM 4.50', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '300 + 20 Delta Coin', en: '300 + 20 Delta Coin', price: 'RM 22.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '420 + 40 Delta Coin', en: '420 + 40 Delta Coin', price: 'RM 30.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '680 + 70 Delta Coin', en: '680 + 70 Delta Coin', price: 'RM 43.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '1280 + 200 Delta Coin', en: '1280 + 200 Delta Coin', price: 'RM 86.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '1680 + 300 Delta Coin', en: '1680 + 300 Delta Coin', price: 'RM 106.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '3280 + 670 Delta Coin', en: '3280 + 670 Delta Coin', price: 'RM 213.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' },
+        { title: '6480 + 1620 Delta Coin', en: '6480 + 1620 Delta Coin', price: 'RM 400.00', note: 'HOT 推荐 / Delta Coin Top-Up' },
+        { title: '12960 + 3888 Delta Coin', en: '12960 + 3888 Delta Coin', price: 'RM 810.00', note: 'HOT 推荐 / Delta Coin Top-Up' },
+        { title: '19440 + 5832 Delta Coin', en: '19440 + 5832 Delta Coin', price: 'RM 1215.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'mobile-legends',
+  name: 'Mobile Legends',
+  detailName: 'Mobile Legends BangBang',
+  description: 'MLBB GLOBAL',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/mlbb.jpg',
+  detailArt: 'assets/images/games/mlbb2.jpg',
+  productSections: [
+    {
+      title: '钻石',
+      subtitle: 'Diamonds',
+      icon: '◆',
+      products: [
+  { title: '254 + 30 Diamond', en: '254 + 30 Diamond', price: 'RM 20.00', note: 'Diamond Top-Up' },
+  { title: '317 + 38 Diamond', en: '317 + 38 Diamond', price: 'RM 25.00', note: 'Diamond Top-Up' },
+  { title: '383 + 46 Diamond', en: '383 + 46 Diamond', price: 'RM 30.00', note: 'Diamond Top-Up' },
+  { title: '633 + 83 Diamond', en: '633 + 83 Diamond', price: 'RM 50.00', note: 'Diamond Top-Up' },
+  { title: '1252 + 194 Diamond', en: '1252 + 194 Diamond', price: 'RM 100.00', note: 'Diamond Top-Up' },
+  { title: '2501 + 475 Diamond', en: '2501 + 475 Diamond', price: 'RM 200.00', note: 'HOT 推荐 / Diamond Top-Up' },
+  { title: '5002 + 950 Diamond', en: '5002 + 950 Diamond', price: 'RM 400.00', note: 'BEST VALUE 推荐 / Diamond Top-Up' },
+  { title: '7503 + 1425 Diamond', en: '7503 + 1425 Diamond', price: 'RM 600.00', note: 'BEST VALUE 推荐 / Diamond Top-Up' }
+]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Other Items',
+      icon: '◆',
+      products: [
+        { title: 'Weekly Diamond Pass', en: 'Weekly Diamond Pass', price: 'RM 10.00', note: '周卡 / Weekly Pass' },
+        { title: 'Weekly Limited Elite Bundle', en: 'Weekly Limited Elite Bundle', price: 'RM 5.00', note: '礼包 / Bundle' },
+        { title: 'Monthly Limited Epic Bundle', en: 'Monthly Limited Epic Bundle', price: 'RM 25.00', note: '礼包 / Bundle' },
+        { title: 'Twilight Pass', en: 'Twilight Pass', price: 'RM 45.00', note: '通行证 / Pass' }
+      ]
+    }
+  ]
+},
+
+{
+        id: 'pokemon-go',
+        name: 'Pokemon Go',
+        description: 'Pokémon GO',
+        tag: 'Login Top Up',
+        image: 'assets/images/games/go.jpg',
+        detailArt: 'assets/images/games/go2.jpg',
+        products: [
+                { title: '14500 金币', en: '14,500 PokéCoins', price: 'RM 145.00', note: 'BEST VALUE 推荐 / PokéCoins Top-Up' }
+        ]
+      },
+
+      {
+  id: 'last-war-survival',
+  name: '最后的战争',
+  detailName: '最后的战争',
+  description: 'Last War: Survival',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/last.jpg',
+  detailArt: 'assets/images/games/last2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 17.50', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 35.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 70.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 87.50', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 175.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 345.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'kingshot',
+  name: '国王战争',
+  detailName: '国王战争',
+  description: 'KingShot',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/king.jpg',
+  detailArt: 'assets/images/games/king2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'whiteout-survival',
+  name: '寒霜启示录',
+  detailName: '寒霜启示录',
+  description: 'Whiteout Survival',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/white.jpg',
+  detailArt: 'assets/images/games/white2.jpg',
+  productSections: [
+    {
+      title: '美金礼包',
+      subtitle: 'USD Packages',
+      icon: '◆',
+      products: [
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+      ]
+    }
+  ]
+},
+
+      {
+  id: 'neverness-to-everness',
+  name: 'NTE 异环',
+  detailName: 'NTE 异环',
+  description: 'Neverness to Everness',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/nte.jpg',
+  detailArt: 'assets/images/games/nte2.jpg',
+  productSections: [
+    {
+      title: '昇晶充值',
+      subtitle: 'Riftcrystal Top-Up',
+      icon: '◆',
+      products: [
+        { title: '60 昇晶', en: '60 Riftcrystals', price: 'RM 3.80', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '300 昇晶', en: '300 Riftcrystals', price: 'RM 19.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '980 昇晶', en: '980 Riftcrystals', price: 'RM 57.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '1980 昇晶', en: '1980 Riftcrystals', price: 'RM 114.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 185.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 360.00', note: '昇晶充值 / Riftcrystal Top-Up' },
+        { title: '昇晶开采凭证', en: 'Riftcrystal Permit', price: 'RM 19.00', note: 'HOT 推荐 / Riftcrystal Permit' }
+      ]
+    },
+    {
+      title: '特惠补给',
+      subtitle: 'Packages',
+      icon: '◆',
+      products: [
+        { title: '精锐猎人补给', en: 'Elite Hunter Supply', price: 'RM 38.00', note: '补给礼包 / Supply Package' },
+        { title: '荣誉猎人补给', en: 'Honor Hunter Supply', price: 'RM 76.00', note: '补给礼包 / Supply Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'zhang-jian-chuan-shuo',
+  name: '仗剑传说',
+  detailName: '仗剑传说',
+  description: 'Sword X Staff',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/仗剑.jpg',
+  detailArt: 'assets/images/games/仗剑2.jpg',
+  productSections: [
+    {
+      title: '代金券',
+      subtitle: 'Voucher',
+      icon: '◆',
+      products: [
+        { title: '299 + 15 代金券', en: '299 + 15 Vouchers', price: 'RM 12.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '999 + 40 代金券', en: '999 + 40 Vouchers', price: 'RM 38.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '1499 + 60 代金券', en: '1499 + 60 Vouchers', price: 'RM 57.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '1999 + 100 代金券', en: '1999 + 100 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '2999 + 140 代金券', en: '2999 + 140 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '4999 + 250 代金券', en: '4999 + 250 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '9999 + 500 代金券', en: '9999 + 500 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '29999 + 1500 代金券', en: '29999 + 1500 Vouchers', price: 'RM 1110.00', note: 'HOT 推荐 / Voucher Top-Up' }
+      ]
+    },
+    {
+      title: '特惠礼包',
+      subtitle: 'Special Packs',
+      icon: '◆',
+      products: [
+        { title: '特惠技能礼包', en: 'Special Skill Pack', price: 'RM 20.00', note: '特惠礼包 / Special Pack' },
+        { title: '特惠遗物礼包', en: 'Special Relic Pack', price: 'RM 38.00', note: '特惠礼包 / Special Pack' },
+        { title: '特惠幻兽礼包', en: 'Special Phantom Beast Pack', price: 'RM 114.00', note: '特惠礼包 / Special Pack' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'wen-jian-chang-sheng',
+  name: '问剑长生',
+  detailName: '问剑长生',
+  description: '问剑长生 · 御剑斗法',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/问剑.jpg',
+  detailArt: 'assets/images/games/问剑2.jpg',
+  productSections: [
+    {
+      title: '代金券',
+      subtitle: 'Voucher',
+      icon: '◆',
+      products: [
+        { title: '499 代金券', en: '499 Vouchers', price: 'RM 19.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '999 代金券', en: '999 Vouchers', price: 'RM 38.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '1,999 代金券', en: '1,999 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '2,998 代金券', en: '2,998 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '4,999 代金券', en: '4,999 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '9,999 代金券', en: '9,999 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '19,999 代金券', en: '19,999 Vouchers', price: 'RM 760.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '29,999 代金券', en: '29,999 Vouchers', price: 'RM 1140.00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '49,999 代金券', en: '49,999 Vouchers', price: 'RM 1850 .00', note: '代金券充值 / Voucher Top-Up' },
+        { title: '99,998 代金券', en: '99,998 Vouchers', price: 'RM 3700.00', note: 'HOT 推荐 / Voucher Top-Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'tian-long-ba-bu',
+  name: '天龍八部2',
+  detailName: '天龍八部2：血戰江湖',
+  description: 'Tian Long Ba Bu 2',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/tian-long-ba-bu.jpg',
+  detailArt: 'assets/images/games/tian-long-ba-bu2.jpg',
+  productSections: [
+    {
+      title: '代金券',
+      subtitle: 'Vouchers',
+      icon: '◆',
+      products: [
+        { title: '30 代金券', en: '30 Vouchers', price: 'RM 20.00' },
+        { title: '50 代金券', en: '50 Vouchers', price: 'RM 32.00' },
+        { title: '98 代金券', en: '98 Vouchers', price: 'RM 57.00' },
+        { title: '198 代金券', en: '198 Vouchers', price: 'RM 114.00' },
+        { title: '328 代金券', en: '328 Vouchers', price: 'RM 190.00' },
+        { title: '648 代金券', en: '648 Vouchers', price: 'RM 380.00' },
+        { title: '998 代金券', en: '998 Vouchers', price: 'RM 570.00' },
+        { title: '1998 代金券', en: '1998 Vouchers', price: 'RM 1110.00' },
+        { title: '2998 代金券', en: '2998 Vouchers', price: 'RM 1665.00' }
+      ]
+    },
+    {
+      title: '其他礼包',
+      subtitle: 'Other Packs',
+      icon: '◆',
+      products: [
+        { title: '重楼链 + 9980 元宝 + 40 万金币', en: 'Chong Lou Necklace + 9,980 Ingots + 400,000 Gold', price: 'RM 570.00' },
+        { title: '重楼链 + 19980 元宝 + 45 万金币', en: 'Chong Lou Necklace + 19,980 Ingots + 450,000 Gold', price: 'RM 1140.00' },
+        { title: '重楼链 + 29980 元宝 + 50 万金币', en: 'Chong Lou Necklace + 29,980 Ingots + 500,000 Gold', price: 'RM 1700.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'perfect-world-w',
+  name: '完美世界W',
+  detailName: '完美世界W',
+  description: 'Perfect World W',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/perfect-world-w.jpg',
+  detailArt: 'assets/images/games/perfect-world-w2.jpg',
+  productSections: [
+    {
+      title: '诸神币',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '499 诸神币 + 30 绑定元宝', en: '499 Pantheon Coins + 30 Bound Ingots', price: 'RM 20.00' },
+        { title: '999 诸神币 + 68 绑定元宝', en: '999 Pantheon Coins + 68 Bound Ingots', price: 'RM 38.00' },
+        { title: '1499 诸神币 + 98 绑定元宝', en: '1,499 Pantheon Coins + 98 Bound Ingots', price: 'RM 57.00' },
+        { title: '2999 诸神币 + 198 绑定元宝', en: '2,999 Pantheon Coins + 198 Bound Ingots', price: 'RM 114.00' },
+        { title: '4999 诸神币 + 328 绑定元宝', en: '4,999 Pantheon Coins + 328 Bound Ingots', price: 'RM 190.00' },
+        { title: '9999 诸神币 + 648 绑定元宝', en: '9,999 Pantheon Coins + 648 Bound Ingots', price: 'RM 380.00' },
+        { title: '29999 诸神币 + 1950 绑定元宝', en: '29,999 Pantheon Coins + 1,950 Bound Ingots', price: 'RM 1110.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'where-winds-meet',
+  name: '燕云十六声',
+  detailName: '国际服 · 燕云十六声',
+  description: 'Where Winds Meet',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/16.jpg',
+  detailArt: 'assets/images/games/162.jpg',
+  productSections: [
+    {
+      title: '长鸣珠',
+      subtitle: 'Echo Beads',
+      icon: '◆',
+      products: [
+        { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.30', note: '长鸣珠 / Changming Pearl' },
+        { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 19.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 38.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 360.00', note: 'HOT 推荐 / Changming Pearl' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Other Items',
+      icon: '◆',
+      products: [
+        { title: '月度礼金【月卡】', en: 'Monthly Pass', price: 'RM 19.00', note: '月卡 / Monthly Pass' },
+        { title: '精英战令', en: 'Elite Battle Pass', price: 'RM 38.00', note: '战令 / Battle Pass' },
+        { title: '典藏战令', en: 'Premium Battle Pass', price: 'RM 76.00', note: '典藏战令 / Premium Battle Pass' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'crystal-of-atlan',
+  name: '晶核',
+  detailName: '国际服 · 晶核',
+  description: 'Crystal of Atlan',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/coa.jpg',
+  detailArt: 'assets/images/games/coa2.jpg',
+  productSections: [
+    {
+      title: '欧泊',
+      subtitle: 'Opals',
+      icon: '◆',
+      products: [
+        { title: '60 欧泊', en: '60 Opals', price: 'RM 4.00', note: '赠送 9 / Bonus +9' },
+        { title: '300 欧泊', en: '300 Opals', price: 'RM 19.00', note: '赠送 60 / Bonus +60' },
+        { title: '980 欧泊', en: '980 Opals', price: 'RM 57.00', note: '赠送 229 / Bonus +229' },
+        { title: '1980 欧泊', en: '1980 Opals', price: 'RM 114.00', note: '赠送 499 / Bonus +499' },
+        { title: '3280 欧泊', en: '3280 Opals', price: 'RM 190.00', note: '赠送 965 / Bonus +965' },
+        { title: '6480 欧泊', en: '6480 Opals', price: 'RM 380.00', note: '赠送 2126 / Bonus +2126' }
+      ]
+    },
+    {
+      title: '代金券',
+      subtitle: 'Vouchers',
+      icon: '◆',
+      products: [
+        { title: '60 代金券', en: '60 Vouchers', price: 'RM 4.00', note: '赠送 5 / Bonus +5' },
+        { title: '300 代金券', en: '300 Vouchers', price: 'RM 19.00', note: '赠送 25 / Bonus +25' },
+        { title: '980 代金券', en: '980 Vouchers', price: 'RM 57.00', note: '赠送 81 / Bonus +81' },
+        { title: '1980 代金券', en: '1980 Vouchers', price: 'RM 114.00', note: '赠送 165 / Bonus +165' },
+        { title: '3280 代金券', en: '3280 Vouchers', price: 'RM 190.00', note: '赠送 273 / Bonus +273' },
+        { title: '6480 代金券', en: '6480 Vouchers', price: 'RM 380.00', note: '赠送 540 / Bonus +540' }
+      ]
+    },
+    {
+      title: '幻晶月令',
+      subtitle: 'Phantasium Pass',
+      icon: '◆',
+      products: [
+        { title: '15 天幻晶月令', en: '15-Day Phantasium Pass', price: 'RM 13.00', note: '赠送 8 欧泊 / Bonus +8 Opals' },
+        { title: '30 天幻晶月令', en: '30-Day Phantasium Pass', price: 'RM 22.00', note: '赠送 14 欧泊 / Bonus +14 Opals' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'sword-of-justice',
+  name: 'Sword Of Justice',
+  detailName: 'Sword Of Justice',
+  description: 'Sword Of Justice',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/soj.jpg',
+  detailArt: 'assets/images/games/soj.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 360.00', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'ro-the-new-world',
+  name: 'RO The New World',
+  detailName: 'RO New World',
+  description: 'Ragnarok The New World',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/ro-the-new-world.jpg',
+  detailArt: 'assets/images/games/ro-the-new-world2.jpg',
+  productSections: [
+    {
+      title: '星石',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '60 星石', en: '60 Star Stones', price: 'RM 4.40', status: 'soldout' },
+        { title: '300 星石', en: '300 Star Stones', price: 'RM 20.00', status: 'soldout' },
+        { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00', status: 'soldout' },
+        { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00', status: 'soldout' },
+        { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00', status: 'soldout' },
+        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 400.00' },
+        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 800.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'arknights-endfield',
+  name: '明日方舟：终末地',
+  detailName: '明日方舟：终末地',
+  description: 'Arknights: Endfield',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/arknights-endfield.jpg',
+  detailArt: 'assets/images/games/arknights-endfield2.jpg',
+  productSections: [
+    {
+      title: '衍质源石',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '4 衍质源石 + 2 赠送', price: 'RM 8.00' },
+        { title: '21 衍质源石 + 5 赠送', price: 'RM 34.20' },
+        { title: '34 衍质源石 + 34 赠送', price: 'RM 49.40' },
+        { title: '57 衍质源石 + 11 赠送', price: 'RM 79.80' },
+        { title: '92 衍质源石 + 20 赠送', price: 'RM 129.20' },
+        { title: '194 衍质源石 + 48 赠送', price: 'RM 252.00' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Login Top Up',
+      icon: '◆',
+      products: [
+        { title: '月卡', price: 'RM 19.00' },
+        { title: '通行证付费档', price: 'RM 38.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'x-hero-epic-hero',
+  name: 'X-Hero',
+  detailName: 'X-Hero',
+  description: 'Epic Hero',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/x-hero-epic-hero.jpg',
+  detailArt: 'assets/images/games/x-hero-epic-hero2.jpg',
+  productSections: [
+    {
+      title: '红钻',
+      subtitle: 'Red Diamond',
+      icon: '◆',
+      products: [
+        { title: '20 + 1 红钻', en: '20 + 1 Red Diamonds', price: 'RM 4.00' },
+        { title: '50 + 2 红钻', en: '50 + 2 Red Diamonds', price: 'RM 19.50' },
+        { title: '100 + 4 红钻', en: '100 + 4 Red Diamonds', price: 'RM 38.00' },
+        { title: '150 + 6 红钻', en: '150 + 6 Red Diamonds', price: 'RM 57.00' },
+        { title: '200 + 8 红钻', en: '200 + 8 Red Diamonds', price: 'RM 76.00' },
+        { title: '250 + 10 红钻', en: '250 + 10 Red Diamonds', price: 'RM 95.00' },
+        { title: '500 + 20 红钻', en: '500 + 20 Red Diamonds', price: 'RM 190.00' },
+        { title: '1000 + 40 红钻', en: '1,000 + 40 Red Diamonds', price: 'RM 370.00' },
+        { title: '2000 + 80 红钻', en: '2,000 + 80 Red Diamonds', price: 'RM 740.00' },
+        { title: '4000 + 160 红钻', en: '4,000 + 160 Red Diamonds', price: 'RM 1480.00' },
+        { title: '6000 + 240 红钻', en: '6,000 + 240 Red Diamonds', price: 'RM 2190.00' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'ragnarok-origin-classic',
+  name: 'ROOC',
+  detailName: 'Ragnarok Origin Classic',
+  description: 'Ragnarok Origin Classic',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/rooc.jpg',
+  detailArt: 'assets/images/games/rooc2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Other Items',
+      icon: '◆',
+      products: [
+        { title: '月卡', en: 'Bounty Hunter Pass', price: 'RM 57.00', note: '月卡 / Monthly Pass' }
+      ]
+    }
+  ]
+},
+{
+  id: 'dark-war-survival',
+  name: 'Dark War Survival',
+  detailName: 'Dark War Survival',
+  description: 'Dark War Survival',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/darkwar.jpg',
+  detailArt: 'assets/images/games/darkwar2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'heartopia',
+  name: '心动小镇',
+  detailName: '心动小镇 Heartopia',
+  description: 'Heartopia',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/heartopia2.jpg',
+  detailArt: 'assets/images/games/heartopia.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'douluo-liehun-shijie',
+  name: '斗罗大陆 · 猎魂世界',
+  detailName: '斗罗大陆 · 猎魂世界',
+  description: 'Douluo Dalu Liehun Shijie',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/dldl.jpg',
+  detailArt: 'assets/images/games/dldl2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '3290 海神币', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'jianxia-qingyuan',
+  name: '剑侠情缘',
+  detailName: '剑侠情缘',
+  description: 'Jianxia Qingyuan',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/jianxia2.jpg',
+  detailArt: 'assets/images/games/jianxia2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'legends-of-mushroom',
+  name: '蘑菇传奇',
+  detailName: 'Legends of Mushroom',
+  description: 'Legends of Mushroom',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/mogu.jpg',
+  detailArt: 'assets/images/games/mogu.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'zombie-wave',
+  name: 'Zombie Wave',
+  detailName: 'Zombie Wave',
+  description: 'Zombie Wave',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/zombie.jpg',
+  detailArt: 'assets/images/games/zombie2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'ni-shui-han-tw',
+  name: '逆水寒 台服',
+  detailName: '逆水寒 台服',
+  description: 'Ni Shui Han Taiwan',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/nsh.jpg',
+  detailArt: 'assets/images/games/nsh2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+{
+  id: 'lands-of-jails',
+  name: 'Lands Of Jails',
+  detailName: 'Lands Of Jails',
+  description: 'Lands Of Jails',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/jail.jpg',
+  detailArt: 'assets/images/games/jail2.jpg',
+  productSections: [
+    {
+      title: '礼包',
+      subtitle: 'Package',
+      icon: '◆',
+      products: [
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'three-kingdoms-tactics',
+  name: '三国志战略版',
+  detailName: '三国志战略版',
+  description: 'Three Kingdoms Tactics',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/three-kingdoms-tactics.jpg',
+  detailArt: 'assets/images/games/three-kingdoms-tactics2.jpg',
+  productSections: [
+    {
+      title: '玉璧',
+      subtitle: 'Jade',
+      icon: '◆',
+      products: [
+        { title: '60 玉璧', en: '60 Jade', price: 'RM 4.00', note: 'Login Top Up' },
+        { title: '300 玉璧', en: '300 Jade', price: 'RM 19.00', note: 'Login Top Up' },
+        { title: '980 玉璧', en: '980 Jade', price: 'RM 57.00', note: 'Login Top Up' },
+        { title: '1980 玉璧', en: '1980 Jade', price: 'RM 114.00', note: 'Login Top Up' },
+        { title: '3280 玉璧', en: '3280 Jade', price: 'RM 185.00', note: 'HOT 推荐 / Login Top Up' },
+        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Login Top Up' }
+      ]
+    },
+    {
+      title: '印记礼包',
+      subtitle: 'Others Packages',
+      icon: '◆',
+      products: [
+        { title: '银印礼包', en: 'Silver Seal Pack', price: 'RM 12.00', note: 'Login Top Up' },
+        { title: '金印礼包', en: 'Gold Seal Pack', price: 'RM 19.00', note: 'Login Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'one-punch-man-the-strongest',
+  name: '一拳超人',
+  detailName: '一拳超人 One Punch Man: The Strongest',
+  description: 'One Punch:The Strongest',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/strongest.jpg',
+  detailArt: 'assets/images/games/strongest2.jpg',
+  productSections: [
+    {
+      title: 'Coupon',
+      subtitle: 'Coupon Top-Up',
+      icon: '◆',
+      products: [
+        { title: '6 Coupon', en: '6 Coupon', price: 'RM 4.50', note: 'Coupon / Top-Up' },
+        { title: '37 Coupon', en: '37 Coupon', price: 'RM 20.00', note: 'Coupon / Top-Up' },
+        { title: '109 Coupon', en: '109 Coupon', price: 'RM 57.00', note: 'Coupon / Top-Up' },
+        { title: '362 Coupon', en: '362 Coupon', price: 'RM 190.00', note: 'Coupon / Top-Up' },
+        { title: '904 Coupon', en: '904 Coupon', price: 'RM 450.00', note: 'Coupon / Top-Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'dragon-nest-m-classic',
+  name: '龙之谷 M：经典版',
+  detailName: '龙之谷 M：经典版',
+  description: 'Dragon Nest M: Classic',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/dnmc.jpg',
+  detailArt: 'assets/images/games/dnmc2.jpg',
+  productSections: [
+    {
+      title: 'Gems',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '600 + 26 Gems', en: '600 + 26 Gems', price: 'RM 5.00', note: 'UID Top Up' },
+        { title: '3000 + 130 Gems', en: '3000 + 130 Gems', price: 'RM 25.00', note: 'UID Top Up' },
+        { title: '6000 + 366 Gems', en: '6000 + 366 Gems', price: 'RM 50.00', note: 'UID Top Up' },
+        { title: '12000 + 800 Gems', en: '12000 + 800 Gems', price: 'RM 98.00', note: 'UID Top Up' },
+        { title: '18000 + 1500 Gems', en: '18000 + 1500 Gems', price: 'RM 148.00', note: 'UID Top Up' },
+        { title: '30000 + 2900 Gems', en: '30000 + 2900 Gems', price: 'RM 238.00', note: 'UID Top Up' },
+        { title: '60000 + 6000 Gems', en: '60000 + 6000 Gems', price: 'RM 450.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'rf-online-next',
+  name: 'RF Online Next',
+  detailName: 'RF Online Next',
+  description: 'RF Online Next',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/rf-online-next.jpg',
+  detailArt: 'assets/images/games/rf-online-next2.jpg',
+  productSections: [
+    {
+      title: '钻石',
+      subtitle: 'Diamonds',
+      icon: '◆',
+      products: [
+        { title: '109 Diamonds', en: '109 Diamonds', price: 'RM 4.00' },
+        { title: '436 Diamonds', en: '436 Diamonds', price: 'RM 16.00' },
+        { title: '2110 Diamonds', en: '2,110 Diamonds', price: 'RM 72.20' },
+        { title: '3750 Diamonds', en: '3,750 Diamonds', price: 'RM 121.60' },
+        { title: '7950 Diamonds', en: '7,950 Diamonds', price: 'RM 266.00' }
+      ]
+    },
+    {
+      title: '周卡 / 月卡',
+      subtitle: 'Weekly / Monthly Pass',
+      icon: '◆',
+      products: [
+        { title: 'Weekly Summon Ticket Pack', en: 'Weekly Summon Ticket Pack', price: 'RM 136.80' },
+        { title: 'Monthly Summon Ticket Pack', en: 'Monthly Summon Ticket Pack', price: 'RM 136.80' },
+        { title: 'Monthly Artifact Package', en: 'Monthly Artifact Package', price: 'RM 136.80' }
+      ]
+    },
+    {
+      title: '其他礼包',
+      subtitle: 'Other Packages',
+      icon: '◆',
+      products: [
+        { title: "Arca's Privilege", en: "Arca's Privilege", price: 'RM 20.00' },
+        { title: "Arca's Supply Package", en: "Arca's Supply Package", price: 'RM 247.00' },
+        { title: 'Character Name Change Ticket', en: 'Character Name Change Ticket', price: 'RM 83.60' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'age-of-empires-mobile',
+  name: '世纪帝国 Mobile',
+  detailName: '世纪帝国 Mobile',
+  description: 'Age of Empires Mobile',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/age-of-empires-mobile.jpg',
+  detailArt: 'assets/images/games/age-of-empires-mobile2.jpg',
+  productSections: [
+    {
+      title: 'Empire Coins',
+      subtitle: 'Empire Coins',
+      icon: '◆',
+      products: [
+        { title: '400 Empire Coins', en: '400 Empire Coins', price: 'RM 4.80', note: 'UID Top Up' },
+        { title: '2100 Empire Coins', en: '2100 Empire Coins', price: 'RM 22.00', note: 'UID Top Up' },
+        { title: '4400 Empire Coins', en: '4400 Empire Coins', price: 'RM 42.00', note: 'UID Top Up' },
+        { title: '9200 Empire Coins', en: '9200 Empire Coins', price: 'RM 80.00', note: 'UID Top Up' },
+        { title: '24000 Empire Coins', en: '24000 Empire Coins', price: 'RM 190.00', note: 'UID Top Up' },
+        { title: '50000 Empire Coins', en: '50000 Empire Coins', price: 'RM 380.00', note: 'UID Top Up' }
+      ]
+    },
+    {
+      title: '至高币',
+      subtitle: 'Apex Coins',
+      icon: '◆',
+      products: [
+        { title: '99 Apex Coins', en: '99 Apex Coins', price: 'RM 4.80', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '499 Apex Coins', en: '499 Apex Coins', price: 'RM 22.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '999 Apex Coins', en: '999 Apex Coins', price: 'RM 42.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '1999 Apex Coins', en: '1999 Apex Coins', price: 'RM 80.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '4999 Apex Coins', en: '4999 Apex Coins', price: 'RM 190.00', note: '首充该档位可能双倍 / UID Top Up' },
+        { title: '9999 Apex Coins', en: '9999 Apex Coins', price: 'RM 380.00', note: '首充该档位可能双倍 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'arena-breakout',
+  name: '暗区突围',
+  detailName: '暗区突围',
+  description: 'Arena Breakout',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/arena-breakout.jpg',
+  detailArt: 'assets/images/games/arena-breakout2.jpg',
+  productSections: [
+    {
+      title: 'Bonds',
+      subtitle: 'Bonds',
+      icon: '◆',
+      products: [
+        { title: '60 + 6 Bonds', en: '60 + 6 Bonds', price: 'RM 4.50', note: 'UID Top Up' },
+        { title: '310 + 25 Bonds', en: '310 + 25 Bonds', price: 'RM 20.00', note: 'UID Top Up' },
+        { title: '630 + 45 Bonds', en: '630 + 45 Bonds', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1580 + 110 Bonds', en: '1580 + 110 Bonds', price: 'RM 95.00', note: 'UID Top Up' },
+        { title: '3200 + 200 Bonds', en: '3200 + 200 Bonds', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 + 320 Bonds', en: '6500 + 320 Bonds', price: 'RM 360.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'zhen-de-jiang-shan',
+  name: '朕的江山',
+  detailName: '朕的江山',
+  description: 'Three Kingdoms Overlord',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/zhen-de-jiang-shan.jpg',
+  detailArt: 'assets/images/games/zhen-de-jiang-shan2.jpg',
+  productSections: [
+    {
+      title: '元宝',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '220 元宝', en: '220 Yuanbao', price: 'RM 19.00', note: 'UID Top Up' },
+        { title: '500 元宝', en: '500 Yuanbao', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1100 元宝', en: '1100 Yuanbao', price: 'RM 76.00', note: 'UID Top Up' },
+        { title: '3000 元宝', en: '3000 Yuanbao', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 元宝', en: '6500 Yuanbao', price: 'RM 365.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    },
+    {
+      title: '礼包币',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '220 礼包币', en: '220 Gift Coins', price: 'RM 19.00', note: 'UID Top Up' },
+        { title: '500 礼包币', en: '500 Gift Coins', price: 'RM 38.00', note: 'UID Top Up' },
+        { title: '1100 礼包币', en: '1100 Gift Coins', price: 'RM 76.00', note: 'UID Top Up' },
+        { title: '3000 礼包币', en: '3000 Gift Coins', price: 'RM 185.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '6500 礼包币', en: '6500 Gift Coins', price: 'RM 365.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'astral-guardians-cyber-fantasy',
+  name: '星界守护者',
+  detailName: '星界守护者',
+  description: 'Astral Guardians',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/astral-guardians.jpg',
+  detailArt: 'assets/images/games/astral-guardians2.jpg',
+  productSections: [
+    {
+      title: 'Diamonds',
+      subtitle: 'UID Top Up',
+      icon: '◆',
+      products: [
+        { title: '90 Diamonds', en: '90 Diamonds', price: 'RM 4.50', note: 'UID Top Up' },
+        { title: '450 Diamonds', en: '450 Diamonds', price: 'RM 22.50', note: 'UID Top Up' },
+        { title: '900 Diamonds', en: '900 Diamonds', price: 'RM 45.00', note: 'UID Top Up' },
+        { title: '1350 Diamonds', en: '1350 Diamonds', price: 'RM 68.00', note: 'UID Top Up' },
+        { title: '1840 Diamonds', en: '1840 Diamonds', price: 'RM 90.00', note: 'UID Top Up' },
+        { title: '4800 Diamonds', en: '4800 Diamonds', price: 'RM 217.00', note: 'HOT 推荐 / UID Top Up' },
+        { title: '9800 Diamonds', en: '9800 Diamonds', price: 'RM 432.00', note: 'BEST VALUE 推荐 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
+    ]
+  },
+  cn: {
+    title: '中国服游戏',
+    subtitle: 'Brilliant Gaming 精选热门中国服手游充值。',
+    page: 'index.html',
+    games: [
+      {
+  id: 'honor-of-kings-cn',
+  name: '王者荣耀',
+  detailName: '双系统 · 王者荣耀',
+  description: '中国·腾讯 王者荣耀',
+  tag: '扫码充值',
+  image: 'assets/images/games/王者荣耀.jpg',
+  detailArt: 'assets/images/games/王者荣耀2.jpg',
+  productSections: [
+    
+    {
+      title: '苹果系统快充',
+      subtitle: 'iOS Fast Top-Up',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '450 点券 赠送 25', en: '450 点券 + 25 赠送', price: 'RM 32.00', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '680 点券 赠送 35', en: '680 点券 + 35 赠送', pricePreset: 'cny68', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '1180 点券 赠送 60', en: '1180 点券 + 60 赠送', pricePreset: 'cny118', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '1980 点券 赠送 120', en: '1980 点券 + 120 赠送', pricePreset: 'cny198', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '3480 点券 赠送 210', en: '3480 点券 + 210 赠送', pricePreset: 'cny348', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '6480 点券 赠送 388', en: '6480 点券 + 388 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '8980 点券 赠送 538', en: '8980 点券 + 538 赠送', pricePreset: 'cny898', note: '苹果区快充 / iOS Fast Top-Up' },
+        { title: '12980 点券 赠送 778', en: '12980 点券 + 778 赠送', pricePreset: 'cny1298', note: '苹果区快充 / iOS Fast Top-Up' }
+      ]
+    },
+
+    {
+      title: '安卓系统快充',
+      subtitle: 'Android Fast Top-Up',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '180 点券', en: '180 点券', pricePreset: 'cny18', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '300 点券', en: '300 点券', pricePreset: 'cny30', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '680 点券', en: '680 点券', pricePreset: 'cny68', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1180 点券', en: '1180 点券', pricePreset: 'cny118', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1980 点券', en: '1980 点券', pricePreset: 'cny198', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '3480 点券', en: '3480 点券', pricePreset: 'cny348', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '6480 点券', en: '6480 点券', pricePreset: 'cny648', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '8980 点券', en: '8980 点券', pricePreset: 'cny898', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '12980 点券', en: '12980 点券', pricePreset: 'cny1298', note: '安卓快充 / Android Fast Top-Up' }
+      ]
+    },
+    
+    {
+      title: '双系统慢充',
+      subtitle: 'Android / iOS Slow Top-Up',
+      icon: '◆',
+      products: [
+        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间 5 分钟 - 24 小时 / Slow Top-Up', status: 'soldout' },
+        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间 5 分钟 - 24 小时', status: 'soldout' }
+      ]
+    }
+  ]
+},
+      
+      {
+  id: 'peace-elite',
+  name: '和平精英',
+  detailName: '双系统 · 和平精英',
+  description: '中国·腾讯 和平精英',
+  tag: '扫码充值',
+  image: 'assets/images/games/和平精英.jpg',
+  detailArt: 'assets/images/games/和平精英2.jpg',
+  productSections: [
+    {
+      title: '苹果系统快充',
+      subtitle: 'iOS Fast Top-Up',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', pricePreset: 'cny30', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', pricePreset: 'cny68', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', pricePreset: 'cny128', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', pricePreset: 'cny198', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', pricePreset: 'cny328', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / iOS Fast Top-Up' },
+        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', pricePreset: 'cny898', note: '苹果快充 / iOS Fast Top-Up' },
+        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', pricePreset: 'cny1298', note: '苹果快充 / iOS Fast Top-Up' }
+      ]
+    },
+    {
+      title: '安卓系统快充',
+      subtitle: 'Android Fast Top-Up',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '300 点券 赠送 16', en: '300 点券 + 16 赠送', pricePreset: 'cny30', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '680 点券 赠送 38', en: '680 点券 + 38 赠送', pricePreset: 'cny68', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1280 点券 赠送 88', en: '1280 点券 + 88 赠送', pricePreset: 'cny128', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '1980 点券 赠送 138', en: '1980 点券 + 138 赠送', pricePreset: 'cny198', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '3280 点券 赠送 268', en: '3280 点券 + 268 赠送', pricePreset: 'cny328', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '6480 点券 赠送 568', en: '6480 点券 + 568 赠送', pricePreset: 'cny648', note: 'HOT 推荐 / Android Fast Top-Up' },
+        { title: '8980 点券 赠送 788', en: '8980 点券 + 788 赠送', pricePreset: 'cny898', note: '安卓快充 / Android Fast Top-Up' },
+        { title: '12980 点券 赠送 1138', en: '12980 点券 + 1138 赠送', pricePreset: 'cny1298', note: '安卓快充 / Android Fast Top-Up' }
+      ]
+    },
+    {
+      title: '双系统慢充',
+      subtitle: 'Android / iOS Slow Top-Up',
+      icon: '◆',
+      products: [
+        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间较慢 / Slow Top-Up', status: 'soldout' },
+        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间较慢', status: 'soldout' }
+      ]
+    },
+    {
+      title: '特权精英卡',
+      subtitle: 'Elite Privilege Card',
+      icon: '◆',
+      products: [
+        { title: '特权精英卡', en: '特权精英卡 18元', pricePreset: 'cny18', note: '特权精英卡 / Elite Privilege Card' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'huoying-renzhe',
+  name: '火影忍者手游',
+  detailName: '双系统 · 火影忍者手游',
+  description: '中国·腾讯 火影忍者手游',
+  tag: '扫码充值',
+  image: 'assets/images/games/火影.jpg',
+  detailArt: 'assets/images/games/火影2.jpg',
+  productSections: [
+    {
+      title: '金币',
+      subtitle: '金币',
+      icon: '◆',
+      products: [
+        { title: '60 金币', en: '60 金币', pricePreset: 'cny6', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '180 金币', en: '180 金币', pricePreset: 'cny18', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '250 金币', en: '250 金币', pricePreset: 'cny25', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '500 金币', en: '500 金币', pricePreset: 'cny50', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '980 金币', en: '980 金币', pricePreset: 'cny98', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '1680 金币', en: '1680 金币', pricePreset: 'cny168', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '3280 金币', en: '3280 金币', pricePreset: 'cny328', note: '金币充值 / Jinbi Chongzhi' },
+        { title: '6480 金币', en: '6480 金币', pricePreset: 'cny648', note: 'HOT 推荐 / Jinbi Chongzhi' }
+      ]
+    },
+    {
+      title: '点券',
+      subtitle: '点券',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '500 点券', en: '500 点券', pricePreset: 'cny50', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '980 点券', en: '980 点券', pricePreset: 'cny98', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '1980 点券', en: '1980 点券', pricePreset: 'cny198', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '6480 点券', en: '6480 点券', pricePreset: 'cny648', note: 'HOT 推荐 / Dianquan Chongzhi' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Others Items',
+      icon: '◆',
+      products: [
+        { title: '豪华忍法帖', en: '豪华忍法帖 25元', pricePreset: 'cny25', note: 'HOT 推荐 / Haohua Renfatie' },
+        { title: '传说忍法帖', en: '传说忍法帖 198元', pricePreset: 'cny198', note: '推荐 / Chuanshuo Renfatie' }
+      ]
+    }
+  ]
+},
+{
+  id: 'jin-chan-chan',
+  name: '金铲铲之战',
+  detailName: '双系统 · 金铲铲',
+  description: '中国·腾讯 金铲铲之战',
+  tag: '扫码充值',
+  image: 'assets/images/games/金铲铲.jpg',
+  detailArt: 'assets/images/games/金铲铲2.jpg',
+  productSections: [
+    {
+      title: '点券',
+      subtitle: '点券',
+      icon: '◆',
+      products: [
+        { title: '3000 + 108 点券', en: '3000 + 108 点券', pricePreset: 'cny30', note: '赠送 108 / Dianquan Chongzhi' },
+        { title: '6800 + 288 点券', en: '6800 + 288 点券', pricePreset: 'cny68', note: '赠送 288 / Dianquan Chongzhi' },
+        { title: '12800 + 588 点券', en: '12800 + 588 点券', pricePreset: 'cny128', note: '赠送 588 / Dianquan Chongzhi' },
+        { title: '19800 + 1088 点券', en: '19800 + 1088 点券', pricePreset: 'cny198', note: '赠送 1088 / Dianquan Chongzhi' },
+        { title: '32800 + 1788 点券', en: '32800 + 1788 点券', pricePreset: 'cny328', note: '赠送 1788 / Dianquan Chongzhi' },
+        { title: '64800 + 3588 点券', en: '64800 + 3588 点券', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 3588' },
+        { title: '89800 + 4973 点券', en: '89800 + 4973 点券', pricePreset: 'cny898', note: '赠送 4973 / Dianquan Chongzhi' },
+        { title: '129800 + 7190 点券', en: '129800 + 7190 点券', pricePreset: 'cny1298', note: 'HOT 推荐 / 赠送 7190' },
+        { title: '199800 + 11068 点券', en: '199800 + 11068 点券', pricePreset: 'cny1998', note: '赠送 11068 / Dianquan Chongzhi' }
+      ]
+    }
+  ]
+},
+{
+  id: 'luoke-wangguo',
+  name: '洛克王国',
+  detailName: '双系统 ·洛克王国',
+  description: '中国·腾讯 洛克王国',
+  tag: '扫码充值',
+  image: 'assets/images/games/洛克王国.jpg',
+  detailArt: 'assets/images/games/洛克王国2.jpg',
+  productSections: [
+    {
+      title: '洛克钻',
+      subtitle: '洛克钻',
+      icon: '◆',
+      products: [
+        { title: '100 洛克钻', en: '100 洛克钻', pricePreset: 'cny10', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '300 洛克钻', en: '300 洛克钻', pricePreset: 'cny30', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '688 洛克钻', en: '688 洛克钻', pricePreset: 'cny68', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '1200 洛克钻', en: '1200 洛克钻', pricePreset: 'cny118', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '2060 洛克钻', en: '2060 洛克钻', pricePreset: 'cny198', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '3725 洛克钻', en: '3725 洛克钻', price: 'RM 219.00', note: '洛克钻充值 / Luokezuan Chongzhi' },
+        { title: '7128 洛克钻', en: '7128 洛克钻', pricePreset: 'cny648', note: '推荐 / Luokezuan Chongzhi' },
+        { title: '11000 洛克钻', en: '11000 洛克钻', price: 'RM 598.00', note: 'HOT 推荐 / Luokezuan Chongzhi' }
+      ]
+    }
+  ]
+},
+{
+  id: 'delta-force-cn',
+  name: '三角洲行动',
+  detailName: '双系统 · 三角洲',
+  description: '中国·腾讯 三角洲行动',
+  tag: '扫码充值',
+  image: 'assets/images/games/三角洲.jpg',
+  detailArt: 'assets/images/games/三角洲2.jpg',
+  productSections: [
+    {
+      title: '三角币',
+      subtitle: '三角币',
+      icon: '◆',
+      products: [
+        { title: '60 三角币', en: '60 三角币', pricePreset: 'cny6', note: '三角币充值 / Sanjiaobi Chongzhi' },
+        { title: '300 三角币 赠送 20', en: '300 三角币 + 20 Bonus', pricePreset: 'cny30', note: '赠送 20 / Sanjiaobi Chongzhi' },
+        { title: '680 三角币 赠送 70', en: '680 三角币 + 70 Bonus', pricePreset: 'cny68', note: '赠送 70 / Sanjiaobi Chongzhi' },
+        { title: '1280 三角币 赠送 200', en: '1280 三角币 + 200 Bonus', pricePreset: 'cny128', note: '赠送 200 / Sanjiaobi Chongzhi' },
+        { title: '3280 三角币 赠送 670', en: '3280 三角币 + 670 Bonus', pricePreset: 'cny328', note: '赠送 670 / Sanjiaobi Chongzhi' },
+        { title: '6480 三角币 赠送 1620', en: '6480 三角币 + 1620 Bonus', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 1620' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Others Items',
+      icon: '◆',
+      products: [
+        { title: '小黑卡', en: '小黑卡', price: 'RM 68.00', note: '小黑卡 / Xiaohei Ka' },
+        { title: '悦享卡', en: '悦享卡', price: 'RM 68.00', note: '悦享卡 / Yuexiang Ka' },
+        { title: '黑曜卡【普通】', en: '黑曜卡【普通】', price: 'RM 937.50', note: '黑曜卡普通 / Heiyao Ka Putong' },
+        { title: '黑曜卡【豪华】', en: '黑曜卡【豪华】', price: 'RM 1875.00', note: '黑曜卡豪华 / Heiyao Ka Haohua' }
+      ]
+    }
+  ]
+},
+{
+  id: 'wangzhe-rongyao-shijie',
+  name: '王者荣耀世界',
+  detailName: '双系统 · 王者荣耀世界',
+  description: '中国·腾讯 王者荣耀世界',
+  tag: '扫码充值',
+  image: 'assets/images/games/王者荣耀世界.jpg',
+  detailArt: 'assets/images/games/王者荣耀世界2.jpg',
+  productSections: [
+    {
+      title: '碎晶',
+      subtitle: '碎晶',
+      icon: '◆',
+      products: [
+        { title: '60 碎晶', en: '60 碎晶', pricePreset: 'cny6', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '180 碎晶', en: '180 碎晶', pricePreset: 'cny18', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '300 碎晶', en: '300 碎晶', pricePreset: 'cny30', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '680 碎晶', en: '680 碎晶', pricePreset: 'cny68', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '980 碎晶', en: '980 碎晶', pricePreset: 'cny98', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '1980 碎晶', en: '1980 碎晶', pricePreset: 'cny198', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '3280 碎晶', en: '3280 碎晶', pricePreset: 'cny328', note: '碎晶充值 / Suijing Chongzhi' },
+        { title: '6480 碎晶', en: '6480 碎晶', pricePreset: 'cny648', note: '碎晶充值 / Suijing Chongzhi' }
+      ]
+    }
+  ]
+},
+{
+  id: 'wuwei-qiyue',
+  name: '无畏契约手游',
+  detailName: '双系统 · 无畏契约手游',
+  description: '中国·腾讯 无畏契约手游',
+  tag: '扫码充值',
+  image: 'assets/images/games/无畏契约.jpg',
+  detailArt: 'assets/images/games/无畏契约2.jpg',
+  productSections: [
+    {
+      title: '点券',
+      subtitle: '点券',
+      icon: '◆',
+      products: [
+        { title: '60 点券', en: '60 点券', pricePreset: 'cny6', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '100 点券', en: '100 点券', pricePreset: 'cny10', note: '点券充值 / Dianquan Chongzhi' },
+        { title: '300 + 8 点券', en: '300 + 8 点券', pricePreset: 'cny30', note: '赠送 8 / Dianquan Chongzhi' },
+        { title: '680 + 20 点券', en: '680 + 20 点券', pricePreset: 'cny68', note: '赠送 20 / Dianquan Chongzhi' },
+        { title: '1280 + 38 点券', en: '1280 + 38 点券', pricePreset: 'cny128', note: '赠送 38 / Dianquan Chongzhi' },
+        { title: '1980 + 80 点券', en: '1980 + 80 点券', pricePreset: 'cny198', note: '赠送 80 / Dianquan Chongzhi' },
+        { title: '3280 + 238 点券', en: '3280 + 238 点券', pricePreset: 'cny328', note: '赠送 238 / Dianquan Chongzhi' },
+        { title: '6480 + 738 点券', en: '6480 + 738 点券', pricePreset: 'cny648', note: 'HOT 推荐 / 赠送 738' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Others Items',
+      icon: '◆',
+      products: [
+        { title: '无畏先行卡', en: '无畏先行卡', pricePreset: 'cny18', note: '无畏先行卡 / Wuwei Xianxing Ka' }
+      ]
+    }
+  ]
+},
+{
+  id: 'yuanmeng-zhixing',
+  name: '元梦之星',
+  detailName: '双系统 · 元梦之星',
+  description: '中国·腾讯 元梦之星',
+  tag: '扫码充值',
+  image: 'assets/images/games/元梦之星.jpg',
+  detailArt: 'assets/images/games/元梦之星2.jpg',
+  productSections: [
+    {
+      title: '星钻',
+      subtitle: '星钻',
+      icon: '◆',
+      products: [
+        { title: '60 星钻', en: '60 星钻', pricePreset: 'cny6', note: '星钻充值 / Xingzuan Chongzhi' },
+        { title: '325 星钻', en: '325 星钻', pricePreset: 'cny30', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '745 星钻', en: '745 星钻', pricePreset: 'cny68', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '1300 星钻', en: '1300 星钻', pricePreset: 'cny118', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '2185 星钻', en: '2185 星钻', pricePreset: 'cny198', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '3890 星钻', en: '3890 星钻', pricePreset: 'cny348', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '7280 星钻', en: '7280 星钻', pricePreset: 'cny648', note: 'HOT 推荐 / Xingzuan Chongzhi' }
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+    ]
+  },
+  cards: {
+    title: '点数 / 点卡',
+    subtitle: 'Brilliant Gaming 精选点数、点卡与账号相关服务。',
+    page: 'index.html',
+    games: [
+
+      {
+  id: 'razer-gold-top-up-pin',
+  name: 'Razer Gold 点卡',
+  detailName: 'Razer Gold 点卡',
+  description: 'Razer Gold Top-Up PIN',
+  tag: '点数/点卡',
+  image: 'assets/images/games/razer-gold.jpg',
+  detailArt: 'assets/images/games/razer-gold2.jpg',
+  productSections: [
+    {
+      title: 'Razer Gold Top-Up PIN',
+      subtitle: 'Direct Top-Up PIN',
+      icon: '◆',
+      products: [
+        { title: 'RM 3 Razer Gold PIN', en: 'Direct Top-Up PIN - 3', price: 'RM 3.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 5 Razer Gold PIN', en: 'Direct Top-Up PIN - 5', price: 'RM 5.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 7 Razer Gold PIN', en: 'Direct Top-Up PIN - 7', price: 'RM 7.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 10 Razer Gold PIN', en: 'Direct Top-Up PIN - 10', price: 'RM 10.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 20 Razer Gold PIN', en: 'Direct Top-Up PIN - 20', price: 'RM 20.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 30 Razer Gold PIN', en: 'Direct Top-Up PIN - 30', price: 'RM 30.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 40 Razer Gold PIN', en: 'Direct Top-Up PIN - 40', price: 'RM 40.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 50 Razer Gold PIN', en: 'Direct Top-Up PIN - 50', price: 'RM 50.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 100 Razer Gold PIN', en: 'Direct Top-Up PIN - 100', price: 'RM 100.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 200 Razer Gold PIN', en: 'Direct Top-Up PIN - 200', price: 'RM 200.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 300 Razer Gold PIN', en: 'Direct Top-Up PIN - 300', price: 'RM 300.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 500 Razer Gold PIN', en: 'Direct Top-Up PIN - 500', price: 'RM 500.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 1000 Razer Gold PIN', en: 'Direct Top-Up PIN - 1000', price: 'RM 1000.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 2000 Razer Gold PIN', en: 'Direct Top-Up PIN - 2000', price: 'RM 2000.00', note: 'Razer Gold Top-Up PIN' },
+        { title: 'RM 3000 Razer Gold PIN', en: 'Direct Top-Up PIN - 3000', price: 'RM 3000.00', note: 'Razer Gold Top-Up PIN' }
+      ]
+    }
+  ]
+},
+
+      {
+        id: 'china-apple-gift-card',
+        name: '中国苹果卡',
+        detailName: '中国苹果卡',
+        description: 'China Apple Gift Card',
+        tag: '点数/点卡',
+        image: 'assets/images/games/pgk.jpg',
+        detailArt: 'assets/images/games/pgk2.jpg',
+        keywords: ['苹果卡', 'Apple Gift Card', 'China Apple Gift Card', '中国 Apple Card', '点数', '点卡'],
+        productSections: [
+          {
+            title: '苹果卡充值',
+            subtitle: 'Apple Card Top Up',
+            icon: '◆',
+            products: [
+              { title: '6 元 苹果卡', en: '6 RMB Apple Card', price: 'RM 6.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '10 元 苹果卡', en: '10 RMB Apple Card', price: 'RM 10.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '30 元 苹果卡', en: '30 RMB Apple Card', price: 'RM 24.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '50 元 苹果卡', en: '50 RMB Apple Card', price: 'RM 37.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '68 元 苹果卡', en: '68 RMB Apple Card', price: 'RM 48.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '100 元 苹果卡', en: '100 RMB Apple Card', price: 'RM 68.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '200 元 苹果卡', en: '200 RMB Apple Card', price: 'RM 132.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '330 元 苹果卡', en: '330 RMB Apple Card', price: 'RM 224.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '350 元 苹果卡', en: '350 RMB Apple Card', price: 'RM 237.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '500 元 苹果卡', en: '500 RMB Apple Card', price: 'RM 330.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '648 元 苹果卡', en: '648 RMB Apple Card', price: 'RM 420.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '900 元 苹果卡', en: '900 RMB Apple Card', price: 'RM 581.00', note: '苹果卡充值 / Apple Card Top Up' },
+              { title: '1000 元 苹果卡', en: '1000 RMB Apple Card', price: 'RM 640.00', note: 'HOT 推荐 / Apple Card Top Up' },
+              { title: '1300 元 苹果卡', en: '1300 RMB Apple Card', price: 'RM 830.00', note: '苹果卡充值 / Apple Card Top Up' }
+            ]
+          },
+          {
+            title: '其他服务',
+            subtitle: 'Other Service',
+            icon: '◆',
+            products: [
+              { title: '中国区 Apple ID（已实名）', en: 'China Region Apple ID (Verified)', price: 'RM 15.00', note: '其他服务 / Other Service' }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+};
+
+const homeFeaturedIds = [
+  'genshin',
+  'honkai-star-rail',
+  'zenless-zone-zero',
+  'wuthering-waves',
+  'pokemon-tcg-pocket',
+  'honor-of-kings-global',
+  'honor-of-kings-cn',
+  'peace-elite',
+  'pubg-mobile',
+  'garena-codm',
+  'garena-delta-force',
+  'mobile-legends'
+];
+
+  globalThis.BGE_CATALOG_DATA = {
+    pricePresets,
+    categories,
+    homeFeaturedIds
+  };
+})();
