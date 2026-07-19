@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "games": {
+    "intl/genshin": {
+      "fingerprint": "0ac47e5cbe75782146ed6cf104e864c019e40738c539e0ab9fce0895723742b8",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/honkai-star-rail": {
+      "fingerprint": "149b33771b679986cd3fdd49e4e38d90e02926d0255d01fb458b82fcd71abd8e",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/zenless-zone-zero": {
+      "fingerprint": "f6dd9cfedad7c782c836139cc21e469b03eee025c731365b49e1fb0fb47c8b02",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/wuthering-waves": {
+      "fingerprint": "a4e222aa997d1877a74db0ae6c46dd05ed706299c8169ed26187954fd6fa0267",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/pokemon-tcg-pocket": {
+      "fingerprint": "e4388487cba0ac3c3f02b89cdb2ff5ea66a7620f4a3e1a06fd0b8229da4b224e",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/honor-of-kings-global": {
+      "fingerprint": "3f37fc2230bda5e6ea13176886ec8500de4067aac25951832fffdf736d1d46ab",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/pubg-mobile": {
+      "fingerprint": "f7da5d933758afd21d88704a3464316f4dcaf8e18f3d410f7fd1a782e11917f6",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/garena-codm": {
+      "fingerprint": "886bfc94f441198790685e4d1dee2596348afcd74e0123dda36389ea0a41692f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/garena-delta-force": {
+      "fingerprint": "efcb69167b37f89eeb90a494d6ea10d506907dd30408928aabef249e6b46857d",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/mobile-legends": {
+      "fingerprint": "b383c7d0ac5a45cf2f12eb2d8b64653f6c36600b74395b1131dbac663b288896",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/pokemon-go": {
+      "fingerprint": "90cdc2da257f5617db58c82f080243ca15dd26a124216c6c3fb10802f41cf521",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/last-war-survival": {
+      "fingerprint": "35e9eaac2e1dac34d85f233dd9217cfc1919374893f88066380b289a6b81689e",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/kingshot": {
+      "fingerprint": "ff0c74378231b11bef6831f2b2606784b80e41a5cef697218d94bbb8f1faa6a5",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/whiteout-survival": {
+      "fingerprint": "ff0c74378231b11bef6831f2b2606784b80e41a5cef697218d94bbb8f1faa6a5",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/neverness-to-everness": {
+      "fingerprint": "14166e83df7d3cbe48d46bc56ba98d7e40a9dac6878fa42482b865bc42ac5b25",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/zhang-jian-chuan-shuo": {
+      "fingerprint": "63aedbae352b29bbb74866214ac922912323a36f8496a8983406835dba159c1f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/wen-jian-chang-sheng": {
+      "fingerprint": "f255329323d3e70acfd5dda5f497e7692d5499b5fa2c147632936ea61c9c213d",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/tian-long-ba-bu": {
+      "fingerprint": "fc51adef4d664a3c0fa7c0a06fbc9d0a3ab652398ff02c4e4e673e699e632c4f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/perfect-world-w": {
+      "fingerprint": "0bb284ab494a5df6a5f5179e01dfde7d08988422d2de1ac943f51f8a5aa577e9",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/where-winds-meet": {
+      "fingerprint": "124d8c3396dd816f54c274fa0cf00d357b9a51ee4fc091df7f53715871bac8db",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/crystal-of-atlan": {
+      "fingerprint": "778c939150cce62dd84c3d1388b517562e33639003dc51c3ea40944e587aa8ff",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/sword-of-justice": {
+      "fingerprint": "27fa4ec49befa47c45ea6b7a6c9a9925c0dc92975a8c0859f732f578af9f339e",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/ro-the-new-world": {
+      "fingerprint": "13cbc24075d0934791fb4d491ea706bec61aeacbbd6e98f970421ad063768a52",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/arknights-endfield": {
+      "fingerprint": "b5d1852f3f38c1a78a06640c49d57cbb96c292e30ab0d80f657527426c5427ae",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/x-hero-epic-hero": {
+      "fingerprint": "812763fd1d7fb5a481acde9e8afd2ac6d98e237de44022657690215417b3e0d7",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/ragnarok-origin-classic": {
+      "fingerprint": "230c8bf5c669f655f92ae853a6b843f30ff127d07a895957bf7241615513c7ca",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/dark-war-survival": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/heartopia": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/douluo-liehun-shijie": {
+      "fingerprint": "186e5a8a92b22eeb69c92e18e0b4ca1ccad3eb8ce0dd48154b9c6b00bf98dd86",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/jianxia-qingyuan": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/legends-of-mushroom": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/zombie-wave": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/ni-shui-han-tw": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/lands-of-jails": {
+      "fingerprint": "66863e9d10de6bcc459d4ef2d64c92391c5ddf9576f999047c5ce28abb2c387f",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/three-kingdoms-tactics": {
+      "fingerprint": "d8e74d0450a4641ddd722be73630022e621ee14bfbcbfe10159bb2fe1a833e97",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/one-punch-man-the-strongest": {
+      "fingerprint": "eb413c55c4592fb0bd445fc08184ddb413ffc5b344b99245c2e436f028bf213c",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/dragon-nest-m-classic": {
+      "fingerprint": "62e562f03a9ff663311f040463d93ff1a0987e8a66772a34bc8e6f5ff5a9b9f4",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/rf-online-next": {
+      "fingerprint": "2ba0d60885e2893afeaf774688474f5bf0074e7c3198418940f0ad690f1be373",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/age-of-empires-mobile": {
+      "fingerprint": "61a40ba638bef496705f8b682ec39c06c499e27a403d85736df20039bb5d79fd",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/arena-breakout": {
+      "fingerprint": "1a84761de3e6f59c29ef8d51b8195ac8688d77475612dd197c3795c6e9afe553",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/zhen-de-jiang-shan": {
+      "fingerprint": "bd9e7327a00a8eb0f047393afd9da24f01535022f36ad1e7a8df4a1a6e1ad6d8",
+      "updatedAt": "2026-07-15"
+    },
+    "intl/astral-guardians-cyber-fantasy": {
+      "fingerprint": "d1c2594cd44b88c53e061bd766ab0c5834c1a33c28ec201ef42efb334718ee5d",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/honor-of-kings-cn": {
+      "fingerprint": "b50d465077d5e5491d8d7ba3942a112c0f021681f875eba373402c5a4ccb30b6",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/peace-elite": {
+      "fingerprint": "253645257e9b3d0c07fde4b9b5e3c76eb235d23da7c0d19531a71cc00a03745f",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/huoying-renzhe": {
+      "fingerprint": "53542e0422436f7ea2bb0196c0b804d295362bdb4a34fb29c01b54ff3e7954a5",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/jin-chan-chan": {
+      "fingerprint": "e5a7b33c7784a640c55569924ffd29b3ed83ff9384606fc9877c1b4f546ba11e",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/luoke-wangguo": {
+      "fingerprint": "f3bc64d48d656b593f0875340b7c99e7f6101e7f81ac59fb20b8421c2053f1e7",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/delta-force-cn": {
+      "fingerprint": "c5522c41493f6ac21413db41e75733780807f5952f406569f05148670c4807f5",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/wangzhe-rongyao-shijie": {
+      "fingerprint": "afc06953a433ac99f1a9ec60ee2aef428cbd7353af398bed5eb0bf6f7601cd08",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/wuwei-qiyue": {
+      "fingerprint": "e7eb84821b4d7d57e8e1e612ebcbcb5104c3863aa92133a044b7fa34b5e03505",
+      "updatedAt": "2026-07-15"
+    },
+    "cn/yuanmeng-zhixing": {
+      "fingerprint": "f1c0cb49645edf4701c5d2cdf9ed31ca44031ac2c533d1b12e7ce15530344ac1",
+      "updatedAt": "2026-07-15"
+    },
+    "cards/razer-gold-top-up-pin": {
+      "fingerprint": "2162a17b3dee772e3de5af79e1056bd36c62736390cf291a41cf36eeabd5ef2e",
+      "updatedAt": "2026-07-15"
+    },
+    "cards/china-apple-gift-card": {
+      "fingerprint": "7529308f6956a973a6ac2125c9f42cfdb77602fad4433529682a01ae051eac5b",
+      "updatedAt": "2026-07-15"
+    }
+  }
+}

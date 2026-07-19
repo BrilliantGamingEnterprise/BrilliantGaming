@@ -227,7 +227,7 @@
     <section class="admin-hero">
       <span class="section-kicker">LOCAL ADMIN TOOL</span>
       <h1>游戏资料生成器</h1>
-      <p>输入游戏资料和商品档位后，自动生成可复制到 <strong>scripts.js</strong> 的游戏对象代码。这个页面不会写入数据库，也不会自动修改现有文件。</p>
+      <p>输入游戏资料和商品档位后，自动生成可复制到 <strong>catalog-data.js</strong> 的游戏对象代码。价格、商品或售罄状态改变后，建站程序会自动更新该游戏的日期。</p>
     </section>
 
     <div class="admin-layout">
@@ -285,8 +285,8 @@
             <input id="detailArt" placeholder="assets/images/games/game2.jpg" />
           </label>
           <label class="admin-field">
-            <span>价格更新日期（可选）</span>
-            <input id="updatedAt" type="date" />
+            <span>价格更新日期</span>
+            <input id="updatedAt" type="text" value="由系统自动更新" disabled />
           </label>
         </div>
 
@@ -304,7 +304,7 @@
       <section class="admin-panel">
         <h2>生成结果</h2>
         <label class="admin-field full">
-          <span>复制以下代码，贴进 scripts.js 对应分类的 games 数组</span>
+          <span>复制以下代码，贴进 catalog-data.js 对应分类的 games 数组</span>
           <textarea id="output" spellcheck="false" placeholder="点击“生成代码”后会出现在这里"></textarea>
         </label>
         <div class="admin-actions">
@@ -343,8 +343,11 @@
     <option value="cny1998"></option>
   </datalist>
 
+  <script src="site-config.js?v=1"></script>
+  <script src="catalog-data.js?v=1"></script>
+  <script src="catalog-meta.js?v=1"></script>
   <script src="translations.js"></script>
-  <script src="scripts.js"></script>
+  <script src="scripts.js?v=15"></script>
   <script>
     const sectionsNode = document.getElementById('sections');
     const outputNode = document.getElementById('output');
@@ -415,7 +418,7 @@
         topupFormType: fieldValue(document, '#topupFormType'),
         image: fieldValue(document, '#image'),
         detailArt: fieldValue(document, '#detailArt'),
-        updatedAt: fieldValue(document, '#updatedAt')
+        updatedAt: ''
       };
 
       const lines = ['{'];
@@ -514,7 +517,7 @@
 
       if (!validator?.run) {
         resultNode.className = 'admin-validation-result is-error';
-        resultNode.textContent = '检查器没有载入，请确认 translations.js 与 scripts.js 在同一个文件夹。';
+        resultNode.textContent = '检查器没有载入，请确认 catalog-data.js、translations.js 与 scripts.js 在同一个文件夹。';
         return;
       }
 

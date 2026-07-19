@@ -9,6 +9,7 @@
   <script src="seo.js" defer></script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="directory-layout.css?v=15" />
+  <link rel="stylesheet" href="components.css?v=1" />
 </head>
 <body class="page-reviews" data-page="reviews">
   <div class="page-shell">
@@ -47,10 +48,10 @@
 
         <div class="reviews-notice">
           <strong>审核说明</strong>
-          <span>评价由 Google Form 收集后进行人工审核；公开展示时会对昵称打码处理，并只展示已授权公开的评价内容。</span>
+          <span data-review-status>评价由 Google Form 收集后进行人工审核；公开展示时会对昵称打码处理，并只展示已授权公开的评价内容。</span>
         </div>
 
-        <section class="reviews-grid reviews-page-grid">
+        <section class="reviews-grid reviews-page-grid" data-review-grid="all">
           <article class="review-card">
             <div class="review-card-top"><div class="review-avatar">M</div><div><div class="review-name">M**a</div><div class="review-stars">★★★★★</div></div><span class="review-badge">已审核</span></div>
             <div class="review-product">原神 · 6480 创世结晶</div>
@@ -127,6 +128,7 @@
           <ul>
             <li>🇲🇾 Malaysia</li>
             <li>🇸🇬 Singapore</li>
+            <li><a href="policy.html">服务与隐私政策</a></li>
           </ul>
         </div>
       </div>
@@ -137,5 +139,7 @@
     </footer>
   </div>
   <script src="translations.js?v=13"></script>
+  <script src="site-config.js?v=1"></script>
+  <script src="reviews.js?v=1"></script>
 </body>
 </html>

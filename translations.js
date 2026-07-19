@@ -2,7 +2,7 @@
   'use strict';
 
   // English customer-facing copy is kept in this file.
-  // Product prices remain in scripts.js so both languages always use the same price source.
+  // Product prices remain in catalog-data.js so both languages always use the same price source.
 
   const storageKey = 'bge-language-v1';
   const supportedLanguages = new Set(['zh', 'en']);
@@ -21,9 +21,12 @@
       'language.switcher': '选择网站语言',
       'nav.open': '打开菜单',
       'nav.close': '关闭菜单',
+      'nav.policy': '服务政策',
       'currency.switcher': '选择显示币种',
       'cart.summary': '已选商品 {count} 项',
       'cart.total': '合计：{total}',
+      'cart.mobileItems': '购物车 {count}件',
+      'cart.mobileView': '查看',
       'cart.empty': '购物车空空如也，先添加一个商品吧。',
       'cart.quantity': '数量：{quantity}',
       'cart.price': '价格：{price}',
@@ -106,9 +109,12 @@
       'language.switcher': 'Choose website language',
       'nav.open': 'Open menu',
       'nav.close': 'Close menu',
+      'nav.policy': 'Policy',
       'currency.switcher': 'Choose display currency',
       'cart.summary': '{count} item(s) selected',
       'cart.total': 'Total: {total}',
+      'cart.mobileItems': 'Cart · {count} item(s)',
+      'cart.mobileView': 'View',
       'cart.empty': 'Your cart is empty. Add an item to get started.',
       'cart.quantity': 'Quantity: {quantity}',
       'cart.price': 'Price: {price}',
@@ -190,6 +196,7 @@
   };
 
   const staticEnglish = {
+    '服务政策': 'Policy',
     '快速找到游戏，直接查看充值面额': 'Find a game quickly and view top-up options',
     '今天要充值什么游戏？': 'Which game would you like to top up today?',
     '输入中文名或英文名，立即找到对应游戏与价格。': 'Search in Chinese or English to find the right game and prices instantly.',

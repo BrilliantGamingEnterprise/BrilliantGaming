@@ -2,6 +2,8 @@
   'use strict';
 
   const measurementId = 'G-MG9CK2YDHG';
+  const consentKey = 'bge-analytics-consent-v1';
+  const analyticsDenied = localStorage.getItem(consentKey) === 'denied';
   const allowedEvents = new Set([
     'page_view',
     'view_item',
@@ -56,16 +58,24 @@
   };
 
   window.gtag('js', new Date());
+  window.gtag('consent', 'default', {
+    analytics_storage: analyticsDenied ? 'denied' : 'granted',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
   window.gtag('config', measurementId, {
     send_page_view: false,
     allow_google_signals: false,
     allow_ad_personalization_signals: false
   });
 
-  const loader = document.createElement('script');
-  loader.async = true;
-  loader.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
-  document.head.appendChild(loader);
+  if (!analyticsDenied) {
+    const loader = document.createElement('script');
+    loader.async = true;
+    loader.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+    document.head.appendChild(loader);
+  }
 
   function siteLanguage() {
     return document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'zh';
@@ -112,6 +122,7 @@
   }
 
   function track(eventName, parameters = {}) {
+    if (localStorage.getItem(consentKey) === 'denied') return;
     if (!allowedEvents.has(eventName)) return;
     window.gtag('event', eventName, cleanParameters({
       site_language: siteLanguage(),
@@ -149,7 +160,7 @@
         items: [{
           item_id: document.body.dataset.gameId,
           item_name: document.getElementById('detailTitle')?.textContent || document.body.dataset.gameId,
-          item_category: query.get('category') || ''
+          item_category: query.get('category') || document.body.dataset.gameCategory || ''
         }]
       });
     }
