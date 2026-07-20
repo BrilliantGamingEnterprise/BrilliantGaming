@@ -91,11 +91,15 @@
       <button class="contact-close" type="button" data-contact-close aria-label="关闭">×</button>
 
       <span class="section-kicker">CONTACT BRILLIANT GAMING</span>
+      <div class="contact-order-status" hidden>
+        <span aria-hidden="true">✓</span>
+        <strong>订单内容已复制</strong>
+      </div>
       <h3 id="contactModalTitle">联系客服下单</h3>
       <p class="contact-intro">请选择你常用的联系方式，把购物车订单、付款截图或游戏资料发送给客服确认。</p>
 
       <div class="contact-methods contact-methods-premium">
-        <button type="button" class="contact-method-card wechat" data-copy-value="Brilliant_Gaming">
+        <button type="button" class="contact-method-card wechat" data-wechat-action>
           <span class="contact-brand-icon" aria-hidden="true">
             <svg viewBox="0 0 64 64" role="img">
               <circle cx="26" cy="27" r="18" fill="#07C160"/>
@@ -107,9 +111,13 @@
             </svg>
           </span>
           <span class="contact-method-content">
-            <span class="contact-method-name">微信 / WeChat</span>
+            <span class="contact-method-name">微信客服</span>
             <strong>Brilliant_Gaming</strong>
-            <small>点击复制微信 ID</small>
+            <small>复制微信号后添加客服</small>
+          </span>
+          <span class="contact-method-action contact-method-action-wechat">
+            <span class="contact-method-action-label">复制微信号</span>
+            <span aria-hidden="true">⧉</span>
           </span>
         </button>
 
@@ -145,9 +153,13 @@
             </svg>
           </span>
           <span class="contact-method-content">
-            <span class="contact-method-name">WhatsApp</span>
+            <span class="contact-method-name">WhatsApp 客服</span>
             <strong>+60 12-445 8242</strong>
             <small>点击打开 WhatsApp</small>
+          </span>
+          <span class="contact-method-action">
+            <span class="contact-method-action-label">打开 WhatsApp</span>
+            <span aria-hidden="true">→</span>
           </span>
         </a>
       </div>

@@ -80,21 +80,33 @@ const uiTextFallbacks = {
   'product.soldoutNotice': '此商品目前暂时售罄，请选择其他商品。',
   'product.inquiryMessage': '你好，我想询问 {game} 的“{item}”。请问目前价格和充值方式是什么？',
   'catalog.updated': '价格更新：{date}',
-  'contact.orderTitle': '使用 WhatsApp 发送订单',
-  'contact.orderIntro': '订单内容已复制。请点击下方 WhatsApp，把订单内容发送给客服确认。客服确认商品、金额与充值资料后，请再进行付款。',
-  'contact.orderNoteLabel': '重要提醒：',
-  'contact.orderNote': '目前请统一使用 WhatsApp 下单。付款前请先等待客服确认商品、金额与充值资料。',
-  'contact.defaultTitle': 'WhatsApp 客服',
-  'contact.defaultIntro': '目前请通过 WhatsApp 联系 Brilliant Gaming 客服。客服会协助你确认商品、付款方式与充值资料。',
-  'contact.inquiryTitle': 'WhatsApp 商品询价',
-  'contact.inquiryIntro': '询问内容已经准备好。点击下方 WhatsApp 即可发送给客服确认价格与充值方式。',
+  'contact.orderStatus': '订单内容已复制',
+  'contact.orderTitle': '选择发送订单方式',
+  'contact.orderIntro': '可直接通过 WhatsApp 发送，或复制订单内容后粘贴到微信。客服确认商品、金额与充值资料后再付款。',
+  'contact.orderNoteLabel': '付款提醒：',
+  'contact.orderNote': '请先等待客服确认订单；确认无误后再付款。',
+  'contact.defaultTitle': '选择联系客服方式',
+  'contact.defaultIntro': '你可以通过 WhatsApp 或微信联系 Brilliant Gaming。客服会协助确认商品、付款方式与充值资料。',
+  'contact.inquiryTitle': '选择商品询价方式',
+  'contact.inquiryIntro': '可直接通过 WhatsApp 发送，或复制询问内容后粘贴到微信。客服会回复最新价格与充值方式。',
   'contact.inquiryNoteLabel': '询价商品：',
   'contact.inquiryNote': '客服会根据最新渠道与库存回复你，付款前请先等待确认。',
   'contact.hoursLabel': '营业时间：',
   'contact.hours': '每天 10AM - 2AM。非营业时间也可以留言，客服上线后会尽快回复。',
-  'contact.whatsappOrder': '自动带入订单内容',
+  'contact.whatsappOrder': '订单内容已自动带入',
   'contact.whatsappOpen': '点击打开 WhatsApp',
+  'contact.whatsappActionOrder': '打开 WhatsApp 并发送订单',
+  'contact.whatsappActionOpen': '打开 WhatsApp',
+  'contact.wechatName': '微信客服',
+  'contact.wechatIdHelp': '复制微信号后添加客服',
+  'contact.wechatOrderHelp': '复制后到微信发送给客服',
+  'contact.wechatInquiryHelp': '复制后到微信发送询问',
+  'contact.wechatActionId': '复制微信号',
+  'contact.wechatActionOrder': '复制订单内容',
+  'contact.wechatActionInquiry': '复制询问内容',
   'contact.wechatCopied': '微信 ID 已复制',
+  'contact.wechatOrderCopied': '订单内容已复制，可前往微信发送',
+  'contact.wechatInquiryCopied': '询问内容已复制，可前往微信发送',
   'contact.copied': '已复制',
   'contact.unavailable': 'WhatsApp 暂未开放，请先使用微信或 Instagram'
 };
@@ -1847,18 +1859,44 @@ function openContactModal(mode = 'default') {
   modal.dataset.contactMode = mode;
   const whatsappLink = modal.querySelector('.contact-method-card.whatsapp');
   const whatsappSmall = whatsappLink ? whatsappLink.querySelector('small') : null;
+  const whatsappActionLabel = whatsappLink ? whatsappLink.querySelector('.contact-method-action-label') : null;
+  const wechatButton = modal.querySelector('[data-wechat-action]');
+  const wechatName = wechatButton ? wechatButton.querySelector('.contact-method-name') : null;
+  const wechatSmall = wechatButton ? wechatButton.querySelector('small') : null;
+  const wechatActionLabel = wechatButton ? wechatButton.querySelector('.contact-method-action-label') : null;
+  const orderStatus = modal.querySelector('.contact-order-status');
+  const orderStatusText = orderStatus ? orderStatus.querySelector('strong') : null;
   const whatsappBaseUrl = `https://wa.me/${catalogSettings.whatsappNumber}`;
 
   if (whatsappLink) {
     whatsappLink.href = whatsappBaseUrl;
     if (mode === 'order' && latestOrderText) {
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOrder');
+      if (whatsappActionLabel) whatsappActionLabel.textContent = uiText('contact.whatsappActionOrder');
     } else if (mode === 'inquiry' && latestInquiryText) {
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
+      if (whatsappActionLabel) whatsappActionLabel.textContent = uiText('contact.whatsappActionOpen');
     } else {
       if (whatsappSmall) whatsappSmall.textContent = uiText('contact.whatsappOpen');
+      if (whatsappActionLabel) whatsappActionLabel.textContent = uiText('contact.whatsappActionOpen');
     }
   }
+
+  if (wechatName) wechatName.textContent = uiText('contact.wechatName');
+  if (wechatButton) wechatButton.dataset.contactMode = mode;
+  if (mode === 'order' && latestOrderText) {
+    if (wechatSmall) wechatSmall.textContent = uiText('contact.wechatOrderHelp');
+    if (wechatActionLabel) wechatActionLabel.textContent = uiText('contact.wechatActionOrder');
+  } else if (mode === 'inquiry' && latestInquiryText) {
+    if (wechatSmall) wechatSmall.textContent = uiText('contact.wechatInquiryHelp');
+    if (wechatActionLabel) wechatActionLabel.textContent = uiText('contact.wechatActionInquiry');
+  } else {
+    if (wechatSmall) wechatSmall.textContent = uiText('contact.wechatIdHelp');
+    if (wechatActionLabel) wechatActionLabel.textContent = uiText('contact.wechatActionId');
+  }
+
+  if (orderStatus) orderStatus.hidden = mode !== 'order';
+  if (orderStatusText) orderStatusText.textContent = uiText('contact.orderStatus');
 
   const title = modal.querySelector('#contactModalTitle');
   const intro = modal.querySelector('.contact-intro');
@@ -2027,6 +2065,20 @@ function initEvents() {
     const contactModal = document.getElementById('contactModal');
     if (contactModal && target === contactModal) {
       closeContactModal();
+      return;
+    }
+
+    const wechatButton = target.closest('[data-wechat-action]');
+    if (wechatButton) {
+      event.preventDefault();
+      const mode = wechatButton.dataset.contactMode || 'default';
+      const copyValue = mode === 'order'
+        ? latestOrderText
+        : (mode === 'inquiry' ? latestInquiryText : 'Brilliant_Gaming');
+      const successMessage = mode === 'order'
+        ? uiText('contact.wechatOrderCopied')
+        : (mode === 'inquiry' ? uiText('contact.wechatInquiryCopied') : uiText('contact.wechatCopied'));
+      copyTextToClipboard(copyValue, successMessage);
       return;
     }
 
