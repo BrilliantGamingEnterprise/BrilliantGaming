@@ -364,6 +364,31 @@ const categories = {
 },
 
 {
+  id: 'valorant',
+  name: 'Valorant',
+  detailName: 'Valorant',
+  description: 'Valorant',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/valorant.jpg',
+  detailArt: 'assets/images/games/valorant2.jpg',
+  productSections: [
+    {
+      title: 'VP',
+      subtitle: 'Valorant Points',
+      icon: '◆',
+      products: [
+        { title: '475 VP', en: '475 VP', price: 'RM 18.90' },
+        { title: '1000 VP', en: '1000 VP', price: 'RM 38.90' },
+        { title: '2050 VP', en: '2050 VP', price: 'RM 75.90' },
+        { title: '3650 VP', en: '3650 VP', price: 'RM 132.50' },
+        { title: '5350 VP', en: '5350 VP', price: 'RM 189.00' },
+        { title: '11000 VP', en: '11000 VP', price: 'RM 378.90' }
+      ]
+    }
+  ]
+},
+
+{
         id: 'pokemon-go',
         name: 'Pokemon Go',
         description: 'Pokémon GO',

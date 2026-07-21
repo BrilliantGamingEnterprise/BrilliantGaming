@@ -11,6 +11,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/garena-codm": "2026-07-15",
     "intl/garena-delta-force": "2026-07-15",
     "intl/mobile-legends": "2026-07-15",
+    "intl/valorant": "2026-07-15",
     "intl/pokemon-go": "2026-07-15",
     "intl/last-war-survival": "2026-07-15",
     "intl/kingshot": "2026-07-15",
