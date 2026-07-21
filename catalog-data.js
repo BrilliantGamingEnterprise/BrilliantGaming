@@ -377,12 +377,12 @@ const categories = {
       subtitle: 'Valorant Points',
       icon: '◆',
       products: [
-        { title: '475 VP', en: '475 VP', price: 'RM 18.90' },
-        { title: '1000 VP', en: '1000 VP', price: 'RM 38.90' },
-        { title: '2050 VP', en: '2050 VP', price: 'RM 75.90' },
-        { title: '3650 VP', en: '3650 VP', price: 'RM 132.50' },
-        { title: '5350 VP', en: '5350 VP', price: 'RM 189.00' },
-        { title: '11000 VP', en: '11000 VP', price: 'RM 378.90' }
+        { title: '475 VP', en: '475 VP', price: 'RM 18.90', note: 'VALORANT 点券 / VALORANT Points' },
+        { title: '1000 VP', en: '1000 VP', price: 'RM 38.90', note: 'VALORANT 点券 / VALORANT Points' },
+        { title: '2050 VP', en: '2050 VP', price: 'RM 75.90', note: 'VALORANT 点券 / VALORANT Points' },
+        { title: '3650 VP', en: '3650 VP', price: 'RM 132.50', note: 'VALORANT 点券 / VALORANT Points' },
+        { title: '5350 VP', en: '5350 VP', price: 'RM 189.00', note: 'VALORANT 点券 / VALORANT Points' },
+        { title: '11000 VP', en: '11000 VP', price: 'RM 378.90', note: 'VALORANT 点券 / VALORANT Points' }
       ]
     }
   ]
