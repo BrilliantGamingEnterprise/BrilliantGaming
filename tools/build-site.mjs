@@ -123,8 +123,9 @@ for (const { categoryId, game } of games) {
   const key = `${categoryId}/${game.id}`;
   const fingerprint = gameFingerprint(game);
   const before = previous.games?.[key];
+  const isNew = !before;
   const changed = Boolean(before && before.fingerprint !== fingerprint);
-  const date = cleanText(game.updatedAt) || (changed ? today : before?.updatedAt) || initialDate;
+  const date = cleanText(game.updatedAt) || ((isNew || changed) ? today : before?.updatedAt) || initialDate;
   nextFingerprint.games[key] = { fingerprint, updatedAt: date };
   updatedAtByGame[key] = date;
   if (!before || changed || before.updatedAt !== date) catalogChanged = true;
