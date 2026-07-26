@@ -63,6 +63,7 @@
       'home.filterAll': '全部游戏',
       'home.filterIntl': '国际服游戏',
       'home.filterCn': '中国服游戏',
+      'home.filterLive': '直播充值',
       'home.filterCards': '点数 / 点卡',
       'search.prompt': '请输入关键词开始搜索',
       'search.none': '未找到与 “{query}” 匹配的游戏',
@@ -80,6 +81,13 @@
       'product.pausedNotice': '此商品目前暂停接单，请选择其他商品。',
       'product.soldoutNotice': '此商品目前暂时售罄，请选择其他商品。',
       'product.inquiryMessage': '你好，我想询问 {game} 的“{item}”。请问目前价格和充值方式是什么？',
+      'product.customAmountLabel': '输入人民币金额',
+      'product.customAmountPlaceholder': '例如：88',
+      'product.customAmountPreview': '预计获得：{coins} {coinName}',
+      'product.customAmountEmpty': '输入金额后会显示对应平台币',
+      'product.customAmountAction': '询价',
+      'product.customAmountInvalid': '请输入大于 0 的人民币金额。',
+      'product.customInquiryMessage': '你好，我想询问 {game} 自定义充值：¥{amount} = {coins} {coinName}。请问 RM 价格和充值方式是什么？',
       'catalog.updated': '价格更新：{date}',
       'service.online': '客服在线',
       'service.offline': '可以留言',
@@ -118,7 +126,9 @@
       'category.cn.title': '热门中国服游戏',
       'category.cn.subtitle': 'Brilliant Gaming 精选热门中国服手游充值。',
       'category.cards.title': '点数与礼品卡',
-      'category.cards.subtitle': '游戏点数、充值卡与礼品卡服务。'
+      'category.cards.subtitle': '游戏点数、充值卡与礼品卡服务。',
+      'category.live.title': '直播充值',
+      'category.live.subtitle': '抖音、虎牙、斗鱼与快手直播平台充值。'
     },
     en: {
       'language.switcher': 'Choose website language',
@@ -166,6 +176,7 @@
       'home.filterAll': 'All Games',
       'home.filterIntl': 'Global Games',
       'home.filterCn': 'China Games',
+      'home.filterLive': 'Live Streaming',
       'home.filterCards': 'Credits / Gift Cards',
       'search.prompt': 'Enter a keyword to search',
       'search.none': 'No games matched “{query}”',
@@ -183,6 +194,13 @@
       'product.pausedNotice': 'Orders for this item are currently paused. Please choose another item.',
       'product.soldoutNotice': 'This item is temporarily sold out. Please choose another item.',
       'product.inquiryMessage': 'Hi, I would like to ask about “{item}” for {game}. What is the current price and top-up method?',
+      'product.customAmountLabel': 'Enter RMB amount',
+      'product.customAmountPlaceholder': 'e.g. 88',
+      'product.customAmountPreview': 'Estimated amount: {coins} {coinName}',
+      'product.customAmountEmpty': 'Enter an amount to see the platform coins',
+      'product.customAmountAction': 'Ask for Price',
+      'product.customAmountInvalid': 'Enter an RMB amount greater than 0.',
+      'product.customInquiryMessage': 'Hi, I would like a custom {game} top-up: ¥{amount} = {coins} {coinName}. What is the price in RM and the top-up method?',
       'catalog.updated': 'Prices updated: {date}',
       'service.online': 'Customer Service Online',
       'service.offline': 'Leave a Message',
@@ -221,7 +239,9 @@
       'category.cn.title': 'Popular China Games',
       'category.cn.subtitle': 'Popular China-server game top-ups selected by Brilliant Gaming.',
       'category.cards.title': 'Credits & Gift Cards',
-      'category.cards.subtitle': 'Game credits, top-up cards, and gift card services.'
+      'category.cards.subtitle': 'Game credits, top-up cards, and gift card services.',
+      'category.live.title': 'Live Streaming Top-Up',
+      'category.live.subtitle': 'Top-ups for Douyin, Huya, Douyu, and Kuaishou.'
     }
   };
 
@@ -237,6 +257,7 @@
     '热门充值': 'Popular Top-Ups',
     '国际游戏': 'Global Games',
     '中国游戏': 'China Games',
+    '直播充值': 'Live Streaming',
     '点卡与礼品卡': 'Credits & Gift Cards',
     '全部游戏': 'All Games',
     '服务信息': 'Service information',
@@ -245,6 +266,14 @@
     '人工确认订单': 'Orders checked by our team',
     '付款前核对资料': 'Details checked before payment',
     '登入、UID 与点卡': 'Login, UID and gift-card top-ups',
+    '充值资料 · 直播平台': 'Top-Up Details · Live Streaming',
+    '适用于抖音、虎牙、斗鱼与快手。请填写平台账号或用户 ID，付款前客服会再次核对。': 'For Douyin, Huya, Douyu, and Kuaishou. Enter the platform account or user ID; our team will verify it before payment.',
+    '直播账号 / 用户 ID': 'Platform Account / User ID',
+    '请输入平台账号或用户 ID': 'Enter the platform account or user ID',
+    '账号昵称': 'Account Nickname',
+    '请输入账号昵称（选填）': 'Enter the account nickname (optional)',
+    '备注': 'Remarks',
+    '如有特别要求可填写（选填）': 'Add any special request (optional)',
     '官方频道': 'Official channels',
     '选择你想看的内容': 'Choose the content you want to see',
     '每个频道主题不同，查看说明后再选择关注。': 'Each channel has a different focus. Check the description before following.',
@@ -731,6 +760,7 @@
     if (language !== 'en') return tag;
     if (tag.includes('扫码充值')) return 'QR Code Top-Up';
     if (tag.includes('点数/点卡')) return 'Credits / Gift Cards';
+    if (tag.includes('直播充值')) return 'Live Streaming Top-Up';
     return tag;
   }
 

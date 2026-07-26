@@ -5139,3 +5139,84 @@ body {
     justify-content: space-between;
   }
 }
+
+/* ==================== LIVE STREAM CUSTOM AMOUNT ==================== */
+.custom-amount-card {
+  cursor: default !important;
+  min-height: 238px;
+  grid-column: span 2;
+  border-color: rgba(244, 199, 91, 0.38) !important;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(244, 199, 91, 0.12), transparent 34%),
+    linear-gradient(145deg, rgba(22, 23, 28, 0.98), rgba(9, 10, 13, 0.98));
+}
+
+.custom-amount-card::after {
+  display: none;
+}
+
+.custom-amount-field {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.custom-amount-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid rgba(244, 199, 91, 0.34);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #f4c75b;
+}
+
+.custom-amount-input-wrap:focus-within {
+  border-color: #f4c75b;
+  box-shadow: 0 0 0 3px rgba(244, 199, 91, 0.1);
+}
+
+.custom-amount-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.custom-amount-input-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.custom-amount-preview {
+  min-height: 20px;
+  margin-top: 9px;
+  color: #f4c75b;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.product-card .custom-amount-action {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 11px;
+}
+
+@media (max-width: 480px) {
+  .custom-amount-card {
+    min-height: 226px;
+    padding: 14px;
+  }
+}

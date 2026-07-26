@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">直播充值背景</title><desc id="desc">Brilliant Gaming 黑金直播平台充值背景</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050609"/><stop offset=".5" stop-color="#0a0b10"/><stop offset="1" stop-color="#14100a"/></linearGradient>
+    <radialGradient id="gold"><stop stop-color="#f4c75b" stop-opacity=".28"/><stop offset="1" stop-color="#f4c75b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cyan"><stop stop-color="#25f4ee" stop-opacity=".13"/><stop offset="1" stop-color="#25f4ee" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0v72" fill="none" stroke="#f4c75b" stroke-opacity=".08" stroke-width="1"/></pattern>
+    <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)" opacity=".55"/>
+  <ellipse cx="1320" cy="300" rx="520" ry="450" fill="url(#gold)"/><ellipse cx="1180" cy="730" rx="460" ry="260" fill="url(#cyan)"/>
+  <g fill="none" stroke="#f4c75b" stroke-opacity=".25"><circle cx="1260" cy="450" r="210" stroke-width="2"/><circle cx="1260" cy="450" r="280"/><circle cx="1260" cy="450" r="350" stroke-opacity=".1"/></g>
+  <g transform="translate(1260 450)" fill="none" stroke="#f4c75b" stroke-linecap="round"><path d="M-78-112v224l190-112Z" stroke-width="22" opacity=".85"/><path d="M-25-55v110l92-55Z" stroke-width="8" opacity=".5"/></g>
+  <path d="M760 820c210-235 465-344 840-350" fill="none" stroke="#f4c75b" stroke-opacity=".14" stroke-width="3"/>
+  <g filter="url(#blur)" opacity=".45"><circle cx="980" cy="235" r="8" fill="#ff6a21"/><circle cx="1450" cy="670" r="10" fill="#25f4ee"/><circle cx="1110" cy="720" r="8" fill="#fe2c55"/></g>
+</svg>

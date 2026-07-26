@@ -25,7 +25,19 @@ const pricePresets = {
   cny648: 'RM 405.00',
   cny898: 'RM 561.00',
   cny1298: 'RM 811.00',
-  cny1998: 'RM 1225.00'
+  cny1998: 'RM 1225.00',
+
+  // 直播平台共用人民币档位：抖音、虎牙、斗鱼、快手只需在这里统一改价。
+  liveCny10: 'RM 10.00',
+  liveCny30: 'RM 24.00',
+  liveCny50: 'RM 38.00',
+  liveCny100: 'RM 67.00',
+  liveCny200: 'RM 132.00',
+  liveCny500: 'RM 330.00',
+  liveCny1000: 'RM 645.00',
+  liveCny2000: 'RM 1280.00',
+  liveCny5000: 'RM 3125.00',
+  liveCny10000: 'RM 6135.00'
 };
 
 const categories = {
@@ -1623,6 +1635,137 @@ const categories = {
 
 
 
+    ]
+  },
+  live: {
+    title: '直播充值',
+    subtitle: '抖音、虎牙、斗鱼与快手直播平台充值。',
+    page: 'index.html',
+    games: [
+      {
+        id: 'douyin-live',
+        name: '抖音',
+        detailName: '抖音',
+        description: 'Douyin Live Top-Up',
+        tag: '直播充值',
+        topupFormType: 'live',
+        image: 'assets/images/games/douyin-live.svg',
+        detailArt: 'assets/images/games/live-stream-detail.svg',
+        keywords: ['抖音币', '抖币', 'Douyin Coins', 'TikTok China'],
+        productSections: [
+          {
+            title: '抖音币',
+            subtitle: 'Douyin Coins',
+            icon: '◆',
+            products: [
+              { title: '¥10 = 100 抖音币', en: '¥10 = 100 Douyin Coins', pricePreset: 'liveCny10', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥30 = 300 抖音币', en: '¥30 = 300 Douyin Coins', pricePreset: 'liveCny30', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥50 = 500 抖音币', en: '¥50 = 500 Douyin Coins', pricePreset: 'liveCny50', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥100 = 1000 抖音币', en: '¥100 = 1,000 Douyin Coins', pricePreset: 'liveCny100', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥200 = 2000 抖音币', en: '¥200 = 2,000 Douyin Coins', pricePreset: 'liveCny200', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥500 = 5000 抖音币', en: '¥500 = 5,000 Douyin Coins', pricePreset: 'liveCny500', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥1000 = 10000 抖音币', en: '¥1,000 = 10,000 Douyin Coins', pricePreset: 'liveCny1000', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥2000 = 20000 抖音币', en: '¥2,000 = 20,000 Douyin Coins', pricePreset: 'liveCny2000', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥5000 = 50000 抖音币', en: '¥5,000 = 50,000 Douyin Coins', pricePreset: 'liveCny5000', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '¥10000 = 100000 抖音币', en: '¥10,000 = 100,000 Douyin Coins', pricePreset: 'liveCny10000', note: '抖音币充值 / Douyin Coins Top-Up' },
+              { title: '自定义人民币数额', en: 'Custom RMB Amount', price: '联系客服报价', status: 'inquiry', customAmount: true, coinRate: 10, coinNameZh: '抖音币', coinNameEn: 'Douyin Coins', note: '输入金额后询价 / Enter an amount for a quote' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'huya-live',
+        name: '虎牙',
+        detailName: '虎牙',
+        description: 'Huya Live Top-Up',
+        tag: '直播充值',
+        topupFormType: 'live',
+        image: 'assets/images/games/huya-live.svg',
+        detailArt: 'assets/images/games/live-stream-detail.svg',
+        keywords: ['虎牙币', 'Huya Coins', 'Huya Live'],
+        productSections: [
+          {
+            title: '虎牙币',
+            subtitle: 'Huya Coins',
+            icon: '◆',
+            products: [
+              { title: '¥10 = 10 虎牙币', en: '¥10 = 10 Huya Coins', pricePreset: 'liveCny10', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥30 = 30 虎牙币', en: '¥30 = 30 Huya Coins', pricePreset: 'liveCny30', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥50 = 50 虎牙币', en: '¥50 = 50 Huya Coins', pricePreset: 'liveCny50', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥100 = 100 虎牙币', en: '¥100 = 100 Huya Coins', pricePreset: 'liveCny100', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥200 = 200 虎牙币', en: '¥200 = 200 Huya Coins', pricePreset: 'liveCny200', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥500 = 500 虎牙币', en: '¥500 = 500 Huya Coins', pricePreset: 'liveCny500', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥1000 = 1000 虎牙币', en: '¥1,000 = 1,000 Huya Coins', pricePreset: 'liveCny1000', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥2000 = 2000 虎牙币', en: '¥2,000 = 2,000 Huya Coins', pricePreset: 'liveCny2000', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥5000 = 5000 虎牙币', en: '¥5,000 = 5,000 Huya Coins', pricePreset: 'liveCny5000', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '¥10000 = 10000 虎牙币', en: '¥10,000 = 10,000 Huya Coins', pricePreset: 'liveCny10000', note: '虎牙币充值 / Huya Coins Top-Up' },
+              { title: '自定义人民币数额', en: 'Custom RMB Amount', price: '联系客服报价', status: 'inquiry', customAmount: true, coinRate: 1, coinNameZh: '虎牙币', coinNameEn: 'Huya Coins', note: '输入金额后询价 / Enter an amount for a quote' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'douyu-live',
+        name: '斗鱼',
+        detailName: '斗鱼',
+        description: 'Douyu Live Top-Up',
+        tag: '直播充值',
+        topupFormType: 'live',
+        image: 'assets/images/games/douyu-live.svg',
+        detailArt: 'assets/images/games/live-stream-detail.svg',
+        keywords: ['鱼翅', 'Douyu Yuchi', 'Douyu Live'],
+        productSections: [
+          {
+            title: '鱼翅',
+            subtitle: 'Yuchi',
+            icon: '◆',
+            products: [
+              { title: '¥10 = 10 鱼翅', en: '¥10 = 10 Yuchi', pricePreset: 'liveCny10', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥30 = 30 鱼翅', en: '¥30 = 30 Yuchi', pricePreset: 'liveCny30', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥50 = 50 鱼翅', en: '¥50 = 50 Yuchi', pricePreset: 'liveCny50', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥100 = 100 鱼翅', en: '¥100 = 100 Yuchi', pricePreset: 'liveCny100', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥200 = 200 鱼翅', en: '¥200 = 200 Yuchi', pricePreset: 'liveCny200', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥500 = 500 鱼翅', en: '¥500 = 500 Yuchi', pricePreset: 'liveCny500', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥1000 = 1000 鱼翅', en: '¥1,000 = 1,000 Yuchi', pricePreset: 'liveCny1000', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥2000 = 2000 鱼翅', en: '¥2,000 = 2,000 Yuchi', pricePreset: 'liveCny2000', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥5000 = 5000 鱼翅', en: '¥5,000 = 5,000 Yuchi', pricePreset: 'liveCny5000', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '¥10000 = 10000 鱼翅', en: '¥10,000 = 10,000 Yuchi', pricePreset: 'liveCny10000', note: '鱼翅充值 / Douyu Yuchi Top-Up' },
+              { title: '自定义人民币数额', en: 'Custom RMB Amount', price: '联系客服报价', status: 'inquiry', customAmount: true, coinRate: 1, coinNameZh: '鱼翅', coinNameEn: 'Yuchi', note: '输入金额后询价 / Enter an amount for a quote' }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'kuaishou-live',
+        name: '快手',
+        detailName: '快手',
+        description: 'Kuaishou Live Top-Up',
+        tag: '直播充值',
+        topupFormType: 'live',
+        image: 'assets/images/games/kuaishou-live.svg',
+        detailArt: 'assets/images/games/live-stream-detail.svg',
+        keywords: ['快币', 'Kuaishou Coins', 'Kuaishou Live'],
+        productSections: [
+          {
+            title: '快币',
+            subtitle: 'Kuaishou Coins',
+            icon: '◆',
+            products: [
+              { title: '¥10 = 100 快币', en: '¥10 = 100 Kuaishou Coins', pricePreset: 'liveCny10', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥30 = 300 快币', en: '¥30 = 300 Kuaishou Coins', pricePreset: 'liveCny30', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥50 = 500 快币', en: '¥50 = 500 Kuaishou Coins', pricePreset: 'liveCny50', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥100 = 1000 快币', en: '¥100 = 1,000 Kuaishou Coins', pricePreset: 'liveCny100', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥200 = 2000 快币', en: '¥200 = 2,000 Kuaishou Coins', pricePreset: 'liveCny200', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥500 = 5000 快币', en: '¥500 = 5,000 Kuaishou Coins', pricePreset: 'liveCny500', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥1000 = 10000 快币', en: '¥1,000 = 10,000 Kuaishou Coins', pricePreset: 'liveCny1000', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥2000 = 20000 快币', en: '¥2,000 = 20,000 Kuaishou Coins', pricePreset: 'liveCny2000', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥5000 = 50000 快币', en: '¥5,000 = 50,000 Kuaishou Coins', pricePreset: 'liveCny5000', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '¥10000 = 100000 快币', en: '¥10,000 = 100,000 Kuaishou Coins', pricePreset: 'liveCny10000', note: '快币充值 / Kuaishou Coins Top-Up' },
+              { title: '自定义人民币数额', en: 'Custom RMB Amount', price: '联系客服报价', status: 'inquiry', customAmount: true, coinRate: 10, coinNameZh: '快币', coinNameEn: 'Kuaishou Coins', note: '输入金额后询价 / Enter an amount for a quote' }
+            ]
+          }
+        ]
+      }
     ]
   },
   cards: {

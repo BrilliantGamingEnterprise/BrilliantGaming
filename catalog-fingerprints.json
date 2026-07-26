@@ -209,6 +209,22 @@
       "fingerprint": "f1c0cb49645edf4701c5d2cdf9ed31ca44031ac2c533d1b12e7ce15530344ac1",
       "updatedAt": "2026-07-15"
     },
+    "live/douyin-live": {
+      "fingerprint": "c074f6344a1642e7198e0f01e690ac889971bf0c183f4f193f1b26a11c83d2de",
+      "updatedAt": "2026-07-26"
+    },
+    "live/huya-live": {
+      "fingerprint": "97bd551bf601c95ee91875469c2ebb7280097dcaee512ae51e95f42cc10622ca",
+      "updatedAt": "2026-07-26"
+    },
+    "live/douyu-live": {
+      "fingerprint": "8f5a4eda7298206953699cb28d1e09e01c6aaf2415d3e527404d7c7300fec006",
+      "updatedAt": "2026-07-26"
+    },
+    "live/kuaishou-live": {
+      "fingerprint": "523dd9ebfeb55aa3cee70943b0b371a4a0175b41d6abc78daa355df333ad5c45",
+      "updatedAt": "2026-07-26"
+    },
     "cards/razer-gold-top-up-pin": {
       "fingerprint": "2162a17b3dee772e3de5af79e1056bd36c62736390cf291a41cf36eeabd5ef2e",
       "updatedAt": "2026-07-15"

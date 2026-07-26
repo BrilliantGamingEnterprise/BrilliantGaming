@@ -62,6 +62,7 @@ const uiTextFallbacks = {
   'home.filterAll': '全部游戏',
   'home.filterIntl': '国际服游戏',
   'home.filterCn': '中国服游戏',
+  'home.filterLive': '直播充值',
   'home.filterCards': '点数 / 点卡',
   'search.prompt': '请输入关键词开始搜索',
   'search.none': '未找到与 “{query}” 匹配的游戏',
@@ -79,6 +80,13 @@ const uiTextFallbacks = {
   'product.pausedNotice': '此商品目前暂停接单，请选择其他商品。',
   'product.soldoutNotice': '此商品目前暂时售罄，请选择其他商品。',
   'product.inquiryMessage': '你好，我想询问 {game} 的“{item}”。请问目前价格和充值方式是什么？',
+  'product.customAmountLabel': '输入人民币金额',
+  'product.customAmountPlaceholder': '例如：88',
+  'product.customAmountPreview': '预计获得：{coins} {coinName}',
+  'product.customAmountEmpty': '输入金额后会显示对应平台币',
+  'product.customAmountAction': '询价',
+  'product.customAmountInvalid': '请输入大于 0 的人民币金额。',
+  'product.customInquiryMessage': '你好，我想询问 {game} 自定义充值：¥{amount} = {coins} {coinName}。请问 RM 价格和充值方式是什么？',
   'catalog.updated': '价格更新：{date}',
   'contact.orderStatus': '订单内容已复制',
   'contact.orderTitle': '选择发送订单方式',
@@ -544,6 +552,41 @@ const topupFormConfigs = {
         type: 'text',
         required: true,
         placeholder: '请输入角色名字'
+      }
+    ]
+  },
+  live: {
+    badge: 'LIVE STREAM',
+    title: '充值资料 · 直播平台',
+    description: '适用于抖音、虎牙、斗鱼与快手。请填写平台账号或用户 ID，付款前客服会再次核对。',
+    fields: [
+      {
+        name: 'paymentMethod',
+        label: '付款方式',
+        type: 'select',
+        required: true,
+        options: paymentMethodOptions
+      },
+      {
+        name: 'platformUserId',
+        label: '直播账号 / 用户 ID',
+        type: 'text',
+        required: true,
+        placeholder: '请输入平台账号或用户 ID'
+      },
+      {
+        name: 'platformNickname',
+        label: '账号昵称',
+        type: 'text',
+        required: false,
+        placeholder: '请输入账号昵称（选填）'
+      },
+      {
+        name: 'remarks',
+        label: '备注',
+        type: 'textarea',
+        required: false,
+        placeholder: '如有特别要求可填写（选填）'
       }
     ]
   },
@@ -1402,6 +1445,59 @@ function openProductInquiry(productCard) {
   openInquiryChannel(uiText('product.inquiryMessage', { game: gameName, item }), item);
 }
 
+function formatLiveCoinAmount(value) {
+  return new Intl.NumberFormat(isEnglishLanguage() ? 'en-US' : 'zh-CN', {
+    maximumFractionDigits: 2
+  }).format(value);
+}
+
+function updateCustomAmountPreview(container) {
+  if (!container) return;
+  const input = container.querySelector('[data-custom-amount-input]');
+  const preview = container.querySelector('[data-custom-amount-preview]');
+  if (!input || !preview) return;
+
+  const amount = Number(input.value);
+  const rate = Number(container.dataset.coinRate || 1);
+  const coinName = isEnglishLanguage()
+    ? (container.dataset.coinNameEn || container.dataset.coinNameZh || '')
+    : (container.dataset.coinNameZh || container.dataset.coinNameEn || '');
+  preview.textContent = Number.isFinite(amount) && amount > 0
+    ? uiText('product.customAmountPreview', {
+      coins: formatLiveCoinAmount(amount * rate),
+      coinName
+    })
+    : uiText('product.customAmountEmpty');
+}
+
+function openCustomAmountInquiry(container) {
+  if (!container) return;
+  const input = container.querySelector('[data-custom-amount-input]');
+  const amount = Number(input?.value);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    showCartToast(uiText('product.customAmountInvalid'));
+    input?.focus();
+    return;
+  }
+
+  const rate = Number(container.dataset.coinRate || 1);
+  const coinName = isEnglishLanguage()
+    ? (container.dataset.coinNameEn || container.dataset.coinNameZh || '')
+    : (container.dataset.coinNameZh || container.dataset.coinNameEn || '');
+  const currentGame = getGameFromCartContext(cartContext);
+  const gameName = localizedGameName(currentGame, true) || cartContext?.gameName || 'Brilliant Gaming';
+  const coins = formatLiveCoinAmount(amount * rate);
+  const formattedAmount = formatLiveCoinAmount(amount);
+  const item = `${isEnglishLanguage() ? 'Custom amount' : '自定义数额'} · ¥${formattedAmount} = ${coins} ${coinName}`;
+
+  openInquiryChannel(uiText('product.customInquiryMessage', {
+    game: gameName,
+    amount: formattedAmount,
+    coins,
+    coinName
+  }), item);
+}
+
 function handleProductCardAction(productCard) {
   const status = productCard?.dataset.productStatus || 'active';
   if (status === 'paused') {
@@ -1450,6 +1546,24 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '') 
   const statusBadge = status === 'active'
     ? ''
     : `<span class="product-status-badge">${escapeHtml(uiText(`product.status.${status}`))}</span>`;
+
+  if (resolvedProduct.customAmount) {
+    const coinRate = Number(resolvedProduct.coinRate || 1);
+    const coinNameZh = resolvedProduct.coinNameZh || sectionZh || '';
+    const coinNameEn = resolvedProduct.coinNameEn || sectionEn || coinNameZh;
+    return `
+      <article class="product-card product-status-inquiry custom-amount-card" data-custom-amount-card data-coin-rate="${escapeAttribute(coinRate)}" data-coin-name-zh="${escapeAttribute(coinNameZh)}" data-coin-name-en="${escapeAttribute(coinNameEn)}">
+        ${statusBadge}
+        <h3>${escapeHtml(title)}</h3>
+        <p>${escapeHtml(subtitle)}</p>
+        <label class="custom-amount-field">
+          <span>${escapeHtml(uiText('product.customAmountLabel'))}</span>
+          <span class="custom-amount-input-wrap"><b>¥</b><input type="number" min="0.01" step="0.01" inputmode="decimal" data-custom-amount-input placeholder="${escapeAttribute(uiText('product.customAmountPlaceholder'))}" aria-label="${escapeAttribute(uiText('product.customAmountLabel'))}"></span>
+        </label>
+        <div class="custom-amount-preview" data-custom-amount-preview>${escapeHtml(uiText('product.customAmountEmpty'))}</div>
+        <button type="button" class="button button-primary custom-amount-action" data-custom-amount-action>${escapeHtml(uiText('product.customAmountAction'))}</button>
+      </article>`;
+  }
 
   return `
     <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
@@ -1578,6 +1692,9 @@ function renderHomeCategoryFilter(showAll, filterCategory) {
     <button type="button" class="home-filter-btn ${filterCategory === 'cn' ? 'active' : ''}" data-home-filter="cn">
       ${escapeHtml(uiText('home.filterCn'))}
     </button>
+    <button type="button" class="home-filter-btn ${filterCategory === 'live' ? 'active' : ''}" data-home-filter="live">
+      ${escapeHtml(uiText('home.filterLive'))}
+    </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'cards' ? 'active' : ''}" data-home-filter="cards">
       ${escapeHtml(uiText('home.filterCards'))}
     </button>
@@ -1631,12 +1748,13 @@ function setStructuredData(id, payload) {
 function updateGameSeo(categoryId, game) {
   if (!game) return;
   const gameName = localizedGameName(game, true);
+  const serviceName = isEnglishLanguage()
+    ? (/top[\s-]?up$/i.test(gameName) ? gameName : `${gameName} Top-Up`)
+    : (gameName.endsWith('充值') ? gameName : `${gameName}充值`);
   const description = isEnglishLanguage()
-    ? `Top up ${gameName} with Brilliant Gaming. Clear prices, human support, and service for Malaysia and Singapore players.`
-    : `${gameName}充值服务，价格清楚、人工客服确认，为马来西亚与新加坡玩家提供便利的游戏充值体验。`;
-  const title = isEnglishLanguage()
-    ? `${gameName} Top-Up - Brilliant Gaming`
-    : `${gameName}充值 - Brilliant Gaming`;
+    ? `Brilliant Gaming provides ${serviceName} with clear prices, human support, and service for Malaysia and Singapore players.`
+    : `${serviceName}服务，价格清楚、人工客服确认，为马来西亚与新加坡玩家提供便利的充值体验。`;
+  const title = `${serviceName} - Brilliant Gaming`;
   const siteRoot = catalogSettings.siteUrl.replace(/\/$/, '');
   const chineseUrl = `${siteRoot}/games/${encodeURIComponent(game.id)}/`;
   const englishUrl = `${chineseUrl}?lang=en`;
@@ -2102,6 +2220,15 @@ function initEvents() {
       return;
     }
 
+    const customAmountAction = target.closest('[data-custom-amount-action]');
+    if (customAmountAction) {
+      event.preventDefault();
+      openCustomAmountInquiry(customAmountAction.closest('[data-custom-amount-card]'));
+      return;
+    }
+
+    if (target.closest('[data-custom-amount-input]')) return;
+
     const productCard = target.closest('.product-card[data-title][data-price]');
     if (productCard) {
       handleProductCardAction(productCard);
@@ -2199,7 +2326,18 @@ if (homeFeaturedButton) {
       }
     }
   });
+  document.body.addEventListener('input', (event) => {
+    const input = event.target.closest?.('[data-custom-amount-input]');
+    if (!input) return;
+    updateCustomAmountPreview(input.closest('[data-custom-amount-card]'));
+  });
   document.body.addEventListener('keydown', (event) => {
+    const customAmountInput = event.target.closest?.('[data-custom-amount-input]');
+    if (customAmountInput && event.key === 'Enter') {
+      event.preventDefault();
+      openCustomAmountInquiry(customAmountInput.closest('[data-custom-amount-card]'));
+      return;
+    }
     if (event.key !== 'Enter' && event.key !== ' ') return;
     const productCard = event.target.closest?.('.product-card[data-title][data-price]');
     if (!productCard) return;
