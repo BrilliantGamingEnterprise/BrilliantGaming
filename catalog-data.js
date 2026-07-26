@@ -451,12 +451,12 @@ const categories = {
       subtitle: 'USD Packages',
       icon: '◆',
       products: [
-        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
-        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
-        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
-        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
-        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
-        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 19.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 38.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 76.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 95.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 190.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 380.00', note: '99.99 USD 进位计算 / USD Package' }
       ]
     }
   ]
@@ -476,12 +476,12 @@ const categories = {
       subtitle: 'USD Packages',
       icon: '◆',
       products: [
-        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 18.00', note: '4.99 USD 进位计算 / Hot Package' },
-        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 36.00', note: '9.99 USD 进位计算 / USD Package' },
-        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 72.00', note: '19.99 USD 进位计算 / USD Package' },
-        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 90.00', note: '24.99 USD 进位计算 / USD Package' },
-        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 180.00', note: '49.99 USD 进位计算 / USD Package' },
-        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 360.00', note: '99.99 USD 进位计算 / USD Package' }
+        { title: '4.99 美金礼包', en: '4.99 USD Hot Package', price: 'RM 19.00', note: '4.99 USD 进位计算 / Hot Package' },
+        { title: '9.99 美金礼包', en: '9.99 USD Package', price: 'RM 38.00', note: '9.99 USD 进位计算 / USD Package' },
+        { title: '19.99 美金礼包', en: '19.99 USD Package', price: 'RM 76.00', note: '19.99 USD 进位计算 / USD Package' },
+        { title: '24.99 美金礼包', en: '24.99 USD Package', price: 'RM 95.00', note: '24.99 USD 进位计算 / USD Package' },
+        { title: '49.99 美金礼包', en: '49.99 USD Package', price: 'RM 190.00', note: '49.99 USD 进位计算 / USD Package' },
+        { title: '99.99 美金礼包', en: '99.99 USD Package', price: 'RM 380.00', note: '99.99 USD 进位计算 / USD Package' }
       ]
     }
   ]
