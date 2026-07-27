@@ -53,10 +53,10 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "cn/wangzhe-rongyao-shijie": "2026-07-15",
     "cn/wuwei-qiyue": "2026-07-15",
     "cn/yuanmeng-zhixing": "2026-07-15",
-    "live/douyin-live": "2026-07-26",
-    "live/huya-live": "2026-07-26",
-    "live/douyu-live": "2026-07-26",
-    "live/kuaishou-live": "2026-07-26",
+    "live/douyin-live": "2026-07-27",
+    "live/huya-live": "2026-07-27",
+    "live/douyu-live": "2026-07-27",
+    "live/kuaishou-live": "2026-07-27",
     "cards/razer-gold-top-up-pin": "2026-07-15",
     "cards/china-apple-gift-card": "2026-07-15"
   }
