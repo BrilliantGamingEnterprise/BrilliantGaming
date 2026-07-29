@@ -595,7 +595,7 @@ const categories = {
   description: 'Tian Long Ba Bu 2',
   tag: 'Login Top Up',
   topupFormType: 'login',
-  image: 'assets/images/games/tian-long-ba-bu.jpg',
+  image: 'assets/images/games/tian-long-ba-bu-16x9.png',
   detailArt: 'assets/images/games/tian-long-ba-bu2.jpg',
   productSections: [
     {
@@ -634,7 +634,7 @@ const categories = {
   description: 'Perfect World W',
   tag: 'Login Top Up',
   topupFormType: 'login',
-  image: 'assets/images/games/perfect-world-w.jpg',
+  image: 'assets/images/games/perfect-world-w-16x9.png',
   detailArt: 'assets/images/games/perfect-world-w2.jpg',
   productSections: [
     {
@@ -856,8 +856,8 @@ const categories = {
   detailName: 'Ragnarok Origin Classic',
   description: 'Ragnarok Origin Classic',
   tag: 'Login Top Up',
-  image: 'assets/images/games/rooc.jpg',
-  detailArt: 'assets/images/games/rooc2.jpg',
+  image: 'assets/images/games/rooc-16x9.png',
+  detailArt: 'assets/images/games/rooc-detail-16x9.png',
   productSections: [
     {
       title: '礼包',
@@ -884,7 +884,7 @@ const categories = {
   description: 'Dark War Survival',
   tag: 'Login Top Up',
   image: 'assets/images/games/darkwar.jpg',
-  detailArt: 'assets/images/games/darkwar2.jpg',
+  detailArt: 'assets/images/games/dark-war-survival-detail-16x9.png',
   productSections: [
     {
       title: '礼包',
@@ -1016,7 +1016,7 @@ const categories = {
   detailName: 'Lands Of Jails',
   description: 'Lands Of Jails',
   tag: 'Login Top Up',
-  image: 'assets/images/games/jail.jpg',
+  image: 'assets/images/games/lands-of-jails-16x9.png',
   detailArt: 'assets/images/games/jail2.jpg',
   productSections: [
     {
@@ -1036,7 +1036,7 @@ const categories = {
   detailName: '三国志战略版',
   description: 'Three Kingdoms Tactics',
   tag: 'Login Top Up',
-  image: 'assets/images/games/three-kingdoms-tactics.jpg',
+  image: 'assets/images/games/three-kingdoms-tactics-16x9.png',
   detailArt: 'assets/images/games/three-kingdoms-tactics2.jpg',
   productSections: [
     {
@@ -1070,7 +1070,7 @@ const categories = {
   detailName: '一拳超人 One Punch Man: The Strongest',
   description: 'One Punch:The Strongest',
   tag: 'UID Top Up',
-  image: 'assets/images/games/strongest.jpg',
+  image: 'assets/images/games/one-punch-man-16x9.png',
   detailArt: 'assets/images/games/strongest2.jpg',
   productSections: [
     {
@@ -1094,7 +1094,7 @@ const categories = {
   detailName: '龙之谷 M：经典版',
   description: 'Dragon Nest M: Classic',
   tag: 'UID Top Up',
-  image: 'assets/images/games/dnmc.jpg',
+  image: 'assets/images/games/dragon-nest-m-classic-16x9.png',
   detailArt: 'assets/images/games/dnmc2.jpg',
   productSections: [
     {
@@ -1165,7 +1165,7 @@ const categories = {
   detailName: '世纪帝国 Mobile',
   description: 'Age of Empires Mobile',
   tag: 'UID Top Up',
-  image: 'assets/images/games/age-of-empires-mobile.jpg',
+  image: 'assets/images/games/age-of-empires-mobile-16x9.png',
   detailArt: 'assets/images/games/age-of-empires-mobile2.jpg',
   productSections: [
     {
@@ -1203,7 +1203,7 @@ const categories = {
   detailName: '暗区突围',
   description: 'Arena Breakout',
   tag: 'UID Top Up',
-  image: 'assets/images/games/arena-breakout.jpg',
+  image: 'assets/images/games/arena-breakout-16x9.png',
   detailArt: 'assets/images/games/arena-breakout2.jpg',
   productSections: [
     {
@@ -1264,7 +1264,7 @@ const categories = {
   detailName: '星界守护者',
   description: 'Astral Guardians',
   tag: 'UID Top Up',
-  image: 'assets/images/games/astral-guardians.jpg',
+  image: 'assets/images/games/astral-guardians-16x9.png',
   detailArt: 'assets/images/games/astral-guardians2.jpg',
   productSections: [
     {
@@ -1680,8 +1680,8 @@ const categories = {
         description: 'Douyin Live Top-Up',
         tag: '直播充值',
         topupFormType: 'live',
-        image: 'assets/images/games/douyin-live.svg',
-        detailArt: 'assets/images/games/live-stream-detail.svg',
+        image: 'assets/images/games/douyin-live-v3.png',
+        detailArt: 'assets/images/games/douyin-live-detail-v3.png',
         keywords: ['抖音币', '抖币', 'Douyin Coins', 'TikTok China'],
         productSections: [
           {
@@ -1711,8 +1711,8 @@ const categories = {
         description: 'Huya Live Top-Up',
         tag: '直播充值',
         topupFormType: 'live',
-        image: 'assets/images/games/huya-live.svg',
-        detailArt: 'assets/images/games/live-stream-detail.svg',
+        image: 'assets/images/games/huya-live-v3.png',
+        detailArt: 'assets/images/games/huya-live-detail-v3.png',
         keywords: ['虎牙币', 'Huya Coins', 'Huya Live'],
         productSections: [
           {
@@ -1742,8 +1742,8 @@ const categories = {
         description: 'Douyu Live Top-Up',
         tag: '直播充值',
         topupFormType: 'live',
-        image: 'assets/images/games/douyu-live.svg',
-        detailArt: 'assets/images/games/live-stream-detail.svg',
+        image: 'assets/images/games/douyu-live-v3.png',
+        detailArt: 'assets/images/games/douyu-live-detail-v3.png',
         keywords: ['鱼翅', 'Douyu Yuchi', 'Douyu Live'],
         productSections: [
           {
@@ -1773,8 +1773,8 @@ const categories = {
         description: 'Kuaishou Live Top-Up',
         tag: '直播充值',
         topupFormType: 'live',
-        image: 'assets/images/games/kuaishou-live.svg',
-        detailArt: 'assets/images/games/live-stream-detail.svg',
+        image: 'assets/images/games/kuaishou-live-v3.png',
+        detailArt: 'assets/images/games/kuaishou-live-detail-v3.png',
         keywords: ['快币', 'Kuaishou Coins', 'Kuaishou Live'],
         productSections: [
           {
@@ -1845,7 +1845,7 @@ const categories = {
         detailName: '中国苹果卡',
         description: 'China Apple Gift Card',
         tag: '点数/点卡',
-        image: 'assets/images/games/pgk.jpg',
+        image: 'assets/images/games/china-apple-gift-card-16x9.png',
         detailArt: 'assets/images/games/pgk2.jpg',
         keywords: ['苹果卡', 'Apple Gift Card', 'China Apple Gift Card', '中国 Apple Card', '点数', '点卡'],
         productSections: [

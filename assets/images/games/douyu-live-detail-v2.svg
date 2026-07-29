@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="斗鱼直播充值背景">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#030407"/><stop offset=".55" stop-color="#091019"/><stop offset="1" stop-color="#241006"/></linearGradient>
+    <radialGradient id="orange"><stop stop-color="#ff6a21" stop-opacity=".48"/><stop offset="1" stop-color="#ff6a21" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blue"><stop stop-color="#2f8cff" stop-opacity=".24"/><stop offset="1" stop-color="#2f8cff" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="58" height="58" patternUnits="userSpaceOnUse"><path d="M58 0H0v58" fill="none" stroke="#fff" stroke-opacity=".03"/></pattern>
+    <clipPath id="official-app-icon"><rect width="276" height="276" rx="64"/></clipPath>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/><rect width="1600" height="900" fill="url(#grid)"/><ellipse cx="1270" cy="330" rx="530" ry="470" fill="url(#orange)"/><ellipse cx="1230" cy="760" rx="510" ry="270" fill="url(#blue)"/>
+  <g transform="translate(1120 200)"><circle cx="150" cy="150" r="220" fill="none" stroke="#ff7b35" stroke-opacity=".18" stroke-width="2"/><rect width="300" height="300" rx="74" fill="#101116" stroke="#fff" stroke-opacity=".2" stroke-width="2"/><g transform="translate(12 12)" clip-path="url(#official-app-icon)"><image href="douyu-official-app-icon.jpg" width="276" height="276" preserveAspectRatio="xMidYMid slice"/></g><rect x="12" y="12" width="276" height="276" rx="64" fill="none" stroke="#ff7b35" stroke-opacity=".34" stroke-width="2"/></g>
+  <path d="M910 720c190 72 385 62 590-28" fill="none" stroke="#2f8cff" stroke-opacity=".35" stroke-width="8"/>
+</svg>
