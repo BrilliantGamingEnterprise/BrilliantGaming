@@ -1284,6 +1284,37 @@ const categories = {
   ]
 },
 
+{
+  id: 'ddtank-origin-malaysia',
+  name: '弹弹堂 Origin',
+  detailName: '弹弹堂 Origin',
+  description: 'DDTank Origin Malaysia',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/ddtank-origin.png',
+  detailArt: 'assets/images/games/ddtank-origin.png',
+  productSections: [
+    {
+      title: '小鸡币',
+      subtitle: 'Chicken Coin',
+      icon: '◆',
+      products: [
+        { title: '1 小鸡币', en: '1 Chicken Coin', price: 'RM 3.50', note: 'UID 充值 / UID Top Up' },
+        { title: '3 小鸡币', en: '3 Chicken Coins', price: 'RM 11.00', note: 'UID 充值 / UID Top Up' },
+        { title: '6 小鸡币', en: '6 Chicken Coins', price: 'RM 21.00', note: 'UID 充值 / UID Top Up' },
+        { title: '11 小鸡币', en: '11 Chicken Coins', price: 'RM 38.00', note: 'UID 充值 / UID Top Up' },
+        { title: '14 小鸡币', en: '14 Chicken Coins', price: 'RM 49.00', note: 'UID 充值 / UID Top Up' },
+        { title: '18 小鸡币', en: '18 Chicken Coins', price: 'RM 64.00', note: 'UID 充值 / UID Top Up' },
+        { title: '36 小鸡币', en: '36 Chicken Coins', price: 'RM 122.00', note: '95折优惠 / UID Top Up' },
+        { title: '55 小鸡币', en: '55 Chicken Coins', price: 'RM 186.00', note: '95折优惠 / UID Top Up' },
+        { title: '75 小鸡币', en: '75 Chicken Coins', price: 'RM 266.00', note: '95折优惠 / UID Top Up' },
+        { title: '100 小鸡币', en: '100 Chicken Coins', price: 'RM 323.00', note: '95折优惠 / UID Top Up' },
+        { title: '200 小鸡币', en: '200 Chicken Coins', price: 'RM 576.00', note: '9折优惠 / UID Top Up' },
+        { title: '400 小鸡币', en: '400 Chicken Coins', price: 'RM 1148.00', note: '9折优惠 / UID Top Up' }
+      ]
+    }
+  ]
+},
+
     ]
   },
   cn: {
