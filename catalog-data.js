@@ -670,12 +670,12 @@ const categories = {
       products: [
         { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.30', note: '长鸣珠 / Changming Pearl' },
         { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 19.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 38.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 360.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 20.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 40.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 58.50', note: '长鸣珠 / Changming Pearl' },
+        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 117.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 192.50', note: '长鸣珠 / Changming Pearl' },
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 380.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -778,8 +778,8 @@ const categories = {
         { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00', status: 'soldout' },
         { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00', status: 'soldout' },
         { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00', status: 'soldout' },
-        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 400.00' },
-        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 800.00' }
+        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 400.00', status: 'soldout' },
+        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 800.00', status: 'soldout' }
       ]
     }
   ]
@@ -1044,12 +1044,12 @@ const categories = {
       subtitle: 'Jade',
       icon: '◆',
       products: [
-        { title: '60 玉璧', en: '60 Jade', price: 'RM 4.00', note: 'Login Top Up' },
-        { title: '300 玉璧', en: '300 Jade', price: 'RM 19.00', note: 'Login Top Up' },
-        { title: '980 玉璧', en: '980 Jade', price: 'RM 57.00', note: 'Login Top Up' },
-        { title: '1980 玉璧', en: '1980 Jade', price: 'RM 114.00', note: 'Login Top Up' },
-        { title: '3280 玉璧', en: '3280 Jade', price: 'RM 185.00', note: 'HOT 推荐 / Login Top Up' },
-        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Login Top Up' }
+        { title: '60 玉璧', en: '60 Jade', price: 'RM 4.00', note: 'Login Top Up', status: 'soldout'  },
+        { title: '300 玉璧', en: '300 Jade', price: 'RM 19.00', note: 'Login Top Up', status: 'soldout'  },
+        { title: '980 玉璧', en: '980 Jade', price: 'RM 57.00', note: 'Login Top Up' , status: 'soldout' },
+        { title: '1980 玉璧', en: '1980 Jade', price: 'RM 114.00', note: 'Login Top Up' , status: 'soldout' },
+        { title: '3280 玉璧', en: '3280 Jade', price: 'RM 185.00', note: 'HOT 推荐 / Login Top Up' , status: 'soldout' },
+        { title: '6480 玉璧', en: '6480 Jade', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Login Top Up', status: 'soldout' }
       ]
     },
     {
@@ -1057,8 +1057,8 @@ const categories = {
       subtitle: 'Others Packages',
       icon: '◆',
       products: [
-        { title: '银印礼包', en: 'Silver Seal Pack', price: 'RM 12.00', note: 'Login Top Up' },
-        { title: '金印礼包', en: 'Gold Seal Pack', price: 'RM 19.00', note: 'Login Top Up' }
+        { title: '银印礼包', en: 'Silver Seal Pack', price: 'RM 12.00', note: 'Login Top Up' , status: 'soldout' },
+        { title: '金印礼包', en: 'Gold Seal Pack', price: 'RM 19.00', note: 'Login Top Up', status: 'soldout' }
       ]
     }
   ]
@@ -1304,12 +1304,12 @@ const categories = {
         { title: '11 小鸡币', en: '11 Chicken Coins', price: 'RM 38.00', note: 'UID 充值 / UID Top Up' },
         { title: '14 小鸡币', en: '14 Chicken Coins', price: 'RM 49.00', note: 'UID 充值 / UID Top Up' },
         { title: '18 小鸡币', en: '18 Chicken Coins', price: 'RM 64.00', note: 'UID 充值 / UID Top Up' },
-        { title: '36 小鸡币', en: '36 Chicken Coins', price: 'RM 122.00', note: '95折优惠 / UID Top Up' },
-        { title: '55 小鸡币', en: '55 Chicken Coins', price: 'RM 186.00', note: '95折优惠 / UID Top Up' },
-        { title: '75 小鸡币', en: '75 Chicken Coins', price: 'RM 266.00', note: '95折优惠 / UID Top Up' },
+        { title: '36 小鸡币', en: '36 Chicken Coins', price: 'RM 128.00', note: '95折优惠 / UID Top Up' },
+        { title: '55 小鸡币', en: '55 Chicken Coins', price: 'RM 195.00', note: '95折优惠 / UID Top Up' },
+        { title: '75 小鸡币', en: '75 Chicken Coins', price: 'RM 280.00', note: '95折优惠 / UID Top Up' },
         { title: '100 小鸡币', en: '100 Chicken Coins', price: 'RM 323.00', note: '95折优惠 / UID Top Up' },
-        { title: '200 小鸡币', en: '200 Chicken Coins', price: 'RM 576.00', note: '9折优惠 / UID Top Up' },
-        { title: '400 小鸡币', en: '400 Chicken Coins', price: 'RM 1148.00', note: '9折优惠 / UID Top Up' }
+        { title: '200 小鸡币', en: '200 Chicken Coins', price: 'RM 608.00', note: '9折优惠 / UID Top Up' },
+        { title: '400 小鸡币', en: '400 Chicken Coins', price: 'RM 1210.00', note: '9折优惠 / UID Top Up' }
       ]
     }
   ]
