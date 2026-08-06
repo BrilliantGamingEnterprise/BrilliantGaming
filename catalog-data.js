@@ -311,8 +311,8 @@ const categories = {
       ]
     },
     {
-      title: '特别优惠',
-      subtitle: 'Special Deals',
+      title: '其他商品',
+      subtitle: 'Other Items',
       icon: '◆',
       products: [
         { title: '周卡', en: 'Weekly Membership', price: 'RM 8.60', note: '周卡 / Weekly Membership' },
