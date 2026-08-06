@@ -285,6 +285,44 @@ const categories = {
   ]
 },
       {
+  id: 'garena-free-fire',
+  name: 'Garena Free Fire',
+  detailName: 'Garena Free Fire',
+  description: 'Free Fire Diamonds & Memberships',
+  tag: 'UID Top Up',
+  topupFormType: 'uid',
+  image: 'assets/images/games/garena-free-fire-16x9.png',
+  detailArt: 'assets/images/games/garena-free-fire-detail-16x9.png',
+  keywords: ['Free Fire', 'Garena Free Fire', '钻石', '周卡', '月卡', '小周卡'],
+  productSections: [
+    {
+      title: '钻石',
+      subtitle: 'Diamonds',
+      icon: '◆',
+      products: [
+        { title: '25 钻石', en: '25 Diamonds', price: 'RM 1.50', note: '钻石充值 / Diamond Top-Up' },
+        { title: '100 钻石', en: '100 Diamonds', price: 'RM 4.20', note: '钻石充值 / Diamond Top-Up' },
+        { title: '310 钻石', en: '310 Diamonds', price: 'RM 12.70', note: '钻石充值 / Diamond Top-Up' },
+        { title: '520 钻石', en: '520 Diamonds', price: 'RM 21.20', note: '钻石充值 / Diamond Top-Up' },
+        { title: '1,060 钻石', en: '1,060 Diamonds', price: 'RM 42.00', note: '钻石充值 / Diamond Top-Up' },
+        { title: '2,180 钻石', en: '2,180 Diamonds', price: 'RM 85.00', note: '钻石充值 / Diamond Top-Up' },
+        { title: '5,600 钻石', en: '5,600 Diamonds', price: 'RM 200.00', note: '钻石充值 / Diamond Top-Up' },
+        { title: '11,500 钻石', en: '11,500 Diamonds', price: 'RM 408.50', note: '钻石充值 / Diamond Top-Up' }
+      ]
+    },
+    {
+      title: '特别优惠',
+      subtitle: 'Special Deals',
+      icon: '◆',
+      products: [
+        { title: '周卡', en: 'Weekly Membership', price: 'RM 8.60', note: '周卡 / Weekly Membership' },
+        { title: '月卡', en: 'Monthly Membership', price: 'RM 43.00', note: '月卡 / Monthly Membership' },
+        { title: '小周卡', en: 'Weekly Lite', price: 'RM 2.80', note: '小周卡 / Weekly Lite' }
+      ]
+    }
+  ]
+},
+      {
   id: 'garena-codm',
   name: 'Garena 使命召唤',
   detailName: 'Garena 使命召唤',
