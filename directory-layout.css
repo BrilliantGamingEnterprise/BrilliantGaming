@@ -3734,3 +3734,140 @@ body .currency-switch {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Homepage priority: reach the game directory before secondary brand content. */
+.page-home .directory-proof-compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.page-home .directory-proof-compact > div {
+  min-height: 54px;
+  flex-direction: row;
+  gap: 8px;
+  padding: 9px 18px;
+}
+
+.page-home .official-channels-compact {
+  width: min(100% - 48px, 1440px);
+  max-width: 1440px;
+  margin: 22px auto 0;
+  padding: 20px 24px;
+}
+
+.page-home .official-channels-compact .official-channels-heading {
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.page-home .official-channels-compact .official-channels-heading .section-kicker {
+  margin-bottom: 3px;
+  font-size: 0.68rem;
+}
+
+.page-home .official-channels-compact .official-channels-heading h2 {
+  font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+}
+
+.page-home .official-channels-compact .official-channel-grid {
+  gap: 8px;
+}
+
+.page-home .official-channels-compact .official-channel-card {
+  min-height: 118px;
+  padding: 14px 16px;
+}
+
+.page-home .official-channels-compact .official-channel-meta {
+  margin-bottom: 12px;
+}
+
+.page-home .official-channels-compact .official-channel-card > strong {
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.page-home .official-channels-compact .official-channel-card > p {
+  margin-bottom: 10px;
+  font-size: 0.71rem;
+  line-height: 1.45;
+}
+
+.page-home .official-channels-compact .official-channel-card > small {
+  font-size: 0.62rem;
+}
+
+@media (max-width: 760px) {
+  .page-home .directory-proof-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-home .directory-proof-compact > div,
+  .page-home .directory-proof-compact > div:nth-child(-n + 2) {
+    min-height: 52px;
+    padding: 9px 8px;
+    border-bottom: 0 !important;
+  }
+
+  .page-home .directory-proof-compact > div > span:not(.service-status-dot) {
+    display: none;
+  }
+
+  .page-home .directory-proof-compact strong {
+    font-size: 0.7rem;
+  }
+
+  .page-home .official-channels-compact {
+    width: min(100% - 20px, 760px);
+    margin-top: 18px;
+    padding: 15px 0 12px;
+    overflow: hidden;
+  }
+
+  .page-home .official-channels-compact .official-channels-heading {
+    display: block;
+    margin-bottom: 11px;
+    padding: 0 14px;
+  }
+
+  .page-home .official-channels-compact .official-channels-heading > p {
+    display: none;
+  }
+
+  .page-home .official-channels-compact .official-channel-grid {
+    display: flex !important;
+    gap: 9px;
+    padding: 0 14px 5px;
+    overflow-x: auto;
+    scroll-padding-inline: 14px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .page-home .official-channels-compact .official-channel-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-home .official-channels-compact .official-channel-card {
+    min-width: 0;
+    min-height: 108px;
+    flex: 0 0 min(72vw, 230px);
+    padding: 13px 14px;
+    scroll-snap-align: start;
+  }
+
+  .page-home .official-channels-compact .official-channel-meta {
+    margin-bottom: 9px;
+  }
+
+  .page-home .official-channels-compact .official-channel-card > p {
+    margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .page-home .official-channels-compact .official-channel-card > small {
+    display: none;
+  }
+}

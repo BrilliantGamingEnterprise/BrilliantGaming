@@ -277,6 +277,8 @@
     '官方频道': 'Official channels',
     '选择你想看的内容': 'Choose the content you want to see',
     '每个频道主题不同，查看说明后再选择关注。': 'Each channel has a different focus. Check the description before following.',
+    '官方频道': 'Official Channels',
+    '游戏资讯、品牌内容与创意作品。': 'Game updates, brand content, and creative work.',
     '游戏充值报价、活动更新与服务公告。': 'Game top-up prices, event updates, and service notices.',
     '手作花礼、节日礼物与客制作品。': 'Handmade flowers, seasonal gifts, and custom creations.',
     '3D 打印、动漫周边与创意礼物。': '3D prints, anime merchandise, and creative gifts.',
