@@ -811,13 +811,26 @@ const categories = {
       subtitle: 'Login Top Up',
       icon: '◆',
       products: [
-        { title: '60 星石', en: '60 Star Stones', price: 'RM 4.40', status: 'soldout' },
-        { title: '300 星石', en: '300 Star Stones', price: 'RM 20.00', status: 'soldout' },
-        { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00', status: 'soldout' },
-        { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00', status: 'soldout' },
-        { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00', status: 'soldout' },
-        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 400.00', status: 'soldout' },
-        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 800.00', status: 'soldout' }
+        { title: '60 星石', en: '60 Star Stones', price: 'RM 3.80' },
+        { title: '300 星石', en: '300 Star Stones', price: 'RM 19.00' },
+        { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00' },
+        { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00' },
+        { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00' },
+        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 360.00' },
+        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 720.00' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Passes & Monthly Cards',
+      icon: '◆',
+      products: [
+        { title: '7天特权卡', en: '7-Day Privilege Pass', price: 'RM 7.60' },
+        { title: '30天特权卡', en: '30-Day Privilege Pass', price: 'RM 19.00' },
+        { title: '卡普拉月卡', en: 'Kafra Monthly', price: 'RM 19.00' },
+        { title: '典藏卡普拉月卡', en: "Collector's Kafra Monthly", price: 'RM 57.00' },
+        { title: '仙境巡礼【小】', en: 'Wonder Tour Deluxe Edition', price: 'RM 40.00' },
+        { title: '仙境巡礼【大】', en: "Wonder Tour Collector's Edition", price: 'RM 60.00' }
       ]
     }
   ]

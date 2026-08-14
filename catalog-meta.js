@@ -25,7 +25,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/where-winds-meet": "2026-08-04",
     "intl/crystal-of-atlan": "2026-07-15",
     "intl/sword-of-justice": "2026-07-15",
-    "intl/ro-the-new-world": "2026-08-04",
+    "intl/ro-the-new-world": "2026-08-14",
     "intl/arknights-endfield": "2026-07-15",
     "intl/x-hero-epic-hero": "2026-07-15",
     "intl/ragnarok-origin-classic": "2026-07-15",
