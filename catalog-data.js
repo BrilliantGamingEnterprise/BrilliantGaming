@@ -168,10 +168,10 @@ const categories = {
         { title: '60 月相', en: '60 Lunite', price: 'RM 4.00', note: '月相 / Lunite' },
         { title: '300 + 30 月相', en: '300 + 30 Lunite', price: 'RM 18.00', note: '月相 / Lunite' },
         { title: '980 + 110 月相', en: '980 + 110 Lunite', price: 'RM 54.00', note: '月相 / Lunite' },
-        { title: '1980 + 260 月相', en: '1980 + 260 Lunite', price: 'RM 108.00', note: '月相 / Lunite' },
-        { title: '3280 + 600 月相', en: '3280 + 600 Lunite', price: 'RM 180.00', note: '月相 / Lunite' },
+        { title: '1980 + 260 月相', en: '1980 + 260 Lunite', price: 'RM 105.00', note: '月相 / Lunite' },
+        { title: '3280 + 600 月相', en: '3280 + 600 Lunite', price: 'RM 170.00', note: '月相 / Lunite' },
         { title: '6480 + 1600 月相', en: '6480 + 1600 Lunite', price: 'RM 330.00', note: '月相 / Lunite' },
-        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Lunite', price: 'RM 680.00', note: '一条龙套餐 / Full Bundle' }
+        { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Lunite', price: 'RM 660.00', note: '一条龙套餐 / Full Bundle' }
       ]
     },
     {
@@ -179,7 +179,7 @@ const categories = {
       subtitle: 'Subscription & Podcast',
       icon: '◆',
       products: [
-        { title: '月相观测卡', en: 'Lunite Subscription', price: 'RM 19.00', note: '月卡 / Monthly Pass' },
+        { title: '月相观测卡', en: 'Lunite Subscription', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
         { title: '寰宇频道', en: 'Insider Channel', price: 'RM 38.00', note: '通行证 / Battle Pass' },
         { title: '寰宇特约', en: 'Connoisseur Channel', price: 'RM 76.00', note: '通行证升级 / Premium Battle Pass' }
       ]

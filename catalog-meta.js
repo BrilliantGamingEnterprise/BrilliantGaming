@@ -4,7 +4,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/genshin": "2026-07-15",
     "intl/honkai-star-rail": "2026-07-15",
     "intl/zenless-zone-zero": "2026-07-15",
-    "intl/wuthering-waves": "2026-07-15",
+    "intl/wuthering-waves": "2026-08-15",
     "intl/pokemon-tcg-pocket": "2026-07-15",
     "intl/honor-of-kings-global": "2026-07-15",
     "intl/pubg-mobile": "2026-07-15",
