@@ -9,6 +9,7 @@
   const now = Date.now();
   const startsAt = settings.startsAt ? Date.parse(settings.startsAt) : 0;
   const endsAt = settings.endsAt ? Date.parse(settings.endsAt) : Number.POSITIVE_INFINITY;
+  const showOnEveryVisit = settings.showOnEveryVisit === true;
   const repeatAfter = Math.max(1, Number(settings.frequencyHours) || 24) * 60 * 60 * 1000;
 
   if ((Number.isFinite(startsAt) && now < startsAt) || (Number.isFinite(endsAt) && now >= endsAt)) return;
@@ -22,7 +23,7 @@
   }
 
   function markSeen() {
-    if (previewMode) return;
+    if (previewMode || showOnEveryVisit) return;
     try {
       localStorage.setItem(storageKey, String(Date.now()));
     } catch (error) {
@@ -30,7 +31,7 @@
     }
   }
 
-  if (!previewMode && now - getLastSeen() < repeatAfter) return;
+  if (!previewMode && !showOnEveryVisit && now - getLastSeen() < repeatAfter) return;
 
   function isEnglish() {
     return document.documentElement.lang.toLowerCase().startsWith('en')

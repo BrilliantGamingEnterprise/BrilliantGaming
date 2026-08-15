@@ -37,6 +37,7 @@ const promotionSettings = {
   altEn: 'Lan Wushuang skin gifting promotion, RM 250',
   startsAt: '2026-08-15T00:00:00+08:00',
   endsAt: '',
+  showOnEveryVisit: true,
   frequencyHours: 24,
   delayMs: 700,
   whatsappMessageZh: '你好，我想询问澜无双皮肤代送 RM 250 活动。',
