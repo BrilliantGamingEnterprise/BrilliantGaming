@@ -42,6 +42,9 @@
   display: block;
   line-height: 0;
   cursor: pointer;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .campaign-popup-image {
@@ -184,12 +187,19 @@ body.campaign-popup-open {
 
 @media (max-width: 640px) {
   .campaign-popup {
-    padding: 10px;
+    padding: 10px 10px 62px;
   }
 
   .campaign-popup-dialog {
-    width: min(calc(100vw - 20px), calc((100vh - 20px) * 1.7778));
+    width: min(calc(100vw - 20px), calc((100vh - 82px) * 1.7778));
     border-radius: 13px;
+    overflow: visible;
+  }
+
+  .campaign-popup-link,
+  .campaign-popup-image {
+    overflow: hidden;
+    border-radius: inherit;
   }
 
   .campaign-popup-close {
@@ -201,24 +211,36 @@ body.campaign-popup-open {
   }
 
   .campaign-popup-arrow {
-    width: 34px;
-    height: 48px;
-    padding-bottom: 4px;
-    font-size: 34px;
+    top: calc(100% + 10px);
+    bottom: auto;
+    width: 36px;
+    height: 36px;
+    padding: 0 0 3px;
+    border-radius: 50%;
+    font-size: 29px;
+    transform: none;
   }
 
   .campaign-popup-prev {
-    left: 6px;
+    left: calc(50% - 88px);
   }
 
   .campaign-popup-next {
-    right: 6px;
+    right: calc(50% - 88px);
   }
 
   .campaign-popup-dots {
-    bottom: 6px;
+    top: calc(100% + 10px);
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    min-width: 74px;
+    height: 36px;
+    justify-content: center;
     gap: 6px;
-    padding: 6px 9px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    transform: translateX(-50%);
   }
 
   .campaign-popup-dot {

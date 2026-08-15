@@ -57,7 +57,7 @@
       <div class="campaign-popup-dialog" role="dialog" aria-modal="true" aria-describedby="campaignPopupDescription">
         <button class="campaign-popup-close" type="button" aria-label="${english ? 'Close promotion' : '关闭活动'}" data-campaign-close>×</button>
         <a class="campaign-popup-link" href="#" target="_blank" rel="noopener" data-campaign-contact>
-          <img class="campaign-popup-image" src="" alt="" width="1672" height="941" data-campaign-image />
+          <img class="campaign-popup-image" src="" alt="" width="1672" height="941" draggable="false" data-campaign-image />
         </a>
         <button class="campaign-popup-arrow campaign-popup-prev" type="button" aria-label="${english ? 'Previous promotion' : '上一个活动'}" data-campaign-prev>‹</button>
         <button class="campaign-popup-arrow campaign-popup-next" type="button" aria-label="${english ? 'Next promotion' : '下一个活动'}" data-campaign-next>›</button>
@@ -82,7 +82,11 @@
     const autoAdvanceMs = Math.max(3000, Number(settings.autoAdvanceMs) || 5200);
     let currentIndex = 0;
     let autoAdvanceTimer = 0;
-    let pointerStartX = null;
+    let swipeStartX = null;
+    let swipeStartY = null;
+    let swipePointerId = null;
+    let suppressContactClick = false;
+    let suppressContactClickTimer = 0;
     let previousFocus = document.activeElement;
 
     function getSlideText(slide) {
@@ -203,7 +207,13 @@
     dotButtons.forEach((button) => {
       button.addEventListener('click', () => goToSlide(Number(button.dataset.campaignDot)));
     });
-    contactLink.addEventListener('click', () => {
+    contactLink.addEventListener('click', (event) => {
+      if (suppressContactClick) {
+        event.preventDefault();
+        event.stopPropagation();
+        suppressContactClick = false;
+        return;
+      }
       const slide = slides[currentIndex];
       globalThis.BGE_ANALYTICS?.track?.('select_content', {
         content_type: 'promotion',
@@ -220,16 +230,75 @@
     dialog.addEventListener('focusout', () => window.setTimeout(() => {
       if (!dialog.contains(document.activeElement)) startAutoAdvance();
     }, 0));
-    dialog.addEventListener('pointerdown', (event) => {
-      if (event.pointerType !== 'mouse') pointerStartX = event.clientX;
-    });
-    dialog.addEventListener('pointerup', (event) => {
-      if (pointerStartX === null) return;
-      const distance = event.clientX - pointerStartX;
-      pointerStartX = null;
-      if (Math.abs(distance) < 45) return;
-      goToSlide(currentIndex + (distance < 0 ? 1 : -1));
-    });
+    function beginSwipe(clientX, clientY) {
+      swipeStartX = clientX;
+      swipeStartY = clientY;
+      stopAutoAdvance();
+    }
+
+    function cancelSwipe() {
+      swipeStartX = null;
+      swipeStartY = null;
+      swipePointerId = null;
+      startAutoAdvance();
+    }
+
+    function finishSwipe(clientX, clientY) {
+      if (swipeStartX === null || swipeStartY === null) return;
+      const distanceX = clientX - swipeStartX;
+      const distanceY = clientY - swipeStartY;
+      swipeStartX = null;
+      swipeStartY = null;
+      swipePointerId = null;
+
+      const isHorizontalSwipe = multipleSlides
+        && Math.abs(distanceX) >= 42
+        && Math.abs(distanceX) > Math.abs(distanceY) * 1.15;
+      if (!isHorizontalSwipe) {
+        startAutoAdvance();
+        return;
+      }
+
+      suppressContactClick = true;
+      window.clearTimeout(suppressContactClickTimer);
+      suppressContactClickTimer = window.setTimeout(() => {
+        suppressContactClick = false;
+      }, 500);
+      goToSlide(currentIndex + (distanceX < 0 ? 1 : -1));
+    }
+
+    if ('PointerEvent' in window) {
+      contactLink.addEventListener('pointerdown', (event) => {
+        if (event.pointerType === 'mouse' && event.button !== 0) return;
+        swipePointerId = event.pointerId;
+        beginSwipe(event.clientX, event.clientY);
+        try {
+          contactLink.setPointerCapture(event.pointerId);
+        } catch (error) {
+          // 不支持指针捕获时仍可使用一般的 pointerup。
+        }
+      });
+      contactLink.addEventListener('pointerup', (event) => {
+        if (swipePointerId !== null && event.pointerId !== swipePointerId) return;
+        finishSwipe(event.clientX, event.clientY);
+        try {
+          contactLink.releasePointerCapture(event.pointerId);
+        } catch (error) {
+          // 指针已经自动释放时无需额外处理。
+        }
+      });
+      contactLink.addEventListener('pointercancel', cancelSwipe);
+    } else {
+      contactLink.addEventListener('touchstart', (event) => {
+        const touch = event.changedTouches[0];
+        if (touch) beginSwipe(touch.clientX, touch.clientY);
+      }, { passive: true });
+      contactLink.addEventListener('touchend', (event) => {
+        const touch = event.changedTouches[0];
+        if (touch) finishSwipe(touch.clientX, touch.clientY);
+      }, { passive: true });
+      contactLink.addEventListener('touchcancel', cancelSwipe, { passive: true });
+    }
 
     document.body.appendChild(overlay);
     document.body.classList.add('campaign-popup-open');
