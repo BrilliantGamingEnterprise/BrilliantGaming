@@ -63,6 +63,7 @@ const uiTextFallbacks = {
   'home.filterIntl': '国际服游戏',
   'home.filterCn': '中国服游戏',
   'home.filterLive': '直播充值',
+  'home.filterWallet': '人民币充值',
   'home.filterCards': '点数 / 点卡',
   'search.prompt': '请输入关键词开始搜索',
   'search.none': '未找到与 “{query}” 匹配的游戏',
@@ -87,6 +88,17 @@ const uiTextFallbacks = {
   'product.customAmountAction': '询价',
   'product.customAmountInvalid': '请输入大于 0 的人民币金额。',
   'product.customInquiryMessage': '你好，我想询问 {game} 自定义充值：¥{amount} = {coins} {coinName}。请问 RM 价格和充值方式是什么？',
+  'product.exchangeAmountLabel': '输入需要充值的人民币金额',
+  'product.exchangeAmountPlaceholder': '例如：1000',
+  'product.exchangeAmountEmpty': '输入金额后会自动显示汇率与最终价格',
+  'product.exchangeAmountPreview': '¥{amount} ÷ {rate}{fee} = {price}',
+  'product.exchangeFee': ' + RM {fee} 服务费',
+  'product.exchangeAction': '加入购物车',
+  'product.exchangeInvalid': '请输入大于 0 的人民币金额。',
+  'product.exchangeTierTitle': '查看阶梯汇率',
+  'product.exchangeTierRange': '¥{min}–¥{max}：{rate}{fee}',
+  'product.exchangeTierAbove': '¥{min} 以上：{rate}{fee}',
+  'product.exchangeTierFee': ' + RM {fee}',
   'catalog.updated': '价格更新：{date}',
   'contact.orderStatus': '订单内容已复制',
   'contact.orderTitle': '选择发送订单方式',
@@ -587,6 +599,41 @@ const topupFormConfigs = {
         type: 'textarea',
         required: false,
         placeholder: '如有特别要求可填写（选填）'
+      }
+    ]
+  },
+  wallet: {
+    badge: 'RMB TOP UP',
+    title: '充值资料 · 人民币充值',
+    description: '请填写微信或支付宝的收款账号与收款人名字；如需使用收款二维码，请在订单发送后另发给客服确认。',
+    fields: [
+      {
+        name: 'paymentMethod',
+        label: '付款方式',
+        type: 'select',
+        required: true,
+        options: paymentMethodOptions
+      },
+      {
+        name: 'recipientAccount',
+        label: '收款账号 / 手机号码',
+        type: 'text',
+        required: true,
+        placeholder: '请输入微信号、支付宝账号或手机号码'
+      },
+      {
+        name: 'recipientName',
+        label: '收款人名字',
+        type: 'text',
+        required: true,
+        placeholder: '请输入已实名的收款人名字'
+      },
+      {
+        name: 'remarks',
+        label: '备注',
+        type: 'textarea',
+        required: false,
+        placeholder: '如使用收款二维码，请填写“二维码另发客服”（选填）'
       }
     ]
   },
@@ -1498,6 +1545,95 @@ function openCustomAmountInquiry(container) {
   }), item);
 }
 
+function getExchangeTiers(container) {
+  try {
+    const tiers = JSON.parse(container?.dataset.exchangeTiers || '[]');
+    return Array.isArray(tiers)
+      ? tiers.filter((tier) => Number.isFinite(Number(tier?.min)) && Number.isFinite(Number(tier?.rate)))
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function getExchangeTier(amount, tiers) {
+  return [...tiers]
+    .sort((a, b) => Number(b.min) - Number(a.min))
+    .find((tier) => amount >= Number(tier.min));
+}
+
+function calculateTieredExchange(amount, tiers) {
+  const tier = getExchangeTier(amount, tiers);
+  if (!tier) return null;
+  const rate = Number(tier.rate);
+  const surcharge = Number(tier.surcharge || 0);
+  if (!Number.isFinite(rate) || rate <= 0) return null;
+  return {
+    tier,
+    rate,
+    surcharge,
+    myr: Math.ceil((amount / rate) + surcharge)
+  };
+}
+
+function getTieredExchangeValues(container) {
+  const input = container?.querySelector('[data-exchange-amount-input]');
+  const amount = Number(input?.value);
+  if (!Number.isFinite(amount) || amount <= 0) return { input, amount, result: null };
+  return {
+    input,
+    amount,
+    result: calculateTieredExchange(amount, getExchangeTiers(container))
+  };
+}
+
+function updateTieredExchangePreview(container) {
+  if (!container) return;
+  const preview = container.querySelector('[data-exchange-amount-preview]');
+  if (!preview) return;
+  const { amount, result } = getTieredExchangeValues(container);
+  if (!result) {
+    preview.textContent = uiText('product.exchangeAmountEmpty');
+    return;
+  }
+  const fee = result.surcharge
+    ? uiText('product.exchangeFee', { fee: formatLiveCoinAmount(result.surcharge) })
+    : '';
+  preview.textContent = uiText('product.exchangeAmountPreview', {
+    amount: formatLiveCoinAmount(amount),
+    rate: result.rate.toFixed(2),
+    fee,
+    price: formatPriceForCurrency(`RM ${result.myr.toFixed(2)}`)
+  });
+}
+
+function addTieredExchangeToCart(container) {
+  if (!container) return;
+  const { input, amount, result } = getTieredExchangeValues(container);
+  if (!result) {
+    showCartToast(uiText('product.exchangeInvalid'));
+    input?.focus();
+    return;
+  }
+
+  const formattedAmount = formatLiveCoinAmount(amount);
+  const feeZh = result.surcharge ? ` + RM ${formatLiveCoinAmount(result.surcharge)} 服务费` : '';
+  const feeEn = result.surcharge ? ` + RM ${formatLiveCoinAmount(result.surcharge)} fee` : '';
+  const titleZh = `充值 ¥${formattedAmount}（汇率 ${result.rate.toFixed(2)}${feeZh}）`;
+  const titleEn = `Top Up ¥${formattedAmount} (Rate ${result.rate.toFixed(2)}${feeEn})`;
+  const price = `RM ${result.myr.toFixed(2)}`;
+
+  addToCart({
+    key: `exchange:${container.dataset.gameId || ''}:${amount}:${result.rate}:${result.surcharge}`,
+    titleZh,
+    titleEn,
+    sectionKey: container.dataset.sectionKey || '',
+    sectionZh: container.dataset.sectionZh || '',
+    sectionEn: container.dataset.sectionEn || '',
+    price
+  });
+}
+
 function handleProductCardAction(productCard) {
   const status = productCard?.dataset.productStatus || 'active';
   if (status === 'paused') {
@@ -1546,6 +1682,37 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '') 
   const statusBadge = status === 'active'
     ? ''
     : `<span class="product-status-badge">${escapeHtml(uiText(`product.status.${status}`))}</span>`;
+
+  if (resolvedProduct.tieredExchangeAmount) {
+    const tiers = Array.isArray(resolvedProduct.exchangeTiers) ? resolvedProduct.exchangeTiers : [];
+    const tierRows = tiers.map((tier) => {
+      const fee = Number(tier.surcharge || 0)
+        ? uiText('product.exchangeTierFee', { fee: formatLiveCoinAmount(Number(tier.surcharge || 0)) })
+        : '';
+      const key = tier.max == null ? 'product.exchangeTierAbove' : 'product.exchangeTierRange';
+      return `<li>${escapeHtml(uiText(key, {
+        min: formatLiveCoinAmount(Number(tier.min)),
+        max: tier.max == null ? '' : formatLiveCoinAmount(Number(tier.max)),
+        rate: Number(tier.rate).toFixed(2),
+        fee
+      }))}</li>`;
+    }).join('');
+    return `
+      <article class="product-card tiered-exchange-card" data-tiered-exchange-card data-game-id="${escapeAttribute(gameId)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-exchange-tiers="${escapeAttribute(JSON.stringify(tiers))}">
+        <h3>${escapeHtml(title)}</h3>
+        <p>${escapeHtml(subtitle)}</p>
+        <label class="custom-amount-field">
+          <span>${escapeHtml(uiText('product.exchangeAmountLabel'))}</span>
+          <span class="custom-amount-input-wrap"><b>¥</b><input type="number" min="1" step="1" inputmode="numeric" data-exchange-amount-input placeholder="${escapeAttribute(uiText('product.exchangeAmountPlaceholder'))}" aria-label="${escapeAttribute(uiText('product.exchangeAmountLabel'))}"></span>
+        </label>
+        <div class="custom-amount-preview exchange-amount-preview" data-exchange-amount-preview>${escapeHtml(uiText('product.exchangeAmountEmpty'))}</div>
+        <details class="exchange-tier-details">
+          <summary>${escapeHtml(uiText('product.exchangeTierTitle'))}</summary>
+          <ul>${tierRows}</ul>
+        </details>
+        <button type="button" class="button button-primary custom-amount-action" data-exchange-amount-action>${escapeHtml(uiText('product.exchangeAction'))}</button>
+      </article>`;
+  }
 
   if (resolvedProduct.customAmount) {
     const coinRate = Number(resolvedProduct.coinRate || 1);
@@ -1694,6 +1861,9 @@ function renderHomeCategoryFilter(showAll, filterCategory) {
     </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'live' ? 'active' : ''}" data-home-filter="live">
       ${escapeHtml(uiText('home.filterLive'))}
+    </button>
+    <button type="button" class="home-filter-btn ${filterCategory === 'wallet' ? 'active' : ''}" data-home-filter="wallet">
+      ${escapeHtml(uiText('home.filterWallet'))}
     </button>
     <button type="button" class="home-filter-btn ${filterCategory === 'cards' ? 'active' : ''}" data-home-filter="cards">
       ${escapeHtml(uiText('home.filterCards'))}
@@ -2227,7 +2397,14 @@ function initEvents() {
       return;
     }
 
-    if (target.closest('[data-custom-amount-input]')) return;
+    const exchangeAmountAction = target.closest('[data-exchange-amount-action]');
+    if (exchangeAmountAction) {
+      event.preventDefault();
+      addTieredExchangeToCart(exchangeAmountAction.closest('[data-tiered-exchange-card]'));
+      return;
+    }
+
+    if (target.closest('[data-custom-amount-input], [data-exchange-amount-input]')) return;
 
     const productCard = target.closest('.product-card[data-title][data-price]');
     if (productCard) {
@@ -2327,11 +2504,22 @@ if (homeFeaturedButton) {
     }
   });
   document.body.addEventListener('input', (event) => {
+    const exchangeInput = event.target.closest?.('[data-exchange-amount-input]');
+    if (exchangeInput) {
+      updateTieredExchangePreview(exchangeInput.closest('[data-tiered-exchange-card]'));
+      return;
+    }
     const input = event.target.closest?.('[data-custom-amount-input]');
     if (!input) return;
     updateCustomAmountPreview(input.closest('[data-custom-amount-card]'));
   });
   document.body.addEventListener('keydown', (event) => {
+    const exchangeInput = event.target.closest?.('[data-exchange-amount-input]');
+    if (exchangeInput && event.key === 'Enter') {
+      event.preventDefault();
+      addTieredExchangeToCart(exchangeInput.closest('[data-tiered-exchange-card]'));
+      return;
+    }
     const customAmountInput = event.target.closest?.('[data-custom-amount-input]');
     if (customAmountInput && event.key === 'Enter') {
       event.preventDefault();

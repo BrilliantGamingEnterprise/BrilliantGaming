@@ -233,6 +233,14 @@
       "fingerprint": "8feba370096e36a6ea9884731ba41b10d06ee742364961ff5a0b94b67a4b8667",
       "updatedAt": "2026-07-27"
     },
+    "wallet/wechat-rmb-topup": {
+      "fingerprint": "c4040faae9aefe94797cfcf8e082c2d900290a16d0fd8ceb5671924ca9f63461",
+      "updatedAt": "2026-08-16"
+    },
+    "wallet/alipay-rmb-topup": {
+      "fingerprint": "c4040faae9aefe94797cfcf8e082c2d900290a16d0fd8ceb5671924ca9f63461",
+      "updatedAt": "2026-08-16"
+    },
     "cards/razer-gold-top-up-pin": {
       "fingerprint": "2162a17b3dee772e3de5af79e1056bd36c62736390cf291a41cf36eeabd5ef2e",
       "updatedAt": "2026-07-15"

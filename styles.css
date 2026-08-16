@@ -5214,9 +5214,73 @@ body {
   margin-top: 11px;
 }
 
+.tiered-exchange-card {
+  cursor: default !important;
+  min-height: 320px;
+  grid-column: span 2;
+  border-color: rgba(244, 199, 91, 0.42) !important;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(244, 199, 91, 0.13), transparent 34%),
+    linear-gradient(145deg, rgba(22, 23, 28, 0.99), rgba(8, 9, 12, 0.99));
+}
+
+.tiered-exchange-card::after {
+  display: none;
+}
+
+.tiered-exchange-card[data-game-id="wechat-rmb-topup"] {
+  box-shadow: inset 3px 0 0 rgba(7, 193, 96, 0.72);
+}
+
+.tiered-exchange-card[data-game-id="alipay-rmb-topup"] {
+  box-shadow: inset 3px 0 0 rgba(22, 119, 255, 0.78);
+}
+
+.exchange-amount-preview {
+  min-height: 24px;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.exchange-tier-details {
+  margin-top: 8px;
+  border: 1px solid rgba(244, 199, 91, 0.22);
+  border-radius: 11px;
+  background: rgba(0, 0, 0, 0.22);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.exchange-tier-details summary {
+  cursor: pointer;
+  padding: 9px 12px;
+  color: #f4c75b;
+  font-size: 0.74rem;
+  font-weight: 900;
+  list-style-position: inside;
+}
+
+.exchange-tier-details ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 14px;
+  margin: 0;
+  padding: 0 12px 11px 28px;
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 480px) {
   .custom-amount-card {
     min-height: 226px;
     padding: 14px;
+  }
+
+  .tiered-exchange-card {
+    min-height: 310px;
+    padding: 14px;
+  }
+
+  .exchange-tier-details ul {
+    grid-template-columns: 1fr;
   }
 }

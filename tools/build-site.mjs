@@ -57,7 +57,11 @@ function gameFingerprint(game) {
       title: product.title || '',
       price: resolvePrice(product),
       pricePreset: product.pricePreset || '',
-      status: product.status || 'active'
+      status: product.status || 'active',
+      ...(product.tieredExchangeAmount ? {
+        tieredExchangeAmount: true,
+        exchangeTiers: Array.isArray(product.exchangeTiers) ? product.exchangeTiers : []
+      } : {})
     }))
   }));
   return crypto.createHash('sha256').update(JSON.stringify(pricing)).digest('hex');
@@ -151,22 +155,23 @@ function productMarkup(game) {
 function generatedGameHtml(template, categoryId, category, game) {
   const displayName = cleanText(game.detailName || game.name);
   const englishName = cleanText(game.description || game.name);
-  const description = `${displayName}充值价格与商品资料。Brilliant Gaming 为马来西亚与新加坡玩家提供人工客服确认的手游充值服务。`;
+  const serviceName = displayName.endsWith('充值') ? displayName : `${displayName}充值`;
+  const description = `${serviceName}价格与商品资料。Brilliant Gaming 为马来西亚与新加坡玩家提供人工客服确认的手游充值服务。`;
   const canonical = `${siteUrl}/games/${encodeURIComponent(game.id)}/`;
   const englishUrl = `${canonical}?lang=en`;
   const imageUrl = new URL(game.detailArt || game.image, `${siteUrl}/`).href;
   const updatedAt = updatedAtByGame[`${categoryId}/${game.id}`];
   const schema = {
     '@context': 'https://schema.org', '@type': 'Service',
-    name: `${displayName}充值`, description, url: canonical, image: imageUrl,
+    name: serviceName, description, url: canonical, image: imageUrl,
     serviceType: 'Game top-up service', areaServed: ['MY', 'SG'],
     provider: { '@type': 'Organization', name: 'Brilliant Gaming', url: `${siteUrl}/` }
   };
   let output = template
     .replace('<meta name="viewport" content="width=device-width, initial-scale=1.0" />', '<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n  <base href="../../">')
-    .replace(/<title>[^<]*<\/title>/, `<title>${html(displayName)}充值 - Brilliant Gaming</title>`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${html(serviceName)} - Brilliant Gaming</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${html(description)}" />`)
-    .replace('</head>', `  <link rel="canonical" href="${canonical}">\n  <link rel="alternate" hreflang="zh-Hans" href="${canonical}">\n  <link rel="alternate" hreflang="en" href="${englishUrl}">\n  <link rel="alternate" hreflang="x-default" href="${canonical}">\n  <meta property="og:title" content="${html(displayName)}充值 - Brilliant Gaming">\n  <meta property="og:description" content="${html(description)}">\n  <meta property="og:url" content="${canonical}">\n  <meta property="og:image" content="${imageUrl}">\n  <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>\n</head>`)
+    .replace('</head>', `  <link rel="canonical" href="${canonical}">\n  <link rel="alternate" hreflang="zh-Hans" href="${canonical}">\n  <link rel="alternate" hreflang="en" href="${englishUrl}">\n  <link rel="alternate" hreflang="x-default" href="${canonical}">\n  <meta property="og:title" content="${html(serviceName)} - Brilliant Gaming">\n  <meta property="og:description" content="${html(description)}">\n  <meta property="og:url" content="${canonical}">\n  <meta property="og:image" content="${imageUrl}">\n  <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>\n</head>`)
     .replace('<body class="page-game" data-page="game">', `<body class="page-game" data-page="game" data-game-category="${html(categoryId)}" data-game-id="${html(game.id)}">`)
     .replace('<h1 id="detailTitle">游戏名称</h1>', `<h1 id="detailTitle">${html(displayName)}</h1>`)
     .replace('<p id="detailSummary" class="game-detail-summary">Game Name</p>', `<p id="detailSummary" class="game-detail-summary">${html(englishName)}</p>`)

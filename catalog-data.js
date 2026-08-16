@@ -40,6 +40,17 @@ const pricePresets = {
   liveCny10000: 'RM 6135.00'
 };
 
+// 微信与支付宝共用的人民币阶梯汇率。
+// 最终价格 = 人民币金额 ÷ 对应汇率 + 附加费，再向上进位至整 RM。
+const walletExchangeTiers = Object.freeze([
+  Object.freeze({ min: 1, max: 499, rate: 1.55, surcharge: 5 }),
+  Object.freeze({ min: 500, max: 999, rate: 1.55, surcharge: 0 }),
+  Object.freeze({ min: 1000, max: 4999, rate: 1.60, surcharge: 0 }),
+  Object.freeze({ min: 5000, max: 9999, rate: 1.61, surcharge: 0 }),
+  Object.freeze({ min: 10000, max: 29999, rate: 1.62, surcharge: 0 }),
+  Object.freeze({ min: 30000, max: null, rate: 1.63, surcharge: 0 })
+]);
+
 const categories = {
   intl: {
     title: '热门国际游戏',
@@ -1844,6 +1855,69 @@ const categories = {
               { title: '50000 = 50,000 快币', en: '50,000 Kuaishou Coins', pricePreset: 'liveCny5000', note: '快币充值 / Kuaishou Coins Top-Up' },
               { title: '100000 快币', en: '100,000 Kuaishou Coins', pricePreset: 'liveCny10000', note: '快币充值 / Kuaishou Coins Top-Up' },
               { title: '自定义人民币数额', en: 'Custom RMB Amount', price: '联系客服报价', status: 'inquiry', customAmount: true, coinRate: 10, coinNameZh: '快币', coinNameEn: 'Kuaishou Coins', note: '输入金额后询价 / Enter an amount for a quote' }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  wallet: {
+    title: '人民币充值',
+    subtitle: '微信与支付宝人民币充值，输入金额后自动套用阶梯汇率。',
+    page: 'index.html',
+    games: [
+      {
+        id: 'wechat-rmb-topup',
+        name: '微信充值',
+        detailName: '微信人民币充值',
+        description: 'WeChat RMB Top-Up',
+        tag: '人民币充值',
+        topupFormType: 'wallet',
+        image: 'assets/images/games/wechat-rmb-topup-v1.png',
+        detailArt: 'assets/images/games/wechat-rmb-topup-v1.png',
+        keywords: ['微信充值', '微信人民币', '微信钱包', 'WeChat Pay', 'WeChat RMB Top-Up', '人民币充值'],
+        productSections: [
+          {
+            title: '自定义人民币金额',
+            subtitle: 'Custom RMB Amount',
+            icon: '◆',
+            products: [
+              {
+                title: '输入人民币金额',
+                en: 'Enter RMB Amount',
+                price: '自动计算',
+                tieredExchangeAmount: true,
+                exchangeTiers: walletExchangeTiers,
+                note: '阶梯汇率自动计算 / Automatic tiered rate'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'alipay-rmb-topup',
+        name: '支付宝充值',
+        detailName: '支付宝人民币充值',
+        description: 'Alipay RMB Top-Up',
+        tag: '人民币充值',
+        topupFormType: 'wallet',
+        image: 'assets/images/games/alipay-rmb-topup-v1.png',
+        detailArt: 'assets/images/games/alipay-rmb-topup-v1.png',
+        keywords: ['支付宝充值', '支付宝人民币', '支付宝余额', 'Alipay', 'Alipay RMB Top-Up', '人民币充值'],
+        productSections: [
+          {
+            title: '自定义人民币金额',
+            subtitle: 'Custom RMB Amount',
+            icon: '◆',
+            products: [
+              {
+                title: '输入人民币金额',
+                en: 'Enter RMB Amount',
+                price: '自动计算',
+                tieredExchangeAmount: true,
+                exchangeTiers: walletExchangeTiers,
+                note: '阶梯汇率自动计算 / Automatic tiered rate'
+              }
             ]
           }
         ]
