@@ -5216,7 +5216,7 @@ body {
 
 .tiered-exchange-card {
   cursor: default !important;
-  min-height: 320px;
+  min-height: 248px;
   grid-column: span 2;
   border-color: rgba(244, 199, 91, 0.42) !important;
   background:
@@ -5242,33 +5242,6 @@ body {
   line-height: 1.45;
 }
 
-.exchange-tier-details {
-  margin-top: 8px;
-  border: 1px solid rgba(244, 199, 91, 0.22);
-  border-radius: 11px;
-  background: rgba(0, 0, 0, 0.22);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.exchange-tier-details summary {
-  cursor: pointer;
-  padding: 9px 12px;
-  color: #f4c75b;
-  font-size: 0.74rem;
-  font-weight: 900;
-  list-style-position: inside;
-}
-
-.exchange-tier-details ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px 14px;
-  margin: 0;
-  padding: 0 12px 11px 28px;
-  font-size: 0.7rem;
-  line-height: 1.5;
-}
-
 @media (max-width: 480px) {
   .custom-amount-card {
     min-height: 226px;
@@ -5276,11 +5249,7 @@ body {
   }
 
   .tiered-exchange-card {
-    min-height: 310px;
+    min-height: 230px;
     padding: 14px;
-  }
-
-  .exchange-tier-details ul {
-    grid-template-columns: 1fr;
   }
 }
