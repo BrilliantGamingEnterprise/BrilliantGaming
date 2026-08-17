@@ -59,8 +59,8 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "live/huya-live": "2026-07-27",
     "live/douyu-live": "2026-07-27",
     "live/kuaishou-live": "2026-07-27",
-    "wallet/wechat-rmb-topup": "2026-08-16",
-    "wallet/alipay-rmb-topup": "2026-08-16",
+    "wallet/wechat-rmb-topup": "2026-08-17",
+    "wallet/alipay-rmb-topup": "2026-08-17",
     "cards/razer-gold-top-up-pin": "2026-07-15",
     "cards/china-apple-gift-card": "2026-07-15"
   }
