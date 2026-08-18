@@ -1000,7 +1000,8 @@ const categories = {
         { title: '390 海神币', en: '390 Sea God Coins', price: 'RM 46.00', note: '海神币充值 / Sea God Coin Top-Up' },
         { title: '670 海神币', en: '670 Sea God Coins', price: 'RM 76.00', note: '海神币充值 / Sea God Coin Top-Up' },
         { title: '990 海神币', en: '990 Sea God Coins', price: 'RM 114.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '1690 海神币', en: '1690 Sea God Coins', price: 'RM 190.00', note: '海神币充值 / Sea God Coin Top-Up' }
+        { title: '1690 海神币', en: '1690 Sea God Coins', price: 'RM 190.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '3290 海神币', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
