@@ -988,11 +988,19 @@ const categories = {
   detailArt: 'assets/images/games/dldl2.jpg',
   productSections: [
     {
-      title: '礼包',
-      subtitle: 'Package',
+      title: '海神币',
+      subtitle: 'Sea God Coins',
       icon: '◆',
       products: [
-        { title: '3290 海神币', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '33 海神币', en: '33 Sea God Coins', price: 'RM 4.50', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '100 海神币', en: '100 Sea God Coins', price: 'RM 12.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '170 海神币', en: '170 Sea God Coins', price: 'RM 19.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '230 海神币', en: '230 Sea God Coins', price: 'RM 27.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '330 海神币', en: '330 Sea God Coins', price: 'RM 38.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '390 海神币', en: '390 Sea God Coins', price: 'RM 46.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '670 海神币', en: '670 Sea God Coins', price: 'RM 76.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '990 海神币', en: '990 Sea God Coins', price: 'RM 114.00', note: '海神币充值 / Sea God Coin Top-Up' },
+        { title: '1690 海神币', en: '1690 Sea God Coins', price: 'RM 190.00', note: '海神币充值 / Sea God Coin Top-Up' }
       ]
     }
   ]
