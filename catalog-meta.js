@@ -45,6 +45,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/arena-breakout": "2026-07-15",
     "intl/zhen-de-jiang-shan": "2026-07-15",
     "intl/astral-guardians-cyber-fantasy": "2026-07-15",
+    "intl/goddess-of-victory-nikke": "2026-08-19",
     "intl/ddtank-origin-malaysia": "2026-08-04",
     "cn/honor-of-kings-cn": "2026-07-15",
     "cn/peace-elite": "2026-07-15",

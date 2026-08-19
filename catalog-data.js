@@ -1357,6 +1357,58 @@ const categories = {
 },
 
 {
+  id: 'goddess-of-victory-nikke',
+  name: '胜利女神：妮姬',
+  detailName: '胜利女神：妮姬',
+  description: 'GODDESS OF VICTORY: NIKKE',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/nikke.jpg',
+  detailArt: 'assets/images/games/nikke.jpg',
+  keywords: ['NIKKE', '妮姬', '胜利女神', 'Goddess of Victory'],
+  productSections: [
+    {
+      title: '珠宝',
+      subtitle: 'Gems',
+      icon: '◆',
+      products: [
+        { title: '60 珠宝（首购另赠 60）', en: '60 Gems (First Purchase Bonus +60)', price: 'RM 4.50', note: '登入充值 / Login Top Up' },
+        { title: '120 珠宝（首购另赠 120）', en: '120 Gems (First Purchase Bonus +120)', price: 'RM 9.00', note: '登入充值 / Login Top Up' },
+        { title: '320 珠宝（首购另赠 320）', en: '320 Gems (First Purchase Bonus +320)', price: 'RM 19.00', note: '登入充值 / Login Top Up' },
+        { title: '720 珠宝（首购另赠 720）', en: '720 Gems (First Purchase Bonus +720)', price: 'RM 38.00', note: '登入充值 / Login Top Up' },
+        { title: '1500 珠宝（首购另赠 1500）', en: '1,500 Gems (First Purchase Bonus +1,500)', price: 'RM 76.00', note: '登入充值 / Login Top Up' },
+        { title: '2300 珠宝（首购另赠 2300）', en: '2,300 Gems (First Purchase Bonus +2,300)', price: 'RM 114.00', note: '登入充值 / Login Top Up' },
+        { title: '2370 珠宝（首购另赠 2370）', en: '2,370 Gems (First Purchase Bonus +2,370)', price: 'RM 118.00', note: '登入充值 / Login Top Up' },
+        { title: '4200 珠宝（首购另赠 4200）', en: '4,200 Gems (First Purchase Bonus +4,200)', price: 'RM 209.00', note: '登入充值 / Login Top Up' },
+        { title: '6200 珠宝（首购另赠 6200）', en: '6,200 Gems (First Purchase Bonus +6,200)', price: 'RM 304.00', note: '登入充值 / Login Top Up' }
+      ]
+    },
+    {
+      title: '月卡',
+      subtitle: 'Monthly Pass',
+      icon: '◆',
+      products: [
+        { title: '月卡', en: 'Monthly Pass', price: 'RM 19.00', note: '登入充值 / Login Top Up' }
+      ]
+    },
+    {
+      title: 'Midasbuy 独家礼包',
+      subtitle: 'Midasbuy Exclusive Packages',
+      icon: '◆',
+      products: [
+        { title: '强化模组礼包', en: 'Enhanced Module Set', price: 'RM 209.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '技术支援礼包 S I', en: 'Technical Support S I', price: 'RM 209.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '技术支援礼包 S II', en: 'Technical Support S II', price: 'RM 380.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '技术大师礼包', en: 'Technical Master', price: 'RM 38.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '成长精选礼包', en: 'Grow Selection Set', price: 'RM 76.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '企业后备礼包', en: 'Manufacturer Backup', price: 'RM 209.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '职业研究礼包', en: 'Class Research Set', price: 'RM 76.00', note: '每个自然月限购一次 / Once per calendar month' },
+        { title: '企业研究礼包', en: 'Manufacturer Research Set', price: 'RM 114.00', note: '每个自然月限购一次 / Once per calendar month' }
+      ]
+    }
+  ]
+},
+
+{
   id: 'ddtank-origin-malaysia',
   name: '弹弹堂 Origin',
   detailName: '弹弹堂 Origin',
