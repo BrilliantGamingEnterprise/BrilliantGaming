@@ -1379,7 +1379,7 @@ const categories = {
         { title: '2300 珠宝（首购另赠 2300）', en: '2,300 Gems (First Purchase Bonus +2,300)', price: 'RM 114.00', note: '登入充值 / Login Top Up' },
         { title: '2370 珠宝（首购另赠 2370）', en: '2,370 Gems (First Purchase Bonus +2,370)', price: 'RM 118.00', note: '登入充值 / Login Top Up' },
         { title: '4200 珠宝（首购另赠 4200）', en: '4,200 Gems (First Purchase Bonus +4,200)', price: 'RM 209.00', note: '登入充值 / Login Top Up' },
-        { title: '6200 珠宝（首购另赠 6200）', en: '6,200 Gems (First Purchase Bonus +6,200)', price: 'RM 304.00', note: '登入充值 / Login Top Up' }
+        { title: '6200 珠宝（首购另赠 6200）', en: '6,200 Gems (First Purchase Bonus +6,200)', price: 'RM 288.00', note: '登入充值 / Login Top Up' }
       ]
     },
     {
@@ -1391,8 +1391,8 @@ const categories = {
       ]
     },
     {
-      title: 'Midasbuy 独家礼包',
-      subtitle: 'Midasbuy Exclusive Packages',
+      title: '独家礼包',
+      subtitle: 'Exclusive Packages',
       icon: '◆',
       products: [
         { title: '强化模组礼包', en: 'Enhanced Module Set', price: 'RM 209.00', note: '每个自然月限购一次 / Once per calendar month' },
