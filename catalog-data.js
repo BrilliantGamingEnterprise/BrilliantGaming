@@ -547,26 +547,26 @@ const categories = {
   detailArt: 'assets/images/games/nte2.jpg',
   productSections: [
     {
-      title: '昇晶充值',
+      title: '异晶充值',
       subtitle: 'Riftcrystal Top-Up',
       icon: '◆',
       products: [
-        { title: '60 昇晶', en: '60 Riftcrystals', price: 'RM 3.80', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '300 昇晶', en: '300 Riftcrystals', price: 'RM 19.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '980 昇晶', en: '980 Riftcrystals', price: 'RM 57.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '1980 昇晶', en: '1980 Riftcrystals', price: 'RM 114.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '3280 昇晶', en: '3280 Riftcrystals', price: 'RM 185.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '6480 昇晶', en: '6480 Riftcrystals', price: 'RM 360.00', note: '昇晶充值 / Riftcrystal Top-Up' },
-        { title: '昇晶开采凭证', en: 'Riftcrystal Permit', price: 'RM 19.00', note: 'HOT 推荐 / Riftcrystal Permit' }
+        { title: '60 异晶', en: '60 Riftcrystals', price: 'RM 3.60', note: '异晶充值 / Riftcrystal Top-Up' },
+        { title: '300 + 30 异晶', en: '300 + 30 Riftcrystals', price: 'RM 18.00', note: '异晶充值 / Riftcrystal Top-Up' },
+        { title: '980 + 110 异晶', en: '980 + 110 Riftcrystals', price: 'RM 54.00', note: '异晶充值 / Riftcrystal Top-Up' },
+        { title: '1980 + 260 异晶', en: '1980 + 260 Riftcrystals', price: 'RM 108.00', note: '异晶充值 / Riftcrystal Top-Up' },
+        { title: '3280 + 600 异晶', en: '3280 + 600 Riftcrystals', price: 'RM 180.00', note: '异晶充值 / Riftcrystal Top-Up' },
+        { title: '6480 + 1600 异晶', en: '6480 + 1600 Riftcrystals', price: 'RM 330.00', note: 'HOT 推荐 / Riftcrystal Top-Up' }
       ]
     },
     {
-      title: '特惠补给',
-      subtitle: 'Packages',
+      title: '凭证与猎人补给',
+      subtitle: 'Passes & Hunter Supplies',
       icon: '◆',
       products: [
-        { title: '精锐猎人补给', en: 'Elite Hunter Supply', price: 'RM 38.00', note: '补给礼包 / Supply Package' },
-        { title: '荣誉猎人补给', en: 'Honor Hunter Supply', price: 'RM 76.00', note: '补给礼包 / Supply Package' }
+        { title: '异晶开采凭证', en: 'Riftcrystal Mining Permit', price: 'RM 18.00', note: '月度凭证 / Monthly Permit' },
+        { title: '精英猎人补给', en: 'Elite Hunter Supplies', price: 'RM 36.00', note: '猎人补给 / Hunter Supplies' },
+        { title: '荣誉猎人补给', en: 'Honor Hunter Supplies', price: 'RM 72.00', note: '猎人补给 / Hunter Supplies' }
       ]
     }
   ]
@@ -718,14 +718,14 @@ const categories = {
       subtitle: 'Echo Beads',
       icon: '◆',
       products: [
-        { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.30', note: '长鸣珠 / Changming Pearl' },
-        { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 20.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 40.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 58.50', note: '长鸣珠 / Changming Pearl' },
-        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 117.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 192.50', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 380.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 3.60', note: '长鸣珠 / Changming Pearl' },
+        { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 10.80', note: '长鸣珠 / Changming Pearl' },
+        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 18.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 36.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 54.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 108.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 180.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 330.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -733,9 +733,9 @@ const categories = {
       subtitle: 'Other Items',
       icon: '◆',
       products: [
-        { title: '月度礼金【月卡】', en: 'Monthly Pass', price: 'RM 19.00', note: '月卡 / Monthly Pass' },
-        { title: '精英战令', en: 'Elite Battle Pass', price: 'RM 38.00', note: '战令 / Battle Pass' },
-        { title: '典藏战令', en: 'Premium Battle Pass', price: 'RM 76.00', note: '典藏战令 / Premium Battle Pass' }
+        { title: '月度礼金【月卡】', en: 'Monthly Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
+        { title: '精英战令', en: 'Elite Battle Pass', price: 'RM 36.00', note: '战令 / Battle Pass' },
+        { title: '典藏战令', en: 'Premium Battle Pass', price: 'RM 72.00', note: '典藏战令 / Premium Battle Pass' }
       ]
     }
   ]
@@ -802,7 +802,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 360.00', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', price: 'RM 330.00', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
