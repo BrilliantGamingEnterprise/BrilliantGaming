@@ -1705,15 +1705,19 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '') 
     const coinNameEn = resolvedProduct.coinNameEn || sectionEn || coinNameZh;
     return `
       <article class="product-card product-status-inquiry custom-amount-card" data-custom-amount-card data-coin-rate="${escapeAttribute(coinRate)}" data-coin-name-zh="${escapeAttribute(coinNameZh)}" data-coin-name-en="${escapeAttribute(coinNameEn)}">
-        ${statusBadge}
-        <h3>${escapeHtml(title)}</h3>
-        <p>${escapeHtml(subtitle)}</p>
+        <div class="custom-amount-heading">
+          ${statusBadge}
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(subtitle)}</p>
+        </div>
         <label class="custom-amount-field">
           <span>${escapeHtml(uiText('product.customAmountLabel'))}</span>
           <span class="custom-amount-input-wrap"><b>¥</b><input type="number" min="0.01" step="0.01" inputmode="decimal" data-custom-amount-input placeholder="${escapeAttribute(uiText('product.customAmountPlaceholder'))}" aria-label="${escapeAttribute(uiText('product.customAmountLabel'))}"></span>
         </label>
-        <div class="custom-amount-preview" data-custom-amount-preview>${escapeHtml(uiText('product.customAmountEmpty'))}</div>
-        <button type="button" class="button button-primary custom-amount-action" data-custom-amount-action>${escapeHtml(uiText('product.customAmountAction'))}</button>
+        <div class="custom-amount-result">
+          <div class="custom-amount-preview" data-custom-amount-preview>${escapeHtml(uiText('product.customAmountEmpty'))}</div>
+          <button type="button" class="button button-primary custom-amount-action" data-custom-amount-action>${escapeHtml(uiText('product.customAmountAction'))}</button>
+        </div>
       </article>`;
   }
 
@@ -1740,8 +1744,18 @@ function makeProductSections(game) {
     .map((section, sectionIndex) => {
       const sectionTitle = localizedSectionTitle(section);
       const sectionSubtitle = localizedSectionSubtitle(section);
+      const sectionProducts = section.products || [];
+      const customAmountProducts = sectionProducts.filter((product) => resolveProductPrice(product).customAmount);
+      const regularProducts = sectionProducts.filter((product) => !resolveProductPrice(product).customAmount);
+      const sectionKey = section.id || `${sectionIndex + 1}-${section.title || 'items'}`;
+      const makeSectionCard = (product) => makeProductCard(
+        product,
+        game.id,
+        section,
+        sectionKey
+      );
       return `
-      <div class="product-section">
+      <div class="product-section${customAmountProducts.length ? ' product-section-has-custom-amount' : ''}">
         <div class="product-section-header">
           <h3>
             <span class="product-section-main"><span class="product-section-icon">${section.icon || '◆'}</span>${escapeHtml(sectionTitle)}</span>
@@ -1749,13 +1763,11 @@ function makeProductSections(game) {
           </h3>
         </div>
         <div class="product-grid">
-          ${(section.products || []).map((product) => makeProductCard(
-            product,
-            game.id,
-            section,
-            section.id || `${sectionIndex + 1}-${section.title || 'items'}`
-          )).join('')}
+          ${regularProducts.map(makeSectionCard).join('')}
         </div>
+        ${customAmountProducts.length
+          ? `<div class="custom-amount-zone">${customAmountProducts.map(makeSectionCard).join('')}</div>`
+          : ''}
       </div>`;
     })
     .join('');
