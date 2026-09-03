@@ -720,12 +720,12 @@ const categories = {
       products: [
         { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.00', note: '长鸣珠 / Changming Pearl' },
         { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 18.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 19.00', note: '长鸣珠 / Changming Pearl' },
         { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 38.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 54.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 105.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 170.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 320.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 330.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -733,7 +733,7 @@ const categories = {
       subtitle: 'Other Items',
       icon: '◆',
       products: [
-        { title: '月度礼金【月卡】', en: 'Monthly Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
+        { title: '月度礼金【月卡】', en: 'Monthly Pass', price: 'RM 19.00', note: '月卡 / Monthly Pass' },
         { title: '精英战令', en: 'Elite Battle Pass', price: 'RM 38.00', note: '战令 / Battle Pass' },
         { title: '典藏战令', en: 'Premium Battle Pass', price: 'RM 76.00', note: '典藏战令 / Premium Battle Pass' }
       ]
@@ -790,7 +790,7 @@ const categories = {
 
 {
   id: 'sword-of-justice',
-  name: 'Sword Of Justice',
+  name: '逆水寒·国际服',
   detailName: 'Sword Of Justice',
   description: 'Sword Of Justice',
   tag: 'Login Top Up',
@@ -803,11 +803,11 @@ const categories = {
       icon: '◆',
       products: [
         { title: '60 + 3 纹玉', en: '60 + 3 Ornate Jades', price: 'RM 4.00', note: '纹玉 / Ornate Jade' },
-        { title: '300 + 18 纹玉', en: '300 + 18 Ornate Jades', price: 'RM 18.00', note: '纹玉 / Ornate Jade' },
-        { title: '980 + 58 纹玉', en: '980 + 58 Ornate Jades', price: 'RM 54.00', note: '纹玉 / Ornate Jade' },
-        { title: '1980 + 118 纹玉', en: '1980 + 118 Ornate Jades', price: 'RM 105.00', note: '纹玉 / Ornate Jade' },
-        { title: '3280 + 196 纹玉', en: '3280 + 196 Ornate Jades', price: 'RM 170.00', note: '纹玉 / Ornate Jade' },
-        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 320.00', note: 'HOT 推荐 / Ornate Jade' }
+        { title: '300 + 18 纹玉', en: '300 + 18 Ornate Jades', price: 'RM 19.00', note: '纹玉 / Ornate Jade' },
+        { title: '980 + 58 纹玉', en: '980 + 58 Ornate Jades', price: 'RM 57.00', note: '纹玉 / Ornate Jade' },
+        { title: '1980 + 118 纹玉', en: '1980 + 118 Ornate Jades', price: 'RM 114.00', note: '纹玉 / Ornate Jade' },
+        { title: '3280 + 196 纹玉', en: '3280 + 196 Ornate Jades', price: 'RM 190.00', note: '纹玉 / Ornate Jade' },
+        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 330.00', note: 'HOT 推荐 / Ornate Jade' }
       ]
     },
     {
