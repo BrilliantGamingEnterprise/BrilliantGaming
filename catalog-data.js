@@ -1427,6 +1427,33 @@ const categories = {
 },
 
 {
+  id: 'yulgang-w',
+  name: 'YulGang W',
+  detailName: 'YulGang W',
+  description: '热血江湖 W',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/yulgang-w.png',
+  detailArt: 'assets/images/games/yulgang-w.png',
+  keywords: ['YulGang W', 'Yulgang', '热血江湖 W', '热血江湖', '热血币'],
+  productSections: [
+    {
+      title: '热血币',
+      subtitle: 'YulGang Coins',
+      icon: '◆',
+      products: [
+        { title: '66 热血币', en: '66 YulGang Coins', price: 'RM 38.00', note: '登入充值 / Login Top Up' },
+        { title: '169 热血币', en: '169 YulGang Coins', price: 'RM 95.00', note: '登入充值 / Login Top Up' },
+        { title: '339 热血币', en: '339 YulGang Coins', price: 'RM 190.00', note: '登入充值 / Login Top Up' },
+        { title: '690 热血币', en: '690 YulGang Coins', price: 'RM 380.00', note: '登入充值 / Login Top Up' },
+        { title: '1380 热血币', en: '1,380 YulGang Coins', price: 'RM 760.00', note: '登入充值 / Login Top Up' },
+        { title: '2070 热血币', en: '2,070 YulGang Coins', price: 'RM 1140.00', note: '登入充值 / Login Top Up' },
+        { title: '3450 热血币', en: '3,450 YulGang Coins', price: 'RM 1900.00', note: '登入充值 / Login Top Up' }
+      ]
+    }
+  ]
+},
+
+{
   id: 'ddtank-origin-malaysia',
   name: '弹弹堂 Origin',
   detailName: '弹弹堂 Origin',
