@@ -725,7 +725,7 @@ const categories = {
         { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
         { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
         { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 330.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 360.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -802,12 +802,12 @@ const categories = {
       subtitle: 'Ornate Jade',
       icon: '◆',
       products: [
-        { title: '60 + 3 纹玉', en: '60 + 3 Ornate Jades', price: 'RM 4.00', note: '纹玉 / Ornate Jade' },
-        { title: '300 + 18 纹玉', en: '300 + 18 Ornate Jades', price: 'RM 19.00', note: '纹玉 / Ornate Jade' },
-        { title: '980 + 58 纹玉', en: '980 + 58 Ornate Jades', price: 'RM 57.00', note: '纹玉 / Ornate Jade' },
-        { title: '1980 + 118 纹玉', en: '1980 + 118 Ornate Jades', price: 'RM 114.00', note: '纹玉 / Ornate Jade' },
-        { title: '3280 + 196 纹玉', en: '3280 + 196 Ornate Jades', price: 'RM 190.00', note: '纹玉 / Ornate Jade' },
-        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 330.00', note: 'HOT 推荐 / Ornate Jade' }
+        { title: '60 + 3 纹玉', en: '60 + 3 Ornate Jades', price: 'RM 4.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
+        { title: '300 + 18 纹玉', en: '300 + 18 Ornate Jades', price: 'RM 19.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
+        { title: '980 + 58 纹玉', en: '980 + 58 Ornate Jades', price: 'RM 57.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
+        { title: '1980 + 118 纹玉', en: '1980 + 118 Ornate Jades', price: 'RM 114.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
+        { title: '3280 + 196 纹玉', en: '3280 + 196 Ornate Jades', price: 'RM 190.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
+        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 360.00', note: 'HOT 推荐 / Ornate Jade' }
       ]
     },
     {
@@ -815,12 +815,12 @@ const categories = {
       subtitle: 'Passes & Other Items',
       icon: '◆',
       products: [
-        { title: '月卡', en: 'Monthly Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass' },
-        { title: '基础战令', en: 'Basic Battle Pass', price: 'RM 38.00', note: '战令 / Battle Pass' },
-        { title: '战令升级', en: 'Battle Pass Upgrade', price: 'RM 54.00', note: '战令升级 / Battle Pass Upgrade' },
-        { title: '进阶战令', en: 'Advanced Battle Pass', price: 'RM 95.00', note: '进阶战令 / Advanced Battle Pass' },
-        { title: '绮珍秘宝·一', en: 'Exquisite Treasures I', price: 'RM 18.00', note: '其他商品 / Other Item' },
-        { title: '绮珍秘宝·二', en: 'Exquisite Treasures II', price: 'RM 18.00', note: '其他商品 / Other Item' }
+        { title: '月卡', en: 'Monthly Pass', price: 'RM 18.00', note: '月卡 / Monthly Pass', status: 'soldout' },
+        { title: '基础战令', en: 'Basic Battle Pass', price: 'RM 38.00', note: '战令 / Battle Pass', status: 'soldout' },
+        { title: '战令升级', en: 'Battle Pass Upgrade', price: 'RM 54.00', note: '战令升级 / Battle Pass Upgrade', status: 'soldout' },
+        { title: '进阶战令', en: 'Advanced Battle Pass', price: 'RM 95.00', note: '进阶战令 / Advanced Battle Pass', status: 'soldout' },
+        { title: '绮珍秘宝·一', en: 'Exquisite Treasures I', price: 'RM 18.00', note: '其他商品 / Other Item', status: 'soldout' },
+        { title: '绮珍秘宝·二', en: 'Exquisite Treasures II', price: 'RM 18.00', note: '其他商品 / Other Item', status: 'soldout' }
       ]
     }
   ]
@@ -841,13 +841,13 @@ const categories = {
       subtitle: 'Login Top Up',
       icon: '◆',
       products: [
-        { title: '60 星石', en: '60 Star Stones', price: 'RM 3.80' },
-        { title: '300 星石', en: '300 Star Stones', price: 'RM 19.00' },
-        { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00' },
-        { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00' },
-        { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00' },
-        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 360.00' },
-        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 720.00' }
+        { title: '60 星石', en: '60 Star Stones', price: 'RM 3.80', status: 'soldout' },
+        { title: '300 星石', en: '300 Star Stones', price: 'RM 19.00', status: 'soldout' },
+        { title: '980 星石', en: '980 Star Stones', price: 'RM 57.00', status: 'soldout' },
+        { title: '1980 星石', en: '1,980 Star Stones', price: 'RM 114.00', status: 'soldout' },
+        { title: '3280 星石', en: '3,280 Star Stones', price: 'RM 190.00', status: 'soldout' },
+        { title: '6480 星石', en: '6,480 Star Stones', price: 'RM 360.00', status: 'soldout' },
+        { title: '12980 星石', en: '12,980 Star Stones', price: 'RM 720.00', status: 'soldout' }
       ]
     },
     {
@@ -855,12 +855,12 @@ const categories = {
       subtitle: 'Passes & Monthly Cards',
       icon: '◆',
       products: [
-        { title: '7天特权卡', en: '7-Day Privilege Pass', price: 'RM 7.60' },
-        { title: '30天特权卡', en: '30-Day Privilege Pass', price: 'RM 19.00' },
-        { title: '卡普拉月卡', en: 'Kafra Monthly', price: 'RM 19.00' },
-        { title: '典藏卡普拉月卡', en: "Collector's Kafra Monthly", price: 'RM 57.00' },
-        { title: '仙境巡礼【小】', en: 'Wonder Tour Deluxe Edition', price: 'RM 40.00' },
-        { title: '仙境巡礼【大】', en: "Wonder Tour Collector's Edition", price: 'RM 60.00' }
+        { title: '7天特权卡', en: '7-Day Privilege Pass', price: 'RM 7.60', status: 'soldout' },
+        { title: '30天特权卡', en: '30-Day Privilege Pass', price: 'RM 19.00', status: 'soldout' },
+        { title: '卡普拉月卡', en: 'Kafra Monthly', price: 'RM 19.00', status: 'soldout' },
+        { title: '典藏卡普拉月卡', en: "Collector's Kafra Monthly", price: 'RM 57.00', status: 'soldout' },
+        { title: '仙境巡礼【小】', en: 'Wonder Tour Deluxe Edition', price: 'RM 40.00', status: 'soldout' },
+        { title: '仙境巡礼【大】', en: "Wonder Tour Collector's Edition", price: 'RM 60.00', status: 'soldout' }
       ]
     }
   ]
