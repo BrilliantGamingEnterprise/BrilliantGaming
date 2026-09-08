@@ -43,7 +43,7 @@ const promotionSettings = {
       altZh: '澜无双皮肤代送，活动价 RM 250',
       altEn: 'Lan Wushuang skin gifting promotion, RM 250',
       startsAt: '2026-08-15T00:00:00+08:00',
-      endsAt: '',
+      endsAt: '2026-09-08T00:00:00+08:00',
       whatsappMessageZh: '你好，我想询问澜无双皮肤代送 RM 250 活动。',
       whatsappMessageEn: 'Hi, I would like to ask about the Lan Wushuang skin gifting promotion at RM 250.'
     },
