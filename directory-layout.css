@@ -3947,6 +3947,75 @@ body .currency-switch {
   }
 }
 
+/* Product-card affordance and cart selection state */
+.page-game .product-card.product-status-active .product-price {
+  padding-right: 44px;
+}
+
+.page-game .product-card-action {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  z-index: 2;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  color: #d9ad53;
+  background: #191a1e;
+  border: 1px solid #5a4b31;
+  border-radius: 9px;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.22);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  transition: transform 160ms ease, color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.page-game .product-card.product-status-active:hover .product-card-action,
+.page-game .product-card.product-status-active:focus-visible .product-card-action {
+  transform: scale(1.06);
+  color: #171109;
+  background: #e2b653;
+  border-color: #f2cf7d;
+}
+
+.page-game .product-card.product-status-active.is-in-cart,
+.page-game .product-card.product-status-active.is-in-cart:hover,
+.page-game .product-card.product-status-active.is-in-cart:focus-visible {
+  background: linear-gradient(145deg, #221d13, #111216) !important;
+  box-shadow: inset 0 0 0 1px rgba(225, 181, 85, 0.72) !important;
+}
+
+.page-game .product-card.product-status-active.is-in-cart .product-card-action {
+  color: #171109;
+  background: linear-gradient(135deg, #f0ca73, #c99535);
+  border-color: #e6bd66;
+  box-shadow: 0 8px 20px rgba(217, 170, 78, 0.24);
+}
+
+@media (max-width: 540px) {
+  .page-game .product-card.product-status-active .product-price {
+    padding-right: 36px;
+  }
+
+  .page-game .product-card-action {
+    right: 10px;
+    bottom: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-game .product-card-action {
+    transition: none;
+  }
+}
+
 /* Platform-first pricing for games with different Android and iOS products */
 .page-game .game-platform-picker {
   position: relative;

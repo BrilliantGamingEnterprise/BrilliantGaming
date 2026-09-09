@@ -150,7 +150,10 @@ function productMarkup(game) {
     const cards = (section.products || []).map((product) => {
       const status = cleanText(product.status || 'active').toLowerCase();
       const statusLabel = { paused: '暂停接单', soldout: '暂时售罄', inquiry: '联系客服询价' }[status] || '';
-      return `<article class="product-card product-status-${html(status)}">${statusLabel ? `<span class="product-status-badge">${statusLabel}</span>` : ''}<h3>${html(product.title)}</h3><p>${html(product.note || product.en || '')}</p><div class="product-price">${html(resolvePrice(product))}</div></article>`;
+      const actionIndicator = status === 'active' && !product.tieredExchangeAmount && !product.customAmount
+        ? '<span class="product-card-action" aria-hidden="true">＋</span>'
+        : '';
+      return `<article class="product-card product-status-${html(status)}">${statusLabel ? `<span class="product-status-badge">${statusLabel}</span>` : ''}<h3>${html(product.title)}</h3><p>${html(product.note || product.en || '')}</p><div class="product-price">${html(resolvePrice(product))}</div>${actionIndicator}</article>`;
     }).join('');
     return `<div class="product-section"><div class="product-section-header"><h3><span class="product-section-main">${html(section.title || '商品')}</span>${section.subtitle ? `<span>${html(section.subtitle)}</span>` : ''}</h3></div><div class="product-grid">${cards}</div></div>`;
   }).join('');

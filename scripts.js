@@ -85,6 +85,7 @@ const uiTextFallbacks = {
   'search.inquiryMessage': '你好，我在 Brilliant Gaming 网站搜索不到“{query}”。请问这个游戏可以充值吗？',
   'search.count': '找到 {count} 个结果，点击卡片即可进入充值页面',
   'product.addAria': '加入购物车：{title} {price}',
+  'product.inCartAria': '已在购物车：{title}，数量 {quantity}。再次点击可增加数量。',
   'product.inquiryAria': '询问商品：{title}',
   'product.status.paused': '暂停接单',
   'product.status.soldout': '暂时售罄',
@@ -174,7 +175,14 @@ function localizedGameDescription(game) {
 }
 
 function localizedGameTag(game) {
-  return window.BGE_I18N?.getGameTag?.(game) || game?.tag || '';
+  if (window.BGE_I18N?.getGameTag) return window.BGE_I18N.getGameTag(game);
+  const tag = String(game?.tag || '');
+  const normalized = tag.toLowerCase().replace(/[\s_-]+/g, ' ').trim();
+  if (normalized.includes('login top up')) return '登录充值';
+  if (normalized.includes('uid top up')) return 'UID 充值';
+  if (tag.includes('扫码充值')) return '扫码充值';
+  if (tag.includes('直播充值')) return '直播充值';
+  return tag;
 }
 
 function localizedProductTitle(gameId, product) {
@@ -964,6 +972,35 @@ function updateCartUI() {
   mobileDock.hidden = count === 0;
   document.body.classList.toggle('has-mobile-cart', count > 0);
   renderCartItems();
+  updateProductCardSelectionState();
+}
+
+function updateProductCardSelectionState() {
+  document.querySelectorAll('.product-card[data-cart-key][data-price]').forEach((card) => {
+    const matchingItem = cart.find((item) => (
+      getCartItemKey(item) === card.dataset.cartKey
+      && item.price === card.dataset.price
+    )) || cart.find((item) => (
+      !item.sectionKey
+      && getCartItemChineseTitle(item) === card.dataset.titleZh
+      && item.price === card.dataset.price
+    ));
+    const quantity = matchingItem?.quantity || 0;
+    const isInCart = quantity > 0;
+    const indicator = card.querySelector('[data-product-action-indicator]');
+
+    card.classList.toggle('is-in-cart', isInCart);
+    card.dataset.cartQuantity = String(quantity);
+    if (indicator) indicator.textContent = isInCart ? '✓' : '＋';
+    if (isInCart) {
+      card.setAttribute('aria-label', uiText('product.inCartAria', {
+        title: card.dataset.title || '',
+        quantity
+      }));
+    } else if (card.dataset.addAria) {
+      card.setAttribute('aria-label', card.dataset.addAria);
+    }
+  });
 }
 
 function renderCartItems() {
@@ -1597,6 +1634,7 @@ function selectGamePlatform(platform) {
 
   const products = document.getElementById('gameProducts');
   if (products) products.innerHTML = makeProductSections(game, nextPlatform);
+  updateProductCardSelectionState();
   setTopupSystemFromPlatform(nextPlatform);
   showCartToast(uiText('game.platformSelected', {
     platform: uiText(gamePlatformOptions[nextPlatform].labelKey)
@@ -1818,6 +1856,9 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
   const statusBadge = status === 'active'
     ? ''
     : `<span class="product-status-badge">${escapeHtml(uiText(`product.status.${status}`))}</span>`;
+  const actionIndicator = status === 'active'
+    ? '<span class="product-card-action" data-product-action-indicator aria-hidden="true">＋</span>'
+    : '';
 
   if (resolvedProduct.tieredExchangeAmount) {
     const tiers = Array.isArray(resolvedProduct.exchangeTiers) ? resolvedProduct.exchangeTiers : [];
@@ -1857,11 +1898,12 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
   }
 
   return `
-    <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
+    <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" data-add-aria="${escapeAttribute(actionLabel)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
       ${statusBadge}
       <h3>${escapeHtml(title)}</h3>
       <p>${escapeHtml(subtitle)}</p>
       <div class="product-price" data-price-base="${escapeAttribute(price)}">${escapeHtml(displayPrice)}</div>
+      ${actionIndicator}
     </article>`;
 }
 
@@ -2180,6 +2222,7 @@ function renderGamePage(categoryId, gameId) {
   if (products) products.innerHTML = makeProductSections(game, selectedPlatform);
   renderTopupInfoForm(categoryId, game);
   setTopupSystemFromPlatform(selectedPlatform);
+  updateProductCardSelectionState();
   updateGameSeo(categoryId, game);
 }
 
@@ -2553,7 +2596,7 @@ function initEvents() {
       return;
     }
 
-    const platformButton = target.closest('[data-game-platform]');
+    const platformButton = target.closest('.game-platform-option[data-game-platform]');
     if (platformButton) {
       event.preventDefault();
       selectGamePlatform(platformButton.dataset.gamePlatform);

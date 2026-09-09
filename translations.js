@@ -66,6 +66,10 @@
       'game.platformEmpty': '请先选择上方系统，避免购买错误的商品。',
       'game.platformSwitchConfirm': '切换系统会清空当前游戏的购物车，确定继续吗？',
       'game.platformSelected': '已选择：{platform}',
+      'tag.login': '登录充值',
+      'tag.uid': 'UID 充值',
+      'tag.qr': '扫码充值',
+      'tag.live': '直播充值',
       'home.showLess': '收起游戏 ↑',
       'home.showAll': '查看全部游戏 ›',
       'home.directoryFeatured': '热门充值游戏',
@@ -86,6 +90,7 @@
       'search.inquiryMessage': '你好，我在 Brilliant Gaming 网站搜索不到“{query}”。请问这个游戏可以充值吗？',
       'search.count': '找到 {count} 个结果，点击卡片即可进入充值页面',
       'product.addAria': '加入购物车：{title} {price}',
+      'product.inCartAria': '已在购物车：{title}，数量 {quantity}。再次点击可增加数量。',
       'product.inquiryAria': '询问商品：{title}',
       'product.status.paused': '暂停接单',
       'product.status.soldout': '暂时售罄',
@@ -204,6 +209,10 @@
       'game.platformEmpty': 'Choose a system above before viewing prices to avoid selecting the wrong item.',
       'game.platformSwitchConfirm': "Switching systems will clear this game's cart. Continue?",
       'game.platformSelected': 'Selected: {platform}',
+      'tag.login': 'Login Top Up',
+      'tag.uid': 'UID Top Up',
+      'tag.qr': 'QR Code Top-Up',
+      'tag.live': 'Live Streaming Top-Up',
       'home.showLess': 'Show Fewer Games ↑',
       'home.showAll': 'View All Games ›',
       'home.directoryFeatured': 'Popular Top-Up Games',
@@ -224,6 +233,7 @@
       'search.inquiryMessage': 'Hi, I could not find “{query}” on the Brilliant Gaming website. Is top-up available for this game?',
       'search.count': '{count} result(s) found. Select a card to open its top-up page.',
       'product.addAria': 'Add to cart: {title} {price}',
+      'product.inCartAria': 'In cart: {title}, quantity {quantity}. Select again to increase the quantity.',
       'product.inquiryAria': 'Ask about item: {title}',
       'product.status.paused': 'Orders Paused',
       'product.status.soldout': 'Sold Out',
@@ -817,10 +827,13 @@
 
   function getGameTag(game) {
     const tag = String(game?.tag || '');
+    const normalized = tag.toLowerCase().replace(/[\s_-]+/g, ' ').trim();
+    if (normalized.includes('login top up')) return t('tag.login');
+    if (normalized.includes('uid top up')) return t('tag.uid');
+    if (tag.includes('扫码充值') || normalized.includes('qr code top up')) return t('tag.qr');
+    if (tag.includes('直播充值') || normalized.includes('live streaming top up')) return t('tag.live');
     if (language !== 'en') return tag;
-    if (tag.includes('扫码充值')) return 'QR Code Top-Up';
     if (tag.includes('点数/点卡')) return 'Credits / Gift Cards';
-    if (tag.includes('直播充值')) return 'Live Streaming Top-Up';
     return tag;
   }
 
