@@ -54,6 +54,17 @@ const uiTextFallbacks = {
   'game.notFoundBody': '未找到该游戏，请返回首页继续选择。',
   'game.noProducts': '该游戏商品暂未上架，价格整理中。请先联系客服确认。',
   'game.pricingPending': '该游戏价格正在整理中，请联系客服获取最新报价。',
+  'game.platformEyebrow': '充值系统',
+  'game.platformTitle': '请先选择游戏系统',
+  'game.platformBody': '安卓与苹果的商品不同，选择后只会显示对应价格。',
+  'game.platformIos': '苹果 / iOS',
+  'game.platformIosHint': '查看苹果系统商品',
+  'game.platformAndroid': '安卓 / Android',
+  'game.platformAndroidHint': '查看安卓系统商品',
+  'game.platformSharedNote': '慢充与不分系统的商品会同时显示。',
+  'game.platformEmpty': '请先选择上方系统，避免购买错误的商品。',
+  'game.platformSwitchConfirm': '切换系统会清空当前游戏的购物车，确定继续吗？',
+  'game.platformSelected': '已选择：{platform}',
   'home.showLess': '收起游戏 ↑',
   'home.showAll': '查看全部游戏 ›',
   'home.directoryFeatured': '热门充值游戏',
@@ -220,7 +231,8 @@ function getQueryParams() {
   const query = new URLSearchParams(window.location.search);
   return {
     category: query.get('category') || document.body.dataset.gameCategory || '',
-    gameId: query.get('game') || document.body.dataset.gameId || ''
+    gameId: query.get('game') || document.body.dataset.gameId || '',
+    platform: query.get('platform') || ''
   };
 }
 
@@ -1461,11 +1473,134 @@ function getProductStatus(product) {
   return hasNumericPrice(product?.price) ? 'active' : 'inquiry';
 }
 
-function getSectionSystemValue(section) {
+const gamePlatformOptions = Object.freeze({
+  ios: Object.freeze({
+    id: 'ios',
+    badge: 'iOS',
+    labelKey: 'game.platformIos',
+    hintKey: 'game.platformIosHint',
+    systemValue: '苹果 iOS',
+    sectionZh: '苹果 iOS',
+    sectionEn: 'Apple iOS'
+  }),
+  android: Object.freeze({
+    id: 'android',
+    badge: 'Android',
+    labelKey: 'game.platformAndroid',
+    hintKey: 'game.platformAndroidHint',
+    systemValue: '安卓 Android',
+    sectionZh: '安卓 Android',
+    sectionEn: 'Android'
+  })
+});
+
+function normalizeGamePlatform(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+  return Object.prototype.hasOwnProperty.call(gamePlatformOptions, normalized) ? normalized : '';
+}
+
+function hasGamePlatformSelector(game) {
+  return game?.platformSelector === true || game?.platformSelector?.enabled === true;
+}
+
+function getSelectedGamePlatform(game) {
+  if (!hasGamePlatformSelector(game)) return '';
+  return normalizeGamePlatform(getQueryParams().platform || document.body.dataset.gamePlatform);
+}
+
+function getSectionPlatform(section) {
+  const explicitPlatform = String(section?.platform || '').trim().toLowerCase();
+  if (explicitPlatform === 'shared') return 'shared';
+  if (normalizeGamePlatform(explicitPlatform)) return explicitPlatform;
+
   const title = String(section?.title || '');
-  if (title.includes('苹果系统')) return '苹果 iOS';
-  if (title.includes('安卓系统')) return '安卓 Android';
+  if (title.includes('苹果系统')) return 'ios';
+  if (title.includes('安卓系统')) return 'android';
+  return 'shared';
+}
+
+function getSectionSystemValue(section) {
+  const platform = getSectionPlatform(section);
+  if (platform === 'ios' || platform === 'android') {
+    return gamePlatformOptions[platform].systemValue;
+  }
   return '';
+}
+
+function makeGamePlatformSelector(selectedPlatform = '') {
+  const buttons = Object.values(gamePlatformOptions).map((option) => {
+    const isActive = option.id === selectedPlatform;
+    return `
+      <button class="game-platform-option${isActive ? ' is-active' : ''}" type="button" role="tab" aria-selected="${isActive ? 'true' : 'false'}" data-game-platform="${escapeAttribute(option.id)}">
+        <span class="game-platform-badge">${escapeHtml(option.badge)}</span>
+        <span class="game-platform-option-copy">
+          <strong>${escapeHtml(uiText(option.labelKey))}</strong>
+          <small>${escapeHtml(uiText(option.hintKey))}</small>
+        </span>
+        <span class="game-platform-check" aria-hidden="true">✓</span>
+      </button>`;
+  }).join('');
+
+  return `
+    <section class="game-platform-picker" aria-labelledby="gamePlatformTitle">
+      <div class="game-platform-picker-copy">
+        <span class="game-platform-eyebrow">${escapeHtml(uiText('game.platformEyebrow'))}</span>
+        <h2 id="gamePlatformTitle">${escapeHtml(uiText('game.platformTitle'))}</h2>
+        <p>${escapeHtml(uiText('game.platformBody'))}</p>
+      </div>
+      <div class="game-platform-options" role="tablist" aria-label="${escapeAttribute(uiText('game.platformTitle'))}">
+        ${buttons}
+      </div>
+      <p class="game-platform-shared-note">${escapeHtml(uiText('game.platformSharedNote'))}</p>
+    </section>`;
+}
+
+function setTopupSystemFromPlatform(platform) {
+  const systemField = document.querySelector('[data-topup-field="system"]');
+  if (!systemField) return;
+
+  const normalized = normalizeGamePlatform(platform);
+  if (!normalized) {
+    systemField.disabled = false;
+    delete systemField.dataset.platformLocked;
+    systemField.removeAttribute('title');
+    return;
+  }
+
+  const option = gamePlatformOptions[normalized];
+  systemField.value = option.systemValue;
+  systemField.disabled = true;
+  systemField.dataset.platformLocked = 'true';
+  systemField.setAttribute('title', uiText('game.platformSelected', {
+    platform: uiText(option.labelKey)
+  }));
+  systemField.dispatchEvent(new Event('change', { bubbles: true }));
+}
+
+function selectGamePlatform(platform) {
+  const nextPlatform = normalizeGamePlatform(platform);
+  const params = getQueryParams();
+  const category = categories[params.category];
+  const game = category?.games?.find((item) => item.id === params.gameId);
+  if (!nextPlatform || !hasGamePlatformSelector(game)) return;
+
+  const currentPlatform = getSelectedGamePlatform(game);
+  if (currentPlatform === nextPlatform) return;
+  if (cart.length && !window.confirm(uiText('game.platformSwitchConfirm'))) return;
+  if (cart.length) clearCart();
+
+  const query = new URLSearchParams(window.location.search);
+  query.set('platform', nextPlatform);
+  const queryString = query.toString();
+  history.replaceState(null, '', `${window.location.pathname}${queryString ? `?${queryString}` : ''}${window.location.hash}`);
+  document.body.dataset.gamePlatform = nextPlatform;
+
+  const products = document.getElementById('gameProducts');
+  if (products) products.innerHTML = makeProductSections(game, nextPlatform);
+  setTopupSystemFromPlatform(nextPlatform);
+  showCartToast(uiText('game.platformSelected', {
+    platform: uiText(gamePlatformOptions[nextPlatform].labelKey)
+  }));
 }
 
 function applyProductFormDefaults(productCard) {
@@ -1662,20 +1797,20 @@ function handleProductCardAction(productCard) {
   applyProductFormDefaults(productCard);
 }
 
-function makeProductCard(product, gameId = '', section = null, sectionKey = '') {
+function makeProductCard(product, gameId = '', section = null, sectionKey = '', cardContext = {}) {
   const resolvedProduct = resolveProductPrice(product);
   const titleZh = resolvedProduct.title || '';
   const titleEn = englishProductTitle(gameId, resolvedProduct);
   const title = localizedProductTitle(gameId, resolvedProduct);
-  const sectionZh = section?.title || '';
-  const sectionEn = section ? englishSectionTitle(section) : '';
-  const sectionTitle = section ? localizedSectionTitle(section) : '';
+  const sectionZh = cardContext.sectionZh ?? section?.title ?? '';
+  const sectionEn = cardContext.sectionEn ?? (section ? englishSectionTitle(section) : '');
+  const sectionTitle = isEnglishLanguage() ? sectionEn : sectionZh;
   const subtitle = isEnglishLanguage() ? localizedProductNote(resolvedProduct) : titleEn;
   const price = resolvedProduct.price || '';
   const displayPrice = formatPriceForCurrency(price);
   const cartKey = getProductCartKey(resolvedProduct, sectionKey);
   const status = getProductStatus(resolvedProduct);
-  const systemValue = getSectionSystemValue(section);
+  const systemValue = cardContext.systemValue || getSectionSystemValue(section);
   const isUnavailable = status === 'paused' || status === 'soldout';
   const actionLabel = status === 'inquiry'
     ? uiText('product.inquiryAria', { title })
@@ -1730,29 +1865,51 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '') 
     </article>`;
 }
 
-function makeProductSections(game) {
-  const sections = resolveProductSections(game);
+function makeProductSections(game, platformOverride = '') {
+  const allSections = resolveProductSections(game);
+  const usesPlatformSelector = hasGamePlatformSelector(game);
+  const selectedPlatform = usesPlatformSelector
+    ? normalizeGamePlatform(platformOverride || getSelectedGamePlatform(game))
+    : '';
+  const selectorMarkup = usesPlatformSelector ? makeGamePlatformSelector(selectedPlatform) : '';
+
+  if (usesPlatformSelector && !selectedPlatform) {
+    return `${selectorMarkup}<div class="game-platform-empty"><span aria-hidden="true">!</span><p>${escapeHtml(uiText('game.platformEmpty'))}</p></div>`;
+  }
+
+  const sections = allSections
+    .map((section, originalIndex) => ({ section, originalIndex }))
+    .filter(({ section }) => !usesPlatformSelector || ['shared', selectedPlatform].includes(getSectionPlatform(section)));
   if (!sections.length) {
     const products = (game.products || []).map(resolveProductPrice);
     if (!products.length) {
-      return `<div class="cart-empty">${escapeHtml(uiText('game.noProducts'))}</div>`;
+      return `${selectorMarkup}<div class="cart-empty">${escapeHtml(uiText('game.noProducts'))}</div>`;
     }
-    return `<div class="product-grid">${products.map((product) => makeProductCard(product, game.id)).join('')}</div>`;
+    return `${selectorMarkup}<div class="product-grid">${products.map((product) => makeProductCard(product, game.id)).join('')}</div>`;
   }
 
-  return sections
-    .map((section, sectionIndex) => {
+  const sectionsMarkup = sections
+    .map(({ section, originalIndex }) => {
       const sectionTitle = localizedSectionTitle(section);
       const sectionSubtitle = localizedSectionSubtitle(section);
       const sectionProducts = section.products || [];
       const customAmountProducts = sectionProducts.filter((product) => resolveProductPrice(product).customAmount);
       const regularProducts = sectionProducts.filter((product) => !resolveProductPrice(product).customAmount);
-      const sectionKey = section.id || `${sectionIndex + 1}-${section.title || 'items'}`;
+      const sectionKey = section.id || `${originalIndex + 1}-${section.title || 'items'}`;
+      const sectionPlatform = getSectionPlatform(section);
+      const selectedOption = gamePlatformOptions[selectedPlatform];
+      const isSharedSection = usesPlatformSelector && sectionPlatform === 'shared' && selectedOption;
+      const cardContext = {
+        systemValue: selectedOption?.systemValue || getSectionSystemValue(section),
+        sectionZh: isSharedSection ? `${selectedOption.sectionZh} · ${section.title || ''}` : section.title || '',
+        sectionEn: isSharedSection ? `${selectedOption.sectionEn} · ${englishSectionTitle(section)}` : englishSectionTitle(section)
+      };
       const makeSectionCard = (product) => makeProductCard(
         product,
         game.id,
         section,
-        sectionKey
+        sectionKey,
+        cardContext
       );
       return `
       <div class="product-section${customAmountProducts.length ? ' product-section-has-custom-amount' : ''}">
@@ -1771,6 +1928,8 @@ function makeProductSections(game) {
       </div>`;
     })
     .join('');
+
+  return `${selectorMarkup}${sectionsMarkup}`;
 }
 
 function renderHomePage(showAll = false, filterCategory = 'all') {
@@ -2012,8 +2171,15 @@ function renderGamePage(categoryId, gameId) {
       date: getGameUpdatedAt(categoryId, game)
     });
   }
-  if (products) products.innerHTML = makeProductSections(game);
+  const selectedPlatform = getSelectedGamePlatform(game);
+  if (hasGamePlatformSelector(game) && selectedPlatform) {
+    document.body.dataset.gamePlatform = selectedPlatform;
+  } else {
+    delete document.body.dataset.gamePlatform;
+  }
+  if (products) products.innerHTML = makeProductSections(game, selectedPlatform);
   renderTopupInfoForm(categoryId, game);
+  setTopupSystemFromPlatform(selectedPlatform);
   updateGameSeo(categoryId, game);
 }
 
@@ -2384,6 +2550,13 @@ function initEvents() {
     if (faqButton) {
       event.preventDefault();
       toggleFaqItem(faqButton);
+      return;
+    }
+
+    const platformButton = target.closest('[data-game-platform]');
+    if (platformButton) {
+      event.preventDefault();
+      selectGamePlatform(platformButton.dataset.gamePlatform);
       return;
     }
 

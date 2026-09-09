@@ -1499,9 +1499,11 @@ const categories = {
   tag: '扫码充值',
   image: 'assets/images/games/王者荣耀.jpg',
   detailArt: 'assets/images/games/王者荣耀2.jpg',
+  platformSelector: true,
   productSections: [
     
     {
+      platform: 'ios',
       title: '苹果系统快充',
       subtitle: 'iOS Fast Top-Up',
       icon: '◆',
@@ -1519,6 +1521,7 @@ const categories = {
     },
 
     {
+      platform: 'android',
       title: '安卓系统快充',
       subtitle: 'Android Fast Top-Up',
       icon: '◆',
@@ -1537,6 +1540,7 @@ const categories = {
     },
     
     {
+      platform: 'shared',
       title: '双系统慢充',
       subtitle: 'Android / iOS Slow Top-Up',
       icon: '◆',
@@ -1556,8 +1560,10 @@ const categories = {
   tag: '扫码充值',
   image: 'assets/images/games/和平精英.jpg',
   detailArt: 'assets/images/games/和平精英2.jpg',
+  platformSelector: true,
   productSections: [
     {
+      platform: 'ios',
       title: '苹果系统快充',
       subtitle: 'iOS Fast Top-Up',
       icon: '◆',
@@ -1574,6 +1580,7 @@ const categories = {
       ]
     },
     {
+      platform: 'android',
       title: '安卓系统快充',
       subtitle: 'Android Fast Top-Up',
       icon: '◆',
@@ -1590,6 +1597,7 @@ const categories = {
       ]
     },
     {
+      platform: 'shared',
       title: '双系统慢充',
       subtitle: 'Android / iOS Slow Top-Up',
       icon: '◆',
@@ -1599,6 +1607,7 @@ const categories = {
       ]
     },
     {
+      platform: 'shared',
       title: '特权精英卡',
       subtitle: 'Elite Privilege Card',
       icon: '◆',
