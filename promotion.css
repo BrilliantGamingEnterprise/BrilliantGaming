@@ -1,3 +1,59 @@
+.campaign-popup-launcher {
+  position: fixed;
+  left: 22px;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 4300;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 8px 13px 8px 10px;
+  border: 1px solid rgba(244, 199, 92, 0.7);
+  border-radius: 999px;
+  color: #161108;
+  background: linear-gradient(135deg, #f2cc72, #d7a43d);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42), 0 0 22px rgba(225, 176, 70, 0.18);
+  font: 800 14px/1.1 Arial, "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+
+.campaign-popup-launcher[hidden] {
+  display: none !important;
+}
+
+.campaign-popup-launcher:hover,
+.campaign-popup-launcher:focus-visible {
+  filter: brightness(1.08);
+  box-shadow: 0 15px 38px rgba(0, 0, 0, 0.48), 0 0 26px rgba(225, 176, 70, 0.3);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.campaign-popup-launcher-icon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  color: #f8d986;
+  background: #17120a;
+  font-size: 16px;
+}
+
+.campaign-popup-launcher-count {
+  display: grid;
+  min-width: 23px;
+  height: 23px;
+  place-items: center;
+  padding: 0 6px;
+  border-radius: 999px;
+  color: #f8d986;
+  background: rgba(20, 15, 8, 0.88);
+  box-sizing: border-box;
+  font-size: 11px;
+}
+
 .campaign-popup {
   position: fixed;
   inset: 0;
@@ -186,6 +242,26 @@ body.campaign-popup-open {
 }
 
 @media (max-width: 640px) {
+  .campaign-popup-launcher {
+    left: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    min-height: 42px;
+    gap: 7px;
+    padding: 6px 11px 6px 7px;
+    font-size: 13px;
+  }
+
+  .campaign-popup-launcher-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .campaign-popup-launcher-count {
+    min-width: 21px;
+    height: 21px;
+  }
+
   .campaign-popup {
     padding: 10px 10px 62px;
   }
@@ -254,6 +330,7 @@ body.campaign-popup-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .campaign-popup-launcher,
   .campaign-popup,
   .campaign-popup-dialog,
   .campaign-popup-close,

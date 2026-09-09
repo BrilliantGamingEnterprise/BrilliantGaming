@@ -32,8 +32,7 @@ const currencyFlagClasses = {
 const promotionSettings = {
   enabled: true,
   id: 'homepage-campaigns-2026-08',
-  showOnEveryVisit: true,
-  frequencyHours: 24,
+  showOncePerSession: true,
   delayMs: 700,
   autoAdvanceMs: 5200,
   slides: [

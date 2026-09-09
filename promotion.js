@@ -19,38 +19,78 @@
 
   if (!slides.length) return;
 
-  const storageKey = `bge-promotion-seen:${settings.id || slides.map((slide) => slide.id).join(':')}`;
-  const showOnEveryVisit = settings.showOnEveryVisit === true;
-  const repeatAfter = Math.max(1, Number(settings.frequencyHours) || 24) * 60 * 60 * 1000;
+  const sessionStorageKey = `bge-promotion-session-shown:${settings.id || slides.map((slide) => slide.id).join(':')}`;
+  const showOncePerSession = settings.showOncePerSession !== false;
+  let launcher = null;
+  let popupOpen = false;
 
-  function getLastSeen() {
+  function wasShownThisSession() {
     try {
-      return Number(localStorage.getItem(storageKey)) || 0;
+      return sessionStorage.getItem(sessionStorageKey) === '1';
     } catch (error) {
-      return 0;
+      return false;
     }
   }
 
-  function markSeen() {
-    if (previewMode || showOnEveryVisit) return;
+  function markShownThisSession() {
+    if (previewMode) return;
     try {
-      localStorage.setItem(storageKey, String(Date.now()));
+      sessionStorage.setItem(sessionStorageKey, '1');
     } catch (error) {
       // 隐私模式或禁用储存时仍可正常显示活动。
     }
   }
 
-  if (!previewMode && !showOnEveryVisit && now - getLastSeen() < repeatAfter) return;
+  const shouldAutoOpen = previewMode || !showOncePerSession || !wasShownThisSession();
 
   function isEnglish() {
-    return document.documentElement.lang.toLowerCase().startsWith('en')
-      || new URLSearchParams(window.location.search).get('lang') === 'en';
+    const queryLanguage = new URLSearchParams(window.location.search).get('lang');
+    if (queryLanguage === 'en') return true;
+    if (queryLanguage === 'zh') return false;
+    if (globalThis.BGE_I18N?.isEnglish?.()) return true;
+    try {
+      const storedLanguage = localStorage.getItem('bge-language-v1');
+      if (storedLanguage === 'en') return true;
+      if (storedLanguage === 'zh') return false;
+    } catch (error) {
+      // 无法读取偏好时使用页面语言。
+    }
+    return document.documentElement.lang.toLowerCase().startsWith('en');
+  }
+
+  function updateLauncherLanguage() {
+    if (!launcher) return;
+    const english = isEnglish();
+    launcher.setAttribute('aria-label', english ? 'Open promotions' : '打开优惠活动');
+    const label = launcher.querySelector('[data-campaign-launcher-label]');
+    if (label) label.textContent = english ? 'Promotions' : '优惠活动';
+  }
+
+  function createLauncher() {
+    if (launcher) return launcher;
+    launcher = document.createElement('button');
+    launcher.className = 'campaign-popup-launcher';
+    launcher.type = 'button';
+    launcher.setAttribute('aria-haspopup', 'dialog');
+    launcher.setAttribute('aria-controls', 'campaignPopup');
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.innerHTML = `
+      <span class="campaign-popup-launcher-icon" aria-hidden="true">✦</span>
+      <span data-campaign-launcher-label></span>
+      ${slides.length > 1 ? `<span class="campaign-popup-launcher-count" aria-hidden="true">${slides.length}</span>` : ''}
+    `;
+    updateLauncherLanguage();
+    launcher.addEventListener('click', createPopup);
+    document.body.appendChild(launcher);
+    return launcher;
   }
 
   function createPopup() {
+    if (popupOpen) return;
     const english = isEnglish();
     const whatsappNumber = globalThis.BGE_SITE_CONFIG?.catalogSettings?.whatsappNumber || '';
     const overlay = document.createElement('div');
+    overlay.id = 'campaignPopup';
     overlay.className = 'campaign-popup';
     overlay.setAttribute('aria-hidden', 'true');
     overlay.innerHTML = `
@@ -153,9 +193,14 @@
 
     function closePopup() {
       stopAutoAdvance();
+      popupOpen = false;
       overlay.classList.remove('is-open');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('campaign-popup-open');
+      if (launcher) {
+        launcher.hidden = false;
+        launcher.setAttribute('aria-expanded', 'false');
+      }
       document.removeEventListener('keydown', onKeydown);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       window.setTimeout(() => {
@@ -300,9 +345,14 @@
       contactLink.addEventListener('touchcancel', cancelSwipe, { passive: true });
     }
 
+    popupOpen = true;
+    markShownThisSession();
+    if (launcher) {
+      launcher.hidden = true;
+      launcher.setAttribute('aria-expanded', 'true');
+    }
     document.body.appendChild(overlay);
     document.body.classList.add('campaign-popup-open');
-    markSeen();
     showSlide(0, { track: false });
     document.addEventListener('keydown', onKeydown);
     document.addEventListener('visibilitychange', onVisibilityChange);
@@ -314,7 +364,13 @@
     });
   }
 
-  const ready = () => window.setTimeout(createPopup, Math.max(0, Number(settings.delayMs) || 0));
+  const ready = () => {
+    createLauncher();
+    if (shouldAutoOpen) {
+      window.setTimeout(createPopup, Math.max(0, Number(settings.delayMs) || 0));
+    }
+  };
+  window.addEventListener('bge:languagechange', updateLauncherLanguage);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready, { once: true });
   } else {
