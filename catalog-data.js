@@ -249,11 +249,11 @@ const categories = {
         { title: '240 点券', en: '240 Tokens', price: 'RM 12.00', note: '国际服点券 / Global Tokens' },
         { title: '400 点券', en: '400 Tokens', price: 'RM 20.00', note: '国际服点券 / Global Tokens' },
         { title: '560 点券', en: '560 Tokens', price: 'RM 28.00', note: '国际服点券 / Global Tokens' },
-        { title: '830 点券', en: '830 Tokens', price: 'RM 38.00', note: '国际服点券 / Global Tokens' },
-        { title: '1245 点券', en: '1245 Tokens', price: 'RM 57.00', note: '国际服点券 / Global Tokens' },
-        { title: '2508 点券', en: '2508 Tokens', price: 'RM 114.00', note: '国际服点券 / Global Tokens' },
-        { title: '4180 点券', en: '4180 Tokens', price: 'RM 188.00', note: 'HOT 推荐 / Most Popular' },
-        { title: '8360 点券', en: '8360 Tokens', price: 'RM 365.00', note: 'BEST VALUE 推荐 / Best Value' }
+        { title: '830 点券', en: '830 Tokens', price: 'RM 40.00', note: '国际服点券 / Global Tokens' },
+        { title: '1245 点券', en: '1245 Tokens', price: 'RM 60.00', note: '国际服点券 / Global Tokens' },
+        { title: '2508 点券', en: '2508 Tokens', price: 'RM 120.00', note: '国际服点券 / Global Tokens' },
+        { title: '4180 点券', en: '4180 Tokens', price: 'RM 190.00', note: 'HOT 推荐 / Most Popular' },
+        { title: '8360 点券', en: '8360 Tokens', price: 'RM 380.00', note: 'BEST VALUE 推荐 / Best Value' }
       ]
     }
   ]
