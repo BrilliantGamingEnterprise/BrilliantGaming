@@ -8,6 +8,7 @@ const pricePresets = {
 
   // 中国服共用价格：王者荣耀、和平精英、火影忍者、金铲铲等共用的人民币档位。
   // 以后要统一调整中国游戏档位价格，只改这里一次即可。
+  cny1: 'RM 1.00',
   cny6: 'RM 6.00',
   cny10: 'RM 10.00',
   cny18: 'RM 15.00',
@@ -1552,6 +1553,33 @@ const categories = {
   ]
 },
       
+      {
+  id: 'wangzhe-wanxiangqi',
+  name: '王者万象棋',
+  detailName: '腾讯 · 王者万象棋',
+  description: '《王者荣耀》英雄策略对战新游',
+  tag: '扫码充值',
+  image: 'assets/images/games/wangzhe-wanxiangqi.jpg',
+  detailArt: 'assets/images/games/wangzhe-wanxiangqi2.jpg',
+  productSections: [
+    {
+      title: '点券',
+      subtitle: 'Tokens',
+      icon: '◆',
+      products: [
+        { title: '10 点券', en: '10 Tokens', pricePreset: 'cny1', note: '点券充值 / Token Top-Up' },
+        { title: '60 点券', en: '60 Tokens', pricePreset: 'cny6', note: '点券充值 / Token Top-Up' },
+        { title: '300 点券 + 额外 16', en: '300 Tokens + 16 Bonus', pricePreset: 'cny30', note: '开服充值回馈 / Launch Bonus' },
+        { title: '680 点券 + 额外 38', en: '680 Tokens + 38 Bonus', pricePreset: 'cny68', note: '开服充值回馈 / Launch Bonus' },
+        { title: '1280 点券 + 额外 78', en: '1280 Tokens + 78 Bonus', pricePreset: 'cny128', note: '开服充值回馈 / Launch Bonus' },
+        { title: '1980 点券 + 额外 128', en: '1980 Tokens + 128 Bonus', pricePreset: 'cny198', note: '开服充值回馈 / Launch Bonus' },
+        { title: '3280 点券 + 额外 216', en: '3280 Tokens + 216 Bonus', pricePreset: 'cny328', note: '开服充值回馈 / Launch Bonus' },
+        { title: '6480 点券 + 额外 436', en: '6480 Tokens + 436 Bonus', pricePreset: 'cny648', note: 'HOT 推荐 / 开服充值回馈' }
+      ]
+    }
+  ]
+},
+
       {
   id: 'peace-elite',
   name: '和平精英',

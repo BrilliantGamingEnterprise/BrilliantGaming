@@ -49,6 +49,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/yulgang-w": "2026-09-03",
     "intl/ddtank-origin-malaysia": "2026-08-04",
     "cn/honor-of-kings-cn": "2026-07-15",
+    "cn/wangzhe-wanxiangqi": "2026-09-11",
     "cn/peace-elite": "2026-07-15",
     "cn/huoying-renzhe": "2026-07-15",
     "cn/jin-chan-chan": "2026-07-15",
