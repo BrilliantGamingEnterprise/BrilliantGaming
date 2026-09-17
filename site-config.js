@@ -47,16 +47,6 @@ const promotionSettings = {
       whatsappMessageEn: 'Hi, I would like to ask about the Lan Wushuang skin gifting promotion at RM 250.'
     },
     {
-      id: 'hok-dandadan-8360-rm365-2026',
-      image: 'assets/images/promotions/hok-dandadan-8360-rm365.png',
-      altZh: 'Honor of Kings 胆大党联动，8360 Tokens，RM 365',
-      altEn: 'Honor of Kings x DAN DA DAN, 8360 Tokens, RM 365',
-      startsAt: '2026-08-16T00:00:00+08:00',
-      endsAt: '',
-      whatsappMessageZh: '你好，我想询问 Honor of Kings 胆大党联动 8360 Tokens，RM 365 活动。',
-      whatsappMessageEn: 'Hi, I would like to ask about the Honor of Kings x DAN DA DAN 8360 Tokens promotion at RM 365.'
-    },
-    {
       id: 'genshin-6480-rm320-2026',
       image: 'assets/images/promotions/genshin-6480-rm320.png',
       altZh: '原神星空祈愿，6480 结晶，RM 320',
