@@ -78,7 +78,7 @@ const categories = {
               { title: '980 + 110 创世结晶', en: '980 + 110 Genesis Crystals', price: 'RM 54.00', note: '结晶 / Genesis Crystal' },
               { title: '1980 + 260 创世结晶', en: '1980 + 260 Genesis Crystals', price: 'RM 105.00', note: '结晶 / Genesis Crystal' },
               { title: '3280 + 600 创世结晶', en: '3280 + 600 Genesis Crystals', price: 'RM 170.00', note: '结晶 / Genesis Crystal' },
-              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 320.00', note: '结晶 / Genesis Crystal' },
+              { title: '6480 + 1600 创世结晶', en: '6480 + 1600 Genesis Crystals', price: 'RM 300.00', note: '结晶 / Genesis Crystal' },
               { title: '60 - 6480 一条龙', en: 'Full Bundle 60 - 6480 Genesis Crystals', price: 'RM 650.00', note: '一条龙套餐 / Full Bundle' }
             ]
           },
