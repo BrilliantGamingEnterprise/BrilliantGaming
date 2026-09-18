@@ -200,6 +200,31 @@ const categories = {
   ]
 },
       {
+  id: 'tower-of-saviors',
+  name: '神魔之塔',
+  detailName: '神魔之塔',
+  description: 'Tower of Saviors',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/tower-of-saviors-icon.png',
+  detailArt: 'assets/images/games/tower-of-saviors-icon.png',
+  productSections: [
+    {
+      title: '魔法石',
+      subtitle: 'Magic Stones',
+      icon: '◆',
+      products: [
+        { title: '1 魔法石', en: '1 Magic Stone', price: 'RM 4.50' },
+        { title: '6 魔法石', en: '6 Magic Stones', price: 'RM 20' },
+        { title: '15 魔法石', en: '15 Magic Stones', price: 'RM 48' },
+        { title: '30 魔法石', en: '30 Magic Stones', price: 'RM 84' },
+        { title: '60 魔法石', en: '60 Magic Stones', price: 'RM 156' },
+        { title: '90 魔法石', en: '90 Magic Stones', price: 'RM 220' },
+        { title: '150 魔法石', en: '150 Magic Stones', price: 'RM 323' }
+      ]
+    }
+  ]
+},
+      {
   id: 'pokemon-tcg-pocket',
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',

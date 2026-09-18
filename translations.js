@@ -596,6 +596,7 @@
     'honkai-star-rail': { name: 'Honkai: Star Rail', detail: 'Honkai: Star Rail (Global)' },
     'zenless-zone-zero': { name: 'Zenless Zone Zero', detail: 'Zenless Zone Zero (Global)' },
     'wuthering-waves': { name: 'Wuthering Waves', detail: 'Wuthering Waves (Global)' },
+    'tower-of-saviors': { name: 'Tower of Saviors', detail: 'Tower of Saviors' },
     'pokemon-tcg-pocket': { name: 'Pokémon TCG Pocket', detail: 'Pokémon TCG Pocket' },
     'honor-of-kings-global': { name: 'Honor of Kings Global', detail: 'Honor of Kings (Global)' },
     'pubg-mobile': { name: 'PUBG Mobile', detail: 'PUBG Mobile' },
@@ -648,6 +649,7 @@
   };
 
   const sectionEnglish = {
+    '魔法石': 'Magic Stones',
     '创世结晶': 'Genesis Crystals',
     '其他商品': 'Other Items',
     '古老梦华': 'Oneiric Shards',

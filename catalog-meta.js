@@ -5,6 +5,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/honkai-star-rail": "2026-08-27",
     "intl/zenless-zone-zero": "2026-08-27",
     "intl/wuthering-waves": "2026-08-27",
+    "intl/tower-of-saviors": "2026-09-18",
     "intl/pokemon-tcg-pocket": "2026-07-15",
     "intl/honor-of-kings-global": "2026-09-10",
     "intl/pubg-mobile": "2026-07-15",
