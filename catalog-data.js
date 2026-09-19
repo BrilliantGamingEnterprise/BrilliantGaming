@@ -225,6 +225,41 @@ const categories = {
   ]
 },
       {
+  id: 'aniimo',
+  name: '伊莫',
+  detailName: '伊莫',
+  description: 'Aniimo',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/aniimo.jpg',
+  detailArt: 'assets/images/games/aniimo2.webp',
+  keywords: ['伊莫', 'Aniimo', '辉晶', '同行手册', '官网充值'],
+  productSections: [
+    {
+      title: '辉晶',
+      subtitle: 'Lumin Crystals',
+      icon: '◆',
+      products: [
+        { title: '60 + 6 辉晶', en: '60 + 6 Lumin Crystals', price: 'RM 19', note: '官网充值 / Official Shop Top-Up' },
+        { title: '300 + 30 辉晶', en: '300 + 30 Lumin Crystals', price: 'RM 38', note: '官网充值 / Official Shop Top-Up' },
+        { title: '980 + 98 辉晶', en: '980 + 98 Lumin Crystals', price: 'RM 57', note: '官网充值 / Official Shop Top-Up' },
+        { title: '1980 + 198 辉晶', en: '1,980 + 198 Lumin Crystals', price: 'RM 114', note: '官网充值 / Official Shop Top-Up' },
+        { title: '3280 + 328 辉晶', en: '3,280 + 328 Lumin Crystals', price: 'RM 190', note: '官网充值 / Official Shop Top-Up' },
+        { title: '6480 + 648 辉晶', en: '6,480 + 648 Lumin Crystals', price: 'RM 360.00', note: '官网充值 / Official Shop Top-Up' }
+      ]
+    },
+    {
+      title: '其他商品',
+      subtitle: 'Passes & Handbook',
+      icon: '◆',
+      products: [
+        { title: '月度之证', en: 'Monthly Pass', price: 'RM 19', note: '官网充值 / Official Shop Top-Up' },
+        { title: '进阶版同行手册', en: 'Advanced Companion Handbook', price: 'RM 38', note: '官网充值 / Official Shop Top-Up' },
+        { title: '典藏版同行手册', en: "Collector's Companion Handbook", price: 'RM 76', note: '官网充值 / Official Shop Top-Up' }
+      ]
+    }
+  ]
+},
+      {
   id: 'pokemon-tcg-pocket',
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',
