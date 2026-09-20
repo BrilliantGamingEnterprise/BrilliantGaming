@@ -474,6 +474,34 @@ const categories = {
   ]
 },
       {
+  id: 'delta-force-global-pc',
+  name: '三角洲行动国际服（PC）',
+  detailName: '非 Garena · 三角洲行动国际服（PC）',
+  description: 'Delta Force Global (PC)',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/delta-force-global-pc.png',
+  detailArt: 'assets/images/games/delta-force-global-pc2.jpg',
+  keywords: ['三角洲', '三角洲行动', 'Delta Force', 'Global', 'PC', 'Steam', '非 Garena', '三角币'],
+  productSections: [
+    {
+      title: '三角币',
+      subtitle: 'Delta Coins',
+      icon: '◆',
+      products: [
+        { title: '300 + 20 三角币', en: '300 + 20 Delta Coins', price: 'RM 19', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '420 + 40 三角币', en: '420 + 40 Delta Coins', price: 'RM 27', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '680 + 70 三角币', en: '680 + 70 Delta Coins', price: 'RM 38', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '1280 + 200 三角币', en: '1,280 + 200 Delta Coins', price: 'RM 76', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '1680 + 300 三角币', en: '1,680 + 300 Delta Coins', price: 'RM 95', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '3280 + 670 三角币', en: '3,280 + 670 Delta Coins', price: 'RM 190', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '6480 + 1620 三角币', en: '6,480 + 1,620 Delta Coins', price: 'RM 350', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '12960 + 3240 三角币', en: '12,960 + 3,240 Delta Coins', price: 'RM 760', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' },
+        { title: '19440 + 4860 三角币', en: '19,440 + 4,860 Delta Coins', price: 'RM 1140', note: '国际服 PC · UID 充值 / Global PC · UID Top-Up' }
+      ]
+    }
+  ]
+},
+      {
   id: 'mobile-legends',
   name: 'Mobile Legends',
   detailName: 'Mobile Legends BangBang',
