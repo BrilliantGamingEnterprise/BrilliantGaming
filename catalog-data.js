@@ -260,6 +260,31 @@ const categories = {
   ]
 },
       {
+  id: 'shan-jiang-sanguo',
+  name: '闪将三国',
+  detailName: '闪将三国',
+  description: 'Shan Jiang Three Kingdoms',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/shan-jiang-sanguo.png',
+  detailArt: 'assets/images/games/shan-jiang-sanguo2.jpg',
+  keywords: ['闪将三国', '閃將三國', 'Shan Jiang Three Kingdoms', '金券', '机甲三国'],
+  productSections: [
+    {
+      title: '金券',
+      subtitle: 'Gold Vouchers',
+      icon: '◆',
+      products: [
+        { title: '68 + 7 金券', en: '68 + 7 Gold Vouchers', price: 'RM 38', note: '登入充值 / Login Top Up' },
+        { title: '98 + 12 金券', en: '98 + 12 Gold Vouchers', price: 'RM 57', note: '登入充值 / Login Top Up' },
+        { title: '128 + 20 金券', en: '128 + 20 Gold Vouchers', price: 'RM 76', note: '登入充值 / Login Top Up' },
+        { title: '198 + 32 金券', en: '198 + 32 Gold Vouchers', price: 'RM 114', note: '登入充值 / Login Top Up' },
+        { title: '328 + 62 金券', en: '328 + 62 Gold Vouchers', price: 'RM 190', note: '登入充值 / Login Top Up' },
+        { title: '648 + 142 金券', en: '648 + 142 Gold Vouchers', price: 'RM 380', note: '登入充值 / Login Top Up' }
+      ]
+    }
+  ]
+},
+      {
   id: 'pokemon-tcg-pocket',
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',

@@ -598,6 +598,7 @@
     'wuthering-waves': { name: 'Wuthering Waves', detail: 'Wuthering Waves (Global)' },
     'tower-of-saviors': { name: 'Tower of Saviors', detail: 'Tower of Saviors' },
     'aniimo': { name: 'Aniimo', detail: 'Aniimo' },
+    'shan-jiang-sanguo': { name: 'Shan Jiang Three Kingdoms', detail: 'Shan Jiang Three Kingdoms' },
     'pokemon-tcg-pocket': { name: 'Pokémon TCG Pocket', detail: 'Pokémon TCG Pocket' },
     'honor-of-kings-global': { name: 'Honor of Kings Global', detail: 'Honor of Kings (Global)' },
     'pubg-mobile': { name: 'PUBG Mobile', detail: 'PUBG Mobile' },
@@ -652,6 +653,7 @@
   const sectionEnglish = {
     '魔法石': 'Magic Stones',
     '辉晶': 'Lumin Crystals',
+    '金券': 'Gold Vouchers',
     '创世结晶': 'Genesis Crystals',
     '其他商品': 'Other Items',
     '古老梦华': 'Oneiric Shards',
