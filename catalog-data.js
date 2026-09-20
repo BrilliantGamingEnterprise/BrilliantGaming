@@ -476,7 +476,7 @@ const categories = {
       {
   id: 'delta-force-global-pc',
   name: '三角洲行动国际服（PC）',
-  detailName: '非 Garena · 三角洲行动国际服（PC）',
+  detailName: 'Delta Force Global (PC)',
   description: 'Delta Force Global (PC)',
   tag: 'UID Top Up',
   image: 'assets/images/games/delta-force-global-pc.png',
