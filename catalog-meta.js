@@ -35,7 +35,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/ragnarok-origin-classic": "2026-07-15",
     "intl/dark-war-survival": "2026-07-15",
     "intl/heartopia": "2026-07-15",
-    "intl/douluo-liehun-shijie": "2026-08-18",
+    "intl/douluo-liehun-shijie": "2026-09-23",
     "intl/jianxia-qingyuan": "2026-07-15",
     "intl/legends-of-mushroom": "2026-07-15",
     "intl/zombie-wave": "2026-07-15",
