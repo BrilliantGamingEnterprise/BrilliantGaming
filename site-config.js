@@ -31,11 +31,21 @@ const currencyFlagClasses = {
 // 填入带马来西亚时区的 ISO 时间，过期项目会自动从轮播中移除。
 const promotionSettings = {
   enabled: true,
-  id: 'homepage-campaigns-2026-09',
+  id: 'homepage-campaigns-2026-09-sunshangxiang',
   showOncePerSession: true,
   delayMs: 700,
   autoAdvanceMs: 5200,
   slides: [
+    {
+      id: 'sunshangxiang-cloud-paradise-2026',
+      image: 'assets/images/promotions/sunshangxiang-cloud-paradise-v1.png',
+      altZh: '孙尚香·云端乐园，珍品无双限定，王者荣耀 × 三丽鸥家族第四弹，美乐蒂与酷洛米双形态。皮肤代送 RM 450，天幕代送 RM 268。',
+      altEn: 'Sun Shangxiang Cloud Paradise, Honor of Kings × Sanrio Characters, My Melody and Kuromi dual forms. Skin gifting RM 450; sky screen gifting RM 268.',
+      startsAt: '',
+      endsAt: '',
+      whatsappMessageZh: '你好，我想询问孙尚香·云端乐园活动：皮肤代送 RM 450 / 天幕代送 RM 268。',
+      whatsappMessageEn: 'Hi, I would like to ask about Sun Shangxiang Cloud Paradise: skin gifting RM 450 / sky screen gifting RM 268.'
+    },
     {
       id: 'lan-wushuang-rm250-2026',
       image: 'assets/images/promotions/lan-wushuang-rm250.png',
