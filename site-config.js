@@ -31,11 +31,20 @@ const currencyFlagClasses = {
 // 填入带马来西亚时区的 ISO 时间，过期项目会自动从轮播中移除。
 const promotionSettings = {
   enabled: true,
-  id: 'homepage-campaigns-2026-09-sunshangxiang',
+  id: 'homepage-campaigns-2026-09-instagram',
   showOncePerSession: true,
   delayMs: 700,
   autoAdvanceMs: 5200,
   slides: [
+    {
+      id: 'instagram-new-account-2026-09',
+      image: 'assets/images/promotions/instagram-new-account-v1.png',
+      altZh: 'Instagram 大号被封了。原账号粉丝数 9,664。感谢大家一路支持，请大家关注新账号，后续资讯与活动将在新 IG 更新。',
+      altEn: 'Our previous Instagram account with 9,664 followers was disabled. Thank you for your support. Follow our new Instagram account for news and promotions.',
+      href: 'https://www.instagram.com/zhuoyuedianjing.official/',
+      startsAt: '',
+      endsAt: ''
+    },
     {
       id: 'sunshangxiang-cloud-paradise-2026',
       image: 'assets/images/promotions/sunshangxiang-cloud-paradise-v1.png',

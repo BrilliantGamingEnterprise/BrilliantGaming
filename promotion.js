@@ -155,7 +155,7 @@
       window.setTimeout(() => {
         campaignImage.src = slide.image;
         campaignImage.alt = altText;
-        contactLink.href = getWhatsappUrl(slide);
+        contactLink.href = slide.href || getWhatsappUrl(slide);
         description.textContent = altText;
         dotButtons.forEach((button, dotIndex) => {
           const active = dotIndex === currentIndex;
