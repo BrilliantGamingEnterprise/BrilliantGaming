@@ -4266,3 +4266,20 @@ body .currency-switch {
     padding: 20px 16px;
   }
 }
+/* Temporary Instagram notice hero: preserve the complete announcement artwork. */
+.page-home .directory-home.has-notice-hero .directory-intro { min-height: 0; padding: 24px 18px; background-image: none; }
+.page-home .directory-home.has-notice-hero .directory-intro::before,
+.page-home .directory-home.has-notice-hero .directory-intro::after { display: none; }
+.instagram-notice-hero { margin: 0 auto 24px; max-width: 960px; overflow: hidden; border: 1px solid #65512d; border-radius: 18px; background: #101013; }
+.instagram-notice-art { display: block; }
+.instagram-notice-art img { display: block; width: 100%; height: auto; }
+.instagram-notice-action { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; color: #ead7aa; }
+.instagram-notice-action > span { overflow-wrap: anywhere; font-size: 13px; }
+.ig-copy-en { display: none; }
+html[lang^="en"] .ig-copy-zh { display: none; }
+html[lang^="en"] .ig-copy-en { display: inline; }
+@media (max-width: 600px) {
+  .instagram-notice-hero { margin-bottom: 16px; border-radius: 12px; }
+  .instagram-notice-action { padding: 10px; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .instagram-notice-action .button { min-height: 44px; padding: 10px 14px; font-size: 13px; }
+}

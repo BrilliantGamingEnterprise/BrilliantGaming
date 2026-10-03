@@ -31,17 +31,18 @@ const currencyFlagClasses = {
 // 填入带马来西亚时区的 ISO 时间，过期项目会自动从轮播中移除。
 const promotionSettings = {
   enabled: true,
-  id: 'homepage-campaigns-2026-09-instagram',
+  id: 'homepage-genshin-welkin-2026-10',
   showOncePerSession: true,
   delayMs: 700,
   autoAdvanceMs: 5200,
   slides: [
     {
-      id: 'instagram-new-account-2026-09',
-      image: 'assets/images/promotions/instagram-new-account-v1.png',
-      altZh: 'Instagram 大号被封了。原账号粉丝数 9,664。感谢大家一路支持，请大家关注新账号，后续资讯与活动将在新 IG 更新。',
-      altEn: 'Our previous Instagram account with 9,664 followers was disabled. Thank you for your support. Follow our new Instagram account for news and promotions.',
-      href: 'https://www.instagram.com/zhuoyuedianjing.official/',
+      id: 'genshin-6480-welkin-rm320-2026',
+      image: 'assets/images/promotions/genshin-6480-welkin-rm320-v2.png',
+      altZh: '原神国际服，充值 6480 创世结晶送月卡（空月祝福），RM 320。',
+      altEn: 'Genshin Impact Global: top up 6480 Genesis Crystals and receive a Blessing of the Welkin Moon, RM 320.',
+      whatsappMessageZh: '你好，我想询问原神国际服充值 6480 送月卡（空月祝福），RM 320 的活动。',
+      whatsappMessageEn: 'Hi, I would like the Genshin Impact Global 6480 Genesis Crystals + free Welkin Moon promotion for RM 320.',
       startsAt: '',
       endsAt: ''
     }
