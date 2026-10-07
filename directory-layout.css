@@ -4267,6 +4267,79 @@ body .currency-switch {
   }
 }
 /* Temporary Instagram notice hero: preserve the complete announcement artwork. */
+.home-news-hero { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 18px; margin-bottom: 24px; align-items: stretch; }
+.home-news-hero .instagram-notice-hero { display: flex; flex-direction: column; max-width: none; margin: 0; align-self: stretch; }
+.home-news-hero .instagram-notice-art { flex: 1; display: flex; align-items: center; }
+.home-news-stack { display: grid; grid-template-rows: repeat(2,minmax(0,1fr)); gap: 16px; min-width: 0; }
+.home-news-poster { display: flex; flex-direction: column; align-self: stretch; overflow: hidden; border: 1px solid #65512d; border-radius: 14px; background: #101013; text-decoration: none; }
+.home-news-poster img { display: block; width: 100%; height: auto; }
+.home-news-source-links { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; min-height: 38px; box-sizing: border-box; margin-top: auto; color: #edc66c; font-size: 11px; }
+.home-news-source-links a { color: #edc66c; font-size: 11px; text-decoration: none; white-space: nowrap; }
+.home-news-single-source { justify-content: center; }
+
+.skin-launch-art { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.skin-launch-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,8,20,.94), rgba(5,8,20,.72) 34%, rgba(5,8,20,.14) 59%, transparent 72%); pointer-events: none; }
+.skin-launch-art img { width: 100%; height: 100%; object-fit: cover; }
+.skin-launch-sima .skin-launch-art img { transform: translateX(3%) scale(1.18); transform-origin: 64% 40%; }
+.skin-launch-dolia .skin-launch-art img { transform: translateX(13%) scale(1.24); transform-origin: 50% 42%; }
+.skin-launch-copy { position: absolute; z-index: 1; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 20px; color: #fff; text-shadow: 0 2px 8px #000; }
+.skin-launch-region { font-size: 11px; color: #f3cf7d; letter-spacing: 1px; }
+.skin-launch-copy h2 { margin: 9px 0 3px; font-size: clamp(20px, 2.1vw, 32px); line-height: 1.15; }
+.skin-launch-copy p { margin: 0 0 14px; font-size: 11px; color: #e1e5ed; }
+.skin-launch-copy strong { font-size: 18px; color: #f8dfa4; letter-spacing: 1px; }
+.skin-launch-price { margin-top: 5px; font-size: 13px; }
+.skin-launch-price b { font-size: 29px; color: #f6d37d; }
+@media (max-width: 900px) {
+  .skin-launch-copy { padding: 10px; }
+  .skin-launch-region { font-size: 8px; letter-spacing: 0; }
+  .skin-launch-copy h2 { margin: 5px 0 2px; font-size: 17px; }
+  .skin-launch-copy p { font-size: 8px; margin-bottom: 6px; }
+  .skin-launch-copy strong { font-size: 12px; }
+  .skin-launch-price { font-size: 9px; margin-top: 2px; }
+  .skin-launch-price b { font-size: 19px; }
+}
+@media (max-width: 600px) {
+  .skin-launch-art { aspect-ratio: auto; }
+  .skin-launch-art::after { display: none; }
+  .skin-launch-art img { aspect-ratio: 16 / 10; height: auto; object-fit: cover; transform: none; }
+  .skin-launch-sima .skin-launch-art img { object-position: 68% 40%; transform: none; }
+  .skin-launch-dolia .skin-launch-art img { object-position: 55% 38%; transform: none; }
+  .skin-launch-copy { position: relative; padding: 12px 10px; background: linear-gradient(135deg, #151d2c, #0d1019); text-shadow: none; }
+  .skin-launch-copy h2 { font-size: 18px; margin: 7px 0 4px; }
+  .skin-launch-copy p { font-size: 9px; margin-bottom: 10px; }
+  .skin-launch-copy strong { font-size: 13px; }
+  .skin-launch-price { font-size: 11px; margin-top: 4px; }
+  .skin-launch-price b { font-size: 25px; }
+  .skin-launch-news .home-news-source-links { min-height: 36px; font-size: 9px; }
+}
+.home-news-poster:focus-visible, .home-news-source-links a:focus-visible { outline: 2px solid #edc66c; outline-offset: 2px; }
+.home-news-card { display: flex; flex-direction: column; justify-content: center; gap: 9px; padding: 20px 24px; border: 1px solid #65512d; border-radius: 18px; overflow: hidden; color: #fff; text-decoration: none; background-size: cover; background-position: center; }
+.home-news-hok { background-image: linear-gradient(100deg,rgba(7,14,28,.96),rgba(7,14,28,.83)),url('assets/images/games/王者荣耀2.jpg'); }
+.home-news-zzz { background-image: linear-gradient(100deg,rgba(16,17,26,.97),rgba(16,17,26,.8)),url('assets/images/games/zzz2.jpg'); }
+.home-news-card .home-news-kicker { color: #edc66c; font-size: 12px; letter-spacing: .08em; }
+.home-news-card h2 { margin: 0; font-size: clamp(19px,1.8vw,27px); line-height: 1.2; color: #fff; }
+.home-news-card p { margin: 0; font-size: 13px; line-height: 1.6; color: #e1e3e8; }
+.home-news-card > a { display: block; color: #fff; text-decoration: none; }
+.home-news-card > a strong { display: block; color: #ffe1a1; font-size: 14px; }
+.home-news-card > a span { display: block; font-size: 12px; line-height: 1.6; margin-top: 3px; }
+.home-news-card small { color: #b8bdca; font-size: 10px; }
+.home-news-card .home-news-time { color: #ffe1a1; font-size: 22px; }
+.home-news-time strong { font-size: 34px; }
+.home-news-time span { display: block; font-size: 11px; color: #ccc; }
+.home-news-card:focus-visible, .home-news-card a:focus-visible { outline: 2px solid #edc66c; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .home-news-hero { grid-template-columns: 1fr; }
+  .home-news-stack { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: auto; gap: 10px; }
+  .home-news-source-links { min-height: 52px; padding: 7px 6px; flex-wrap: wrap; justify-content: center; gap: 3px 8px; }
+  .home-news-source-links a { font-size: 10px; }
+  .home-news-card { padding: 16px 12px; border-radius: 12px; }
+}
+@media (max-width: 420px) {
+  .home-news-card h2 { font-size: 18px; }
+  .home-news-card > a strong { font-size: 12px; }
+  .home-news-card > a span, .home-news-card p { font-size: 11px; }
+  .home-news-time strong { font-size: 28px; }
+}
 .page-home .directory-home.has-notice-hero .directory-intro { min-height: 0; padding: 24px 18px; background-image: none; }
 .page-home .directory-home.has-notice-hero .directory-intro::before,
 .page-home .directory-home.has-notice-hero .directory-intro::after { display: none; }
