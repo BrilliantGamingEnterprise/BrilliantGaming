@@ -239,12 +239,12 @@ const categories = {
       subtitle: 'Lumin Crystals',
       icon: '◆',
       products: [
-        { title: '60 + 6 辉晶', en: '60 + 6 Lumin Crystals', price: 'RM 19', note: '官网充值 / Official Shop Top-Up' },
-        { title: '300 + 30 辉晶', en: '300 + 30 Lumin Crystals', price: 'RM 38', note: '官网充值 / Official Shop Top-Up' },
-        { title: '980 + 98 辉晶', en: '980 + 98 Lumin Crystals', price: 'RM 57', note: '官网充值 / Official Shop Top-Up' },
-        { title: '1980 + 198 辉晶', en: '1,980 + 198 Lumin Crystals', price: 'RM 114', note: '官网充值 / Official Shop Top-Up' },
-        { title: '3280 + 328 辉晶', en: '3,280 + 328 Lumin Crystals', price: 'RM 190', note: '官网充值 / Official Shop Top-Up' },
-        { title: '6480 + 648 辉晶', en: '6,480 + 648 Lumin Crystals', price: 'RM 360.00', note: '官网充值 / Official Shop Top-Up' }
+        { title: '60 + 6 辉晶', en: '60 + 6 Lumin Crystals', price: 'RM 21.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '300 + 30 辉晶', en: '300 + 30 Lumin Crystals', price: 'RM 42.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '980 + 98 辉晶', en: '980 + 98 Lumin Crystals', price: 'RM 63.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '1980 + 198 辉晶', en: '1,980 + 198 Lumin Crystals', price: 'RM 126.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '3280 + 328 辉晶', en: '3,280 + 328 Lumin Crystals', price: 'RM 210.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '6480 + 648 辉晶', en: '6,480 + 648 Lumin Crystals', price: 'RM 380.00', note: '官网充值 / Official Shop Top-Up' }
       ]
     },
     {
@@ -252,9 +252,9 @@ const categories = {
       subtitle: 'Passes & Handbook',
       icon: '◆',
       products: [
-        { title: '月度之证', en: 'Monthly Pass', price: 'RM 19', note: '官网充值 / Official Shop Top-Up' },
-        { title: '进阶版同行手册', en: 'Advanced Companion Handbook', price: 'RM 38', note: '官网充值 / Official Shop Top-Up' },
-        { title: '典藏版同行手册', en: "Collector's Companion Handbook", price: 'RM 76', note: '官网充值 / Official Shop Top-Up' }
+        { title: '月度之证', en: 'Monthly Pass', price: 'RM 21.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '进阶版同行手册', en: 'Advanced Companion Handbook', price: 'RM 42.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '典藏版同行手册', en: "Collector's Companion Handbook", price: 'RM 84.00', note: '官网充值 / Official Shop Top-Up' }
       ]
     }
   ]
@@ -274,12 +274,12 @@ const categories = {
       subtitle: 'Gold Vouchers',
       icon: '◆',
       products: [
-        { title: '68 + 7 金券', en: '68 + 7 Gold Vouchers', price: 'RM 38', note: '登入充值 / Login Top Up' },
-        { title: '98 + 12 金券', en: '98 + 12 Gold Vouchers', price: 'RM 57', note: '登入充值 / Login Top Up' },
-        { title: '128 + 20 金券', en: '128 + 20 Gold Vouchers', price: 'RM 76', note: '登入充值 / Login Top Up' },
-        { title: '198 + 32 金券', en: '198 + 32 Gold Vouchers', price: 'RM 114', note: '登入充值 / Login Top Up' },
-        { title: '328 + 62 金券', en: '328 + 62 Gold Vouchers', price: 'RM 190', note: '登入充值 / Login Top Up' },
-        { title: '648 + 142 金券', en: '648 + 142 Gold Vouchers', price: 'RM 380', note: '登入充值 / Login Top Up' }
+        { title: '68 + 7 金券', en: '68 + 7 Gold Vouchers', price: 'RM 42.00', note: '登入充值 / Login Top Up' },
+        { title: '98 + 12 金券', en: '98 + 12 Gold Vouchers', price: 'RM 63.00', note: '登入充值 / Login Top Up' },
+        { title: '128 + 20 金券', en: '128 + 20 Gold Vouchers', price: 'RM 84.00', note: '登入充值 / Login Top Up' },
+        { title: '198 + 32 金券', en: '198 + 32 Gold Vouchers', price: 'RM 126.00', note: '登入充值 / Login Top Up' },
+        { title: '328 + 62 金券', en: '328 + 62 Gold Vouchers', price: 'RM 210.00', note: '登入充值 / Login Top Up' },
+        { title: '648 + 142 金券', en: '648 + 142 Gold Vouchers', price: 'RM 380.00', note: '登入充值 / Login Top Up' }
       ]
     }
   ]
@@ -921,7 +921,7 @@ const categories = {
         { title: '980 + 58 纹玉', en: '980 + 58 Ornate Jades', price: 'RM 57.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
         { title: '1980 + 118 纹玉', en: '1980 + 118 Ornate Jades', price: 'RM 114.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
         { title: '3280 + 196 纹玉', en: '3280 + 196 Ornate Jades', price: 'RM 190.00', note: '纹玉 / Ornate Jade', status: 'soldout' },
-        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 360.00', note: 'HOT 推荐 / Ornate Jade' }
+        { title: '6480 + 388 纹玉', en: '6480 + 388 Ornate Jades', price: 'RM 380.00', note: 'HOT 推荐 / Ornate Jade' }
       ]
     },
     {
@@ -1124,16 +1124,16 @@ const categories = {
       subtitle: 'Sea God Coins',
       icon: '◆',
       products: [
-        { title: '33 海神币', en: '33 Sea God Coins', price: 'RM 4.50', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '100 海神币', en: '100 Sea God Coins', price: 'RM 12.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '170 海神币', en: '170 Sea God Coins', price: 'RM 20.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '230 海神币', en: '230 Sea God Coins', price: 'RM 28.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '330 海神币', en: '330 Sea God Coins', price: 'RM 40.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '390 海神币', en: '390 Sea God Coins', price: 'RM 48.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '670 海神币', en: '670 Sea God Coins', price: 'RM 80.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '990 海神币', en: '990 Sea God Coins', price: 'RM 120.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '1690 海神币', en: '1690 Sea God Coins', price: 'RM 200.00', note: '海神币充值 / Sea God Coin Top-Up' },
-        { title: '3290 海神币', en: '100 USD Package', price: 'RM 380.00', note: '100 美金 / 100 USD Package' }
+        { title: '33 海神币', en: '33 Sea God Coins', price: 'RM 4.50', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '100 海神币', en: '100 Sea God Coins', price: 'RM 12.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '170 海神币', en: '170 Sea God Coins', price: 'RM 20.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '230 海神币', en: '230 Sea God Coins', price: 'RM 28.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '330 海神币', en: '330 Sea God Coins', price: 'RM 40.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '390 海神币', en: '390 Sea God Coins', price: 'RM 48.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '670 海神币', en: '670 Sea God Coins', price: 'RM 80.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '990 海神币', en: '990 Sea God Coins', price: 'RM 120.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '1690 海神币', en: '1690 Sea God Coins', price: 'RM 200.00', note: '海神币充值 / Sea God Coin Top-Up', status: 'soldout' },
+        { title: '3290 海神币', en: '100 USD Package', price: 'RM 360.00', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
