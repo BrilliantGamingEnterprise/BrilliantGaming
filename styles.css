@@ -4396,6 +4396,10 @@ body.contact-modal-open {
   gap: 7px;
 }
 
+.topup-field[hidden] {
+  display: none;
+}
+
 .topup-field > span {
   color: rgba(226, 232, 240, 0.92);
   font-size: 0.84rem;

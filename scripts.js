@@ -699,10 +699,18 @@ const topupFormConfigs = {
         ]
       },
       {
-        name: 'server',
+        name: 'serverMode',
         label: '大区',
+        type: 'select',
+        required: true,
+        options: ['没有大区', '手动填写大区']
+      },
+      {
+        name: 'server',
+        label: '大区名称',
         type: 'text',
         required: true,
+        showWhen: { field: 'serverMode', value: '手动填写大区' },
         placeholder: '例如：391区'
       },
       {
@@ -1174,7 +1182,10 @@ function getGameTopupFormType(game, categoryId) {
 function makeTopupField(field) {
   const label = localizedText(field.label);
   const requiredMark = field.required ? '<span class="topup-required">*</span>' : '';
-  const commonAttrs = `data-topup-field="${escapeAttribute(field.name)}" data-topup-label="${escapeAttribute(label)}" data-topup-label-zh="${escapeAttribute(field.label)}" data-required="${field.required ? 'true' : 'false'}"`;
+  const commonAttrs = `data-topup-field="${escapeAttribute(field.name)}" data-topup-label="${escapeAttribute(label)}" data-topup-label-zh="${escapeAttribute(field.label)}" data-required="${field.required ? 'true' : 'false'}"${field.showWhen ? ' disabled' : ''}`;
+  const conditionalAttrs = field.showWhen
+    ? ` data-topup-depends-on="${escapeAttribute(field.showWhen.field)}" data-topup-depends-value="${escapeAttribute(field.showWhen.value)}" hidden`
+    : '';
   const placeholder = field.placeholder ? ` placeholder="${escapeAttribute(localizedText(field.placeholder))}"` : '';
   let control = '';
 
@@ -1196,10 +1207,24 @@ function makeTopupField(field) {
   }
 
   return `
-    <label class="topup-field" data-field-wrap="${escapeAttribute(field.name)}">
+    <label class="topup-field" data-field-wrap="${escapeAttribute(field.name)}"${conditionalAttrs}>
       <span>${escapeHtml(label)}${requiredMark}</span>
       ${control}
     </label>`;
+}
+
+function syncTopupConditionalFields(container) {
+  container.querySelectorAll('[data-topup-depends-on]').forEach((wrapper) => {
+    const source = Array.from(container.querySelectorAll('[data-topup-field]'))
+      .find((field) => field.dataset.topupField === wrapper.dataset.topupDependsOn);
+    const active = source?.value === wrapper.dataset.topupDependsValue;
+    wrapper.hidden = !active;
+    wrapper.querySelectorAll('[data-topup-field]').forEach((field) => {
+      field.disabled = !active;
+      field.required = active && field.dataset.required === 'true';
+      if (!active) field.value = '';
+    });
+  });
 }
 
 function renderTopupInfoForm(categoryId, game) {
@@ -1231,10 +1256,18 @@ function renderTopupInfoForm(categoryId, game) {
         ${config.fields.map(makeTopupField).join('')}
       </div>
     </section>`;
+  syncTopupConditionalFields(container);
+  container.querySelectorAll('select[data-topup-field]').forEach((field) => {
+    field.addEventListener('change', () => syncTopupConditionalFields(container));
+  });
 }
 
 function getTopupInfoFields() {
-  return Array.from(document.querySelectorAll('[data-topup-field]')).map((field) => {
+  const manualServer = document.querySelector('[data-topup-field="serverMode"]')?.value === '手动填写大区';
+  return Array.from(document.querySelectorAll('[data-topup-field]'))
+    .filter((field) => !field.disabled)
+    .filter((field) => !(manualServer && field.dataset.topupField === 'serverMode'))
+    .map((field) => {
     const value = String(field.value || '').trim();
     const displayValue = field.tagName === 'SELECT' && value
       ? String(field.selectedOptions?.[0]?.textContent || value).trim()
@@ -1242,7 +1275,7 @@ function getTopupInfoFields() {
 
     return {
       name: field.dataset.topupField || '',
-      label: field.dataset.topupLabel || '',
+      label: manualServer && field.dataset.topupField === 'server' ? localizedText('大区') : field.dataset.topupLabel || '',
       required: field.dataset.required === 'true',
       value,
       displayValue,
