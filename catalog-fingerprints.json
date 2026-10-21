@@ -22,8 +22,8 @@
       "updatedAt": "2026-09-18"
     },
     "intl/aniimo": {
-      "fingerprint": "4f6820ebf64c41173bc07caa4de7bdbc5e6c6f1d07f966dde17efe65ef6df6d7",
-      "updatedAt": "2026-10-12"
+      "fingerprint": "a05f6e0d8a4223ef3dda42117ed1f79d4db52f0b9a813c9f3f470caddbb3ce9c",
+      "updatedAt": "2026-10-21"
     },
     "intl/shan-jiang-sanguo": {
       "fingerprint": "cb2fc28c6c1d5a742d05d08c7a6e73faab8148261ccf1ad088d9aafa0138aa49",
@@ -86,20 +86,24 @@
       "updatedAt": "2026-08-27"
     },
     "intl/zhang-jian-chuan-shuo": {
-      "fingerprint": "63aedbae352b29bbb74866214ac922912323a36f8496a8983406835dba159c1f",
-      "updatedAt": "2026-07-15"
+      "fingerprint": "0de04c5059e944c222e2230ffbc525f295c83f276b86176af61eec6e2e1b7832",
+      "updatedAt": "2026-10-21"
+    },
+    "intl/kai-tian": {
+      "fingerprint": "bdabc5cb839f41ac2eebfecdf7be41d48501ceb00d05f952253a7c237bd9d795",
+      "updatedAt": "2026-10-21"
     },
     "intl/wen-jian-chang-sheng": {
-      "fingerprint": "f255329323d3e70acfd5dda5f497e7692d5499b5fa2c147632936ea61c9c213d",
-      "updatedAt": "2026-07-15"
+      "fingerprint": "482fe0e7cd20ce969d8ddec8e507692355c2f3e73a71bbcca87e8ba7bb83f147",
+      "updatedAt": "2026-10-21"
     },
     "intl/tian-long-ba-bu": {
-      "fingerprint": "fc51adef4d664a3c0fa7c0a06fbc9d0a3ab652398ff02c4e4e673e699e632c4f",
-      "updatedAt": "2026-07-15"
+      "fingerprint": "ef321d5f94170d80031014b38e8a61f199bcecc6b0e8e0dd083bf10542236ce2",
+      "updatedAt": "2026-10-21"
     },
     "intl/perfect-world-w": {
-      "fingerprint": "0bb284ab494a5df6a5f5179e01dfde7d08988422d2de1ac943f51f8a5aa577e9",
-      "updatedAt": "2026-07-15"
+      "fingerprint": "ebf6990b198aec97b07633f289ad700ad636c09b5904a0fead9f63b01dd06dfd",
+      "updatedAt": "2026-10-21"
     },
     "intl/where-winds-meet": {
       "fingerprint": "2868b3fe321d7c2d57e8a304857f449bf07b0f898df4cf4952738bb02c809aa5",
@@ -122,8 +126,8 @@
       "updatedAt": "2026-07-15"
     },
     "intl/x-hero-epic-hero": {
-      "fingerprint": "812763fd1d7fb5a481acde9e8afd2ac6d98e237de44022657690215417b3e0d7",
-      "updatedAt": "2026-07-15"
+      "fingerprint": "fff8a53fe0de54de179f2917bcb95155b761ee82a3feaf8305aa701a28709e86",
+      "updatedAt": "2026-10-21"
     },
     "intl/ragnarok-origin-classic": {
       "fingerprint": "230c8bf5c669f655f92ae853a6b843f30ff127d07a895957bf7241615513c7ca",

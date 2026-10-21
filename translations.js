@@ -615,6 +615,7 @@
     'whiteout-survival': { name: 'Whiteout Survival', detail: 'Whiteout Survival' },
     'neverness-to-everness': { name: 'Neverness to Everness', detail: 'Neverness to Everness' },
     'zhang-jian-chuan-shuo': { name: 'Sword X Staff', detail: 'Sword X Staff' },
+    'kai-tian': { name: 'Kai Tian', detail: 'Kai Tian', description: 'Kai Tian · Login Top-Up' },
     'wen-jian-chang-sheng': { name: 'Wen Jian Chang Sheng', detail: 'Wen Jian Chang Sheng' },
     'tian-long-ba-bu': { name: 'Demi-Gods and Semi-Devils 2', detail: 'Demi-Gods and Semi-Devils 2' },
     'perfect-world-w': { name: 'Perfect World W', detail: 'Perfect World W' },

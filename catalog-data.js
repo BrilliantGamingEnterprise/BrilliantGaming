@@ -1,6 +1,11 @@
 /* Brilliant Gaming game, product and shared price data. */
 (() => {
 const pricePresets = {
+  // 指定七款游戏的 100 美元档位：以后统一改价只改这一行。
+  // 完美世界W、仗剑传说、问剑长生、X-Hero、伊莫(Aniimo)、开天、天龙八部2。
+  // 仅关联 100 美元档位；开天的仙玉、仙云币两种 100 美元商品均使用此项。
+  selectedGamesUsd100: 'RM 360.00',
+
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
   // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
@@ -244,7 +249,7 @@ const categories = {
         { title: '980 + 98 辉晶', en: '980 + 98 Lumin Crystals', price: 'RM 63.00', note: '官网充值 / Official Shop Top-Up' },
         { title: '1980 + 198 辉晶', en: '1,980 + 198 Lumin Crystals', price: 'RM 126.00', note: '官网充值 / Official Shop Top-Up' },
         { title: '3280 + 328 辉晶', en: '3,280 + 328 Lumin Crystals', price: 'RM 210.00', note: '官网充值 / Official Shop Top-Up' },
-        { title: '6480 + 648 辉晶', en: '6,480 + 648 Lumin Crystals', price: 'RM 380.00', note: '官网充值 / Official Shop Top-Up' }
+        { title: '6480 + 648 辉晶', en: '6,480 + 648 Lumin Crystals', pricePreset: 'selectedGamesUsd100', note: '官网充值 / Official Shop Top-Up' }
       ]
     },
     {
@@ -706,7 +711,7 @@ const categories = {
         { title: '1999 + 100 代金券', en: '1999 + 100 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '2999 + 140 代金券', en: '2999 + 140 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '4999 + 250 代金券', en: '4999 + 250 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '9999 + 500 代金券', en: '9999 + 500 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '9999 + 500 代金券', en: '9999 + 500 Vouchers', pricePreset: 'selectedGamesUsd100', note: 'HOT 推荐 / Voucher Top-Up' },
         { title: '29999 + 1500 代金券', en: '29999 + 1500 Vouchers', price: 'RM 1110.00', note: 'HOT 推荐 / Voucher Top-Up' }
       ]
     },
@@ -718,6 +723,62 @@ const categories = {
         { title: '特惠技能礼包', en: 'Special Skill Pack', price: 'RM 20.00', note: '特惠礼包 / Special Pack' },
         { title: '特惠遗物礼包', en: 'Special Relic Pack', price: 'RM 38.00', note: '特惠礼包 / Special Pack' },
         { title: '特惠幻兽礼包', en: 'Special Phantom Beast Pack', price: 'RM 114.00', note: '特惠礼包 / Special Pack' }
+      ]
+    }
+  ]
+},
+
+{
+  id: 'kai-tian',
+  name: '开天',
+  detailName: '开天',
+  description: 'Kai Tian',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/kai-tian.png',
+  detailArt: 'assets/images/games/kai-tian.png',
+  keywords: ['开天', '開天', 'Kai Tian', '仙玉', '仙云币', '仙雲幣', '光线游戏'],
+  // 数量与赠送内容核对自 https://www.raysgametopup.com/#/（2026-10-21）。
+  // 售价参考仗剑传说：约 1 USD = RM 3.80，整 RM 向上取整；100 USD 使用独立共用价。
+  productSections: [
+    {
+      title: '仙玉',
+      subtitle: 'Immortal Jade',
+      icon: '◆',
+      products: [
+        { title: '60 + 6 仙玉', en: '60 + 6 Immortal Jade', price: 'RM 4.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '300 + 30 仙玉', en: '300 + 30 Immortal Jade', price: 'RM 19.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '980 + 98 仙玉', en: '980 + 98 Immortal Jade', price: 'RM 57.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '1980 + 198 仙玉', en: '1,980 + 198 Immortal Jade', price: 'RM 114.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '3280 + 328 仙玉', en: '3,280 + 328 Immortal Jade', price: 'RM 190.00', note: '官网充值 / Official Shop Top-Up' },
+        { title: '6480 + 648 仙玉', en: '6,480 + 648 Immortal Jade', pricePreset: 'selectedGamesUsd100', note: '官网充值 / Official Shop Top-Up' }
+      ]
+    },
+    {
+      title: '仙云币',
+      subtitle: 'Immortal Cloud Coins',
+      icon: '◆',
+      products: [
+        { title: '6 仙云币', en: '6 Immortal Cloud Coins', price: 'RM 4.00', note: '额外赠送 6 仙玉 / Bonus: 6 Immortal Jade' },
+        { title: '30 仙云币', en: '30 Immortal Cloud Coins', price: 'RM 19.00', note: '额外赠送 30 仙玉 / Bonus: 30 Immortal Jade' },
+        { title: '98 仙云币', en: '98 Immortal Cloud Coins', price: 'RM 57.00', note: '额外赠送 98 仙玉 / Bonus: 98 Immortal Jade' },
+        { title: '198 仙云币', en: '198 Immortal Cloud Coins', price: 'RM 114.00', note: '额外赠送 198 仙玉 / Bonus: 198 Immortal Jade' },
+        { title: '328 仙云币', en: '328 Immortal Cloud Coins', price: 'RM 190.00', note: '额外赠送 328 仙玉 / Bonus: 328 Immortal Jade' },
+        { title: '648 仙云币', en: '648 Immortal Cloud Coins', pricePreset: 'selectedGamesUsd100', note: '额外赠送 648 仙玉 / Bonus: 648 Immortal Jade' }
+      ]
+    },
+    {
+      title: '礼包',
+      subtitle: 'Packs',
+      icon: '◆',
+      products: [
+        { title: '超值礼包1', en: 'Value Pack 1', price: 'RM 12.00', note: '仙玉×180、绑玉×200、属性灵果×1 / 180 Jade, 200 Bound Jade, 1 Attribute Spirit Fruit' },
+        { title: '超值礼包2', en: 'Value Pack 2', price: 'RM 38.00', note: '仙玉×680、随机三系灵宠×1、属性灵果×2 / 680 Jade, 1 Random Three-Element Pet, 2 Attribute Spirit Fruits' },
+        { title: '超值礼包3', en: 'Value Pack 3', price: 'RM 114.00', note: '仙玉×1980、启灵仙石×2、属性仙果×1 / 1,980 Jade, 2 Awakening Stones, 1 Attribute Immortal Fruit' },
+        { title: '超值战力礼包', en: 'Value Power Pack', price: 'RM 38.00', note: '契铃×10、洗髓丹×60 / 10 Contract Bells, 60 Marrow-Cleansing Pills' },
+        { title: '惊喜战力礼包', en: 'Surprise Power Pack', price: 'RM 76.00', note: '极品灵宠自选×2、洗髓丹×120 / 2 Premium Pet Selection Boxes, 120 Marrow-Cleansing Pills' },
+        { title: '豪气战力礼包', en: 'Grand Power Pack', price: 'RM 114.00', note: '日曜剑魂×1、流光玄晶×150、剑魂礼包×5 / 1 Sun Sword Soul, 150 Radiant Crystals, 5 Sword Soul Packs' },
+        { title: '尊享战力礼包', en: 'Premium Power Pack', price: 'RM 190.00', note: '混沌宝晶×10、古宝精粹×150000 / 10 Chaos Crystals, 150,000 Ancient Treasure Essence' }
       ]
     }
   ]
@@ -742,7 +803,7 @@ const categories = {
         { title: '1,999 代金券', en: '1,999 Vouchers', price: 'RM 76.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '2,998 代金券', en: '2,998 Vouchers', price: 'RM 114.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '4,999 代金券', en: '4,999 Vouchers', price: 'RM 190.00', note: '代金券充值 / Voucher Top-Up' },
-        { title: '9,999 代金券', en: '9,999 Vouchers', price: 'RM 380.00', note: 'HOT 推荐 / Voucher Top-Up' },
+        { title: '9,999 代金券', en: '9,999 Vouchers', pricePreset: 'selectedGamesUsd100', note: 'HOT 推荐 / Voucher Top-Up' },
         { title: '19,999 代金券', en: '19,999 Vouchers', price: 'RM 760.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '29,999 代金券', en: '29,999 Vouchers', price: 'RM 1140.00', note: '代金券充值 / Voucher Top-Up' },
         { title: '49,999 代金券', en: '49,999 Vouchers', price: 'RM 1850 .00', note: '代金券充值 / Voucher Top-Up' },
@@ -772,7 +833,7 @@ const categories = {
         { title: '98 代金券', en: '98 Vouchers', price: 'RM 57.00' },
         { title: '198 代金券', en: '198 Vouchers', price: 'RM 114.00' },
         { title: '328 代金券', en: '328 Vouchers', price: 'RM 190.00' },
-        { title: '648 代金券', en: '648 Vouchers', price: 'RM 380.00' },
+        { title: '648 代金券', en: '648 Vouchers', pricePreset: 'selectedGamesUsd100' },
         { title: '998 代金券', en: '998 Vouchers', price: 'RM 570.00' },
         { title: '1998 代金券', en: '1998 Vouchers', price: 'RM 1110.00' },
         { title: '2998 代金券', en: '2998 Vouchers', price: 'RM 1665.00' }
@@ -811,7 +872,7 @@ const categories = {
         { title: '1499 诸神币 + 98 绑定元宝', en: '1,499 Pantheon Coins + 98 Bound Ingots', price: 'RM 57.00' },
         { title: '2999 诸神币 + 198 绑定元宝', en: '2,999 Pantheon Coins + 198 Bound Ingots', price: 'RM 114.00' },
         { title: '4999 诸神币 + 328 绑定元宝', en: '4,999 Pantheon Coins + 328 Bound Ingots', price: 'RM 190.00' },
-        { title: '9999 诸神币 + 648 绑定元宝', en: '9,999 Pantheon Coins + 648 Bound Ingots', price: 'RM 380.00' },
+        { title: '9999 诸神币 + 648 绑定元宝', en: '9,999 Pantheon Coins + 648 Bound Ingots', pricePreset: 'selectedGamesUsd100' },
         { title: '29999 诸神币 + 1950 绑定元宝', en: '29,999 Pantheon Coins + 1,950 Bound Ingots', price: 'RM 1110.00' }
       ]
     }
@@ -1036,7 +1097,7 @@ const categories = {
         { title: '200 + 8 红钻', en: '200 + 8 Red Diamonds', price: 'RM 76.00' },
         { title: '250 + 10 红钻', en: '250 + 10 Red Diamonds', price: 'RM 95.00' },
         { title: '500 + 20 红钻', en: '500 + 20 Red Diamonds', price: 'RM 190.00' },
-        { title: '1000 + 40 红钻', en: '1,000 + 40 Red Diamonds', price: 'RM 370.00' },
+        { title: '1000 + 40 红钻', en: '1,000 + 40 Red Diamonds', pricePreset: 'selectedGamesUsd100' },
         { title: '2000 + 80 红钻', en: '2,000 + 80 Red Diamonds', price: 'RM 740.00' },
         { title: '4000 + 160 红钻', en: '4,000 + 160 Red Diamonds', price: 'RM 1480.00' },
         { title: '6000 + 240 红钻', en: '6,000 + 240 Red Diamonds', price: 'RM 2190.00' }
