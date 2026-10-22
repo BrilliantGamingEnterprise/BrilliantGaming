@@ -1,10 +1,11 @@
 /* Brilliant Gaming game, product and shared price data. */
 (() => {
 const pricePresets = {
-  // 指定七款游戏的 100 美元档位：以后统一改价只改这一行。
+  // 固定名称「雷蛇100美金」：指定七款游戏的 100 美元档位，统一改价只改这一行。
+  // 注意：不是 Razer Gold 点卡，也不包含其他游戏的 100 美元档位。
   // 完美世界W、仗剑传说、问剑长生、X-Hero、伊莫(Aniimo)、开天、天龙八部2。
   // 仅关联 100 美元档位；开天的仙玉、仙云币两种 100 美元商品均使用此项。
-  selectedGamesUsd100: 'RM 360.00',
+  selectedGamesUsd100: 'RM 370.00',
 
   // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
   // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、

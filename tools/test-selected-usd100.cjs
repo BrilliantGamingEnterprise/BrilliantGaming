@@ -11,6 +11,8 @@ function load(source) {
 }
 const before = load(execFileSync('git', ['show', 'HEAD:catalog-data.js'], { cwd: root, encoding: 'utf8' }));
 const after = load(fs.readFileSync(path.join(root, 'catalog-data.js'), 'utf8'));
+const expectedPrice = process.argv[2] || after.pricePresets.selectedGamesUsd100;
+assert.match(expectedPrice, /^RM \d+\.00$/);
 const targets = {
   'perfect-world-w': ['9999 诸神币 + 648 绑定元宝'],
   'zhang-jian-chuan-shuo': ['9999 + 500 代金券'],
@@ -28,7 +30,7 @@ for (const game of games(after)) {
   for (const product of products(game)) {
     const expected = targets[game.id]?.includes(product.title) || false;
     assert.equal(product.pricePreset === 'selectedGamesUsd100', expected, `${game.id}: ${product.title}`);
-    if (expected) { assert.equal(resolve(after, product), 'RM 360.00'); linked++; }
+    if (expected) { assert.equal(resolve(after, product), expectedPrice); linked++; }
   }
 }
 assert.equal(linked, 8);
