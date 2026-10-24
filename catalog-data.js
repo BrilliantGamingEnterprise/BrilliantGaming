@@ -50,13 +50,13 @@ const pricePresets = {
 // 微信与支付宝共用的人民币阶梯汇率。
 // 最终价格 = 人民币金额 ÷ 对应汇率 + 附加费，再向上进位至整 RM。
 const walletExchangeTiers = Object.freeze([
-  Object.freeze({ min: 1, max: 299, rate: 1.55, surcharge: 5 }),
-  Object.freeze({ min: 300, max: 499, rate: 1.55, surcharge: 0 }),
-  Object.freeze({ min: 500, max: 999, rate: 1.55, surcharge: 0 }),
-  Object.freeze({ min: 1000, max: 4999, rate: 1.60, surcharge: 0 }),
-  Object.freeze({ min: 5000, max: 9999, rate: 1.61, surcharge: 0 }),
-  Object.freeze({ min: 10000, max: 29999, rate: 1.62, surcharge: 0 }),
-  Object.freeze({ min: 30000, max: null, rate: 1.63, surcharge: 0 })
+  Object.freeze({ min: 1, max: 299, rate: 1.50, surcharge: 5 }),
+  Object.freeze({ min: 300, max: 499, rate: 1.50, surcharge: 0 }),
+  Object.freeze({ min: 500, max: 999, rate: 1.50, surcharge: 0 }),
+  Object.freeze({ min: 1000, max: 4999, rate: 1.55, surcharge: 0 }),
+  Object.freeze({ min: 5000, max: 9999, rate: 1.56, surcharge: 0 }),
+  Object.freeze({ min: 10000, max: 29999, rate: 1.59, surcharge: 0 }),
+  Object.freeze({ min: 30000, max: null, rate: 1.60, surcharge: 0 })
 ]);
 
 const categories = {
