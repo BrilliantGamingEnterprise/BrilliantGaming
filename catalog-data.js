@@ -1,9 +1,9 @@
 /* Brilliant Gaming game, product and shared price data. */
 (() => {
 const pricePresets = {
-  // 固定名称「雷蛇100美金」：指定七款游戏的 100 美元档位，统一改价只改这一行。
+  // 固定名称「雷蛇100美金」：指定八款游戏的 100 美元档位，统一改价只改这一行。
   // 注意：不是 Razer Gold 点卡，也不包含其他游戏的 100 美元档位。
-  // 完美世界W、仗剑传说、问剑长生、X-Hero、伊莫(Aniimo)、开天、天龙八部2。
+  // 完美世界W、仗剑传说、问剑长生、X-Hero、伊莫(Aniimo)、开天、天龙八部2、闪将三国。
   // 仅关联 100 美元档位；开天的仙玉、仙云币两种 100 美元商品均使用此项。
   selectedGamesUsd100: 'RM 370.00',
 
@@ -285,7 +285,7 @@ const categories = {
         { title: '128 + 20 金券', en: '128 + 20 Gold Vouchers', price: 'RM 84.00', note: '登入充值 / Login Top Up' },
         { title: '198 + 32 金券', en: '198 + 32 Gold Vouchers', price: 'RM 126.00', note: '登入充值 / Login Top Up' },
         { title: '328 + 62 金券', en: '328 + 62 Gold Vouchers', price: 'RM 210.00', note: '登入充值 / Login Top Up' },
-        { title: '648 + 142 金券', en: '648 + 142 Gold Vouchers', price: 'RM 380.00', note: '登入充值 / Login Top Up' }
+        { title: '648 + 142 金券', en: '648 + 142 Gold Vouchers', pricePreset: 'selectedGamesUsd100', note: '登入充值 / Login Top Up' }
       ]
     }
   ]

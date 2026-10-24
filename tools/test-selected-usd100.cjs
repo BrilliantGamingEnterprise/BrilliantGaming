@@ -20,7 +20,8 @@ const targets = {
   'x-hero-epic-hero': ['1000 + 40 红钻'],
   aniimo: ['6480 + 648 辉晶'],
   'kai-tian': ['6480 + 648 仙玉', '648 仙云币'],
-  'tian-long-ba-bu': ['648 代金券']
+  'tian-long-ba-bu': ['648 代金券'],
+  'shan-jiang-sanguo': ['648 + 142 金券']
 };
 const games = (catalog) => Object.values(catalog.categories).flatMap((category) => category.games);
 const products = (game) => game.productSections?.flatMap((section) => section.products) || game.products || [];
@@ -33,7 +34,7 @@ for (const game of games(after)) {
     if (expected) { assert.equal(resolve(after, product), expectedPrice); linked++; }
   }
 }
-assert.equal(linked, 8);
+assert.equal(linked, 9);
 const oldPresets = { ...after.pricePresets }; delete oldPresets.selectedGamesUsd100;
 const previousPresets = { ...before.pricePresets }; delete previousPresets.selectedGamesUsd100;
 assert.deepEqual(oldPresets, previousPresets);
@@ -56,4 +57,4 @@ assert.equal(kai.topupFormType, 'login');
 assert.equal(kai.productSections.length, 3);
 assert.equal(products(kai).length, 19);
 for (const product of products(kai)) assert.match(resolve(after, product), /^RM \d+\.00$/);
-console.log('PASS: 7 games / 8 linked USD100 products; one-price update propagates; other existing tiers unchanged; Kai Tian has 19 products in 3 sections.');
+console.log('PASS: 8 games / 9 linked USD100 products; one-price update propagates; other existing tiers unchanged; Kai Tian has 19 products in 3 sections.');
