@@ -291,6 +291,33 @@ const categories = {
   ]
 },
       {
+  id: 'monster-hunter-outlanders',
+  name: '魔物猎人 Outlanders',
+  detailName: '魔物猎人 Outlanders',
+  description: 'Monster Hunter Outlanders',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/monster-hunter-outlanders.png',
+  detailArt: 'assets/images/games/monster-hunter-outlanders.png',
+  keywords: ['MHOutlanders', 'MH Outlanders', 'Monster Hunter Outlanders', '魔物猎人', '魔物獵人', '怪物猎人'],
+  productSections: [
+    {
+      title: '充值额度',
+      subtitle: 'Top-Up Amount',
+      icon: '◆',
+      products: [
+        { title: '60', en: '60', price: 'RM 4.50', note: '登录充值 / Login Top Up' },
+        { title: '300', en: '300', price: 'RM 20.00', note: '登录充值 / Login Top Up' },
+        { title: '980', en: '980', price: 'RM 60.00', note: '登录充值 / Login Top Up' },
+        { title: '1280', en: '1,280', price: 'RM 80.00', note: '登录充值 / Login Top Up' },
+        { title: '1980', en: '1,980', price: 'RM 120.00', note: '登录充值 / Login Top Up' },
+        { title: '3280', en: '3,280', price: 'RM 190.00', note: '登录充值 / Login Top Up' },
+        { title: '6480', en: '6,480', price: 'RM 380.00', note: '登录充值 / Login Top Up' }
+      ]
+    }
+  ]
+},
+      {
   id: 'pokemon-tcg-pocket',
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',

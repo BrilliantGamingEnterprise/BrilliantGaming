@@ -156,6 +156,7 @@
         campaignImage.src = slide.image;
         campaignImage.alt = altText;
         contactLink.href = slide.href || getWhatsappUrl(slide);
+        contactLink.target = slide.href?.startsWith('/') ? '_self' : '_blank';
         description.textContent = altText;
         dotButtons.forEach((button, dotIndex) => {
           const active = dotIndex === currentIndex;

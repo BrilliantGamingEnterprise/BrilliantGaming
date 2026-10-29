@@ -37,6 +37,15 @@ const promotionSettings = {
   autoAdvanceMs: 5200,
   slides: [
     {
+      id: 'monster-hunter-outlanders-new-2026-10',
+      image: 'assets/images/promotions/monster-hunter-outlanders-new-v2.png',
+      altZh: '新游戏上架：魔物猎人 Outlanders，登录充值。点击查看商品。',
+      altEn: 'New top-up service: Monster Hunter Outlanders. Login top-up. View products.',
+      href: '/games/monster-hunter-outlanders/',
+      startsAt: '',
+      endsAt: ''
+    },
+    {
       id: 'genshin-6480-welkin-rm320-2026',
       image: 'assets/images/promotions/genshin-6480-welkin-rm320-v2.png',
       altZh: '原神国际服，充值 6480 创世结晶送月卡（空月祝福），RM 320。',
