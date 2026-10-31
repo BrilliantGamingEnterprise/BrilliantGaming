@@ -1809,11 +1809,21 @@ function updateTieredExchangePreview(container) {
   const { result } = getTieredExchangeValues(container);
   if (!result) {
     preview.textContent = uiText('product.exchangeAmountEmpty');
+    const coinPreview = container.querySelector('[data-exchange-coin-preview]');
+    if (coinPreview) coinPreview.textContent = '';
     return;
   }
   preview.textContent = uiText('product.exchangeAmountPreview', {
     price: formatPriceForCurrency(`RM ${result.myr.toFixed(2)}`)
   });
+  const coinPreview = container.querySelector('[data-exchange-coin-preview]');
+  if (coinPreview) {
+    const { amount } = getTieredExchangeValues(container);
+    coinPreview.textContent = uiText('product.customAmountPreview', {
+      coins: formatLiveCoinAmount(amount * Number(container.dataset.coinRate || 1)),
+      coinName: isEnglishLanguage() ? container.dataset.coinNameEn : container.dataset.coinNameZh
+    });
+  }
 }
 
 function addTieredExchangeToCart(container) {
@@ -1826,8 +1836,10 @@ function addTieredExchangeToCart(container) {
   }
 
   const formattedAmount = formatLiveCoinAmount(amount);
-  const titleZh = `充值 ¥${formattedAmount}`;
-  const titleEn = `Top Up ¥${formattedAmount}`;
+  const coins = container.dataset.coinNameZh
+    ? formatLiveCoinAmount(amount * Number(container.dataset.coinRate || 1)) : '';
+  const titleZh = coins ? `${coins} ${container.dataset.coinNameZh}（¥${formattedAmount}）` : `充值 ¥${formattedAmount}`;
+  const titleEn = coins ? `${coins} ${container.dataset.coinNameEn} (CNY ${formattedAmount})` : `Top Up ¥${formattedAmount}`;
   const price = `RM ${result.myr.toFixed(2)}`;
 
   addToCart({
@@ -1896,7 +1908,7 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
   if (resolvedProduct.tieredExchangeAmount) {
     const tiers = Array.isArray(resolvedProduct.exchangeTiers) ? resolvedProduct.exchangeTiers : [];
     return `
-      <article class="product-card tiered-exchange-card" data-tiered-exchange-card data-game-id="${escapeAttribute(gameId)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-exchange-tiers="${escapeAttribute(JSON.stringify(tiers))}">
+      <article class="product-card tiered-exchange-card" data-tiered-exchange-card data-game-id="${escapeAttribute(gameId)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-coin-rate="${escapeAttribute(resolvedProduct.coinRate || 1)}" data-coin-name-zh="${escapeAttribute(resolvedProduct.coinNameZh || '')}" data-coin-name-en="${escapeAttribute(resolvedProduct.coinNameEn || '')}" data-exchange-tiers="${escapeAttribute(JSON.stringify(tiers))}">
         <h3>${escapeHtml(title)}</h3>
         <p>${escapeHtml(subtitle)}</p>
         <label class="custom-amount-field">
@@ -1904,6 +1916,7 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
           <span class="custom-amount-input-wrap"><b>¥</b><input type="number" min="1" step="1" inputmode="numeric" data-exchange-amount-input placeholder="${escapeAttribute(uiText('product.exchangeAmountPlaceholder'))}" aria-label="${escapeAttribute(uiText('product.exchangeAmountLabel'))}"></span>
         </label>
         <div class="custom-amount-preview exchange-amount-preview" data-exchange-amount-preview>${escapeHtml(uiText('product.exchangeAmountEmpty'))}</div>
+        ${resolvedProduct.coinNameZh ? '<div class="custom-amount-preview" data-exchange-coin-preview></div>' : ''}
         <button type="button" class="button button-primary custom-amount-action" data-exchange-amount-action>${escapeHtml(uiText('product.exchangeAction'))}</button>
       </article>`;
   }

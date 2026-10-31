@@ -254,20 +254,20 @@
       "updatedAt": "2026-07-15"
     },
     "live/douyin-live": {
-      "fingerprint": "1884bcdbd85092588ae2d3fe29d45ef81e786111dcfc3919c9448877ffe456aa",
-      "updatedAt": "2026-07-27"
+      "fingerprint": "465d044ff4361e79d31b06e8629b029a2856adf6fd0f96929471d25b17b07cec",
+      "updatedAt": "2026-10-31"
     },
     "live/huya-live": {
-      "fingerprint": "e29ef8c415f2ef216f98e569b282c6edb9484506ed7c32fc1d87c02445fc27c6",
-      "updatedAt": "2026-07-27"
+      "fingerprint": "845928ac6b263a7af456b8d68f0f65bfeaab25e7d0e577fd24d009d617ed1af9",
+      "updatedAt": "2026-10-31"
     },
     "live/douyu-live": {
-      "fingerprint": "0b5585c34aed2d3b54aed95dd340fb414af1ed119b93bf0fb057f5433664726c",
-      "updatedAt": "2026-07-27"
+      "fingerprint": "dcf4d79e9d178d1bf2d38e74c565ff21bef19b0a21d53ebc3aa9733b9bfccdec",
+      "updatedAt": "2026-10-31"
     },
     "live/kuaishou-live": {
-      "fingerprint": "8feba370096e36a6ea9884731ba41b10d06ee742364961ff5a0b94b67a4b8667",
-      "updatedAt": "2026-07-27"
+      "fingerprint": "86a63caf0f0840e4a3065fdd45c20241e47eeefd92b437ad02e971459b6ebdc5",
+      "updatedAt": "2026-10-31"
     },
     "wallet/wechat-rmb-topup": {
       "fingerprint": "91a5d067b3e807b65c4678773ea0a072de1e7692bae1fa852884f1bb49c60b3a",

@@ -34,7 +34,7 @@ const pricePresets = {
   cny1298: 'RM 811.00',
   cny1998: 'RM 1225.00',
 
-  // 直播平台共用人民币档位：抖音、虎牙、斗鱼、快手只需在这里统一改价。
+  // 直播平台共用人民币档位：下方根据 walletExchangeTiers 自动生成，不在这里手动改价。
   liveCny10: 'RM 10.00',
   liveCny30: 'RM 24.00',
   liveCny50: 'RM 38.00',
@@ -47,7 +47,7 @@ const pricePresets = {
   liveCny10000: 'RM 6135.00'
 };
 
-// 微信与支付宝共用的人民币阶梯汇率。
+// 微信、支付宝及四个直播平台共用的人民币阶梯汇率。
 // 最终价格 = 人民币金额 ÷ 对应汇率 + 附加费，再向上进位至整 RM。
 const walletExchangeTiers = Object.freeze([
   Object.freeze({ min: 1, max: 299, rate: 1.50, surcharge: 5 }),
@@ -58,6 +58,12 @@ const walletExchangeTiers = Object.freeze([
   Object.freeze({ min: 10000, max: 29999, rate: 1.59, surcharge: 0 }),
   Object.freeze({ min: 30000, max: null, rate: 1.60, surcharge: 0 })
 ]);
+
+// 固定直播档位与自定义金额共用同一套汇率、手续费及向上取整规则。
+for (const amount of [10, 30, 50, 100, 200, 500, 1000, 2000, 5000, 10000]) {
+  const tier = [...walletExchangeTiers].reverse().find((item) => amount >= item.min);
+  pricePresets[`liveCny${amount}`] = `RM ${Math.ceil(amount / tier.rate + tier.surcharge).toFixed(2)}`;
+}
 
 const categories = {
   intl: {
@@ -2354,6 +2360,19 @@ const categories = {
     ]
   }
 };
+
+// 保留各平台到账比例；自定义金额从询价改为与钱包相同的自动计价。
+for (const game of Object.values(categories).flatMap((category) => category.games)) {
+  if (!['douyin-live', 'huya-live', 'douyu-live', 'kuaishou-live'].includes(game.id)) continue;
+  for (const product of game.productSections.flatMap((section) => section.products)) {
+    if (!product.customAmount) continue;
+    product.tieredExchangeAmount = true;
+    product.exchangeTiers = walletExchangeTiers;
+    product.price = '自动计算';
+    product.status = 'active';
+    product.note = '阶梯汇率自动计算 / Automatic tiered rate';
+  }
+}
 
 const homeFeaturedIds = [
   'genshin',
