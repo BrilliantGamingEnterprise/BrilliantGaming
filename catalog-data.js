@@ -305,20 +305,20 @@ const categories = {
   topupFormType: 'login',
   image: 'assets/images/games/monster-hunter-outlanders.png',
   detailArt: 'assets/images/games/monster-hunter-outlanders.png',
-  keywords: ['MHOutlanders', 'MH Outlanders', 'Monster Hunter Outlanders', '魔物猎人', '魔物獵人', '怪物猎人'],
+  keywords: ['MHOutlanders', 'MH Outlanders', 'Monster Hunter Outlanders', '魔物猎人', '魔物獵人', '怪物猎人', '赤翎币'],
   productSections: [
     {
-      title: '充值额度',
-      subtitle: 'Top-Up Amount',
+      title: '赤翎币',
+      subtitle: '赤翎币',
       icon: '◆',
       products: [
-        { title: '60', en: '60', price: 'RM 4.50', note: '登录充值 / Login Top Up' },
-        { title: '300', en: '300', price: 'RM 20.00', note: '登录充值 / Login Top Up' },
-        { title: '980', en: '980', price: 'RM 60.00', note: '登录充值 / Login Top Up' },
-        { title: '1280', en: '1,280', price: 'RM 80.00', note: '登录充值 / Login Top Up' },
-        { title: '1980', en: '1,980', price: 'RM 120.00', note: '登录充值 / Login Top Up' },
-        { title: '3280', en: '3,280', price: 'RM 190.00', note: '登录充值 / Login Top Up' },
-        { title: '6480', en: '6,480', price: 'RM 380.00', note: '登录充值 / Login Top Up' }
+        { title: '60 赤翎币', en: '60 赤翎币', price: 'RM 4.50', note: '登录充值 / Login Top Up' },
+        { title: '300 赤翎币', en: '300 赤翎币', price: 'RM 20.00', note: '登录充值 / Login Top Up' },
+        { title: '980 赤翎币', en: '980 赤翎币', price: 'RM 60.00', note: '登录充值 / Login Top Up' },
+        { title: '1280 赤翎币', en: '1,280 赤翎币', price: 'RM 80.00', note: '登录充值 / Login Top Up' },
+        { title: '1980 赤翎币', en: '1,980 赤翎币', price: 'RM 120.00', note: '登录充值 / Login Top Up' },
+        { title: '3280 赤翎币', en: '3,280 赤翎币', price: 'RM 190.00', note: '登录充值 / Login Top Up' },
+        { title: '6480 赤翎币', en: '6,480 赤翎币', price: 'RM 380.00', note: '登录充值 / Login Top Up' }
       ]
     }
   ]
