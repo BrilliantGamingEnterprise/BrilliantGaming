@@ -1141,6 +1141,36 @@ const categories = {
 },
 
 {
+  id: 'ragnarok-go',
+  name: 'Ragnarok: Go',
+  detailName: 'Ragnarok: Go（东南亚服）',
+  description: 'Ragnarok: Go SEA',
+  tag: 'Login Top Up',
+  topupFormType: 'login',
+  image: 'assets/images/games/ragnarok-go.jpg',
+  detailArt: 'assets/images/games/ragnarok-go.jpg',
+  keywords: ['Ragnarok Go', 'RO GO', '仙境传说 GO', '东南亚服'],
+  productSections: [
+    {
+      title: '礼券充值',
+      subtitle: 'Voucher Packs',
+      icon: '◆',
+      products: [
+        { title: '30 + 1 礼券', en: '30 + 1 Vouchers', price: 'RM 4.50' },
+        { title: '60 + 2 礼券', en: '60 + 2 Vouchers', price: 'RM 8.00' },
+        { title: '90 + 4 礼券', en: '90 + 4 Vouchers', price: 'RM 12.00' },
+        { title: '150 + 7 礼券', en: '150 + 7 Vouchers', price: 'RM 19.00' },
+        { title: '300 + 14 礼券', en: '300 + 14 Vouchers', price: 'RM 38.00' },
+        { title: '450 + 22 礼券', en: '450 + 22 Vouchers', price: 'RM 57.00' },
+        { title: '600 + 30 礼券', en: '600 + 30 Vouchers', price: 'RM 76.00' },
+        { title: '900 + 45 礼券', en: '900 + 45 Vouchers', price: 'RM 114.00' },
+        { title: '1500 + 75 礼券', en: '1,500 + 75 Vouchers', price: 'RM 190.00' },
+        { title: '3000 + 150 礼券', en: '3,000 + 150 Vouchers', price: 'RM 370.00' }
+      ]
+    }
+  ]
+},
+{
   id: 'ragnarok-origin-classic',
   name: 'ROOC',
   detailName: 'Ragnarok Origin Classic',

@@ -34,6 +34,7 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "intl/ro-the-new-world": "2026-09-03",
     "intl/arknights-endfield": "2026-07-15",
     "intl/x-hero-epic-hero": "2026-10-22",
+    "intl/ragnarok-go": "2026-11-09",
     "intl/ragnarok-origin-classic": "2026-07-15",
     "intl/dark-war-survival": "2026-07-15",
     "intl/heartopia": "2026-07-15",

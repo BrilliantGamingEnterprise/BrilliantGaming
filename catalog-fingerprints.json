@@ -133,6 +133,10 @@
       "fingerprint": "3946b82a5d199e79b14ef95f4c60a420d6213b2db673f45698f2778e75adfc45",
       "updatedAt": "2026-10-22"
     },
+    "intl/ragnarok-go": {
+      "fingerprint": "8c0947ad546b411eed59d74120b6aef31d0c02306bcdc57004c9d25a088226b2",
+      "updatedAt": "2026-11-09"
+    },
     "intl/ragnarok-origin-classic": {
       "fingerprint": "230c8bf5c669f655f92ae853a6b843f30ff127d07a895957bf7241615513c7ca",
       "updatedAt": "2026-07-15"
