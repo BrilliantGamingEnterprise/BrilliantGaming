@@ -2,7 +2,7 @@
 globalThis.BGE_CATALOG_META = Object.freeze({
   "updatedAtByGame": {
     "intl/genshin": "2026-10-01",
-    "intl/honkai-star-rail": "2026-08-27",
+    "intl/honkai-star-rail": "2026-11-15",
     "intl/zenless-zone-zero": "2026-08-27",
     "intl/wuthering-waves": "2026-08-27",
     "intl/tower-of-saviors": "2026-09-18",
