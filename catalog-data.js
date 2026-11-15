@@ -927,14 +927,14 @@ const categories = {
       subtitle: 'Echo Beads',
       icon: '◆',
       products: [
-        { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 19.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 38.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl' },
-        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 360.00', note: 'HOT 推荐 / Changming Pearl' }
+        { title: '60 长鸣珠', en: '60 Echo Beads', price: 'RM 4.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '180 长鸣珠', en: '180 Echo Beads', price: 'RM 12.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '300 长鸣珠', en: '300 Echo Beads', price: 'RM 19.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '600 长鸣珠', en: '600 Echo Beads', price: 'RM 38.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '900 长鸣珠', en: '900 Echo Beads', price: 'RM 57.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '1800 长鸣珠', en: '1800 Echo Beads', price: 'RM 114.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '3000 长鸣珠', en: '3000 Echo Beads', price: 'RM 190.00', note: '长鸣珠 / Changming Pearl', status: 'soldout' },
+        { title: '6000 长鸣珠', en: '6000 Echo Beads', price: 'RM 380.00', note: 'HOT 推荐 / Changming Pearl' }
       ]
     },
     {
@@ -1784,8 +1784,8 @@ const categories = {
       subtitle: 'Android / iOS Slow Top-Up',
       icon: '◆',
       products: [
-        { title: '1000 点券', en: '1000 点券', price: 'RM 60.00', note: '双系统慢充，到账时间 5 分钟 - 24 小时 / Slow Top-Up', status: 'soldout' },
-        { title: '2000 点券', en: '2000 点券', price: 'RM 120.00', note: 'HOT 推荐 / 双系统慢充，到账时间 5 分钟 - 24 小时', status: 'soldout' }
+        { title: '1000 点券', en: '1000 点券', price: 'RM 65.00', note: '双系统慢充，到账时间 5 分钟 - 24 小时 / Slow Top-Up' },
+        { title: '2000 点券', en: '2000 点券', price: 'RM 125.00', note: 'HOT 推荐 / 双系统慢充，到账时间 5 分钟 - 24 小时' }
       ]
     }
   ]
