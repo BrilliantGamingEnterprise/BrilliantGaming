@@ -693,10 +693,7 @@ const topupFormConfigs = {
         label: '登录区',
         type: 'select',
         required: true,
-        options: [
-          '微信区',
-          'QQ区'
-        ]
+        options: ['微信区']
       },
       {
         name: 'serverMode',
