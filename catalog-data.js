@@ -324,6 +324,40 @@ const categories = {
   ]
 },
       {
+  id: 'roblox',
+  name: 'Roblox',
+  detailName: 'Roblox',
+  description: 'Roblox Robux',
+  tag: 'Robux Top Up',
+  image: 'assets/images/games/roblox.jpg',
+  detailArt: 'assets/images/games/roblox.jpg',
+  keywords: ['Roblox', 'Robux', '罗布乐思', '快充', '慢充'],
+  productSections: [
+    {
+      title: 'Robux 快充',
+      subtitle: 'Robux Fast Top-Up',
+      icon: '◆',
+      products: [
+        { title: '500 Robux', en: '500 Robux', price: 'RM 19.00' },
+        { title: '1000 Robux', en: '1,000 Robux', price: 'RM 38.00' },
+        { title: '2000 Robux', en: '2,000 Robux', price: 'RM 76.00' },
+        { title: '3000 Robux', en: '3,000 Robux', price: 'RM 114.00' },
+        { title: '4000 Robux', en: '4,000 Robux', price: 'RM 152.00' },
+        { title: '4500 Robux', en: '4,500 Robux', price: 'RM 190.00' },
+        { title: '10000 Robux', en: '10,000 Robux', price: 'RM 370.00' }
+      ]
+    },
+    {
+      title: 'Robux 慢充',
+      subtitle: 'Robux Slow Top-Up',
+      icon: '◆',
+      products: [
+        { title: '24000 Robux', en: '24,000 Robux', price: 'RM 760.00' }
+      ]
+    }
+  ]
+},
+      {
   id: 'pokemon-tcg-pocket',
   name: 'Pokémon TCG Pocket',
   detailName: 'Pokémon TCG Pocket',
