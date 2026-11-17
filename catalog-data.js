@@ -7,10 +7,9 @@ const pricePresets = {
   // 仅关联 100 美元档位；开天的仙玉、仙云币两种 100 美元商品均使用此项。
   selectedGamesUsd100: 'RM 370.00',
 
-  // 共用价格：需要调整这些单档 RM340 欧盟游戏时，只改这里一次即可。
-  // 使用范围：Sword Of Justice、Ragnarok Origin Classic、Dark War Survival、心动小镇、
-  // 斗罗大陆 · 猎魂世界、剑侠情缘、Legends of Mushroom、Zombie Wave、逆水寒 台服、Lands Of Jails。
-  rm340: 'RM 350.00',
+  // 固定名称「登入充值100美金」：以下八款游戏共用，不是「雷蛇100美金」。
+  // ROOC、Dark War Survival、心动小镇、剑侠情缘、蘑菇传奇、Zombie Wave、逆水寒台服、Lands Of Jails。
+  loginTopupUsd100: 'RM 360.00',
 
   // 中国服共用价格：王者荣耀、和平精英、火影忍者、金铲铲等共用的人民币档位。
   // 以后要统一调整中国游戏档位价格，只改这里一次即可。
@@ -319,6 +318,43 @@ const categories = {
         { title: '1980 赤翎币', en: '1,980 赤翎币', price: 'RM 120.00', note: '登录充值 / Login Top Up' },
         { title: '3280 赤翎币', en: '3,280 赤翎币', price: 'RM 190.00', note: '登录充值 / Login Top Up' },
         { title: '6480 赤翎币', en: '6,480 赤翎币', price: 'RM 380.00', note: '登录充值 / Login Top Up' }
+      ]
+    }
+  ]
+},
+      {
+  id: 'identity-v',
+  name: '第五人格',
+  detailName: '国际服 · 第五人格',
+  description: 'Identity V',
+  tag: 'UID Top Up',
+  topupFormType: 'uid',
+  image: 'assets/images/games/identity-v.jpg',
+  detailArt: 'assets/images/games/identity-v.jpg',
+  keywords: ['第五人格', 'Identity V', 'IDV', '回声', 'Echoes'],
+  productSections: [
+    {
+      title: '回声',
+      subtitle: 'Echoes',
+      icon: '◆',
+      products: [
+        { title: '60 + 6 回声', en: '60 + 6 Echoes', price: 'RM 4.50' },
+        { title: '185 + 18 回声', en: '185 + 18 Echoes', price: 'RM 12.00' },
+        { title: '305 + 30 回声', en: '305 + 30 Echoes', price: 'RM 19.00' },
+        { title: '690 + 69 回声', en: '690 + 69 Echoes', price: 'RM 38.00' },
+        { title: '2025 + 202 回声', en: '2,025 + 202 Echoes', price: 'RM 114.00' },
+        { title: '3330 + 333 回声', en: '3,330 + 333 Echoes', price: 'RM 190.00' },
+        { title: '6590 + 659 回声', en: '6,590 + 659 Echoes', price: 'RM 370.00' }
+      ]
+    },
+    {
+      title: '礼包',
+      subtitle: 'Gift Packs',
+      icon: '◆',
+      products: [
+        { title: '灵感礼包', en: 'Inspirations Package', price: 'RM 4.50' },
+        { title: '线索礼包', en: 'Clues Package', price: 'RM 19.00' },
+        { title: '珍宝礼包', en: 'Memory Sphere Package', price: 'RM 38.00' }
       ]
     }
   ]
@@ -1218,7 +1254,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     },
     {
@@ -1245,7 +1281,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1264,7 +1300,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1311,7 +1347,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1330,7 +1366,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1349,7 +1385,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1368,7 +1404,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
@@ -1387,7 +1423,7 @@ const categories = {
       subtitle: 'Package',
       icon: '◆',
       products: [
-        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'rm340', note: '100 美金 / 100 USD Package' }
+        { title: '100 美金礼包', en: '100 USD Package', pricePreset: 'loginTopupUsd100', note: '100 美金 / 100 USD Package' }
       ]
     }
   ]
