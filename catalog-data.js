@@ -388,7 +388,7 @@ const categories = {
       subtitle: 'Robux Slow Top-Up',
       icon: '◆',
       products: [
-        { title: '24000 Robux', en: '24,000 Robux', price: 'RM 760.00' }
+        { title: '24000 Robux', en: '24,000 Robux', price: 'RM 740.00' }
       ]
     }
   ]
