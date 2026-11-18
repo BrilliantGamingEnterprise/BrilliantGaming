@@ -1238,6 +1238,20 @@ function renderTopupInfoForm(categoryId, game) {
     return;
   }
 
+  const fields = game.id === 'shan-jiang-sanguo' && formType === 'login'
+    ? [
+        ...config.fields.slice(0, 1),
+        {
+          name: 'system',
+          label: '系统',
+          type: 'select',
+          required: true,
+          options: ['苹果 iOS', '安卓 Android']
+        },
+        ...config.fields.slice(1)
+      ]
+    : config.fields;
+
   document.body.dataset.topupFormType = formType;
   container.hidden = false;
   container.innerHTML = `
@@ -1250,7 +1264,7 @@ function renderTopupInfoForm(categoryId, game) {
         </div>
       </div>
       <div class="topup-form-grid">
-        ${config.fields.map(makeTopupField).join('')}
+        ${fields.map(makeTopupField).join('')}
       </div>
     </section>`;
   syncTopupConditionalFields(container);
