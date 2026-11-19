@@ -5,7 +5,7 @@ const pricePresets = {
   // 注意：不是 Razer Gold 点卡，也不包含其他游戏的 100 美元档位。
   // 完美世界W、仗剑传说、问剑长生、X-Hero、伊莫(Aniimo)、开天、天龙八部2、闪将三国。
   // 仅关联 100 美元档位；开天的仙玉、仙云币两种 100 美元商品均使用此项。
-  selectedGamesUsd100: 'RM 370.00',
+  selectedGamesUsd100: 'RM 380.00',
 
   // 固定名称「登入充值100美金」：以下八款游戏共用，不是「雷蛇100美金」。
   // ROOC、Dark War Survival、心动小镇、剑侠情缘、蘑菇传奇、Zombie Wave、逆水寒台服、Lands Of Jails。
