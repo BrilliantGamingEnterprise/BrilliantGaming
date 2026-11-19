@@ -12,7 +12,7 @@ const currencySettings = {
   rates: {
     MYR: 1,
     SGD: 3.0,
-    USD: 4.0
+    USD: 4.04
   },
   labels: {
     MYR: 'MYR',
