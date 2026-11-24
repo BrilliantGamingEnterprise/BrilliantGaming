@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="128" viewBox="0 0 256 128" fill="none">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#23344c"/><stop offset="1" stop-color="#111924"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#fff2c3"/><stop offset="1" stop-color="#cb9b57"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#c0fff1"/><stop offset="1" stop-color="#2c9e9e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Peace Elite: privilege shield -->
+  <g stroke-linejoin="round">
+    <path d="M9 15h46v34H9z" fill="#111b2c" stroke="#326da4" stroke-width="2"/>
+    <rect x="7" y="13" width="50" height="34" rx="6" fill="url(#steel)" stroke="#71b1e9" stroke-width="2"/>
+    <path d="M32 17l12 4v9c0 6-5 11-12 13-7-2-12-7-12-13v-9z" fill="#f0be63" stroke="#ffdf9b" stroke-width="1.8"/>
+    <path d="m32 21 2.5 5 5.4.8-4 3.8 1 5.4-4.9-2.5-4.9 2.5 1-5.4-4-3.8 5.4-.8z" fill="#604420"/>
+    <path d="M12 21h4m-4 5h3m33-5h4m-3 5h3" stroke="#90c6ff" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Naruto Mobile: deluxe and legendary scrolls -->
+  <g transform="translate(64)" stroke-linejoin="round">
+    <path d="M14 13h23c9 0 10 7 10 11v14c0 4 3 6 7 6-1 4-4 7-9 7H21c-5 0-8-3-8-8V20z" fill="url(#paper)" stroke="#e6b776" stroke-width="2"/>
+    <path d="M14 13c-5 0-8 3-8 7s3 7 8 7h23c-4 0-5-3-5-7s2-7 5-7zm7 30h23c4 0 6 3 6 6l-5 2H21c-4 0-8-2-8-5 0-2 4-3 8-3z" fill="#6245a0" stroke="#ad8cff" stroke-width="1.8"/>
+    <path d="m30 28 6 5-6 5-6-5z" fill="#623da6"/>
+    <path d="M20 34h3m14 0h4" stroke="#96592b" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(128)" stroke-linejoin="round">
+    <path d="M19 12h20c8 0 10 6 10 12v19l5 3c-1 4-5 8-10 8H20c-5 0-8-4-8-8V22z" fill="#71323b" stroke="#ffcf74" stroke-width="2.4"/>
+    <path d="M18 11c-5 0-9 4-9 8s4 7 9 7h22c-4-2-5-4-5-7 0-4 2-7 5-8zm1 35h24c4 0 7 2 7 5l-6 3H20c-4 0-8-2-8-5 0-2 3-3 7-3z" fill="#d59439" stroke="#ffdf91" stroke-width="1.7"/>
+    <path d="m31 27 2.5 4.5 5.5 2.5-5.5 2.5L31 41l-2.5-4.5-5.5-2.5 5.5-2.5z" fill="#ffe7a5"/>
+    <path d="M51 9v10m-5-5h10M8 36v6m-3-3h6" stroke="#f9d586" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Delta Force: small black card -->
+  <g transform="translate(192)" stroke-linejoin="round">
+    <path d="M11 17h42l4 4v22l-4 4H11l-4-4V21z" fill="#17222b" stroke="#687e8e" stroke-width="2"/>
+    <path d="M12 21h40v4H12z" fill="#4c6b7a"/>
+    <path d="M17 35h13m-13 6h8" stroke="#a5b5bd" stroke-width="2" stroke-linecap="round"/>
+    <path d="m45 28 6 6-6 6-6-6z" fill="#7fd2d7"/><path d="m45 31 3 3-3 3-3-3z" fill="#1e6471"/>
+  </g>
+
+  <!-- Delta Force: enjoyment card and two obsidian variants -->
+  <g transform="translate(0 64)" stroke-linejoin="round">
+    <rect x="7" y="15" width="50" height="34" rx="6" fill="#143843" stroke="#70ddd6" stroke-width="2.4"/>
+    <path d="M13 22h15m-15 6h9m-9 13h11" stroke="#8becdf" stroke-width="2" stroke-linecap="round"/>
+    <path d="m40 20 11 8-4 13H34l-5-13z" fill="url(#jade)" stroke="#c8fff1" stroke-width="1.4"/>
+    <path d="m30 28 10 5 10-5m-10 5v8" stroke="#257c7c" stroke-width="1.6"/>
+  </g>
+  <g transform="translate(64 64)" stroke-linejoin="round">
+    <path d="M13 15h38l6 6v22l-6 6H13l-6-6V21z" fill="#23232c" stroke="#a9adb6" stroke-width="2.4"/>
+    <path d="M14 39v-13l19-5 16 5v12L31 44z" fill="#363846"/>
+    <path d="m32 22 10 10-10 10-10-10z" fill="#a9a8bf" stroke="#e4e5f3" stroke-width="1.4"/>
+    <path d="m32 23 3 9-3 9-3-9z" fill="#63667c"/>
+    <path d="M13 23h8m23 18h7" stroke="#b1b7c2" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(128 64)" stroke-linejoin="round">
+    <path d="M13 13h38l7 7v24l-7 7H13l-7-7V20z" fill="#292332" stroke="#f5bf68" stroke-width="2.3"/>
+    <path d="M16 17h32l5 5v20l-5 5H16l-5-5V22z" stroke="#886845" stroke-width="1.2"/>
+    <path d="m32 19 12 9-4 13H24l-4-13z" fill="#bc86ec" stroke="#f3d5ff" stroke-width="1.5"/>
+    <path d="m20 28 12 5 12-5m-12 5v8M14 29l3 3-3 3m36-6-3 3 3 3" stroke="#ffe0a2" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Valorant Mobile: advance pass -->
+  <g transform="translate(192 64)" stroke-linejoin="round">
+    <path d="M12 15h40l5 5v24l-5 5H12l-5-5V20z" fill="#361b24" stroke="#ff6f76" stroke-width="2.2"/>
+    <path d="M22 16h21L26 48H10z" fill="#69323d"/>
+    <path d="m22 34 13-13h13l-13 13h9L29 45l4-11z" fill="#ffd3c1"/>
+    <path d="M13 22h8m-8 18h7m26 2h5m-3-15h3" stroke="#ff8f90" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

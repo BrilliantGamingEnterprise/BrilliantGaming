@@ -1,0 +1,129 @@
+/* Artwork sampled directly from the provided reference screenshots. */
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="3000点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 23.630% 21.394%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(32.35% 23.53%, 52.94% 20.59%, 64.71% 38.24%, 70.59% 50.00%, 82.35% 58.82%, 76.47% 64.71%, 55.88% 70.59%, 44.12% 76.47%, 20.59% 79.41%, 14.71% 70.59%, 20.59% 61.76%, 20.59% 47.06%, 29.41% 41.18%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="6800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 76.027% 21.394%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(47.06% 20.59%, 58.82% 23.53%, 64.71% 35.29%, 73.53% 41.18%, 76.47% 47.06%, 94.12% 58.82%, 94.12% 64.71%, 85.29% 67.65%, 67.65% 70.59%, 55.88% 73.53%, 44.12% 76.47%, 32.35% 73.53%, 23.53% 73.53%, 8.82% 76.47%, 2.94% 67.65%, 2.94% 61.76%, 11.76% 52.94%, 20.59% 38.24%, 26.47% 32.35%, 44.12% 29.41%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="12800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 23.630% 52.644%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(26.47% 32.35%, 38.24% 26.47%, 44.12% 32.35%, 58.82% 35.29%, 85.29% 38.24%, 91.18% 41.18%, 91.18% 73.53%, 82.35% 79.41%, 64.71% 82.35%, 44.12% 76.47%, 32.35% 67.65%, 26.47% 79.41%, 11.76% 79.41%, 8.82% 70.59%, 14.71% 64.71%, 14.71% 38.24%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="19800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 76.027% 52.644%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(17.65% 17.65%, 35.29% 17.65%, 67.65% 23.53%, 79.41% 35.29%, 85.29% 47.06%, 79.41% 70.59%, 88.24% 79.41%, 88.24% 88.24%, 44.12% 88.24%, 32.35% 82.35%, 11.76% 85.29%, 2.94% 76.47%, 2.94% 44.12%, 14.71% 38.24%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="32800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 23.630% 84.375%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(20.59% 20.59%, 32.35% 17.65%, 67.65% 23.53%, 82.35% 26.47%, 85.29% 38.24%, 79.41% 47.06%, 73.53% 55.88%, 76.47% 64.71%, 94.12% 76.47%, 94.12% 82.35%, 73.53% 88.24%, 52.94% 85.29%, 41.18% 79.41%, 26.47% 85.29%, 14.71% 76.47%, 17.65% 64.71%, 14.71% 50.00%, 20.59% 41.18%, 14.71% 29.41%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="64800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-a.png");
+  --reference-position: 76.027% 84.375%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(20.59% 17.65%, 38.24% 14.71%, 61.76% 20.59%, 76.47% 29.41%, 82.35% 38.24%, 79.41% 44.12%, 76.47% 52.94%, 88.24% 64.71%, 88.24% 76.47%, 94.12% 79.41%, 88.24% 85.29%, 64.71% 88.24%, 50.00% 82.35%, 38.24% 85.29%, 14.71% 79.41%, 8.82% 67.65%, 14.71% 52.94%, 17.65% 41.18%, 23.53% 38.24%, 17.65% 32.35%, 14.71% 26.47%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="89800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-b.png");
+  --reference-position: 23.630% 35.577%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(23.53% 14.71%, 41.18% 14.71%, 67.65% 20.59%, 79.41% 32.35%, 82.35% 41.18%, 76.47% 47.06%, 79.41% 55.88%, 88.24% 64.71%, 88.24% 76.47%, 91.18% 82.35%, 79.41% 88.24%, 55.88% 88.24%, 44.12% 79.41%, 32.35% 88.24%, 17.65% 82.35%, 11.76% 76.47%, 11.76% 64.71%, 17.65% 50.00%, 26.47% 41.18%, 20.59% 35.29%, 14.71% 26.47%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="129800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-b.png");
+  --reference-position: 76.027% 35.577%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(23.53% 14.71%, 41.18% 14.71%, 67.65% 20.59%, 79.41% 32.35%, 82.35% 41.18%, 76.47% 47.06%, 79.41% 55.88%, 88.24% 64.71%, 88.24% 76.47%, 91.18% 82.35%, 79.41% 88.24%, 55.88% 88.24%, 44.12% 79.41%, 32.35% 88.24%, 17.65% 82.35%, 11.76% 76.47%, 11.76% 64.71%, 17.65% 50.00%, 26.47% 41.18%, 20.59% 35.29%, 14.71% 26.47%);
+}
+
+.compact-products[data-compact-game="jin-chan-chan"] [data-token-sku="199800点券"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/jin-chan-chan-reference-b.png");
+  --reference-position: 23.630% 67.067%;
+  --reference-size: 958.824% 1323.529%;
+  --reference-outline: polygon(23.53% 14.71%, 41.18% 14.71%, 67.65% 20.59%, 79.41% 32.35%, 82.35% 41.18%, 76.47% 47.06%, 79.41% 55.88%, 88.24% 64.71%, 88.24% 76.47%, 91.18% 82.35%, 79.41% 88.24%, 55.88% 88.24%, 44.12% 79.41%, 32.35% 88.24%, 17.65% 82.35%, 11.76% 76.47%, 11.76% 64.71%, 17.65% 50.00%, 26.47% 41.18%, 20.59% 35.29%, 14.71% 26.47%);
+}
+
+/* Match each DreamStar box by the base pack, never by the bonus-inclusive total. */
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="60星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 41.013% 14.795%;
+  --reference-size: 1185.185% 567.284%;
+  --reference-outline: polygon(23.46% 10.49%, 74.07% 12.96%, 77.16% 12.35%, 79.63% 20.37%, 85.19% 32.10%, 86.42% 37.04%, 85.80% 74.07%, 78.40% 81.48%, 64.20% 88.89%, 42.59% 88.27%, 18.52% 85.80%, 13.58% 82.72%, 12.35% 78.40%, 12.35% 33.95%, 19.75% 22.84%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="300星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 58.476% 14.531%;
+  --reference-size: 1185.185% 567.284%;
+  --reference-outline: polygon(24.69% 12.96%, 56.17% 12.96%, 61.73% 9.26%, 90.12% 9.88%, 91.36% 19.14%, 94.44% 24.69%, 95.06% 32.10%, 94.44% 78.40%, 91.36% 83.95%, 69.75% 93.21%, 66.05% 94.44%, 11.73% 85.80%, 6.79% 83.95%, 6.79% 43.83%, 10.49% 31.48%, 17.90% 23.46%, 24.69% 19.14%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="680星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 75.970% 14.647%;
+  --reference-size: 1142.857% 547.024%;
+  --reference-outline: polygon(23.81% 13.69%, 58.33% 11.90%, 63.10% 8.33%, 86.31% 8.93%, 86.90% 18.45%, 91.07% 20.83%, 91.67% 26.19%, 91.67% 73.21%, 89.29% 79.76%, 67.26% 91.07%, 61.31% 92.86%, 15.48% 85.71%, 9.52% 83.93%, 8.33% 78.57%, 8.33% 44.05%, 11.31% 35.71%, 19.64% 23.21%, 25.00% 20.24%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="1180星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 23.297% 60.590%;
+  --reference-size: 1109.827% 531.214%;
+  --reference-outline: polygon(17.34% 13.87%, 49.71% 13.29%, 55.49% 9.83%, 68.79% 9.83%, 76.30% 15.03%, 84.39% 21.97%, 86.71% 35.84%, 86.71% 39.88%, 89.60% 51.45%, 89.60% 56.65%, 93.64% 60.69%, 93.06% 65.90%, 89.60% 68.79%, 86.13% 69.94%, 81.50% 78.03%, 70.52% 86.71%, 58.96% 89.60%, 16.18% 86.13%, 10.98% 83.24%, 9.25% 78.61%, 9.25% 63.01%, 12.14% 58.38%, 13.29% 52.60%, 17.92% 49.71%, 18.50% 41.04%, 21.39% 38.73%, 19.08% 35.26%, 24.28% 30.64%, 18.50% 29.48%, 13.87% 24.28%, 14.45% 19.08%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="1980星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 41.089% 60.887%;
+  --reference-size: 1097.143% 525.143%;
+  --reference-outline: polygon(17.14% 13.14%, 48.00% 12.57%, 60.00% 10.86%, 71.43% 12.57%, 81.71% 17.71%, 87.43% 23.43%, 89.14% 31.43%, 88.00% 39.43%, 91.43% 51.43%, 91.43% 56.57%, 95.43% 58.86%, 95.43% 64.00%, 91.43% 67.43%, 86.86% 68.57%, 81.71% 74.29%, 68.57% 84.57%, 58.29% 86.86%, 16.57% 81.14%, 10.29% 78.86%, 8.00% 74.86%, 7.43% 57.14%, 9.71% 53.71%, 12.00% 47.43%, 13.71% 44.57%, 13.71% 40.57%, 18.29% 36.00%, 23.43% 33.14%, 18.29% 30.29%, 14.29% 24.00%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="3480星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 58.810% 60.241%;
+  --reference-size: 1116.279% 534.302%;
+  --reference-outline: polygon(23.84% 16.28%, 48.84% 15.70%, 55.81% 14.53%, 61.63% 9.88%, 87.21% 9.88%, 92.44% 12.21%, 91.86% 69.77%, 90.12% 76.74%, 77.33% 84.30%, 67.44% 86.05%, 59.30% 90.70%, 50.58% 91.86%, 10.47% 84.30%, 8.14% 81.98%, 7.56% 63.95%, 12.21% 58.72%, 12.21% 55.81%, 16.28% 50.00%, 17.44% 44.77%, 20.35% 42.44%, 20.93% 25.00%);
+}
+
+.compact-products[data-compact-game="yuanmeng-zhixing"] [data-token-sku="6480星钻"] {
+  --reference-visibility: visible;
+  --reference-image: url("assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png");
+  --reference-position: 76.403% 60.134%;
+  --reference-size: 1103.448% 528.161%;
+  --reference-outline: polygon(19.54% 16.67%, 44.83% 14.94%, 52.30% 14.37%, 57.47% 8.05%, 82.18% 8.62%, 87.36% 10.92%, 89.08% 20.11%, 87.93% 74.14%, 85.63% 76.44%, 88.51% 82.76%, 86.78% 87.93%, 80.46% 90.23%, 76.44% 93.68%, 68.39% 94.83%, 60.92% 92.53%, 56.32% 86.21%, 52.30% 87.36%, 45.98% 89.66%, 9.20% 82.18%, 7.47% 79.89%, 7.47% 68.97%, 11.49% 66.67%, 10.92% 61.49%, 14.37% 56.90%, 18.39% 55.75%, 20.11% 51.72%, 17.24% 49.43%, 18.39% 25.86%);
+}

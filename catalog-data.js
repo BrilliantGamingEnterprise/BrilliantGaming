@@ -2099,18 +2099,18 @@ const categories = {
   detailArt: 'assets/images/games/王者荣耀世界2.jpg',
   productSections: [
     {
-      title: '碎晶',
-      subtitle: '碎晶',
+      title: '璇晶',
+      subtitle: 'Xuanjing',
       icon: '◆',
       products: [
-        { title: '60 碎晶', en: '60 碎晶', pricePreset: 'cny6', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '180 碎晶', en: '180 碎晶', pricePreset: 'cny18', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '300 碎晶', en: '300 碎晶', pricePreset: 'cny30', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '680 碎晶', en: '680 碎晶', pricePreset: 'cny68', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '980 碎晶', en: '980 碎晶', pricePreset: 'cny98', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '1980 碎晶', en: '1980 碎晶', pricePreset: 'cny198', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '3280 碎晶', en: '3280 碎晶', pricePreset: 'cny328', note: '碎晶充值 / Suijing Chongzhi' },
-        { title: '6480 碎晶', en: '6480 碎晶', pricePreset: 'cny648', note: '碎晶充值 / Suijing Chongzhi' }
+        { title: '60 璇晶', en: '60 Xuanjing', pricePreset: 'cny6', note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '180 璇晶', en: '180 Xuanjing', pricePreset: 'cny18', officialJingpoBonus: 10, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '300 璇晶', en: '300 Xuanjing', pricePreset: 'cny30', officialJingpoBonus: 16, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '680 璇晶', en: '680 Xuanjing', pricePreset: 'cny68', officialJingpoBonus: 38, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '980 璇晶', en: '980 Xuanjing', pricePreset: 'cny98', officialJingpoBonus: 58, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '1980 璇晶', en: '1980 Xuanjing', pricePreset: 'cny198', officialJingpoBonus: 128, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '3280 璇晶', en: '3280 Xuanjing', pricePreset: 'cny328', officialJingpoBonus: 258, note: '璇晶充值 / Xuanjing Top-Up' },
+        { title: '6480 璇晶', en: '6480 Xuanjing', pricePreset: 'cny648', officialJingpoBonus: 518, note: '璇晶充值 / Xuanjing Top-Up' }
       ]
     }
   ]
@@ -2163,13 +2163,13 @@ const categories = {
       subtitle: '星钻',
       icon: '◆',
       products: [
-        { title: '60 星钻', en: '60 星钻', pricePreset: 'cny6', note: '星钻充值 / Xingzuan Chongzhi' },
-        { title: '325 星钻', en: '325 星钻', pricePreset: 'cny30', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '745 星钻', en: '745 星钻', pricePreset: 'cny68', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '1300 星钻', en: '1300 星钻', pricePreset: 'cny118', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '2185 星钻', en: '2185 星钻', pricePreset: 'cny198', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '3890 星钻', en: '3890 星钻', pricePreset: 'cny348', note: '含赠送 / Xingzuan Chongzhi' },
-        { title: '7280 星钻', en: '7280 星钻', pricePreset: 'cny648', note: 'HOT 推荐 / Xingzuan Chongzhi' }
+        { title: '60 星钻', en: '60 Star Diamonds', pricePreset: 'cny6', note: '星钻充值 / Xingzuan Chongzhi' },
+        { title: '300 星钻 赠送 22', en: '300 Star Diamonds + 22 Bonus', pricePreset: 'cny30', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '680 星钻 赠送 55', en: '680 Star Diamonds + 55 Bonus', pricePreset: 'cny68', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '1180 星钻 赠送 105', en: '1180 Star Diamonds + 105 Bonus', pricePreset: 'cny118', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '1980 星钻 赠送 180', en: '1980 Star Diamonds + 180 Bonus', pricePreset: 'cny198', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '3480 星钻 赠送 328', en: '3480 Star Diamonds + 328 Bonus', pricePreset: 'cny348', note: '含赠送 / Xingzuan Chongzhi' },
+        { title: '6480 星钻 赠送 700', en: '6480 Star Diamonds + 700 Bonus', pricePreset: 'cny648', note: 'HOT 推荐 / Xingzuan Chongzhi' }
       ]
     }
   ]

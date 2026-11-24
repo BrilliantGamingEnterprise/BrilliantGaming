@@ -385,6 +385,13 @@ function getCartItemChineseTitle(item) {
   return cleanTieredExchangeCartTitle(item, String(item?.title || '').split(' / ')[0].trim());
 }
 
+function isSupersededTencentPack(item, gameId) {
+  const title = getCartItemChineseTitle(item);
+  if (gameId === 'wangzhe-rongyao-shijie') return /^(60|180|300|680|980|1980|3280|6480) 碎晶$/.test(title);
+  if (gameId === 'yuanmeng-zhixing') return /^(325|745|1300|2185|3890|7280) 星钻$/.test(title);
+  return false;
+}
+
 function getCartItemEnglishTitle(item) {
   if (item?.titleEn) return cleanTieredExchangeCartTitle(item, item.titleEn);
 
@@ -1891,6 +1898,30 @@ function handleProductCardAction(productCard) {
   applyProductFormDefaults(productCard);
 }
 
+const compactTencentGameIds = new Set([
+  'honor-of-kings-cn', 'peace-elite', 'wangzhe-wanxiangqi', 'delta-force-cn',
+  'luoke-wangguo', 'huoying-renzhe', 'wuwei-qiyue', 'jin-chan-chan', 'yuanmeng-zhixing',
+  'wangzhe-rongyao-shijie'
+]);
+
+const compactProductIllustrations = new Map([
+  ['peace-elite:特权精英卡', 'elite'],
+  ['huoying-renzhe:豪华忍法帖', 'scroll-deluxe'],
+  ['huoying-renzhe:传说忍法帖', 'scroll-legendary'],
+  ['delta-force-cn:小黑卡', 'delta-black'],
+  ['delta-force-cn:悦享卡', 'delta-enjoy'],
+  ['delta-force-cn:黑曜卡【普通】', 'obsidian-standard'],
+  ['delta-force-cn:黑曜卡【豪华】', 'obsidian-deluxe'],
+  ['wuwei-qiyue:无畏先行卡', 'advance-pass']
+]);
+
+function makeCompactProductIcon(titleZh, illustration) {
+  const sku = titleZh.match(/^(\d+)(?:\s*\+\s*\d+)?\s*(点券|金币|三角币|洛克钻|星钻|璇晶)(?:\s|$)/);
+  const key = sku ? sku[1] + sku[2] : '';
+  const illustrated = illustration ? ` data-special-art="${escapeAttribute(illustration)}"` : '';
+  return `<span class="compact-product-icon" data-token-sku="${key}"${illustrated} aria-hidden="true"></span>`;
+}
+
 function makeProductCard(product, gameId = '', section = null, sectionKey = '', cardContext = {}) {
   const resolvedProduct = resolveProductPrice(product);
   const titleZh = resolvedProduct.title || '';
@@ -1915,6 +1946,33 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
   const actionIndicator = status === 'active'
     ? '<span class="product-card-action" data-product-action-indicator aria-hidden="true">＋</span>'
     : '';
+  const compact = cardContext.compact;
+  const illustration = compact && compactProductIllustrations.get(`${gameId}:${titleZh}`);
+  const tokenParts = compact && ['honor-of-kings-cn', 'peace-elite'].includes(gameId)
+    && titleZh.match(/^(\d+) 点券(?: 赠送 (\d+))?$/);
+  const starParts = compact && gameId === 'yuanmeng-zhixing'
+    && titleZh.match(/^(\d+) 星钻(?: 赠送 (\d+))?$/);
+  let cardTitle = title;
+  let cardDetail = subtitle;
+  if (tokenParts) {
+    const [, amount, bonus] = tokenParts;
+    cardTitle = `${amount} ${isEnglishLanguage() ? 'Tokens' : '点券'}`;
+    cardDetail = bonus ? (isEnglishLanguage() ? `Bonus +${bonus}` : `额外赠送 +${bonus} 点券`) : '';
+  } else if (starParts) {
+    const [, amount, bonus] = starParts;
+    const base = Number(amount).toLocaleString('en-MY');
+    cardTitle = `${base} ${isEnglishLanguage() ? 'Star Diamonds' : '星钻'}`;
+    cardDetail = bonus ? (isEnglishLanguage() ? `${base} + ${bonus} bonus` : `${base} + 赠送 ${bonus}`) : '';
+  } else if (gameId === 'wangzhe-rongyao-shijie' && resolvedProduct.officialJingpoBonus) {
+    const bonus = resolvedProduct.officialJingpoBonus;
+    cardDetail = isEnglishLanguage()
+      ? `Official offer: +${bonus} Jingpo, subject to official checkout`
+      : `官方标注：赠 ${bonus} 晶珀（以官方结算为准）`;
+  }
+  if (illustration) {
+    cardDetail = isEnglishLanguage() ? 'Illustration · not official artwork' : '商品示意图 · 非官方原图';
+  }
+  const cardCopy = `<h3>${escapeHtml(cardTitle)}</h3>${!compact || cardDetail ? `<p>${escapeHtml(cardDetail)}</p>` : ''}`;
 
   if (resolvedProduct.tieredExchangeAmount) {
     const tiers = Array.isArray(resolvedProduct.exchangeTiers) ? resolvedProduct.exchangeTiers : [];
@@ -1957,8 +2015,7 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
   return `
     <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" data-add-aria="${escapeAttribute(actionLabel)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
       ${statusBadge}
-      <h3>${escapeHtml(title)}</h3>
-      <p>${escapeHtml(subtitle)}</p>
+      ${compact ? `${makeCompactProductIcon(titleZh, illustration)}<div class="compact-product-copy">${cardCopy}</div>` : cardCopy}
       <div class="product-price" data-price-base="${escapeAttribute(price)}">${escapeHtml(displayPrice)}</div>
       ${actionIndicator}
     </article>`;
@@ -1987,8 +2044,16 @@ function makeProductSections(game, platformOverride = '') {
     return `${selectorMarkup}<div class="product-grid">${products.map((product) => makeProductCard(product, game.id)).join('')}</div>`;
   }
 
+  const compact = compactTencentGameIds.has(game.id);
+  if (compact && !document.getElementById('compact-products-style')) {
+    const stylesheet = document.createElement('link');
+    stylesheet.id = 'compact-products-style';
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = 'compact-products-preview.css?v=9';
+    document.head.append(stylesheet);
+  }
   const sectionsMarkup = sections
-    .map(({ section, originalIndex }) => {
+    .map(({ section, originalIndex }, index) => {
       const sectionTitle = localizedSectionTitle(section);
       const sectionSubtitle = localizedSectionSubtitle(section);
       const sectionProducts = section.products || [];
@@ -1999,6 +2064,7 @@ function makeProductSections(game, platformOverride = '') {
       const selectedOption = gamePlatformOptions[selectedPlatform];
       const isSharedSection = usesPlatformSelector && sectionPlatform === 'shared' && selectedOption;
       const cardContext = {
+        compact,
         systemValue: selectedOption?.systemValue || getSectionSystemValue(section),
         sectionZh: isSharedSection ? `${selectedOption.sectionZh} · ${section.title || ''}` : section.title || '',
         sectionEn: isSharedSection ? `${selectedOption.sectionEn} · ${englishSectionTitle(section)}` : englishSectionTitle(section)
@@ -2011,7 +2077,7 @@ function makeProductSections(game, platformOverride = '') {
         cardContext
       );
       return `
-      <div class="product-section${customAmountProducts.length ? ' product-section-has-custom-amount' : ''}">
+      <div class="product-section${customAmountProducts.length ? ' product-section-has-custom-amount' : ''}"${compact ? ` id="compact-items-${index}" data-compact-section="${index}"${index ? ' hidden' : ''}` : ''}>
         <div class="product-section-header">
           <h3>
             <span class="product-section-main"><span class="product-section-icon">${section.icon || '◆'}</span>${escapeHtml(sectionTitle)}</span>
@@ -2028,7 +2094,26 @@ function makeProductSections(game, platformOverride = '') {
     })
     .join('');
 
-  return `${selectorMarkup}${sectionsMarkup}`;
+  if (!compact) return `${selectorMarkup}${sectionsMarkup}`;
+  const categoryLabel = isEnglishLanguage() ? 'Product categories' : '商品分类';
+  const categoryButtons = sections.map(({ section }, index) => {
+    const swift = usesPlatformSelector && getSectionPlatform(section) !== 'shared';
+    const slow = usesPlatformSelector && (section.title || '').includes('慢充');
+    const label = swift
+      ? (isEnglishLanguage() ? 'Fast Top-Up' : '点券快充')
+      : localizedSectionTitle(section);
+    return `<button type="button" data-compact-section-tab="${index}" aria-controls="compact-items-${index}" aria-pressed="${index === 0}">
+        <span class="compact-tab-icon" aria-hidden="true">${slow ? '◷' : swift ? 'ϟ' : '◆'}</span>
+        <span>${escapeHtml(label)}</span>
+        <span class="compact-tab-count" aria-hidden="true">${section.products?.length || 0}</span>
+      </button>`;
+  }).join('');
+  return `${selectorMarkup}<div class="compact-products${sections.length === 1 ? ' compact-products-single' : ''}" data-compact-game="${escapeAttribute(game.id)}">
+    ${sections.length > 1 ? `<nav class="compact-products-categories" aria-label="${categoryLabel}">
+      <div class="compact-category-heading">${categoryLabel}</div>${categoryButtons}
+    </nav>` : ''}
+    <div class="compact-products-content">${sectionsMarkup}</div>
+  </div>`;
 }
 
 function renderHomePage(showAll = false, filterCategory = 'all') {
@@ -2660,6 +2745,18 @@ function initEvents() {
       return;
     }
 
+    const compactTab = target.closest('[data-compact-section-tab]');
+    if (compactTab) {
+      const catalog = compactTab.closest('.compact-products');
+      if (!catalog) return;
+      catalog.querySelectorAll('[data-compact-section-tab]').forEach((button) =>
+        button.setAttribute('aria-pressed', String(button === compactTab)));
+      catalog.querySelectorAll('[data-compact-section]').forEach((section) => {
+        section.hidden = section.dataset.compactSection !== compactTab.dataset.compactSectionTab;
+      });
+      return;
+    }
+
     const customAmountAction = target.closest('[data-custom-amount-action]');
     if (customAmountAction) {
       event.preventDefault();
@@ -2969,6 +3066,11 @@ function refreshLanguageContent() {
 }
 
 function start() {
+  const hasSupersededPack = cart.some((item) => isSupersededTencentPack(item, cartContext?.gameId));
+  if (hasSupersededPack) {
+    cart = cart.filter((item) => !isSupersededTencentPack(item, cartContext?.gameId));
+    saveCart();
+  }
   initCurrencySwitcher();
   updateCartUI();
   updateDailyOrderStatsUI();
@@ -2987,6 +3089,11 @@ function start() {
   }
   initEvents();
   refreshCurrencyDisplay();
+  if (hasSupersededPack) {
+    showCartToast(isEnglishLanguage()
+      ? 'Some packs changed. Please reselect them in the shop.'
+      : '部分商品档位已更新，请重新选择后加入购物车。');
+  }
 }
 
 window.addEventListener('bge:languagechange', refreshLanguageContent);

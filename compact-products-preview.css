@@ -1,0 +1,280 @@
+@import url("assets/images/games/tencent-topup/icons.css?v=3");
+@import url("compact-supplied-product-art.css?v=3");
+
+.compact-products {
+  --compact-gold: #efc775;
+  --compact-line: #393125;
+  --compact-muted: #b9b1a2;
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.compact-products-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.compact-products-categories {
+  align-self: start;
+  padding: 9px;
+  background: #121214;
+  border: 1px solid var(--compact-line);
+  border-radius: 12px;
+}
+
+.compact-category-heading {
+  padding: 9px 10px 12px;
+  color: var(--compact-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.compact-products-categories button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  color: #dfd9cc;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 740;
+  text-align: left;
+  cursor: pointer;
+}
+
+.compact-products-categories button + button {
+  margin-top: 5px;
+}
+
+.compact-products-categories button:hover {
+  background: #1f1c17;
+}
+
+.compact-products-categories button[aria-pressed="true"] {
+  color: #ffe3a7;
+  background: #2c2418;
+  border-color: #6f5832;
+}
+
+.compact-products-categories button:focus-visible,
+.page-game .compact-products .product-card:focus-visible {
+  outline: 2px solid var(--compact-gold);
+  outline-offset: -3px;
+}
+
+.compact-tab-icon {
+  min-width: 16px;
+  color: var(--compact-gold);
+  text-align: center;
+}
+
+.compact-tab-count {
+  min-width: 1.55em;
+  margin-inline-start: auto;
+  color: var(--compact-muted);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.page-game .compact-products .product-section {
+  display: block;
+  margin: 0 !important;
+  background: #111114 !important;
+  border-color: var(--compact-line) !important;
+  border-radius: 12px !important;
+}
+
+.page-game .compact-products .product-section[hidden] {
+  display: none !important;
+}
+
+.page-game .compact-products .product-section-header {
+  min-height: 0 !important;
+  padding: 12px 14px !important;
+  border-color: var(--compact-line) !important;
+}
+
+.page-game .compact-products .product-section-header h3 {
+  gap: 4px 12px !important;
+  flex-wrap: wrap;
+}
+
+.page-game .compact-products .product-section-header .product-section-main {
+  color: #faf2e2 !important;
+  font-size: 0.95rem !important;
+}
+
+.page-game .compact-products .product-section-header h3 > span:not(.product-section-main) {
+  color: var(--compact-muted) !important;
+}
+
+.page-game .compact-products .product-section-icon,
+.page-game .compact-products .product-section-header h3::before {
+  display: none !important;
+}
+
+.page-game .compact-products .product-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 6px !important;
+  padding: 8px !important;
+  background: transparent !important;
+}
+
+.page-game .compact-products .product-card {
+  display: grid !important;
+  grid-template-columns: 38px minmax(0, 1fr) auto 31px;
+  align-items: center;
+  gap: 3px 12px;
+  min-height: 58px !important;
+  padding: 9px 12px !important;
+  background: #17171a !important;
+  border: 1px solid #35312a !important;
+  border-radius: 9px !important;
+}
+
+.page-game .compact-products .product-card.product-status-active:hover {
+  background: #221e17 !important;
+  border-color: #705837 !important;
+}
+
+.compact-product-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  grid-column: 1;
+  place-items: center;
+  visibility: var(--token-visibility, var(--reference-visibility, hidden));
+  background: var(--token-image, none) center / 90% 90% no-repeat,
+    radial-gradient(ellipse at center, #222c3d, #171d27 75%);
+  border: 1px solid #303b4d;
+  border-radius: 8px;
+}
+
+.compact-product-icon::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--reference-image, none) var(--reference-position, center) / var(--reference-size, contain) no-repeat;
+  clip-path: var(--reference-outline, inset(100%));
+}
+
+.compact-product-icon[data-special-art] {
+  visibility: visible;
+}
+
+.compact-product-icon[data-special-art]::before {
+  background: url("assets/images/games/tencent-topup/special-card-illustrations.svg")
+    var(--special-art-position, 0% 0%) / 400% 200% no-repeat;
+  clip-path: none;
+}
+
+.compact-product-icon[data-special-art="scroll-deluxe"] { --special-art-position: 33.333333% 0%; }
+.compact-product-icon[data-special-art="scroll-legendary"] { --special-art-position: 66.666667% 0%; }
+.compact-product-icon[data-special-art="delta-black"] { --special-art-position: 100% 0%; }
+.compact-product-icon[data-special-art="delta-enjoy"] { --special-art-position: 0% 100%; }
+.compact-product-icon[data-special-art="obsidian-standard"] { --special-art-position: 33.333333% 100%; }
+.compact-product-icon[data-special-art="obsidian-deluxe"] { --special-art-position: 66.666667% 100%; }
+.compact-product-icon[data-special-art="advance-pass"] { --special-art-position: 100% 100%; }
+
+.compact-product-copy {
+  min-width: 0;
+  grid-column: 2;
+}
+
+.page-game .compact-products .product-card h3 {
+  margin: 0 !important;
+  color: #faf4e8 !important;
+  font-size: 0.94rem !important;
+  line-height: 1.35 !important;
+}
+
+.page-game .compact-products .product-card p {
+  margin: 2px 0 0 !important;
+  color: var(--compact-muted) !important;
+  font-size: 0.75rem !important;
+  line-height: 1.35 !important;
+}
+
+.page-game .compact-products .product-card .product-price {
+  grid-column: 3;
+  justify-self: end;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--compact-gold) !important;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem !important;
+  white-space: nowrap;
+}
+
+.page-game .compact-products .product-card-action {
+  position: static;
+  width: 31px;
+  height: 31px;
+  grid-column: 4;
+  box-shadow: none;
+}
+
+.page-game .compact-products .product-status-badge {
+  grid-column: 2 / -1;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .compact-products {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .compact-products-categories {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .compact-category-heading {
+    grid-column: 1 / -1;
+    padding: 3px 5px 0;
+  }
+
+  .compact-products-categories button + button {
+    margin: 0;
+  }
+
+  .compact-products-categories button {
+    padding: 7px 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .page-game .compact-products .product-card {
+    grid-template-columns: 34px minmax(0, 1fr) 31px;
+    gap: 2px 10px;
+    padding: 8px 9px !important;
+  }
+
+  .compact-product-icon {
+    width: 34px;
+    height: 34px;
+    grid-row: span 2;
+  }
+
+  .page-game .compact-products .product-card .product-price {
+    grid-column: 2;
+    justify-self: start;
+    font-size: 0.9rem !important;
+  }
+
+  .page-game .compact-products .product-card-action {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+}
