@@ -263,6 +263,23 @@
   text-align: right;
 }
 
+.page-game .compact-products .product-card.tiered-exchange-card {
+  grid-template-columns: minmax(0, 1fr);
+  grid-column: 1 / -1;
+  gap: 8px;
+}
+
+.compact-exchange-heading {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.compact-exchange-heading .compact-product-icon {
+  grid-row: 1;
+}
+
 @media (max-width: 700px) {
   .compact-products {
     grid-template-columns: minmax(0, 1fr);

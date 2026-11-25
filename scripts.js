@@ -1899,7 +1899,18 @@ function handleProductCardAction(productCard) {
 }
 
 const internationalProductGameIds = new Set(categories.intl.games.map(({ id }) => id));
-const compactProductGameIds = new Set([...internationalProductGameIds, ...categories.cn.games.map(({ id }) => id)]);
+const compactLiveArtwork = new Map([
+  ['douyin-live', 'douyin-official-app-icon.jpg'],
+  ['huya-live', 'huya-official-app-icon.jpg'],
+  ['douyu-live', 'douyu-official-app-icon.jpg'],
+  ['kuaishou-live', 'kuaishou-official-app-icon.jpg']
+]);
+const compactProductGameIds = new Set([
+  ...internationalProductGameIds,
+  ...categories.cn.games.map(({ id }) => id),
+  ...compactLiveArtwork.keys(),
+  'china-apple-gift-card'
+]);
 
 const compactProductIllustrations = new Map([
   ['peace-elite:特权精英卡', 'elite'],
@@ -2123,6 +2134,17 @@ function makeCompactProductSketch(gameId, kind, tier) {
 }
 
 function makeCompactProductIcon(gameId, titleZh, illustration, fallback = null) {
+  const platformIcon = compactLiveArtwork.get(gameId);
+  if (platformIcon) {
+    return `<span class="compact-product-icon compact-game-icon" aria-hidden="true"><img src="assets/images/games/${platformIcon}" alt="" width="38" height="38" loading="lazy" decoding="async"></span>`;
+  }
+  if (gameId === 'china-apple-gift-card') {
+    // Apple Account and Apple China's gift card page show distinct artwork.
+    const image = titleZh.includes('Apple ID')
+      ? '<img src="assets/images/games/apple-card-products/apple-account.webp" alt="" width="38" height="38" loading="lazy" decoding="async">'
+      : '<svg width="32" height="32" viewBox="48 56 55 36" focusable="false"><image href="assets/images/games/apple-card-products/app-store-card.webp" width="150" height="111"></image></svg>';
+    return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true">${image}</span>`;
+  }
   const sku = titleZh.match(/^(\d+)(?:\s*\+\s*\d+)?\s*(点券|金币|三角币|洛克钻|星钻|璇晶)(?:\s|$)/);
   const key = sku ? sku[1] + sku[2] : '';
   const illustrated = illustration ? ` data-special-art="${escapeAttribute(illustration)}"` : '';
@@ -2208,10 +2230,12 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
 
   if (resolvedProduct.tieredExchangeAmount) {
     const tiers = Array.isArray(resolvedProduct.exchangeTiers) ? resolvedProduct.exchangeTiers : [];
+    const exchangeHeading = compact
+      ? `<div class="compact-exchange-heading">${makeCompactProductIcon(gameId, titleZh, illustration)}<div class="compact-product-copy">${cardCopy}</div></div>`
+      : `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(subtitle)}</p>`;
     return `
       <article class="product-card tiered-exchange-card" data-tiered-exchange-card data-game-id="${escapeAttribute(gameId)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-coin-rate="${escapeAttribute(resolvedProduct.coinRate || 1)}" data-coin-name-zh="${escapeAttribute(resolvedProduct.coinNameZh || '')}" data-coin-name-en="${escapeAttribute(resolvedProduct.coinNameEn || '')}" data-exchange-tiers="${escapeAttribute(JSON.stringify(tiers))}">
-        <h3>${escapeHtml(title)}</h3>
-        <p>${escapeHtml(subtitle)}</p>
+        ${exchangeHeading}
         <label class="custom-amount-field">
           <span>${escapeHtml(uiText('product.exchangeAmountLabel'))}</span>
           <span class="custom-amount-input-wrap"><b>¥</b><input type="number" min="1" step="1" inputmode="numeric" data-exchange-amount-input placeholder="${escapeAttribute(uiText('product.exchangeAmountPlaceholder'))}" aria-label="${escapeAttribute(uiText('product.exchangeAmountLabel'))}"></span>
@@ -2285,7 +2309,7 @@ function makeProductSections(game, platformOverride = '') {
     const stylesheet = document.createElement('link');
     stylesheet.id = 'compact-products-style';
     stylesheet.rel = 'stylesheet';
-    stylesheet.href = 'compact-products-preview.css?v=12';
+    stylesheet.href = 'compact-products-preview.css?v=13';
     document.head.append(stylesheet);
   }
   const sectionsMarkup = sections
