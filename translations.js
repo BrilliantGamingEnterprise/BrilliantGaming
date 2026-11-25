@@ -652,7 +652,7 @@
     'wuwei-qiyue': { name: 'VALORANT Mobile', detail: 'VALORANT Mobile (China · iOS & Android)', description: 'China · Tencent · VALORANT Mobile' },
     'yuanmeng-zhixing': { name: 'DreamStar', detail: 'DreamStar (China · iOS & Android)', description: 'China · Tencent · DreamStar' },
     'razer-gold-top-up-pin': { name: 'Razer Gold Top-Up PIN', detail: 'Razer Gold Top-Up PIN' },
-    'china-apple-gift-card': { name: 'China Apple Gift Card', detail: 'China Apple Gift Card' }
+    'china-apple-gift-card': { name: 'Apple Gift Card', detail: 'China Apple Gift Card' }
   };
 
   const sectionEnglish = {
@@ -697,6 +697,7 @@
     '碎晶': 'Crystal Fragments',
     '星钻': 'Star Diamonds',
     '苹果卡充值': 'Apple Gift Card Top-Up',
+    '中国苹果卡': 'China Apple Gift Card',
     '其他服务': 'Other Services'
   };
 

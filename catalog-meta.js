@@ -74,6 +74,6 @@ globalThis.BGE_CATALOG_META = Object.freeze({
     "wallet/wechat-rmb-topup": "2026-10-24",
     "wallet/alipay-rmb-topup": "2026-10-24",
     "cards/razer-gold-top-up-pin": "2026-07-15",
-    "cards/china-apple-gift-card": "2026-07-15"
+    "cards/china-apple-gift-card": "2026-11-25"
   }
 });

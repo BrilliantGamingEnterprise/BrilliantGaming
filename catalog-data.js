@@ -2418,17 +2418,18 @@ const categories = {
 
       {
         id: 'china-apple-gift-card',
-        name: '中国苹果卡',
+        name: '苹果卡',
         detailName: '中国苹果卡',
-        description: 'China Apple Gift Card',
+        description: 'Apple Gift Card',
         tag: '点数/点卡',
         image: 'assets/images/games/china-apple-gift-card-16x9.png',
         detailArt: 'assets/images/games/pgk2.jpg',
         keywords: ['苹果卡', 'Apple Gift Card', 'China Apple Gift Card', '中国 Apple Card', '点数', '点卡'],
         productSections: [
           {
-            title: '苹果卡充值',
-            subtitle: 'Apple Card Top Up',
+            id: '1-苹果卡充值',
+            title: '中国苹果卡',
+            subtitle: 'China Apple Gift Card',
             icon: '◆',
             products: [
               { title: '6 元 苹果卡', en: '6 RMB Apple Card', price: 'RM 6.00', note: '苹果卡充值 / Apple Card Top Up' },
@@ -2452,7 +2453,7 @@ const categories = {
             subtitle: 'Other Service',
             icon: '◆',
             products: [
-              { title: '中国区 Apple ID（已实名）', en: 'China Region Apple ID (Verified)', price: 'RM 15.00', note: '其他服务 / Other Service' }
+              { title: '中国区 Apple ID（已实名）', en: 'China Region Apple ID (Verified)', price: 'RM 20.00', note: '其他服务 / Other Service' }
             ]
           }
         ]
