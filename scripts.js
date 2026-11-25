@@ -1924,8 +1924,29 @@ const compactProductIllustrations = new Map([
 ]);
 
 // Match artwork to the exact catalog item, never to a similar title in another game.
-// Sources: HoYoverse (Genshin), SEAGM (Wuthering Waves), Midasbuy (HOK), Codashop (others).
+// Sources include HoYoverse, SEAGM, Midasbuy, Codashop, and LTGAMES' official top-up center.
 const compactItemArtwork = new Map([
+  // LTGAMES lists Sword x Staff amounts including bonuses.
+  ['zhang-jian-chuan-shuo', new Map([
+    ['299 + 15 代金券', '314'],
+    ['999 + 40 代金券', '1039'],
+    ['1499 + 60 代金券', '1559'],
+    ['1999 + 100 代金券', '2099'],
+    ['9999 + 500 代金券', '10499'],
+    ['29999 + 1500 代金券', '31499'],
+    ['特惠技能礼包', 'skill-pack'],
+    ['特惠幻兽礼包', 'fantomon-pack']
+  ])],
+  ['wen-jian-chang-sheng', new Map([
+    ['499 代金券', '499'],
+    ['999 代金券', '999'],
+    ['1,999 代金券', '1999'],
+    ['4,999 代金券', '4999'],
+    ['9,999 代金券', '9999'],
+    ['19,999 代金券', '19999'],
+    ['29,999 代金券', '29999'],
+    ['49,999 代金券', '49999']
+  ])],
   ['genshin', new Map([
     ['60 创世结晶', '60'],
     ['300 + 30 创世结晶', '300'],
@@ -2156,6 +2177,12 @@ function makeCompactProductIcon(gameId, titleZh, illustration, fallback = null) 
   }
   if (itemArt && !illustration) {
     const image = `assets/images/games/${gameId}-products/${itemArt}.png`;
+    // LTGAMES cards contain channel-specific bonuses; show only the item artwork.
+    const ltCrop = gameId === 'wen-jian-chang-sheng' ? ['21 29 102 69', 23]
+      : gameId === 'zhang-jian-chuan-shuo' ? (itemArt.endsWith('-pack') ? ['18 14 108 76', 24] : ['8 17 128 94', 25]) : null;
+    if (ltCrop) {
+      return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"><svg width="34" height="${ltCrop[1]}" viewBox="${ltCrop[0]}" focusable="false"><image href="${escapeAttribute(image)}" width="144" height="144"></image></svg></span>`;
+    }
     const caption = itemArt === 'full-bundle' && gameId === 'honkai-star-rail'
       ? (isEnglishLanguage() ? 'Store bundle illustration' : '店内套餐配图')
       : '';
