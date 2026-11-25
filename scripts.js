@@ -1898,11 +1898,8 @@ function handleProductCardAction(productCard) {
   applyProductFormDefaults(productCard);
 }
 
-const compactTencentGameIds = new Set([
-  'honor-of-kings-cn', 'peace-elite', 'wangzhe-wanxiangqi', 'delta-force-cn',
-  'luoke-wangguo', 'huoying-renzhe', 'wuwei-qiyue', 'jin-chan-chan', 'yuanmeng-zhixing',
-  'wangzhe-rongyao-shijie'
-]);
+const internationalProductGameIds = new Set(categories.intl.games.map(({ id }) => id));
+const compactProductGameIds = new Set([...internationalProductGameIds, ...categories.cn.games.map(({ id }) => id)]);
 
 const compactProductIllustrations = new Map([
   ['peace-elite:特权精英卡', 'elite'],
@@ -1915,10 +1912,239 @@ const compactProductIllustrations = new Map([
   ['wuwei-qiyue:无畏先行卡', 'advance-pass']
 ]);
 
-function makeCompactProductIcon(titleZh, illustration) {
+// Match artwork to the exact catalog item, never to a similar title in another game.
+// Sources: HoYoverse (Genshin), SEAGM (Wuthering Waves), Midasbuy (HOK), Codashop (others).
+const compactItemArtwork = new Map([
+  ['genshin', new Map([
+    ['60 创世结晶', '60'],
+    ['300 + 30 创世结晶', '300'],
+    ['980 + 110 创世结晶', '980'],
+    ['1980 + 260 创世结晶', '1980'],
+    ['3280 + 600 创世结晶', '3280'],
+    ['6480 + 1600 创世结晶', '6480'],
+    ['空月祝福', 'welkin'],
+    ['珍珠纪行', 'hymn'],
+    ['珍珠之歌', 'chorus'],
+    ['60 - 6480 一条龙', 'full-bundle']
+  ])],
+  ['honkai-star-rail', new Map([
+    ['60 古老梦华', '60'],
+    ['300 + 30 古老梦华', '300'],
+    ['980 + 110 古老梦华', '980'],
+    ['1980 + 260 古老梦华', '1980'],
+    ['3280 + 600 古老梦华', '3280'],
+    ['6480 + 1600 古老梦华', '6480'],
+    ['60 - 6480 一条龙', 'full-bundle'],
+    ['列车补给凭证', 'pass'],
+    ['无名客的奖章', 'medal']
+  ])],
+  ['zenless-zone-zero', new Map([
+    ['60 菲林底片', '60'],
+    ['300 + 30 菲林底片', '300'],
+    ['980 + 110 菲林底片', '980'],
+    ['1980 + 260 菲林底片', '1980'],
+    ['3280 + 600 菲林底片', '3280'],
+    ['6480 + 1600 菲林底片', '6480'],
+    ['绳网会员', 'membership']
+  ])],
+  ['identity-v', new Map([
+    ['60 + 6 回声', '60'],
+    ['185 + 18 回声', '185'],
+    ['305 + 30 回声', '305'],
+    ['690 + 69 回声', '690'],
+    ['2025 + 202 回声', '2025'],
+    ['3330 + 333 回声', '3330'],
+    ['6590 + 659 回声', '6590']
+  ])],
+  ['mobile-legends', new Map([
+    ['254 + 30 Diamond', '284'],
+    ['317 + 38 Diamond', '355'],
+    ['383 + 46 Diamond', '429'],
+    ['633 + 83 Diamond', '716'],
+    ['1252 + 194 Diamond', '1446'],
+    ['2501 + 475 Diamond', '2976'],
+    ['Weekly Diamond Pass', 'weekly-pass'],
+    ['Twilight Pass', 'twilight-pass']
+  ])],
+  ['wuthering-waves', new Map([
+    ['60 月相', '60'],
+    ['300 + 30 月相', '300'],
+    ['980 + 110 月相', '980'],
+    ['1980 + 260 月相', '1980'],
+    ['3280 + 600 月相', '3280'],
+    ['6480 + 1600 月相', '6480'],
+    ['月相观测卡', 'subscription']
+  ])],
+  ['pubg-mobile', new Map([
+    ['60 UC', '60'],
+    ['300 + 25 UC', '300'],
+    ['600 + 60 UC', '600'],
+    ['1500 + 300 UC', '1500'],
+    ['3000 + 850 UC', '3000'],
+    ['6000 + 2100 UC', '6000']
+  ])],
+  ['honor-of-kings-global', new Map([
+    ['80 点券', '80'],
+    ['240 点券', '240'],
+    ['400 点券', '400'],
+    ['560 点券', '560'],
+    // Match the official artwork by base pack; keep our listed totals intact.
+    ['830 点券', '800'],
+    ['1245 点券', '1200'],
+    ['2508 点券', '2400'],
+    ['4180 点券', '4000'],
+    ['8360 点券', '8000']
+  ])],
+  ['garena-free-fire', new Map([
+    ['25 钻石', 'diamonds'],
+    ['100 钻石', 'diamonds'],
+    ['310 钻石', 'diamonds'],
+    ['520 钻石', 'diamonds'],
+    ['1,060 钻石', 'diamonds'],
+    ['2,180 钻石', 'diamonds'],
+    ['5,600 钻石', 'diamonds'],
+    ['11,500 钻石', 'diamonds']
+  ])]
+]);
+
+// View boxes in user-provided references; exclude the neighboring items and captions.
+const compactProductReferenceCrops = new Map([
+  ['honkai-star-rail:无名客的荣勋', { image: 'nameless-honor-reference.png', viewBox: '209 11 190 190' }]
+]);
+
+// Keep the listing/issuer with each local fallback asset so variants remain auditable.
+const compactOfficialAppArtwork = new Set([
+  'age-of-empires-mobile', // https://apps.apple.com/my/app/id6476261995
+  'aniimo', // https://apps.apple.com/my/app/id6759098797
+  'arena-breakout', // https://apps.apple.com/my/app/id1560765304
+  'arknights-endfield', // https://apps.apple.com/my/app/id6752642477
+  'astral-guardians-cyber-fantasy', // https://play.google.com/store/apps/details?id=com.eyougame.idxj
+  'crystal-of-atlan', // https://apps.apple.com/my/app/id6453111576
+  'dark-war-survival', // https://apps.apple.com/my/app/id6670441558
+  'ddtank-origin-malaysia', // https://apps.apple.com/my/app/id1602657241
+  'delta-force-cn', // https://apps.apple.com/cn/app/id1642894547
+  'delta-force-global-pc', // https://steamcommunity.com/app/2507950
+  'douluo-liehun-shijie', // https://apps.apple.com/tw/app/id6738236172
+  'dragon-nest-m-classic', // https://apps.apple.com/my/app/id6743824718
+  'garena-codm', // https://apps.apple.com/my/app/id1465688043
+  'garena-delta-force', // https://apps.apple.com/my/app/id6670604287
+  'garena-free-fire', // https://apps.apple.com/my/app/id1300146617
+  'goddess-of-victory-nikke', // https://apps.apple.com/my/app/id1585915174
+  'heartopia', // https://apps.apple.com/my/app/id6746151928
+  'honkai-star-rail', // https://apps.apple.com/my/app/id1599719154
+  'huoying-renzhe', // https://apps.apple.com/cn/app/id955396648
+  'identity-v', // https://apps.apple.com/my/app/id1347780764
+  'jianxia-qingyuan', // https://apps.apple.com/tw/app/id1132435921
+  'kai-tian', // https://apps.apple.com/tw/app/id6745874605
+  'kingshot', // https://apps.apple.com/my/app/id6739554056
+  'lands-of-jails', // https://apps.apple.com/my/app/id6738469826
+  'last-war-survival', // https://apps.apple.com/my/app/id6448786147
+  'legends-of-mushroom', // https://apps.apple.com/my/app/id6473259128
+  'mobile-legends', // https://apps.apple.com/my/app/id1160056295
+  'monster-hunter-outlanders', // https://apps.apple.com/my/app/id6763262759
+  'neverness-to-everness', // https://apps.apple.com/my/app/id6754593077
+  'ni-shui-han-tw', // https://apps.apple.com/tw/app/id6474654939
+  'one-punch-man-the-strongest', // https://apps.apple.com/my/app/id1491275510
+  'peace-elite', // https://apps.apple.com/cn/app/id1321803705
+  'perfect-world-w', // https://apps.apple.com/tw/app/id6472643035
+  'pokemon-go', // https://apps.apple.com/my/app/id1094591345
+  'pokemon-tcg-pocket', // https://apps.apple.com/my/app/id6479970832
+  'pubg-mobile', // https://apps.apple.com/my/app/id1330123889
+  'ragnarok-go', // https://apps.apple.com/my/app/id6805760478
+  'ragnarok-origin-classic', // https://apps.apple.com/my/app/id6754158504
+  'rf-online-next', // https://apps.apple.com/tw/app/id6740848451
+  'ro-the-new-world', // https://apps.apple.com/my/app/id6754275005
+  'roblox', // https://apps.apple.com/my/app/id431946152
+  'shan-jiang-sanguo', // https://apps.apple.com/my/app/id6760284438
+  'sword-of-justice', // https://apps.apple.com/my/app/id6743792504
+  'three-kingdoms-tactics', // https://apps.apple.com/my/app/id1529832759
+  'tian-long-ba-bu', // https://apps.apple.com/tw/app/id1610264268
+  'tower-of-saviors', // https://apps.apple.com/my/app/id583798880
+  'valorant', // https://playvalorant.com/en-us/download/
+  'wen-jian-chang-sheng', // https://apps.apple.com/tw/app/id6744726523
+  'where-winds-meet', // https://apps.apple.com/my/app/id6472396866
+  'whiteout-survival', // https://apps.apple.com/my/app/id6443575749
+  'wuthering-waves', // https://apps.apple.com/my/app/id6475033368
+  'wuwei-qiyue', // https://apps.apple.com/cn/app/id6535673811
+  'x-hero-epic-hero', // https://apps.apple.com/my/app/id1478697636
+  'yulgang-w', // https://play.google.com/store/apps/details?id=com.efun.aerxjhw.sea
+  'zenless-zone-zero', // https://apps.apple.com/my/app/id1606356401
+  'zhang-jian-chuan-shuo', // https://apps.apple.com/tw/app/id6504542886
+  'zhen-de-jiang-shan', // https://apps.apple.com/tw/app/id1139683379
+  'zombie-wave', // https://apps.apple.com/my/app/id6443760593
+]);
+
+// Last-resort placeholder for a future game without a verified App icon.
+const compactCurrencyHues = new Map([
+  ['honkai-star-rail', 303], ['zenless-zone-zero', 276], ['wuthering-waves', 202],
+  ['aniimo', 182], ['monster-hunter-outlanders', 340], ['roblox', 191],
+  ['pubg-mobile', 43], ['garena-codm', 42], ['valorant', 351],
+  ['delta-force-global-pc', 157], ['garena-delta-force', 157]
+]);
+
+function compactProductArtKind(title, sectionTitle) {
+  if (/一条龙|full bundle/i.test(title)) return 'bundle';
+  if (/礼包|组合包|\bbundle\b|\bpackage\b|\bpack\b/i.test(title)) return 'bundle';
+  if (/月卡|周卡|会员|特权|凭证|月度|观测卡|月令|易货卡|membership|subscription|weekly|monthly|privilege/i.test(title)) return 'membership';
+  if (/战令|纪行|手册|通行证|荣勋|奖章|成长计划|典藏计划|寰宇|猎人补给|\bpass\b/i.test(title)) return 'pass';
+  if (/券|底片|\b(vp|cp|uc|coupon|voucher|monochrome|ticket)\b/i.test(title)) return 'ticket';
+  if (/币|金币|海神币|欧泊币|\b(gold|coin|coins|robux|bonds)\b/i.test(title)) return 'coin';
+  return /礼包|bundle|package/i.test(sectionTitle) ? 'bundle' : 'gem';
+}
+
+function makeCompactProductSketch(gameId, kind, tier) {
+  const hue = compactCurrencyHues.get(gameId)
+    ?? ([...gameId].reduce((hash, ch) => (hash * 31 + ch.charCodeAt(0)) % 360, 42));
+  const light = `hsl(${hue} 88% 75%)`;
+  const mid = `hsl(${hue} 70% 52%)`;
+  const dark = `hsl(${hue} 73% 28%)`;
+  const ink = '#161924';
+  const gem = `<path d="M12 2 22 11 12 24 2 11Z" fill="${mid}" stroke="${light}" stroke-width="1.4"/><path d="m12 2 4 9-4 13-4-13Z" fill="${light}"/><path d="M2 11h20L12 24Z" fill="${dark}" opacity=".5"/>`;
+  const coin = `<ellipse cx="12" cy="13" rx="9" ry="8" fill="${dark}"/><ellipse cx="12" cy="11" rx="9" ry="8" fill="${mid}" stroke="${light}" stroke-width="1.5"/><path d="m12 7 3 4-3 4-3-4Z" fill="${light}"/>`;
+  const ticket = `<path d="M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4Z" fill="${mid}" stroke="${light}" stroke-width="1.4"/><path d="M8 8v8m4-6h5m-5 4h3" stroke="${light}" stroke-width="1.2" stroke-linecap="round"/>`;
+  const chest = `<path d="M6 15 9 10h18l3 5v5H6Z" fill="${mid}" stroke="${light}" stroke-width="1.5"/><path d="M7 20h22v9H7Z" fill="${dark}" stroke="${light}" stroke-width="1.5"/><path d="M15 18h6v6h-6z" fill="#ffd488" stroke="${ink}"/>`;
+  let art;
+  if (kind === 'bundle') {
+    art = `<g transform="translate(10 1) scale(.65)">${gem}</g><g transform="translate(19 2) scale(.55)">${gem}</g>${chest}`;
+  } else if (kind === 'membership' || kind === 'pass') {
+    const mark = kind === 'membership'
+      ? '<path d="M13 19h10m-10 4h6M13 15h10" stroke="#ffe0a1" stroke-width="1.5" stroke-linecap="round"/>'
+      : '<path d="m18 12 2 4 4 .5-3 3 .8 4.5-3.8-2-3.8 2 .8-4.5-3-3 4-.5Z" fill="#ffe0a1"/>';
+    art = `<path d="M9 8h18v21H9Z" fill="${dark}" stroke="${light}" stroke-width="1.5"/><path d="M11 7h14v4H11Z" fill="${mid}"/>${mark}`;
+  } else {
+    const item = kind === 'coin' ? coin : kind === 'ticket' ? ticket : gem;
+    art = tier === 4 ? `<g transform="translate(12 0) scale(.6)">${item}</g>${chest}`
+      : tier === 3 ? `<g transform="translate(18 6) scale(.65)">${item}</g><g transform="translate(2 5) scale(.68)">${item}</g><g transform="translate(8 9) scale(.86)">${item}</g>`
+      : tier === 2 ? `<g transform="translate(14 5) scale(.76)">${item}</g><g transform="translate(3 8) scale(.86)">${item}</g>`
+      : `<g transform="translate(6 6)">${item}</g>`;
+  }
+  const label = isEnglishLanguage() ? 'Product illustration · not official artwork' : '商品示意图 · 非官方原图';
+  return `<span class="compact-product-icon compact-product-sketch" title="${label}" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 36 36" focusable="false">${art}</svg></span>`;
+}
+
+function makeCompactProductIcon(gameId, titleZh, illustration, fallback = null) {
   const sku = titleZh.match(/^(\d+)(?:\s*\+\s*\d+)?\s*(点券|金币|三角币|洛克钻|星钻|璇晶)(?:\s|$)/);
   const key = sku ? sku[1] + sku[2] : '';
   const illustrated = illustration ? ` data-special-art="${escapeAttribute(illustration)}"` : '';
+  const itemArt = compactItemArtwork.get(gameId)?.get(titleZh);
+  const reference = compactProductReferenceCrops.get(`${gameId}:${titleZh}`);
+  if (reference && !illustration) {
+    const image = `assets/images/games/${gameId}-products/${reference.image}`;
+    return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"><svg width="34" height="34" viewBox="${reference.viewBox}" focusable="false"><image href="${escapeAttribute(image)}" width="600" height="250"></image></svg></span>`;
+  }
+  if (itemArt && !illustration) {
+    const image = `assets/images/games/${gameId}-products/${itemArt}.png`;
+    const caption = itemArt === 'full-bundle' && gameId === 'honkai-star-rail'
+      ? (isEnglishLanguage() ? 'Store bundle illustration' : '店内套餐配图')
+      : '';
+    return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"${caption ? ` title="${escapeAttribute(caption)}"` : ''}><img src="${escapeAttribute(image)}" alt="" width="38" height="38" loading="lazy" decoding="async"></span>`;
+  }
+  if ((fallback || illustration) && compactOfficialAppArtwork.has(gameId)) {
+    const image = `assets/images/games/app-icons/${gameId}.webp`;
+    const caption = isEnglishLanguage() ? 'Game app icon' : '游戏官方图标';
+    return `<span class="compact-product-icon compact-game-icon" title="${caption}" aria-hidden="true"><img src="${escapeAttribute(image)}" alt="" width="38" height="38" loading="lazy" decoding="async"></span>`;
+  }
+  if (!illustration && fallback) return makeCompactProductSketch(gameId, fallback.kind, fallback.tier);
   return `<span class="compact-product-icon" data-token-sku="${key}"${illustrated} aria-hidden="true"></span>`;
 }
 
@@ -1969,7 +2195,13 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
       ? `Official offer: +${bonus} Jingpo, subject to official checkout`
       : `官方标注：赠 ${bonus} 晶珀（以官方结算为准）`;
   }
-  if (illustration) {
+  if (compact && gameId === 'honkai-star-rail' && titleZh === '60 - 6480 一条龙') {
+    cardDetail = isEnglishLanguage() ? 'Oneiric Shards · All 6 tiers (60–6480)' : '古老梦华 · 60 至 6480 六档组合';
+  } else if (compact && /一条龙|full bundle/i.test(titleZh)
+      && (compactItemArtwork.get(gameId)?.get(titleZh) === 'full-bundle'
+        || (cardContext.sketch && !compactOfficialAppArtwork.has(gameId)))) {
+    cardDetail = isEnglishLanguage() ? 'Bundle illustration · not official artwork' : '组合包示意图 · 非官方原图';
+  } else if (illustration && !compactOfficialAppArtwork.has(gameId)) {
     cardDetail = isEnglishLanguage() ? 'Illustration · not official artwork' : '商品示意图 · 非官方原图';
   }
   const cardCopy = `<h3>${escapeHtml(cardTitle)}</h3>${!compact || cardDetail ? `<p>${escapeHtml(cardDetail)}</p>` : ''}`;
@@ -2014,15 +2246,20 @@ function makeProductCard(product, gameId = '', section = null, sectionKey = '', 
 
   return `
     <article class="product-card product-status-${escapeAttribute(status)}" role="button" tabindex="${isUnavailable ? '-1' : '0'}" data-product-status="${escapeAttribute(status)}" data-cart-key="${escapeAttribute(cartKey)}" data-title="${escapeAttribute(title)}" data-title-zh="${escapeAttribute(titleZh)}" data-title-en="${escapeAttribute(titleEn)}" data-section-key="${escapeAttribute(sectionKey)}" data-section-title="${escapeAttribute(sectionTitle)}" data-section-zh="${escapeAttribute(sectionZh)}" data-section-en="${escapeAttribute(sectionEn)}" data-system-value="${escapeAttribute(systemValue)}" data-price="${escapeAttribute(price)}" data-add-aria="${escapeAttribute(actionLabel)}" aria-label="${escapeAttribute(actionLabel)}"${isUnavailable ? ' aria-disabled="true"' : ''}>
-      ${statusBadge}
-      ${compact ? `${makeCompactProductIcon(titleZh, illustration)}<div class="compact-product-copy">${cardCopy}</div>` : cardCopy}
+      ${compact ? `${makeCompactProductIcon(gameId, titleZh, illustration, cardContext.sketch)}<div class="compact-product-copy">${statusBadge}${cardCopy}</div>` : `${statusBadge}${cardCopy}`}
       <div class="product-price" data-price-base="${escapeAttribute(price)}">${escapeHtml(displayPrice)}</div>
       ${actionIndicator}
     </article>`;
 }
 
 function makeProductSections(game, platformOverride = '') {
+  const compact = compactProductGameIds.has(game.id);
+  const international = internationalProductGameIds.has(game.id);
   const allSections = resolveProductSections(game);
+  const flatProducts = compact && !allSections.length && (game.products || []).length > 0;
+  if (flatProducts) {
+    allSections.push({ title: '充值商品', subtitle: 'Top-up products', products: game.products.map(resolveProductPrice) });
+  }
   const usesPlatformSelector = hasGamePlatformSelector(game);
   const selectedPlatform = usesPlatformSelector
     ? normalizeGamePlatform(platformOverride || getSelectedGamePlatform(game))
@@ -2044,37 +2281,44 @@ function makeProductSections(game, platformOverride = '') {
     return `${selectorMarkup}<div class="product-grid">${products.map((product) => makeProductCard(product, game.id)).join('')}</div>`;
   }
 
-  const compact = compactTencentGameIds.has(game.id);
   if (compact && !document.getElementById('compact-products-style')) {
     const stylesheet = document.createElement('link');
     stylesheet.id = 'compact-products-style';
     stylesheet.rel = 'stylesheet';
-    stylesheet.href = 'compact-products-preview.css?v=9';
+    stylesheet.href = 'compact-products-preview.css?v=12';
     document.head.append(stylesheet);
   }
   const sectionsMarkup = sections
     .map(({ section, originalIndex }, index) => {
-      const sectionTitle = localizedSectionTitle(section);
-      const sectionSubtitle = localizedSectionSubtitle(section);
+      const sectionTitle = flatProducts ? (isEnglishLanguage() ? 'Top-up products' : '充值商品') : localizedSectionTitle(section);
+      const sectionSubtitle = flatProducts ? '' : localizedSectionSubtitle(section);
       const sectionProducts = section.products || [];
       const customAmountProducts = sectionProducts.filter((product) => resolveProductPrice(product).customAmount);
       const regularProducts = sectionProducts.filter((product) => !resolveProductPrice(product).customAmount);
-      const sectionKey = section.id || `${originalIndex + 1}-${section.title || 'items'}`;
+      const sectionKey = flatProducts ? '' : section.id || `${originalIndex + 1}-${section.title || 'items'}`;
       const sectionPlatform = getSectionPlatform(section);
       const selectedOption = gamePlatformOptions[selectedPlatform];
       const isSharedSection = usesPlatformSelector && sectionPlatform === 'shared' && selectedOption;
       const cardContext = {
         compact,
         systemValue: selectedOption?.systemValue || getSectionSystemValue(section),
-        sectionZh: isSharedSection ? `${selectedOption.sectionZh} · ${section.title || ''}` : section.title || '',
-        sectionEn: isSharedSection ? `${selectedOption.sectionEn} · ${englishSectionTitle(section)}` : englishSectionTitle(section)
+        sectionZh: flatProducts ? '' : isSharedSection ? `${selectedOption.sectionZh} · ${section.title || ''}` : section.title || '',
+        sectionEn: flatProducts ? '' : isSharedSection ? `${selectedOption.sectionEn} · ${englishSectionTitle(section)}` : englishSectionTitle(section)
       };
+      const itemAmount = ({ title = '' }) => Number(title.match(/^([\d,]+(?:\.\d+)?)(?![\d,]|\s*[-–])/)?.[1].replace(/,/g, '')) || 0;
+      const amounts = international ? [...new Set(regularProducts.map(itemAmount).filter(Boolean))].sort((a, b) => a - b) : [];
       const makeSectionCard = (product) => makeProductCard(
         product,
         game.id,
-        section,
+        flatProducts ? null : section,
         sectionKey,
-        cardContext
+        international ? {
+          ...cardContext,
+          sketch: {
+            kind: compactProductArtKind(product.title || '', section.title || ''),
+            tier: 1 + Math.floor(Math.max(0, amounts.indexOf(itemAmount(product))) * 3 / Math.max(1, amounts.length - 1))
+          }
+        } : cardContext
       );
       return `
       <div class="product-section${customAmountProducts.length ? ' product-section-has-custom-amount' : ''}"${compact ? ` id="compact-items-${index}" data-compact-section="${index}"${index ? ' hidden' : ''}` : ''}>
@@ -2108,7 +2352,7 @@ function makeProductSections(game, platformOverride = '') {
         <span class="compact-tab-count" aria-hidden="true">${section.products?.length || 0}</span>
       </button>`;
   }).join('');
-  return `${selectorMarkup}<div class="compact-products${sections.length === 1 ? ' compact-products-single' : ''}" data-compact-game="${escapeAttribute(game.id)}">
+  return `${selectorMarkup}<div class="compact-products${sections.length === 1 ? ' compact-products-single' : ''}${international ? ' compact-products-international' : ''}" data-compact-game="${escapeAttribute(game.id)}">
     ${sections.length > 1 ? `<nav class="compact-products-categories" aria-label="${categoryLabel}">
       <div class="compact-category-heading">${categoryLabel}</div>${categoryButtons}
     </nav>` : ''}
