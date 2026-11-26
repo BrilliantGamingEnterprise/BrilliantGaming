@@ -880,3 +880,31 @@ html[lang="en"] .policy-en {
     padding: 22px 18px !important;
   }
 }
+.currency-pause-dialog {
+  box-sizing: border-box;
+  width: min(420px, calc(100% - 32px));
+  padding: 24px;
+  color: #fff7e7;
+  background: #181717;
+  border: 1px solid #776039;
+  border-radius: 16px;
+}
+
+.currency-pause-dialog::backdrop {
+  background: rgb(0 0 0 / 65%);
+}
+
+.currency-pause-dialog h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.currency-pause-dialog p {
+  margin: 12px 0 20px;
+  color: #e1d4bd;
+}
+
+.currency-pause-dialog form {
+  display: flex;
+  justify-content: flex-end;
+}

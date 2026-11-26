@@ -10,8 +10,11 @@ const { catalogSettings, currencySettings, currencyFlagClasses } = globalThis.BG
 const { pricePresets, categories, homeFeaturedIds } = globalThis.BGE_CATALOG_DATA;
 const catalogMeta = globalThis.BGE_CATALOG_META || { updatedAtByGame: {} };
 
-let activeCurrency = localStorage.getItem(currencyKey) || currencySettings.defaultCurrency;
-if (!currencySettings.rates[activeCurrency]) activeCurrency = currencySettings.defaultCurrency;
+const pausedCurrencies = new Set(['SGD']);
+const savedCurrency = localStorage.getItem(currencyKey);
+let activeCurrency = !pausedCurrencies.has(savedCurrency) && currencySettings.rates[savedCurrency]
+  ? savedCurrency
+  : currencySettings.defaultCurrency;
 
 let latestOrderText = '';
 let latestOrderIdentity = null;
@@ -881,7 +884,33 @@ function updateCurrencySwitcherUI() {
   });
 }
 
-function setActiveCurrency(currency) {
+function showCurrencyPauseNotice(trigger) {
+  const english = isEnglishLanguage();
+  const dialog = document.createElement('dialog');
+  dialog.className = 'currency-pause-dialog';
+  dialog.setAttribute('aria-labelledby', 'currencyPauseTitle');
+  dialog.setAttribute('aria-describedby', 'currencyPauseMessage');
+  dialog.innerHTML = `
+    <h2 id="currencyPauseTitle">${english ? 'SGD payments are temporarily paused' : '新币（SGD）充值暂时关闭'}</h2>
+    <p id="currencyPauseMessage">${english ? 'To pay in Singapore dollars, please contact customer service.' : '如需使用新币付款，请联系客服。'}</p>
+    <form method="dialog">
+      <button type="submit" class="button button-primary" autofocus>${english ? 'Got it' : '知道了'}</button>
+    </form>
+  `;
+  dialog.addEventListener('close', () => {
+    dialog.remove();
+    trigger?.focus();
+  }, { once: true });
+  document.body.appendChild(dialog);
+  dialog.showModal();
+}
+
+function setActiveCurrency(currency, trigger) {
+  if (pausedCurrencies.has(currency)) {
+    updateCurrencySwitcherUI();
+    showCurrencyPauseNotice(trigger);
+    return;
+  }
   if (!currencySettings.rates[currency]) return;
 
   const previousCurrency = activeCurrency;
@@ -3274,7 +3303,7 @@ function initEvents() {
     const currencyButton = target.closest('[data-currency]');
     if (currencyButton) {
       event.preventDefault();
-      setActiveCurrency(currencyButton.dataset.currency);
+      setActiveCurrency(currencyButton.dataset.currency, currencyButton.closest('.currency-switch')?.querySelector('.currency-trigger'));
       return;
     }
 
