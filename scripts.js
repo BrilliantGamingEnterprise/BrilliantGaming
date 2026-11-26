@@ -1926,6 +1926,207 @@ const compactProductIllustrations = new Map([
 // Match artwork to the exact catalog item, never to a similar title in another game.
 // Sources include HoYoverse, SEAGM, Midasbuy, Codashop, and LTGAMES' official top-up center.
 const compactItemArtwork = new Map([
+  // Reusable store illustration, without any rotating character or bonus contents.
+  ['pokemon-tcg-pocket', new Map([['礼包', 'gift-box-gold']])],
+  // ManaBuy Malaysia NIKKE listing: match jewel base amounts and package names, not its offer terms.
+  ['goddess-of-victory-nikke', new Map([
+    ['60 珠宝（首购另赠 60）', 'gems-60'],
+    ['120 珠宝（首购另赠 120）', 'gems-120'],
+    ['320 珠宝（首购另赠 320）', 'gems-120'],
+    ['720 珠宝（首购另赠 720）', 'gems-720'],
+    ['1500 珠宝（首购另赠 1500）', 'gems-720'],
+    ['2300 珠宝（首购另赠 2300）', 'gems-2300'],
+    ['2370 珠宝（首购另赠 2370）', 'gems-2370'],
+    ['4200 珠宝（首购另赠 4200）', 'gems-2370'],
+    ['6200 珠宝（首购另赠 6200）', 'gems-6200'],
+    ['月卡', 'monthly-pass'],
+    ['强化模组礼包', 'enhanced-module-set'],
+    ['技术支援礼包 S I', 'technical-support-s-i'],
+    ['技术支援礼包 S II', 'technical-support-s-ii'],
+    ['技术大师礼包', 'technical-master'],
+    ['成长精选礼包', 'grow-selection-set'],
+    ['企业后备礼包', 'manufacturer-backup'],
+    ['职业研究礼包', 'class-research-set'],
+    ['企业研究礼包', 'manufacturer-research-set']
+  ])],
+  // The clean currency icon from the Endfield Talos Wiki, rather than channel-specific offers.
+  ['arknights-endfield', new Map([
+    ['4 衍质源石 + 2 赠送', 'origeometry'],
+    ['21 衍质源石 + 5 赠送', 'origeometry'],
+    ['34 衍质源石 + 34 赠送', 'origeometry'],
+    ['57 衍质源石 + 11 赠送', 'origeometry'],
+    ['92 衍质源石 + 20 赠送', 'origeometry'],
+    ['194 衍质源石 + 48 赠送', 'origeometry'],
+    ['月卡', 'monthly-pass'],
+    // Protocol Customized artwork appears in-game and in the GRYPHLINE Top-up Center.
+    ['通行证付费档', 'protocol-customized']
+  ])],
+  // https://www.seagm.com/en-us/epic-heroes-x-hero-red-diamond (in-game red diamond symbol).
+  ['x-hero-epic-hero', new Map([
+    ['20 + 1 红钻', 'red-diamond'],
+    ['50 + 2 红钻', 'red-diamond'],
+    ['100 + 4 红钻', 'red-diamond'],
+    ['150 + 6 红钻', 'red-diamond'],
+    ['200 + 8 红钻', 'red-diamond'],
+    ['250 + 10 红钻', 'red-diamond'],
+    ['500 + 20 红钻', 'red-diamond'],
+    ['1000 + 40 红钻', 'red-diamond'],
+    ['2000 + 80 红钻', 'red-diamond'],
+    ['4000 + 160 红钻', 'red-diamond'],
+    ['6000 + 240 红钻', 'red-diamond']
+  ])],
+  // https://www.topuplive.com/whiteoutsurvival/ (pack art only, without a denomination caption).
+  ['whiteout-survival', new Map([
+    ['4.99 美金礼包', 'standard-pack'],
+    ['9.99 美金礼包', 'standard-pack'],
+    ['19.99 美金礼包', 'standard-pack'],
+    ['24.99 美金礼包', 'standard-pack'],
+    ['49.99 美金礼包', 'standard-pack'],
+    ['99.99 美金礼包', 'standard-pack']
+  ])],
+  // https://www.seagm.com/age-of-empires-mobile-top-up
+  ['age-of-empires-mobile', new Map([
+    ['400 Empire Coins', '400-empire-coins'],
+    ['2100 Empire Coins', '2100-empire-coins'],
+    ['4400 Empire Coins', '4400-empire-coins'],
+    ['9200 Empire Coins', '9200-empire-coins'],
+    ['24000 Empire Coins', '24000-empire-coins'],
+    ['50000 Empire Coins', '50000-empire-coins'],
+    ['99 Apex Coins', '99-apex-coins'],
+    ['499 Apex Coins', '499-apex-coins'],
+    ['999 Apex Coins', '999-apex-coins'],
+    ['1999 Apex Coins', '1999-apex-coins'],
+    ['4999 Apex Coins', '4999-apex-coins'],
+    ['9999 Apex Coins', '9999-apex-coins']
+  ])],
+  // https://www.seagm.com/where-winds-meet-top-up
+  ['where-winds-meet', new Map([
+    ['60 长鸣珠', '60'],
+    ['180 长鸣珠', '180'],
+    ['300 长鸣珠', '300'],
+    ['600 长鸣珠', '600'],
+    ['900 长鸣珠', '900'],
+    ['1800 长鸣珠', '1800'],
+    ['3000 长鸣珠', '3000'],
+    ['6000 长鸣珠', '6000'],
+    ['月度礼金【月卡】', 'monthly-pass'],
+    ['精英战令', 'elite-battle-pass'],
+    ['典藏战令', 'premium-battle-pass']
+  ])],
+  // https://www.seagm.com/sword-of-justice-mobile-sea-top-up (base jade amounts; listed bonuses are unchanged).
+  ['sword-of-justice', new Map([
+    ['60 + 3 纹玉', '60'],
+    ['300 + 18 纹玉', '300'],
+    ['980 + 58 纹玉', '980'],
+    ['1980 + 118 纹玉', '1980'],
+    ['3280 + 196 纹玉', '3280'],
+    ['6480 + 388 纹玉', '6480'],
+    ['月卡', 'monthly-pass'],
+    ['基础战令', 'basic-battle-pass'],
+    ['战令升级', 'battle-pass-upgrade'],
+    ['进阶战令', 'advanced-battle-pass'],
+    // NetEase GamesClub serves the same art for Exquisite Treasure I and II.
+    ['绮珍秘宝·一', 'exquisite-treasure'],
+    ['绮珍秘宝·二', 'exquisite-treasure']
+  ])],
+  // https://www.topuplive.com/neverness-to-everness/
+  ['neverness-to-everness', new Map([
+    ['60 异晶', '60'],
+    ['300 + 30 异晶', '300'],
+    ['980 + 110 异晶', '980'],
+    ['1980 + 260 异晶', '1980'],
+    ['3280 + 600 异晶', '3280'],
+    ['6480 + 1600 异晶', '6480'],
+    ['异晶开采凭证', 'mining-permit'],
+    // https://gamewith.net/nte/74371 (the in-game pass screen shares its central artwork).
+    ['精英猎人补给', 'hunter-supplies'],
+    ['荣誉猎人补给', 'hunter-supplies']
+  ])],
+  // https://www.topuplive.com/arena-breakout/
+  ['arena-breakout', new Map([
+    ['60 + 6 Bonds', '60'],
+    ['310 + 25 Bonds', '310'],
+    ['630 + 45 Bonds', '630'],
+    ['1580 + 110 Bonds', '1580'],
+    ['3200 + 200 Bonds', '3200'],
+    ['6500 + 320 Bonds', '6500']
+  ])],
+  // https://www.topuplive.com/crystal-of-atlan/
+  ['crystal-of-atlan', new Map([
+    // Same-game Opal artwork; the top-up vouchers have their own icons.
+    ...[60, 300, 980, 1980, 3280, 6480].map(amount => [`${amount} 欧泊`, 'opal']),
+    ['60 代金券', 'voucher-60'],
+    ['300 代金券', 'voucher-300'],
+    ['980 代金券', 'voucher-980'],
+    ['1980 代金券', 'voucher-1980'],
+    ['3280 代金券', 'voucher-3280'],
+    ['6480 代金券', 'voucher-6480']
+  ])],
+  // https://www.lapakgaming.com/id-id/dragon-nest-m-classic
+  ['dragon-nest-m-classic', new Map([
+    ['600 + 26 Gems', '600'],
+    ['3000 + 130 Gems', '3000'],
+    ['6000 + 366 Gems', '6000'],
+    ['12000 + 800 Gems', '12000'],
+    ['18000 + 1500 Gems', '18000'],
+    ['30000 + 2900 Gems', '30000'],
+    ['60000 + 6000 Gems', '60000']
+  ])],
+  // https://titangamestore.com/game/game-topup-id-pass/yulgang-w
+  ['yulgang-w', new Map([
+    ['66 热血币', '66'],
+    ['169 热血币', '169'],
+    ['339 热血币', '339'],
+    ['690 热血币', '690'],
+    // Same currency artwork for larger packs without a verified separate image.
+    ['1380 热血币', '690'],
+    ['2070 热血币', '690'],
+    ['3450 热血币', '690']
+  ])],
+  // Garena Malaysia uses the same official CP icon for all top-up amounts.
+  ['garena-codm', new Map([
+    ['114 CP', 'cp'],
+    ['230 + 23 CP', 'cp'],
+    ['460 + 69 CP', 'cp'],
+    ['690 + 104 CP', 'cp'],
+    ['1150 + 173 CP', 'cp'],
+    ['2300 + 460 CP', 'cp'],
+    ['4600 + 1840 CP', 'cp']
+  ])],
+  // Delta Force PC (Steam) pack art from Titan Game Store. The two largest tiers
+  // reuse the 6480 pack image; no separate art was confirmed for those tiers.
+  ['delta-force-global-pc', new Map([
+    ['300 + 20 三角币', 'coin-stack'],
+    ['420 + 40 三角币', 'coin-stack'],
+    ['680 + 70 三角币', 'coin-stack'],
+    ['1280 + 200 三角币', 'coin-case'],
+    ['1680 + 300 三角币', 'filled-case'],
+    ['3280 + 670 三角币', 'filled-case'],
+    ['6480 + 1620 三角币', 'supply-crates'],
+    ['12960 + 3240 三角币', 'supply-crates'],
+    ['19440 + 4860 三角币', 'supply-crates']
+  ])],
+  ['garena-delta-force', new Map([
+    ['60 Delta Coin', 'delta-coin'],
+    ['300 + 20 Delta Coin', 'delta-coin'],
+    ['420 + 40 Delta Coin', 'delta-coin'],
+    ['680 + 70 Delta Coin', 'delta-coin'],
+    ['1280 + 200 Delta Coin', 'delta-coin'],
+    ['1680 + 300 Delta Coin', 'delta-coin'],
+    ['3280 + 670 Delta Coin', 'delta-coin'],
+    ['6480 + 1620 Delta Coin', 'delta-coin'],
+    ['12960 + 3888 Delta Coin', 'delta-coin'],
+    ['19440 + 5832 Delta Coin', 'delta-coin']
+  ])],
+  ['monster-hunter-outlanders', new Map([
+    ['60 赤翎币', 'crimson-crest-coin'],
+    ['300 赤翎币', 'crimson-crest-coin'],
+    ['980 赤翎币', 'crimson-crest-coin'],
+    ['1280 赤翎币', 'crimson-crest-coin'],
+    ['1980 赤翎币', 'crimson-crest-coin'],
+    ['3280 赤翎币', 'crimson-crest-coin'],
+    ['6480 赤翎币', 'crimson-crest-coin']
+  ])],
   // LTGAMES lists Sword x Staff amounts including bonuses.
   ['zhang-jian-chuan-shuo', new Map([
     ['299 + 15 代金券', '314'],
@@ -1983,9 +2184,16 @@ const compactItemArtwork = new Map([
     ['1980 + 260 菲林底片', '1980'],
     ['3280 + 600 菲林底片', '3280'],
     ['6480 + 1600 菲林底片', '6480'],
-    ['绳网会员', 'membership']
+    ['绳网会员', 'membership'],
+    // Artwork cropped from the in-game New Eridu City Fund cards.
+    ['成长计划', 'growth-plan'],
+    ['典藏计划', 'premium-plan']
   ])],
   ['identity-v', new Map([
+    // Match the three package names in SEAGM's Identity V global catalog.
+    ['灵感礼包', 'inspirations'],
+    ['线索礼包', 'clues'],
+    ['珍宝礼包', 'memory-sphere'],
     ['60 + 6 回声', '60'],
     ['185 + 18 回声', '185'],
     ['305 + 30 回声', '305'],
@@ -2002,7 +2210,12 @@ const compactItemArtwork = new Map([
     ['1252 + 194 Diamond', '1446'],
     ['2501 + 475 Diamond', '2976'],
     ['Weekly Diamond Pass', 'weekly-pass'],
-    ['Twilight Pass', 'twilight-pass']
+    ['Twilight Pass', 'twilight-pass'],
+    // Codashop Malaysia pack art. Reuse the large diamond chest for the two larger tiers.
+    ['5002 + 950 Diamond', '8928'],
+    ['7503 + 1425 Diamond', '8928'],
+    ['Weekly Limited Elite Bundle', 'weekly-limited'],
+    ['Monthly Limited Epic Bundle', 'monthly-limited']
   ])],
   ['wuthering-waves', new Map([
     ['60 月相', '60'],
@@ -2011,7 +2224,10 @@ const compactItemArtwork = new Map([
     ['1980 + 260 月相', '1980'],
     ['3280 + 600 月相', '3280'],
     ['6480 + 1600 月相', '6480'],
-    ['月相观测卡', 'subscription']
+    ['月相观测卡', 'subscription'],
+    // In-game item icons indexed by Wuthering.gg.
+    ['寰宇频道', 'insider-channel'],
+    ['寰宇特约', 'connoisseur-channel']
   ])],
   ['pubg-mobile', new Map([
     ['60 UC', '60'],
@@ -2019,7 +2235,14 @@ const compactItemArtwork = new Map([
     ['600 + 60 UC', '600'],
     ['1500 + 300 UC', '1500'],
     ['3000 + 850 UC', '3000'],
-    ['6000 + 2100 UC', '6000']
+    ['6000 + 2100 UC', '6000'],
+    ['12000 + 4200 UC', '6000'],
+    ['18000 + 6300 UC', '6000'],
+    // Midasbuy PH uses the same Prime / Prime Plus crowns for monthly and annual memberships.
+    ['普通会员 1 月', 'prime-membership'],
+    ['普通会员 12 月', 'prime-membership'],
+    ['高级会员 1 月', 'prime-plus-membership'],
+    ['高级会员 12 月', 'prime-plus-membership']
   ])],
   ['honor-of-kings-global', new Map([
     ['80 点券', '80'],
@@ -2034,20 +2257,102 @@ const compactItemArtwork = new Map([
     ['8360 点券', '8000']
   ])],
   ['garena-free-fire', new Map([
-    ['25 钻石', 'diamonds'],
-    ['100 钻石', 'diamonds'],
-    ['310 钻石', 'diamonds'],
-    ['520 钻石', 'diamonds'],
-    ['1,060 钻石', 'diamonds'],
-    ['2,180 钻石', 'diamonds'],
-    ['5,600 钻石', 'diamonds'],
-    ['11,500 钻石', 'diamonds']
+    ['25 钻石', 'garena-diamond'],
+    ['100 钻石', 'garena-diamond'],
+    ['310 钻石', 'garena-diamond'],
+    ['520 钻石', 'garena-diamond'],
+    ['1,060 钻石', 'garena-diamond'],
+    ['2,180 钻石', 'garena-diamond'],
+    ['5,600 钻石', 'garena-diamond'],
+    ['11,500 钻石', 'garena-diamond'],
+    ['周卡', 'weekly-membership'],
+    ['月卡', 'monthly-membership'],
+    ['小周卡', 'weekly-lite']
   ])]
 ]);
 
-// View boxes in user-provided references; exclude the neighboring items and captions.
+// View boxes in source artwork; exclude surrounding whitespace, captions and neighboring items.
+const pokeGoldReference = { image: 'poke-gold-reference.png', width: 1149, height: 844 };
 const compactProductReferenceCrops = new Map([
-  ['honkai-star-rail:无名客的荣勋', { image: 'nameless-honor-reference.png', viewBox: '209 11 190 190' }]
+  ['honkai-star-rail:无名客的荣勋', { image: 'nameless-honor-reference.png', width: 600, height: 250, viewBox: '209 11 190 190' }],
+  // The publisher screenshots are used only for their item art, not the reference prices or bonuses.
+  ...[
+    ['3000 + 108 点券', 'a', '73 94 27 24'],
+    ['6800 + 288 点券', 'a', '216 94 43 24'],
+    ['12800 + 588 点券', 'a', '69 226 35 24'],
+    ['19800 + 1088 点券', 'a', '221 223 34 30'],
+    ['32800 + 1788 点券', 'a', '71 354 34 30'],
+    ['64800 + 3588 点券', 'a', '222 352 34 33'],
+    ['89800 + 4973 点券', 'b', '69 149 35 34'],
+    ['129800 + 7190 点券', 'b', '222 149 35 34'],
+    ['199800 + 11068 点券', 'b', '69 279 35 34']
+  ].map(([title, sheet, viewBox]) => [`jin-chan-chan:${title}`, {
+    path: `assets/images/games/tencent-topup/jin-chan-chan-reference-${sheet}.png`, width: 326, height: 450, viewBox
+  }]),
+  ...[
+    ['60 星钻', '728 124 146 140'],
+    ['300 星钻 赠送 22', '1035 133 156 133'],
+    ['680 星钻 赠送 55', '1341 134 151 132'],
+    ['1180 星钻 赠送 105', '415 477 160 134'],
+    ['1980 星钻 赠送 180', '726 478 162 133'],
+    ['3480 星钻 赠送 328', '1036 476 159 135'],
+    ['6480 星钻 赠送 700', '1340 477 155 138']
+  ].map(([title, viewBox]) => [`yuanmeng-zhixing:${title}`, {
+    path: 'assets/images/games/tencent-topup/yuanmeng-zhixing-tier-reference.png', width: 1920, height: 919, viewBox
+  }]),
+  ...[
+    ['30 + 1 礼券', '167 329 39 34'], ['60 + 2 礼券', '248 329 42 34'],
+    ['90 + 4 礼券', '326 329 47 34'], ['150 + 7 礼券', '407 328 46 36'],
+    ['300 + 14 礼券', '162 438 48 36'], ['450 + 22 礼券', '243 438 50 37'],
+    ['600 + 30 礼券', '324 438 52 37'], ['900 + 45 礼券', '407 438 49 37'],
+    ['1500 + 75 礼券', '160 546 54 38'], ['3000 + 150 礼券', '243 546 50 38']
+  ].map(([title, viewBox]) => [`ragnarok-go:${title}`, {
+    image: 'official-voucher-reference.png', width: 597, height: 703, viewBox
+  }]),
+  // Pokémon GO Web Store's XL PokéCoin art; the store-only bonus is not part of our listing.
+  ['pokemon-go:14500 金币', { image: 'pokecoin-cart.webp', width: 384, height: 384, viewBox: '0 63 384 304' }],
+  // Codashop Malaysia uses one VP mark for all six tiers. Give the dark mark a readable backing.
+  ...[475, 1000, 2050, 3650, 5350, 11000].map(amount => [
+    `valorant:${amount} VP`, { image: 'vp.png', width: 150, height: 150, viewBox: '23 23 104 104', lightBacking: true }
+  ]),
+  // The supplied store reference uses the same voucher art for all six tiers.
+  ...['68 + 7 金券', '98 + 12 金券', '128 + 20 金券', '198 + 32 金券', '328 + 62 金券', '648 + 142 金券']
+    .map(title => [`shan-jiang-sanguo:${title}`, { image: 'voucher-reference.png', width: 533, height: 705, viewBox: '80 32 90 90' }]),
+  // Official Android top-up guide (towerofsaviors.com): crop only the blue Magic Stone art, not prices or offers.
+  ...[
+    [1, '80 286 130 126'],
+    [6, '269 286 144 126'],
+    [15, '461 282 152 130'],
+    [30, '69 586 150 147'],
+    [60, '266 586 152 150'],
+    [90, '461 587 157 151'],
+    [150, '62 902 166 151']
+  ].map(([amount, viewBox]) => [`tower-of-saviors:${amount} 魔法石`, { image: 'official-magic-stone-shop.jpeg', width: 685, height: 1600, viewBox }]),
+  // Aniimo's official storefront artwork has transparent padding for its tall cards.
+  ...[
+    ['60 + 6 辉晶', '60', '32 40 53 54'],
+    ['300 + 30 辉晶', '300', '26 34 65 62'],
+    ['980 + 98 辉晶', '980', '24 24 76 70'],
+    ['1980 + 198 辉晶', '1980', '17 25 76 73'],
+    ['3280 + 328 辉晶', '3280', '23 25 77 74'],
+    ['6480 + 648 辉晶', '6480', '24 23 80 76'],
+    ['月度之证', 'monthly', '31 31 62 55'],
+    ['进阶版同行手册', 'advanced-pass', '34 27 55 57'],
+    ['典藏版同行手册', 'collector-pass', '32 28 54 57']
+  ].map(([title, file, viewBox]) => [`aniimo:${title}`, { image: `${file}.png`, width: 121, height: 160, viewBox }]),
+  // The reference starts at 25; use the plain gold-bar art for the smallest two tiers.
+  ['pokemon-tcg-pocket:5 Poké Gold', { ...pokeGoldReference, viewBox: '111 52 187 153' }],
+  ['pokemon-tcg-pocket:25 + 1 Poké Gold', { ...pokeGoldReference, viewBox: '111 52 187 153' }],
+  ['pokemon-tcg-pocket:50 + 7 Poké Gold', { ...pokeGoldReference, viewBox: '367 51 168 154' }],
+  ['pokemon-tcg-pocket:100 + 20 Poké Gold', { ...pokeGoldReference, viewBox: '608 38 180 167' }],
+  ['pokemon-tcg-pocket:200 + 50 Poké Gold', { ...pokeGoldReference, viewBox: '843 41 188 164' }],
+  ['pokemon-tcg-pocket:500 + 190 Poké Gold', { ...pokeGoldReference, viewBox: '112 463 185 164' }]
+]);
+
+// Full-bundle thumbnails combine the game's own currency art. They are not separate store SKUs.
+const compactBundleArtwork = new Map([
+  ['zenless-zone-zero:60 - 6480 一条龙', ['60', '980', '6480']],
+  ['wuthering-waves:60 - 6480 一条龙', ['60', '980', '6480']]
 ]);
 
 // Keep the listing/issuer with each local fallback asset so variants remain auditable.
@@ -2174,12 +2479,26 @@ function makeCompactProductIcon(gameId, titleZh, illustration, fallback = null) 
   }
   const sku = titleZh.match(/^(\d+)(?:\s*\+\s*\d+)?\s*(点券|金币|三角币|洛克钻|星钻|璇晶)(?:\s|$)/);
   const key = sku ? sku[1] + sku[2] : '';
+  const bundleArt = compactBundleArtwork.get(`${gameId}:${titleZh}`);
+  if (bundleArt) {
+    const slots = [[1, 0, 18], [15, 2, 18], [6, 12, 25]];
+    const images = bundleArt.map((file, index) => {
+      const [x, y, size] = slots[index];
+      const image = `assets/images/games/${gameId}-products/${file}.png`;
+      return `<image href="${escapeAttribute(image)}" x="${x}" y="${y}" width="${size}" height="${size}"></image>`;
+    }).join('');
+    const caption = isEnglishLanguage() ? 'Store bundle illustration' : '店内套餐配图';
+    return `<span class="compact-product-icon compact-game-icon compact-item-art" title="${escapeAttribute(caption)}" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 36 38" focusable="false">${images}</svg></span>`;
+  }
   const illustrated = illustration ? ` data-special-art="${escapeAttribute(illustration)}"` : '';
   const itemArt = compactItemArtwork.get(gameId)?.get(titleZh);
   const reference = compactProductReferenceCrops.get(`${gameId}:${titleZh}`);
   if (reference && !illustration) {
-    const image = `assets/images/games/${gameId}-products/${reference.image}`;
-    return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"><svg width="34" height="34" viewBox="${reference.viewBox}" focusable="false"><image href="${escapeAttribute(image)}" width="600" height="250"></image></svg></span>`;
+    const image = reference.path ?? `assets/images/games/${gameId}-products/${reference.image}`;
+    const [x, y, w, h] = reference.viewBox.split(' ').map(Number);
+    const scale = 34 / Math.max(w, h);
+    const backing = reference.lightBacking ? `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="18" fill="#f2ece1"></rect>` : '';
+    return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"><svg width="${(w * scale).toFixed(3)}" height="${(h * scale).toFixed(3)}" viewBox="${reference.viewBox}" focusable="false">${backing}<image href="${escapeAttribute(image)}" width="${reference.width}" height="${reference.height}"></image></svg></span>`;
   }
   if (itemArt && !illustration) {
     const image = `assets/images/games/${gameId}-products/${itemArt}.png`;
@@ -2189,9 +2508,9 @@ function makeCompactProductIcon(gameId, titleZh, illustration, fallback = null) 
     if (ltCrop) {
       return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"><svg width="34" height="${ltCrop[1]}" viewBox="${ltCrop[0]}" focusable="false"><image href="${escapeAttribute(image)}" width="144" height="144"></image></svg></span>`;
     }
-    const caption = itemArt === 'full-bundle' && gameId === 'honkai-star-rail'
-      ? (isEnglishLanguage() ? 'Store bundle illustration' : '店内套餐配图')
-      : '';
+    const storeIllustration = (gameId === 'honkai-star-rail' && itemArt === 'full-bundle')
+      || (gameId === 'pokemon-tcg-pocket' && itemArt === 'gift-box-gold');
+    const caption = storeIllustration ? (isEnglishLanguage() ? 'Store bundle illustration' : '店内套餐配图') : '';
     return `<span class="compact-product-icon compact-game-icon compact-item-art" aria-hidden="true"${caption ? ` title="${escapeAttribute(caption)}"` : ''}><img src="${escapeAttribute(image)}" alt="" width="38" height="38" loading="lazy" decoding="async"></span>`;
   }
   if ((fallback || illustration) && compactOfficialAppArtwork.has(gameId)) {
