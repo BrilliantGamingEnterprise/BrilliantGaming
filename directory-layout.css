@@ -1402,28 +1402,39 @@ textarea:focus-visible,
   transition: transform 200ms ease !important;
 }
 
-.game-card .game-cover img {
-  object-fit: contain !important;
-  object-position: center !important;
-}
-
-.game-card .game-cover .game-cover-backdrop {
-  position: absolute !important;
-  inset: -9% !important;
-  z-index: 0 !important;
-  width: 118% !important;
-  height: 118% !important;
-  object-fit: cover !important;
-  filter: blur(11px) brightness(0.7) saturate(1.15) !important;
-  opacity: 0.96 !important;
-  transform: scale(1.06) !important;
-}
-
 .game-card .game-cover .game-cover-main {
-  position: relative !important;
-  z-index: 1 !important;
+  display: block;
+  object-fit: cover !important;
+  object-position: var(--cover-focus, center);
+}
+
+.game-card[data-game-id="garena-haikyu-fly-high"] {
+  --cover-focus: 85% center;
+}
+
+.game-card[data-game-id="delta-force-global-pc"] {
+  --cover-focus: left center;
+}
+
+/* Match the corners of the official icon so the logo sits on one uninterrupted color field. */
+.game-card[data-game-id="roblox"] .game-cover {
+  background: #3360fd !important;
+}
+
+.game-card[data-game-id="roblox"] .game-cover .game-cover-main {
+  height: 100% !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.28)) !important;
+}
+
+.game-card .game-cover [hidden] {
+  display: none;
+}
+
+.game-cover-fallback:not([hidden]) {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: #faf2e2;
 }
 
 .game-card:hover .game-avatar img {
@@ -1432,10 +1443,6 @@ textarea:focus-visible,
 
 .game-card:hover .game-cover img {
   transform: none !important;
-}
-
-.game-card:hover .game-cover .game-cover-backdrop {
-  transform: scale(1.09) !important;
 }
 
 .game-card h3,

@@ -1522,17 +1522,43 @@ function copyCartAndOpenContact() {
   });
 }
 
+// Directory-only art: keep detail-page hero images and original app icons unchanged.
+const directoryCoverArtwork = new Map([
+  ['tower-of-saviors', 'assets/images/games/tower-of-saviors-directory-cover.webp'],
+  ['aniimo', 'assets/images/games/aniimo2.webp'],
+  ['shan-jiang-sanguo', 'assets/images/games/shan-jiang-sanguo2.jpg'],
+  // https://www.garena.sg/news/XFR3UH
+  ['monster-hunter-outlanders', 'assets/images/games/monster-hunter-outlanders-directory-cover.webp'],
+  // https://www.identityvgame.com/
+  ['identity-v', 'assets/images/games/identity-v-directory-cover.webp'],
+  // Southeast Asia launch artwork.
+  ['ragnarok-go', 'assets/images/games/ragnarok-go-directory-cover.webp'],
+  // Keep the Garena versions separate from the PC international client.
+  ['garena-haikyu-fly-high', 'assets/images/games/garena-haikyu-fly-high-hero.webp'],
+  ['garena-undawn', 'assets/images/games/garena-undawn-directory-cover.webp'],
+  ['garena-aov', 'assets/images/games/garena-aov-directory-cover.webp'],
+  ['delta-force-global-pc', 'assets/images/games/delta-force-global-pc2.jpg'],
+  ['kai-tian', 'assets/images/games/kai-tian-directory-cover.webp'],
+  ['yulgang-w', 'assets/images/games/yulgang-w-directory-cover.webp'],
+  ['goddess-of-victory-nikke', 'assets/images/games/nikke-directory-cover.webp'],
+  ['neverness-to-everness', 'assets/images/games/nte2.jpg'],
+  ['wangzhe-rongyao-shijie', 'assets/images/games/王者荣耀世界2.jpg'],
+  ['wuwei-qiyue', 'assets/images/games/无畏契约2.jpg'],
+  ['razer-gold-top-up-pin', 'assets/images/games/razer-gold2.jpg'],
+  ['roblox', 'assets/images/games/app-icons/roblox.webp']
+]);
+
 function makeGameCover(game) {
   const displayName = localizedGameName(game);
   if (!game.image) {
     return `<div class="game-avatar"><span>${escapeHtml(getAvatarText(displayName))}</span></div>`;
   }
-  const fallback = escapeAttribute(getAvatarText(displayName));
-  const coverSrc = escapeAttribute(game.image);
+  const fallback = escapeHtml(getAvatarText(displayName));
+  const coverSrc = escapeAttribute(directoryCoverArtwork.get(game.id) || game.image);
   return `
     <div class="game-avatar game-cover">
-      <img class="game-cover-backdrop" src="${coverSrc}" alt="" loading="lazy" decoding="async" aria-hidden="true">
-      <img class="game-cover-main" src="${coverSrc}" alt="${escapeAttribute(displayName)}" loading="lazy" decoding="async" data-fallback="${fallback}" onerror="this.parentElement.classList.remove('game-cover'); this.parentElement.innerHTML='<span>${fallback}</span>';">
+      <img class="game-cover-main" src="${coverSrc}" alt="" loading="lazy" decoding="async" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
+      <span class="game-cover-fallback" hidden aria-hidden="true">${fallback}</span>
     </div>`;
 }
 
