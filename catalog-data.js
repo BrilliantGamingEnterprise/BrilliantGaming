@@ -1,5 +1,8 @@
 /* Brilliant Gaming game, product and shared price data. */
 (() => {
+// Malaysia Garena Shells: use integer sen so all three catalogs share exactly RM 0.09 per Shell.
+const garenaShellPrice = (shells) => `RM ${((shells * 9) / 100).toFixed(2)}`;
+
 const pricePresets = {
   // 固定名称「雷蛇100美金」：指定八款游戏的 100 美元档位，统一改价只改这一行。
   // 注意：不是 Razer Gold 点卡，也不包含其他游戏的 100 美元档位。
@@ -579,6 +582,85 @@ const categories = {
         { title: '12960 + 3888 Delta Coin', en: '12960 + 3888 Delta Coin', price: 'RM 810.00', note: 'HOT 推荐 / Delta Coin Top-Up' },
         { title: '19440 + 5832 Delta Coin', en: '19440 + 5832 Delta Coin', price: 'RM 1215.00', note: 'Delta Coin 充值 / Delta Coin Top-Up' }
       ]
+    }
+  ]
+},
+      {
+  id: 'garena-haikyu-fly-high',
+  name: '排球少年!! FLY HIGH',
+  detailName: '排球少年!! FLY HIGH（Garena）',
+  description: 'HAIKYU!! FLY HIGH',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/garena-haikyu-fly-high.webp',
+  detailArt: 'assets/images/games/garena-haikyu-fly-high-hero.webp',
+  keywords: ['排球少年', 'HAIKYU', 'FLY HIGH', 'Garena', 'Star Gems'],
+  productSections: [
+    {
+      title: '星钻充值',
+      subtitle: 'Star Gems',
+      icon: '◆',
+      // https://shop.garena.my/?app=100153 — [base Star Gems, Shells].
+      products: [
+        ['60', 54], ['300', 274], ['980', 824], ['1,980', 1649], ['3,280', 2749], ['6,480', 5499]
+      ].map(([gems, shells]) => ({
+        title: `${gems} 星钻`,
+        en: `${gems} Star Gems`,
+        price: garenaShellPrice(shells),
+        note: '星钻充值 / Star Gems Top-Up'
+      }))
+    }
+  ]
+},
+      {
+  id: 'garena-undawn',
+  name: 'Garena 黎明觉醒',
+  detailName: 'Garena 黎明觉醒（Undawn）',
+  description: 'Garena Undawn',
+  tag: 'UID Top Up',
+  image: 'assets/images/games/garena-undawn.webp',
+  detailArt: 'assets/images/games/garena-undawn-hero.webp',
+  keywords: ['黎明觉醒', '黎明覺醒', 'Undawn', 'Garena', 'RC'],
+  productSections: [
+    {
+      title: 'RC',
+      subtitle: 'RC',
+      icon: '◆',
+      // https://shop.garena.my/?app=100105 — [base RC, Shells]; excludes temporary bonus RC.
+      products: [
+        ['90', 65], ['180', 130], ['360', 260], ['540', 390], ['900', 650],
+        ['1,800', 1300], ['3,600', 2600], ['7,200', 5200], ['36,000', 26000], ['72,000', 52000]
+      ].map(([rc, shells]) => ({
+        title: `${rc} RC`,
+        en: `${rc} RC`,
+        price: garenaShellPrice(shells),
+        note: 'RC 充值 / RC Top-Up'
+      }))
+    }
+  ]
+},
+      {
+  id: 'garena-aov',
+  name: 'Garena 传说对决',
+  detailName: 'Garena 传说对决（AOV）',
+  description: 'Garena AOV - Arena of Valor',
+  tag: 'Login Top Up',
+  image: 'assets/images/games/garena-aov.webp',
+  detailArt: 'assets/images/games/garena-aov-hero.webp',
+  keywords: ['传说对决', '傳說對決', 'Arena of Valor', 'AOV', 'Garena'],
+  productSections: [
+    {
+      title: '点券充值',
+      subtitle: 'Vouchers',
+      icon: '◆',
+      // https://shop.garena.my/?app=100057 — [Vouchers, Shells].
+      products: [
+        [91, 100], [230, 200], [345, 290], [599, 500], [873, 725]
+      ].map(([vouchers, shells]) => ({
+        title: `${vouchers} 点券`,
+        en: `${vouchers} Vouchers`,
+        price: garenaShellPrice(shells),
+        note: '点券充值 / Voucher Top-Up'
+      }))
     }
   ]
 },

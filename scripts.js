@@ -2093,6 +2093,15 @@ const compactItemArtwork = new Map([
     ['2300 + 460 CP', 'cp'],
     ['4600 + 1840 CP', 'cp']
   ])],
+  ['garena-haikyu-fly-high', new Map([
+    '60', '300', '980', '1,980', '3,280', '6,480'
+  ].map(amount => [`${amount} 星钻`, 'currency']))],
+  ['garena-undawn', new Map([
+    '90', '180', '360', '540', '900', '1,800', '3,600', '7,200', '36,000', '72,000'
+  ].map(amount => [`${amount} RC`, 'currency']))],
+  ['garena-aov', new Map([
+    91, 230, 345, 599, 873
+  ].map(amount => [`${amount} 点券`, 'voucher']))],
   // Delta Force PC (Steam) pack art from Titan Game Store. The two largest tiers
   // reuse the 6480 pack image; no separate art was confirmed for those tiers.
   ['delta-force-global-pc', new Map([
